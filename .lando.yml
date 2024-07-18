@@ -1,0 +1,7 @@
+name: ed-karakterler
+recipe: lamp
+config:
+  webroot: web
+  database: mariadb:10.5.23
+  php: '8.2'
+  via: apache

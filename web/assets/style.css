@@ -1,0 +1,48 @@
+/* Erkeğe Dair Character Database
+ * Cascading Style Sheets File
+ */
+
+main {
+    overflow: auto;
+    margin-top: 4.5rem;
+    margin-bottom: 3rem;
+}
+
+.navbar-brand img {
+    max-height: 48px;
+    max-width: 48px;
+}
+
+/* position loading spinner */
+.ed-load {
+    top: 50%;
+    position: absolute;
+    left: 50%;
+}
+
+/* character image placeholder */
+#character_image {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background-image: url(./empty-char-picture.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+#character_image img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.edit-icon {
+    opacity: 0;
+    cursor: pointer;
+}
+#character_image:hover .edit-icon {
+    opacity: 1;
+}
+/* hide a given layer so it can be shown later with show() */
+.ed-none {
+    display: none;
+}

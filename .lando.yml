@@ -1,7 +1,10 @@
-name: ed-karakterler
+name: moc-chars
 recipe: lamp
 config:
   webroot: web
-  database: mariadb:10.5.23
   php: '8.2'
   via: apache
+services:
+  database:
+    type: mariadb:10.5
+    portforward: 37005

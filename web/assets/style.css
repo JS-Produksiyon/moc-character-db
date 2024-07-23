@@ -30,6 +30,21 @@ main {
     background-position: center center;
 }
 
+#character_image_body {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    background-image: url(./empty-char-t-pose.svg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    cursor: pointer;
+}
+
+#character_image_body:hover, #character_image:hover {
+    border-color: #6c757d !important;
+    border-width: 2px !important;
+}
+
 #character_image img {
     max-width: 200px;
     max-height: 200px;
@@ -39,9 +54,10 @@ main {
     opacity: 0;
     cursor: pointer;
 }
-#character_image:hover .edit-icon {
+#character_image:hover .edit-icon, #character_image_body:hover .edit-icon {
     opacity: 1;
 }
+
 /* hide a given layer so it can be shown later with show() */
 .ed-none {
     display: none;

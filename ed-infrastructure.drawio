@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-07-23T14:14:36.072Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="4vq43ZEr_Di9fOBzkWc0" version="24.7.3" type="github" pages="6">
+<mxfile host="app.diagrams.net" modified="2024-07-23T14:20:41.469Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36 Edg/126.0.0.0" etag="9WoHM4p2dpkP2BI9qPMK" version="24.7.3" type="github" pages="6">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Overview">
     <mxGraphModel dx="2261" dy="1996" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -205,7 +205,7 @@
         <mxCell id="QpfmmC1W76dxefHkC_hs-116" value="Enable scrolling" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="QpfmmC1W76dxefHkC_hs-5">
           <mxGeometry x="25" y="350" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="QpfmmC1W76dxefHkC_hs-6" value="PHP/HTML frontend" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+        <mxCell id="QpfmmC1W76dxefHkC_hs-6" value="PHP/HTML frontend" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="-220" y="190" width="490" height="470" as="geometry" />
         </mxCell>
         <mxCell id="QpfmmC1W76dxefHkC_hs-15" value="List display" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="QpfmmC1W76dxefHkC_hs-6">
@@ -268,8 +268,11 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="QpfmmC1W76dxefHkC_hs-122" value="Load localization" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="QpfmmC1W76dxefHkC_hs-6">
+        <mxCell id="QpfmmC1W76dxefHkC_hs-122" value="Load localization" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="QpfmmC1W76dxefHkC_hs-6">
           <mxGeometry x="350" y="50" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="sD1PRUvN5yHe7rRaEEKR-2" value="Set locale (JS)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="QpfmmC1W76dxefHkC_hs-6">
+          <mxGeometry x="160" y="50" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QpfmmC1W76dxefHkC_hs-9" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;edgeStyle=orthogonalEdgeStyle;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QpfmmC1W76dxefHkC_hs-2" target="QpfmmC1W76dxefHkC_hs-1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
@@ -393,6 +396,9 @@
         <mxCell id="_SXj32KN7iXXgAj3DbiO-0" value="locale &lt;br&gt;cookie" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="60" y="60" width="80" height="80" as="geometry" />
         </mxCell>
+        <mxCell id="sD1PRUvN5yHe7rRaEEKR-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" edge="1" parent="WIyWlLk6GJQsqaUBKTNV-1" source="sD1PRUvN5yHe7rRaEEKR-2" target="_SXj32KN7iXXgAj3DbiO-0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -489,6 +495,12 @@
         </mxCell>
         <mxCell id="rOB0dn2Z4r6pRF8CEULn-22" value="locale &lt;br&gt;translation&lt;br&gt;exists?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="370" y="413" width="120" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="6Op7RncuJwjA_caHXAQq-2" value="Language picker" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="500" y="560" width="300" height="370" as="geometry" />
+        </mxCell>
+        <mxCell id="6Op7RncuJwjA_caHXAQq-3" value="Language trigger from menu bar" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="6Op7RncuJwjA_caHXAQq-2">
+          <mxGeometry x="90" y="40" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

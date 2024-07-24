@@ -329,7 +329,7 @@
             <mxPoint x="290" y="240" as="targetPoint" />
             <Array as="points">
               <mxPoint x="70" y="170" />
-              <mxPoint x="-135" y="170" />
+              <mxPoint x="-120" y="170" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -614,7 +614,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-80" value="Character List" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-4">
-          <mxGeometry x="245" y="310" width="475" height="220" as="geometry" />
+          <mxGeometry x="245" y="310" width="495" height="220" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-99" value="Query from &lt;i&gt;characters&lt;/i&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-80">
           <mxGeometry x="15" y="30" width="140" height="150" as="geometry" />
@@ -635,19 +635,19 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-109" value="Count how many episodes in char_to_ep for each character" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-80">
-          <mxGeometry x="190" y="100" width="120" height="90" as="geometry" />
+          <mxGeometry x="200" y="100" width="120" height="90" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-139" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="ZZKAg6aDGRZksHE4VNxU-80" source="ZZKAg6aDGRZksHE4VNxU-110" target="ZZKAg6aDGRZksHE4VNxU-137">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-110" value="Aggregate into associative array id =&amp;gt; data" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-80">
-          <mxGeometry x="340" y="40" width="120" height="60" as="geometry" />
+          <mxGeometry x="360" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-113" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="ZZKAg6aDGRZksHE4VNxU-80" source="ZZKAg6aDGRZksHE4VNxU-101" target="ZZKAg6aDGRZksHE4VNxU-109">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-137" value="return as &lt;br&gt;&lt;i&gt;char_list&lt;/i&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-80">
-          <mxGeometry x="355" y="130" width="105" height="60" as="geometry" />
+          <mxGeometry x="367.5" y="130" width="105" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-116" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="ZZKAg6aDGRZksHE4VNxU-4" source="ZZKAg6aDGRZksHE4VNxU-81">
           <mxGeometry relative="1" as="geometry">
@@ -676,8 +676,8 @@
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-115" value="get &lt;i&gt;id&lt;/i&gt;" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-81">
           <mxGeometry x="40" y="40" width="80" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="ZZKAg6aDGRZksHE4VNxU-117" value="Array containing &lt;br&gt;error message" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-81">
-          <mxGeometry x="20" y="250" width="120" height="60" as="geometry" />
+        <mxCell id="ZZKAg6aDGRZksHE4VNxU-117" value="return array containing &lt;br&gt;error message" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="ZZKAg6aDGRZksHE4VNxU-81">
+          <mxGeometry x="20" y="270" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="ZZKAg6aDGRZksHE4VNxU-132" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="ZZKAg6aDGRZksHE4VNxU-81" source="ZZKAg6aDGRZksHE4VNxU-118" target="ZZKAg6aDGRZksHE4VNxU-122">
           <mxGeometry relative="1" as="geometry" />

@@ -509,36 +509,6 @@
         <mxCell id="rOB0dn2Z4r6pRF8CEULn-22" value="locale &lt;br&gt;translation&lt;br&gt;exists?" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="365" y="305" width="120" height="110" as="geometry" />
         </mxCell>
-        <mxCell id="6Op7RncuJwjA_caHXAQq-2" value="Language picker (JS)" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="440" y="580" width="360" height="320" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="6Op7RncuJwjA_caHXAQq-2" source="6Op7RncuJwjA_caHXAQq-3" target="c98BlLg_FZE43dvxWQKM-3" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="6Op7RncuJwjA_caHXAQq-3" value="Language trigger from menu bar" style="rounded=1;whiteSpace=wrap;html=1;" parent="6Op7RncuJwjA_caHXAQq-2" vertex="1">
-          <mxGeometry x="200" y="40" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="6Op7RncuJwjA_caHXAQq-2" source="c98BlLg_FZE43dvxWQKM-3" target="c98BlLg_FZE43dvxWQKM-4" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-3" value="update language cookie" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="6Op7RncuJwjA_caHXAQq-2" vertex="1">
-          <mxGeometry x="200" y="140" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-4" value="reload window" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="6Op7RncuJwjA_caHXAQq-2" vertex="1">
-          <mxGeometry x="200" y="230" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="6Op7RncuJwjA_caHXAQq-2" source="c98BlLg_FZE43dvxWQKM-7" target="c98BlLg_FZE43dvxWQKM-8" edge="1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-7" value="Document load complete" style="rounded=1;whiteSpace=wrap;html=1;" parent="6Op7RncuJwjA_caHXAQq-2" vertex="1">
-          <mxGeometry x="40" y="40" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-8" value="Apply listening event to language list in menu bar" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="6Op7RncuJwjA_caHXAQq-2" vertex="1">
-          <mxGeometry x="40" y="140" width="120" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="jAGna-_7ZpTyUDDQh-Ht-1" value="This script will be directly in the HTML." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="6Op7RncuJwjA_caHXAQq-2">
-          <mxGeometry x="40" y="240" width="120" height="60" as="geometry" />
-        </mxCell>
         <mxCell id="c98BlLg_FZE43dvxWQKM-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="rOB0dn2Z4r6pRF8CEULn-3" target="c98BlLg_FZE43dvxWQKM-1" edge="1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="210" y="390" as="sourcePoint" />
@@ -551,9 +521,6 @@
         <mxCell id="c98BlLg_FZE43dvxWQKM-11" value="Load and init Language picker JS" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
           <mxGeometry x="150" y="642" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="c98BlLg_FZE43dvxWQKM-13" value="PHP/HTML" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1" parent="1" vertex="1">
-          <mxGeometry x="720" y="40" width="80" height="30" as="geometry" />
-        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
@@ -562,6 +529,15 @@
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="ZZKAg6aDGRZksHE4VNxU-2" value="load JS strings &lt;br&gt;?a=jsstrings" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="1">
+          <mxGeometry x="40" y="40" width="760" height="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZKAg6aDGRZksHE4VNxU-4" value="read from DB&lt;br&gt;?a=fetch" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="1">
+          <mxGeometry x="875" y="40" width="805" height="1040" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZKAg6aDGRZksHE4VNxU-5" value="read from DB&lt;br&gt;?a=fetch" style="swimlane;whiteSpace=wrap;html=1;startSize=50;" vertex="1" parent="1">
+          <mxGeometry x="1725" y="40" width="795" height="1040" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

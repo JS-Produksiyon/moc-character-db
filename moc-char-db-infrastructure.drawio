@@ -555,7 +555,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="bw_lNfyUoghNcqVoVxzj" name="PHP Backend">
-    <mxGraphModel dx="1434" dy="827" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="954" dy="695" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1195,11 +1195,14 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ZZKAg6aDGRZksHE4VNxU-150" value="&lt;i&gt;action&lt;/i&gt;=write&lt;div&gt;and GET?&amp;nbsp;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="40" y="760" width="120" height="110" as="geometry" />
+        <mxCell id="ZZKAg6aDGRZksHE4VNxU-150" value="(&lt;i&gt;action&lt;/i&gt;=&lt;i&gt;write&lt;/i&gt;&amp;nbsp;&lt;span style=&quot;background-color: initial;&quot;&gt;or&lt;/span&gt;&lt;div&gt;&lt;i&gt;action&lt;/i&gt;=&lt;i&gt;imageload&lt;/i&gt;)&lt;/div&gt;&lt;div&gt;and GET?&amp;nbsp;&lt;/div&gt;" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="40" y="760" width="140" height="130" as="geometry" />
         </mxCell>
         <mxCell id="byO-xjFWpBaO2sLEn0ut-2" value="Input validation" style="swimlane;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" vertex="1" parent="1">
           <mxGeometry x="240" y="840" width="600" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="byO-xjFWpBaO2sLEn0ut-16" value="temporary image upload&lt;div&gt;?action=imageload (POST only!)&lt;/div&gt;" style="swimlane;whiteSpace=wrap;html=1;startSize=40;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="2581" y="40" width="460" height="300" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

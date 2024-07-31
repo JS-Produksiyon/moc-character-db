@@ -1341,7 +1341,7 @@
         <mxCell id="aLWnTL_0E3lxydriJKqa-8" value="return false" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="byO-xjFWpBaO2sLEn0ut-2">
           <mxGeometry x="690" y="140" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="aLWnTL_0E3lxydriJKqa-9" value="return image" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="byO-xjFWpBaO2sLEn0ut-2">
+        <mxCell id="aLWnTL_0E3lxydriJKqa-9" value="return image data" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="byO-xjFWpBaO2sLEn0ut-2">
           <mxGeometry x="690" y="45" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="aLWnTL_0E3lxydriJKqa-2" value="what" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="byO-xjFWpBaO2sLEn0ut-2">

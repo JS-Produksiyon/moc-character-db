@@ -1,17 +1,56 @@
 # Men of Courage Character Development Database
 
-This database is designed to track characters used in Men of Courage localization. The backend runs on PHP and a MariaDB (MySQL) database. The frontend is HTML served by PHP for localization with Bootstrap for design look and feel and JavaScript to handle the interactions.
+Version: 0.1
+
+This database is designed to track characters used in Men of Courage localization. The backend runs on Python/Flask and a SQLite database by default. It can also be connected to MySQL, MariaDb or Postgresql. The frontend is HTML served by PHP for localization with Bootstrap for design look and feel and JavaScript to handle the interactions.
 
 ## Backend Minimum System Requirements
 
-* PHP: 8.2
-* MariaDB: 10.5
+* Python 3.8
 
 
 ## Setup
-Download or clone the repository to your machine. Either install the `web` folder to your server and edit `settings.php` to connect it to your local database. Or else using [Lando](https://devwithlando.io), start the lando package.
+Download the repository.
 
-The interface language defaults to English. The default language can be set in `settings.php` (see documentation there) and can be set before the database is activated.
+Create a virtual environment
+
+    python3 -m venv venv --prompt=mocdb
+
+Enter the virtual environment using the requisite code on your OS.
+
+Windows: `venv/Scripts/activate.bat`
+
+Linux / MacOS: `source /venv/bin/activate`
+
+Load the requirements:
+
+    pip install -r requirements.txt
+
+If you're going to use a database other than SQLite, load the database-specific requirements:
+
+MariaDB: `pip install -r mariadb_requirements.txt`
+
+MySQL: `pip install -r mysql_requirements.txt`
+
+Postgresql: `pip install -r pgsql_requirements.txt`
+
+
+## Usage
+
+Run the python executable:
+
+    python3 app/mocdb.py
+
+Point your browser to `http://localhost:13153`.
+
+On first run select your language and database of choice.
+
+
+## Putting the database on the network
+The application is designed with simplicity in mind and **IS NOT MEANT TO BE EXPOSED TO THE INTERNET**! As such there is **no security** built into the application. 
+
+That being said, the application can be run on a server where port `13153` is exposed or redirected using nginx. You're also welcome to package it in a Docker image with gunicorn.
+
 
 ## Localization
 The database comes with localization for the following languages:
@@ -19,3 +58,4 @@ The database comes with localization for the following languages:
 * English (US)
 * Turkish
 
+Port: 13153 = moc

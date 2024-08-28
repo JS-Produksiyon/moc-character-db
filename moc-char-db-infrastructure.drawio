@@ -2208,8 +2208,8 @@
         <mxCell id="qphx04QRWWD3NsD1NJ6j-1" value="List JSON Object" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="20" y="20" width="810" height="200" as="geometry" />
         </mxCell>
-        <mxCell id="0Nmg2AkF8LEOFce0wKTi-1" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;&lt;br&gt;&lt;/pre&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="qphx04QRWWD3NsD1NJ6j-1">
-          <mxGeometry x="30" y="40" width="760" height="120" as="geometry" />
+        <mxCell id="0Nmg2AkF8LEOFce0wKTi-1" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;[&lt;br&gt;    {&lt;br&gt;        id: 0,&lt;br&gt;&#x9;name: &quot;&quot;, /* full name */&lt;br&gt;&#x9;sex: &quot;&quot;,&lt;br&gt;&#x9;episodes: 0, /* episode count */&lt;br&gt;&#x9;animation_status: 0&lt;br&gt;    }&lt;br&gt;]&lt;br&gt;&lt;/pre&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="qphx04QRWWD3NsD1NJ6j-1">
+          <mxGeometry x="30" y="40" width="760" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

@@ -267,11 +267,11 @@
         <mxCell id="QpfmmC1W76dxefHkC_hs-16" value="individual character display / edit" style="rounded=1;whiteSpace=wrap;html=1;" parent="QpfmmC1W76dxefHkC_hs-6" vertex="1">
           <mxGeometry x="230" y="160" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="QpfmmC1W76dxefHkC_hs-17" value="City modal" style="rounded=1;whiteSpace=wrap;html=1;" parent="QpfmmC1W76dxefHkC_hs-6" vertex="1">
+        <mxCell id="QpfmmC1W76dxefHkC_hs-17" value="Residence modal" style="rounded=1;whiteSpace=wrap;html=1;" parent="QpfmmC1W76dxefHkC_hs-6" vertex="1">
           <mxGeometry x="10" y="230" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="QpfmmC1W76dxefHkC_hs-18" value="Image modal" style="rounded=1;whiteSpace=wrap;html=1;" parent="QpfmmC1W76dxefHkC_hs-6" vertex="1">
-          <mxGeometry x="10" y="150" width="120" height="60" as="geometry" />
+          <mxGeometry x="10" y="140" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="uu17MPeGwDHzxCG-zQm5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=1;entryDx=0;entryDy=0;" parent="QpfmmC1W76dxefHkC_hs-6" source="QpfmmC1W76dxefHkC_hs-20" target="BJpE14f_ovSwA0AjCKdM-0" edge="1">
           <mxGeometry relative="1" as="geometry" />
@@ -297,7 +297,7 @@
             <mxPoint x="510" y="50" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QpfmmC1W76dxefHkC_hs-110" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="QpfmmC1W76dxefHkC_hs-6" target="QpfmmC1W76dxefHkC_hs-16" edge="1">
+        <mxCell id="QpfmmC1W76dxefHkC_hs-110" value="" style="endArrow=classic;startArrow=classic;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;edgeStyle=orthogonalEdgeStyle;" parent="QpfmmC1W76dxefHkC_hs-6" target="QpfmmC1W76dxefHkC_hs-16" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="130" y="260" as="sourcePoint" />
             <mxPoint x="180" y="210" as="targetPoint" />
@@ -2075,8 +2075,26 @@
         <mxCell id="dPyB78ezm4RkRHGM0ggm-40" value="triggered by individual Delete Episode button" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="_oFtfLj3TdMBLKvAluDA-37">
           <mxGeometry x="200" y="160" width="170" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="dPyB78ezm4RkRHGM0ggm-25" value="addActor" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="2580" y="10" width="520" height="200" as="geometry" />
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-25" value="actorAdd" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="2570" y="10" width="810" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-68" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="dPyB78ezm4RkRHGM0ggm-25" source="dPyB78ezm4RkRHGM0ggm-65" target="dPyB78ezm4RkRHGM0ggm-66">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-65" value="trigger actor.add" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-25">
+          <mxGeometry x="20" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-69" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="dPyB78ezm4RkRHGM0ggm-25" source="dPyB78ezm4RkRHGM0ggm-66" target="dPyB78ezm4RkRHGM0ggm-67">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-66" value="refresh Actor selection field" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-25">
+          <mxGeometry x="200" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-67" value="set Actor selection field to newest option" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-25">
+          <mxGeometry x="370" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-70" value="triggered when Actor selection field is set to New Actor..." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-25">
+          <mxGeometry x="600" y="55" width="150" height="30" as="geometry" />
         </mxCell>
         <mxCell id="dPyB78ezm4RkRHGM0ggm-41" value="relationAdd" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
           <mxGeometry x="1730" y="731" width="800" height="130" as="geometry" />
@@ -2155,6 +2173,27 @@
         </mxCell>
         <mxCell id="dPyB78ezm4RkRHGM0ggm-64" value="triggered by individual Delete Episode button" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-48">
           <mxGeometry x="200" y="160" width="170" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-71" value="residenceAdd" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" vertex="1" parent="1">
+          <mxGeometry x="2570" y="170" width="810" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-72" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="dPyB78ezm4RkRHGM0ggm-71" source="dPyB78ezm4RkRHGM0ggm-73" target="dPyB78ezm4RkRHGM0ggm-75">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-73" value="trigger residence.add" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-71">
+          <mxGeometry x="20" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-74" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="dPyB78ezm4RkRHGM0ggm-71" source="dPyB78ezm4RkRHGM0ggm-75" target="dPyB78ezm4RkRHGM0ggm-76">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-75" value="refresh Residence selection field" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-71">
+          <mxGeometry x="200" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-76" value="set Residence selection field to newest option" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-71">
+          <mxGeometry x="370" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-77" value="triggered when Residence selection field is set to New Location..." style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="dPyB78ezm4RkRHGM0ggm-71">
+          <mxGeometry x="600" y="55" width="150" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

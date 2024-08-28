@@ -159,11 +159,12 @@ $locale = 'en'
                         <label class="col-3 col-form-label text-end" for="char_dev_state"><?php print(_('Animation Model Status')) ?>:</label>
                         <div class="col-3">
                             <select class="form-select" name="dev_state" id="char_dev_state">
-                                <option value="-1"><?php print(_('Unnecessary')) ?></option>
-                                <option value="0"><?php print(_('Described')) ?></option>
-                                <option value="1"><?php print(_('In Design')) ?></option>
-                                <option value="2"><?php print(_('Available')) ?></option>
-                                <option value="3"><?php print(_('In use')) ?></option>
+                                <option value="unnecessary"><?php print(_('Unnecessary')) ?></option>
+                                <option value="notdefined"><?php print(_('Not Defined')) ?></option>
+                                <option value="defined"><?php print(_('Defined')) ?></option>
+                                <option value="designing"><?php print(_('Being Designed')) ?></option>
+                                <option value="available"><?php print(_('Available')) ?></option>
+                                <option value="inuse"><?php print(_('In use')) ?></option>
                             </select>
                         </div>
                     </div>

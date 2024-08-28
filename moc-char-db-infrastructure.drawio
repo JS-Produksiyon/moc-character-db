@@ -436,7 +436,12 @@
           <mxGeometry x="970" y="-230" width="80" height="100" as="geometry" />
         </mxCell>
         <mxCell id="QpfmmC1W76dxefHkC_hs-151" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QpfmmC1W76dxefHkC_hs-91" target="QpfmmC1W76dxefHkC_hs-34" edge="1">
-          <mxGeometry relative="1" as="geometry" />
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="280" y="-240" />
+              <mxPoint x="280" y="-10" />
+            </Array>
+          </mxGeometry>
         </mxCell>
         <mxCell id="QpfmmC1W76dxefHkC_hs-152" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.75;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;fillColor=#e1d5e7;strokeColor=#9673a6;" parent="WIyWlLk6GJQsqaUBKTNV-1" source="QpfmmC1W76dxefHkC_hs-33" target="QpfmmC1W76dxefHkC_hs-82" edge="1">
           <mxGeometry relative="1" as="geometry" />

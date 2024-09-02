@@ -2604,6 +2604,12 @@
         <mxCell id="7dEah-vZVWChawRSV7i8-10" value="do nothing" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="7dEah-vZVWChawRSV7i8-2">
           <mxGeometry x="600" y="130" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="7dEah-vZVWChawRSV7i8-14" value="button linkage code" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="880" y="640" width="780" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="7dEah-vZVWChawRSV7i8-17" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;$(&quot;.charList-open&quot;).click(function () { character.load($this.data(id)); });&lt;/pre&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="7dEah-vZVWChawRSV7i8-14">
+          <mxGeometry x="10" y="30" width="520" height="33" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

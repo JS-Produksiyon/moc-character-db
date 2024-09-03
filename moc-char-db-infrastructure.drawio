@@ -1499,7 +1499,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gjem1fYLq0cAggE_Lp9I-2" value="setup database &lt;br&gt;/setup (GET or POST)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;startSize=40;" vertex="1" parent="1">
+        <mxCell id="gjem1fYLq0cAggE_Lp9I-2" value="setup application&lt;br&gt;/setup (GET or POST)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b1ddf0;strokeColor=#10739e;startSize=40;" vertex="1" parent="1">
           <mxGeometry x="2570" y="350" width="810" height="340" as="geometry" />
         </mxCell>
         <mxCell id="gjem1fYLq0cAggE_Lp9I-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="gjem1fYLq0cAggE_Lp9I-2" source="gjem1fYLq0cAggE_Lp9I-4" target="gjem1fYLq0cAggE_Lp9I-13">

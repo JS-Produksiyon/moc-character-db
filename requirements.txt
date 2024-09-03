@@ -1,0 +1,23 @@
+# Python Requirements for MOC Character Database
+# Base Requirements
+Jinja2==3.1.*
+Werkzeug==3.0.*
+Flask==3.0.*
+python-dotenv==1.0.*
+
+# Back End
+SQLAlchemy==2.0.*
+SQLAlchemy-Utils==0.41.*
+alembic==1.13.*
+
+# Flask Components
+Flask-SQLAlchemy==3.1.*
+Flask-WTF==1.2.*
+WTForms==3.1.*
+WTForms-Components==0.10.*
+WTForms-Alchemy==0.18.*
+Flask-Babel==4.0.*
+Flask-DebugToolbar==0.14.*
+
+# image editing
+Pillow==10.3.*

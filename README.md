@@ -39,9 +39,9 @@ Postgresql: `pip install -r pgsql_requirements.txt`
 
 Run the python executable:
 
-    python3 app/mocdb.py
+    flask app/app.py run
 
-Point your browser to `http://localhost:13153`.
+Point your browser to `http://localhost:5000`.
 
 On first run select your language and database of choice.
 
@@ -61,3 +61,5 @@ The database comes with localization for the following languages:
 > Please note: the database will work in a given localized language. It will NOT allow switching back and forth between languages! Once you select a language on setup the entire database will be populated with entries for that language only. This is especially true for the relationships.
 
 Port: 13153 = moc
+---
+Updated: 2024-09-03

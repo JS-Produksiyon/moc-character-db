@@ -4019,7 +4019,7 @@
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-1" value="display" style="swimlane;whiteSpace=wrap;html=1;startSize=23;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="20" y="110" width="810" height="200" as="geometry" />
+          <mxGeometry x="30" y="190" width="810" height="200" as="geometry" />
         </mxCell>
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-13" value="arguments" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-1">
           <mxGeometry x="10" y="30" width="140" height="90" as="geometry" />
@@ -4030,17 +4030,47 @@
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-15" value="class = string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-13">
           <mxGeometry y="60" width="140" height="30" as="geometry" />
         </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-20" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="MQMDIv7_U_v8SOj7OiIu-1" source="MQMDIv7_U_v8SOj7OiIu-17" target="MQMDIv7_U_v8SOj7OiIu-18">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-17" value="write message to #flash_msg" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-1">
-          <mxGeometry x="180" y="40" width="120" height="60" as="geometry" />
+          <mxGeometry x="190" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-21" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="MQMDIv7_U_v8SOj7OiIu-1" source="MQMDIv7_U_v8SOj7OiIu-18" target="MQMDIv7_U_v8SOj7OiIu-19">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-18" value="apply class to #flash_msg" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-1">
+          <mxGeometry x="345" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-24" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="MQMDIv7_U_v8SOj7OiIu-1" source="MQMDIv7_U_v8SOj7OiIu-19" target="MQMDIv7_U_v8SOj7OiIu-22">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-19" value="show flash layer" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-1">
+          <mxGeometry x="500" y="60" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-22" value="flash.timeoutObj = setTimeout(&lt;br&gt;flash.autoHide, flash.hideTime)" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-1">
+          <mxGeometry x="680" y="60" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-3" value="autoHide" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="20" y="340" width="810" height="200" as="geometry" />
+          <mxGeometry x="30" y="420" width="810" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-25" value="hide flash layer" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-3">
+          <mxGeometry x="10" y="30" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-8" value="Properties" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="20" y="20" width="140" height="60" as="geometry" />
+          <mxGeometry x="20" y="20" width="140" height="90" as="geometry" />
         </mxCell>
         <mxCell id="MQMDIv7_U_v8SOj7OiIu-9" value="hideTime = 3000" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-8">
           <mxGeometry y="30" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-23" value="timeoutObj = object" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-8">
+          <mxGeometry y="60" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-26" value="add button code" style="swimlane;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" vertex="1" parent="1">
+          <mxGeometry x="30" y="550" width="800" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="MQMDIv7_U_v8SOj7OiIu-27" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;$(&quot;flash_close&quot;).click(flash.autoHide);&lt;/pre&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="MQMDIv7_U_v8SOj7OiIu-26">
+          <mxGeometry x="10" y="30" width="780" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

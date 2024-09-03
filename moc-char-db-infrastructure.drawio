@@ -3726,6 +3726,18 @@
         <mxCell id="932pT6QBsX0kqvS7yKar-14" value="update = false" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="_8RvbK2oFJAewGWYChFE-4">
           <mxGeometry x="640" y="40" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="inHB-IdWUQSTp6CVlMHy-1" value="residences" style="swimlane;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" vertex="1" parent="1">
+          <mxGeometry x="1710" y="10" width="820" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="inHB-IdWUQSTp6CVlMHy-2" value="base JSON object" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="inHB-IdWUQSTp6CVlMHy-1">
+          <mxGeometry x="20" y="35" width="780" height="145" as="geometry" />
+        </mxCell>
+        <mxCell id="inHB-IdWUQSTp6CVlMHy-3" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;[&lt;br/&gt;    {&lt;br/&gt;        id: 0,&lt;br/&gt;        name: &quot;&quot;&lt;br/&gt;    }&lt;br/&gt;]&lt;br/&gt;&lt;/pre&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="inHB-IdWUQSTp6CVlMHy-2">
+          <mxGeometry x="10" y="35" width="760" height="105" as="geometry" />
+        </mxCell>
+        <mxCell id="inHB-IdWUQSTp6CVlMHy-4" value="load" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="inHB-IdWUQSTp6CVlMHy-1">
+          <mxGeometry x="20" y="205" width="780" height="200" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>

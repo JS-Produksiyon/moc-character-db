@@ -2685,7 +2685,7 @@
         <mxCell id="oTAWzZl0bgnLZWlCDS6M-1" value="JSON object" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="880" y="30" width="800" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="oTAWzZl0bgnLZWlCDS6M-2" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;[&lt;br/&gt;&#x9;{&lt;br/&gt;&#x9;&#x9;id: 0,&lt;br/&gt;&#x9;&#x9;name: &quot;&quot;,&lt;br/&gt;&#x9;&#x9;recorded: &quot;&quot;&lt;br/&gt;&#x9;}&lt;br/&gt;]&lt;br/&gt;&lt;/pre&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="oTAWzZl0bgnLZWlCDS6M-1">
+        <mxCell id="oTAWzZl0bgnLZWlCDS6M-2" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;[&lt;br&gt;&#x9;{&lt;br&gt;&#x9;&#x9;id: 0,&lt;br&gt;&#x9;&#x9;name: &quot;&quot;,&lt;br&gt;&#x9;&#x9;recorded: &quot;&quot;,&lt;br/&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;characters: [ { id: 0, name: &quot;&quot; /* full name */ } ]&lt;br&gt;&#x9;}&lt;br&gt;]&lt;br&gt;&lt;/pre&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="oTAWzZl0bgnLZWlCDS6M-1">
           <mxGeometry x="30" y="40" width="740" height="120" as="geometry" />
         </mxCell>
         <mxCell id="oTAWzZl0bgnLZWlCDS6M-3" value="load" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
@@ -3034,7 +3034,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tOVVgxKzKg-U2GwH7y7L-39" value="episodes.update()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="nxGGq24ZVr16SGAMuEG4-1">
-          <mxGeometry x="600" y="210" width="120" height="60" as="geometry" />
+          <mxGeometry x="600" y="210" width="130" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

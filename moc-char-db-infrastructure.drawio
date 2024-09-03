@@ -1557,6 +1557,9 @@
             <mxPoint x="355" y="90" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="orBSmO1qqJnjdLvP0eHy-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="gjem1fYLq0cAggE_Lp9I-2" source="gjem1fYLq0cAggE_Lp9I-21" target="gjem1fYLq0cAggE_Lp9I-23">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="gjem1fYLq0cAggE_Lp9I-21" value="attempt db connection and setup" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="gjem1fYLq0cAggE_Lp9I-2">
           <mxGeometry x="515" y="60" width="120" height="60" as="geometry" />
         </mxCell>
@@ -4250,10 +4253,13 @@
         <mxCell id="tryzb2Zhg3p0nG4VmLAN-21" value="setLanguage()" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
           <mxGeometry x="40" y="150" width="120" height="60" as="geometry" />
         </mxCell>
+        <mxCell id="L8nzhL5oQYb5gdJEq_vI-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="tryzb2Zhg3p0nG4VmLAN-38" target="tryzb2Zhg3p0nG4VmLAN-39">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="tryzb2Zhg3p0nG4VmLAN-38" value="form" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="50" y="850" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="tryzb2Zhg3p0nG4VmLAN-39" value="post to" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+        <mxCell id="tryzb2Zhg3p0nG4VmLAN-39" value="post to &lt;br&gt;/settings" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
           <mxGeometry x="250" y="850" width="120" height="60" as="geometry" />
         </mxCell>
       </root>

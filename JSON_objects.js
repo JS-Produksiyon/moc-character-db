@@ -40,6 +40,17 @@ char_list =
 	}
 ]
 
+
+/* Episode list */
+episodes =
+[
+	{
+		id: 0,
+		name: "",
+		recorded: ""
+	}
+]
+
 /* Relationship Types object */
 rel_types = 
 [
@@ -47,8 +58,8 @@ rel_types =
         id: 0,
         slug: "",
         name: "",
-        reciprocal_male: "",
-        reciprocal_female: ""
+		reciprocal_male : "",
+		reciprocal_female: ""
     }
 ]
 

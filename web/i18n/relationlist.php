@@ -11,7 +11,7 @@
  * database and do not use `gettext()` for localization, as some languages (e.g. Turkish) have more 
  * complex relationships than in English. 
  * 
- * When localizing the MoC Character Database, please copy  * this file and append the filename 
+ * When localizing the MoC Character Database, please copy this file and append the filename 
  * with a dash `-` and the target language code (e.g. `relationlist-ln.php`), then define the 
  * relationships as they exist in that language, following grammatical gender rules and/or 
  * relational complexities. 
@@ -30,7 +30,7 @@
  *
  * $RELATIONS_STRINGS = array ('key' => 'Value', 'key' => 'Value');
  * 
- *    Where `Value` follows captilization rules of the target language
+ *    Where `Value` follows capitalization rules of the target language
  * 
  */
 $RELATIONS_STRINGS = array(
@@ -64,8 +64,8 @@ $RELATIONS_STRINGS = array(
 
 /* 
  * The data in $RECIPROCAL_RELATIONS are used when updating a character and his/her relations
- * The relation takes two different possiblities: male or female. If the target  relationship is 
- * only either male or female, leave the relationsip it is *not* blank.
+ * The relation takes two different possibilities: male or female. If the target  relationship is 
+ * only either male or female, leave the relationship it is *not* blank.
  * 
  * The keys need to be identical to the ones in $RELATIONS_STRINGS, otherwise defining the 
  * reciprocal relations will not work.

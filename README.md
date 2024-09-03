@@ -58,4 +58,6 @@ The database comes with localization for the following languages:
 * English (US)
 * Turkish
 
+> Please note: the database will work in a given localized language. It will NOT allow switching back and forth between languages! Once you select a language on setup the entire database will be populated with entries for that language only. This is especially true for the relationships.
+
 Port: 13153 = moc

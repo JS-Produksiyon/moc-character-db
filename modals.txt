@@ -1,0 +1,8 @@
+deleteItem()
+addEpisode()
+editEpisode()
+addResidence()
+addActor()
+uploadImage()
+endProgramConfirmation()
+majorError()

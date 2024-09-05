@@ -26,7 +26,7 @@ if sys.version_info < MIN_PYTHON:
     sys.exit("Python %s.%s or later is required to run Pulsar.\n" % MIN_PYTHON)
 
 # import dependencies
-import os
+import os, json
 from flask import Flask
 
 
@@ -40,6 +40,9 @@ from flask import Flask
 def create_app(test_config=None):
     """
     Base Flask Application
+
+    :param test_config: whether or not to use the test configuration
+    :type  test_config: boolean
     """
     app = Flask(__name__, instance_relative_config=True)
     
@@ -50,6 +53,29 @@ def create_app(test_config=None):
         SECRET_KEY='JS-Produksiyon-dev-2024'
     )
 
-
+    try:
+        app.config.from_file('settings.json', load=json.load)
+        app.config['MOCDB_SETUP'] = True
+    except:
+        create_app_settings(app)    
 
     return app
+
+
+def create_app_settings(app):
+    """
+    Triggers and manages the setup processes for the app
+
+    :param app: the main application to work upon
+    :type  app: Flask object
+    """
+
+    print('run setup script')
+    app.config['MOCDB_SETUP'] = False
+
+    print(app.config)
+
+    @app.route("/setup", methods=['GET', 'POST'])
+    def setup_page():
+        return "Displays Setup Page"
+

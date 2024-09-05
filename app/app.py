@@ -73,9 +73,19 @@ def create_app_settings(app):
     print('run setup script')
     app.config['MOCDB_SETUP'] = False
 
+    # Create instance folder
+    if not os.path.exists(app.instance_path):
+        try:
+            os.makedirs(app.instance_path)
+        except OSError:
+            print('Unable to create directory to contain the settings file. Please ensure you have proper write permissions in the base directory.')
+            print('Unable to execute the Men of Courage Character Database application. Terminating...')
+            exit()
+
     print(app.config)
 
     @app.route("/setup", methods=['GET', 'POST'])
     def setup_page():
+        print(app)
         return "Displays Setup Page"
 

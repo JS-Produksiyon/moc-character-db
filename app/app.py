@@ -27,14 +27,17 @@ if sys.version_info < MIN_PYTHON:
 
 # import dependencies
 import os, json
-from flask import Flask
-
+from flask import Flask, current_app
 
 # Import blueprints
 
 
 # Import extensions
-
+from flask_babel import Babel, gettext as _, ngettext
+from flask_sqlalchemy import SQLAlchemy
+from flask_debugtoolbar import DebugToolbarExtension
+from flask_wtf import CSRFProtect
+from jinja2 import Environment
 
 # Initialize app
 def create_app(test_config=None):
@@ -44,33 +47,44 @@ def create_app(test_config=None):
     :param test_config: whether or not to use the test configuration
     :type  test_config: boolean
     """
-    app = Flask(__name__, instance_relative_config=True)
+    app = Flask(__name__, static_url_path='/assets', instance_relative_config=True, template_folder='templates')
     
     # base configuration values
     app.config.update(
         DEBUG=__debugState__,
         TESTING=__debugState__,
-        SECRET_KEY='JS-Produksiyon-dev-2024'
+        SECRET_KEY='JS-Produksiyon-dev-2024',
+        BABEL_DEFAULT_LOCALE = 'en',
+        BABEL_TRANSLATION_DIRECTORIES = 'languages',
+        APP_LANGUAGE = 'en'
     )
+
+    # enable babel
+    babel = Babel(app)
+
+    babel.init_app(app, locale_selector=get_locale)
+    
+    env = Environment(extensions=['jinja2.ext.i18n'])
+    env.install_gettext_callables(_, ngettext)
 
     try:
         app.config.from_file('settings.json', load=json.load)
         app.config['MOCDB_SETUP'] = True
     except:
-        create_app_settings(app)    
+        create_app_settings(app, babel)    
 
     return app
 
 
-def create_app_settings(app):
+def create_app_settings(app, babel):
     """
     Triggers and manages the setup processes for the app
 
     :param app: the main application to work upon
     :type  app: Flask object
     """
+    from flask import render_template
 
-    print('run setup script')
     app.config['MOCDB_SETUP'] = False
 
     # Create instance folder
@@ -82,10 +96,23 @@ def create_app_settings(app):
             print('Unable to execute the Men of Courage Character Database application. Terminating...')
             exit()
 
-    print(app.config)
 
-    @app.route("/setup", methods=['GET', 'POST'])
+    @app.route("/", methods=['GET'])
     def setup_page():
-        print(app)
-        return "Displays Setup Page"
+        configstate = []
+        for item in app.config:
+            configstate.append({ item:app.config[item] })
 
+
+        return render_template('setup.html.jinja', config=configstate)
+        
+
+    @app.route("/setup", methods=['POST'])
+    def save_setup():
+        pass
+
+def get_locale():
+    """
+    Returns the locale that was set by the application
+    """
+    return current_app.config.get('APP_LANGUAGE')

@@ -5,7 +5,7 @@
 
     File name: ncm.py
     Date Created: 2024-09-03
-    Date Modified: 2024-09-03
+    Date Modified: 2024-09-10
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -83,7 +83,8 @@ def create_app_settings(app, babel):
     :param app: the main application to work upon
     :type  app: Flask object
     """
-    from flask import render_template
+    from flask import render_template, request
+    from lib.util_randomstr import randomString
 
     app.config['MOCDB_SETUP'] = False
 
@@ -99,17 +100,17 @@ def create_app_settings(app, babel):
 
     @app.route("/", methods=['GET'])
     def setup_page():
-        configstate = []
-        for item in app.config:
-            configstate.append({ item:app.config[item] })
+        postgres = '' #'disabled'
+        mariadb = '' #'disabled'
+        mysql = '' #'disabled'
+        random_secret = randomString('alphanumeric', strLength=48)
 
-
-        return render_template('setup.html.jinja', config=configstate)
+        return render_template('setup.html.jinja', has_postgres=postgres, has_mariadb=mariadb, has_mysql=mysql, secret=random_secret)
         
 
     @app.route("/setup", methods=['POST'])
     def save_setup():
-        pass
+        return request
 
 def get_locale():
     """

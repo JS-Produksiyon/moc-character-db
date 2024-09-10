@@ -14,7 +14,7 @@ main {
 }
 
 /* position loading spinner */
-.ed-load {
+.md-load {
     top: 50%;
     position: absolute;
     left: 50%;
@@ -96,6 +96,6 @@ main {
 }
 
 /* hide a given layer so it can be shown later with show() */
-.ed-none {
+.md-none {
     display: none;
 }

@@ -13,25 +13,38 @@
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
+    <!-- flash messages -->
     <div id="flash"></div>
         <button type="button" class="btn btn-sm float-end" id="flash_dismiss"><i class="bi-x-lg"></i></button>
         <div id="flash_msg">Message here</div>
     </div>
+
     <header>
-    {% block nav %}{% endblock%}
+        {% block nav %}{% endblock%}
     </header>
+
     <main>
-    {% block content %}{% endblock %}
+        <!-- loading spinner -->
+        <div class="md-load spinner-border text-secondary md-none" role="status"><div class="visually-hidden"><?php print(_('Loading')) ?>...</div></div>
+        <!-- main content -->
+        <div class="container mt-3 mb-3 h-100">
+            {% block content %}{% endblock %}
+        </div>
     </main>
+
     <footer class="footer sticky mt-auto py-3 bg-light fixed-bottom">
         <div class="container-fluid">
             {{ _('Copyright') }} &copy; 2024 JS Prodüksiyon Ltd. Şti. {{ _('Released under GNU GPL 3.0') }}
         </div>
     </footer>
 
-    {# scripts go here #}
+    <!-- Modals -->
+    {% block modals %}{% endblock %}
+
+    <!-- JavaScript -->
     <script src="{{ url_for('static', filename='jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ url_for('static', filename='ui.js') }}"></script>
+    {% block custom_js %}{% endblock %}
 </body>
 </html>

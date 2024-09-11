@@ -26,13 +26,13 @@ Load the requirements:
 
     pip install -r requirements.txt
 
-If you're going to use a database other than SQLite, load the database-specific requirements:
+If you're going to use a database other than SQLite, load the database-specific packages from PyPi:
 
-MariaDB: `pip install -r mariadb_requirements.txt`
+MariaDB: `pip install mariadb`
 
-MySQL: `pip install -r mysql_requirements.txt`
+MySQL: `pip install flask-mysqldb`
 
-Postgresql: `pip install -r pgsql_requirements.txt`
+PostgreSQL: `pip install psycopg2-binary`
 
 
 ## Usage

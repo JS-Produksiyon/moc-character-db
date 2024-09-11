@@ -100,10 +100,24 @@ def create_app_settings(app, babel):
 
     @app.route("/", methods=['GET'])
     def setup_page():
-        postgres = '' #'disabled'
-        mariadb = '' #'disabled'
-        mysql = '' #'disabled'
+        import pkg_resources
+
+        # instantiate variables
+        postgres = 'disabled'
+        mariadb = 'disabled'
+        mysql = 'disabled'
         random_secret = randomString('alphanumeric', strLength=48)
+
+        # iterate through installed packages to check for database connectors
+        for pkg in pkg_resources.working_set:
+            if 'psycopg2-binary' in pkg.key:
+                postgres = ''
+
+            if 'mariadb' in pkg.key:
+                mariadb = ''
+
+            if 'flask-mysqldb' in pkg.key:
+                mysql = ''
 
         return render_template('setup.html.jinja', has_postgres=postgres, has_mariadb=mariadb, has_mysql=mysql, secret=random_secret)
         
@@ -112,8 +126,21 @@ def create_app_settings(app, babel):
     def save_setup():
         return request
 
+
 def get_locale():
     """
     Returns the locale that was set by the application
     """
     return current_app.config.get('APP_LANGUAGE')
+
+
+def start_app(app):
+    """
+    Executes Database connectivity and Blueprint connectivity for app
+    These are placed here so that they can be called from different 
+    functions, depending on necessity
+    
+    :param app: refence to current Flask application
+    :type  app: Flask Object
+    """
+    pass

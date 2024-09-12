@@ -16,7 +16,7 @@
     <!-- flash messages -->
     <div id="flash"></div>
         <button type="button" class="btn btn-sm float-end" id="flash_dismiss"><i class="bi-x-lg"></i></button>
-        <div id="flash_msg">Message here</div>
+        <div id="flash_msg"></div>
     </div>
 
     <header>
@@ -25,7 +25,7 @@
 
     <main>
         <!-- loading spinner -->
-        <div class="md-load spinner-border text-secondary md-none" role="status"><div class="visually-hidden"><?php print(_('Loading')) ?>...</div></div>
+        <div class="md-load spinner-border text-secondary md-none" role="status"><div class="visually-hidden">{{ _('Loading')) }}...</div></div>
         <!-- main content -->
         <div class="container mt-3 mb-3 h-100">
             {% block content %}{% endblock %}

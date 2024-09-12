@@ -121,17 +121,17 @@
                     </div>
                     <div class="row">
                         <div class="col-4 ps-3">
-                            <button class="btn btn-secondary back-to-list" type="button">
+                            <a href="#/"><button class="btn btn-secondary back-to-list" type="button">
                                 <i class="bi-chevron-left"></i> {{ _('Back to List') }}
-                            </button>
+                            </button></a>
                         </div>
                         <div class="col-4 text-center">
-                            <button class="btn btn-outline-danger" type="button">
+                            <button class="btn btn-outline-danger" type="button" id="del_char_btn">
                                 <i class="bi-trash3-fill"></i> {{ _('Delete Character') }}
                             </button>
                         </div>
                         <div class="col-4 pe-3 text-end">
-                            <button class="btn btn-success" type="submit">
+                            <button class="btn btn-success" type="button" id="save_char_btn">
                                 <i class="bi-floppy-fill"></i> {{ _('Save Character') }}
                             </button>
                         </div>

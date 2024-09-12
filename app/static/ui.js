@@ -44,11 +44,14 @@ html_templates = {
     episode_data : `<div class="accordion-item">
     <h2 class="accordion-header" id="episode_%id%">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_%id%">
-                    %id% &ndash; %title%
-                </button>
+            %id% &ndash; %title%
+        </button>
     </h2>
     <div id="collapse_%id%" class="accordion-collapse collapse">
         <div class="accordion-body">
+            <div class="float-end mt-3 me-3">
+                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="%id%"><i class="bi bi-pencil"></i> %edit%</button></button>
+            </div>
             <p><strong>%ep_rec_date%:</strong> %rec_date%</p>
             <p class="mb-0"><strong>%ep_characters%:</strong></p>
             <ul>

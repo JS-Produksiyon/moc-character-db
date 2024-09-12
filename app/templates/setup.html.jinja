@@ -32,12 +32,12 @@
         <label class="col-3 text-end pt-1" for="secret_key" id="secret_key_label">Secret Key:</label>
         <div class="col-9">
             <input type="text" max="128" id="secret_key" name="secret_key" class="form-control" placeholder="{{ secret }}">
-            <div class="invalid-feedback" id="secret_key_error">The secret key you have entered is not long enough. It must be at least 12 characters in length.</div>
-            <small id="secret_key_explanation"><strong>This field is optional.</strong> Enter a complex secret code of at least 12 characters up to 128 characters to make communications with the database secure. If left empty, the database will generate its own 48-character random key.</small>
+            <div class="invalid-feedback" id="secret_key_error">The secret key you have entered is not long enough or it contains invalid characters. It must be at least 12 characters in length.</div>
+            <small id="secret_key_explanation"><strong>This field is optional.</strong> Enter a complex secret code of at least 12 characters up to 128 characters to make communications with the database secure. You can any standard alphanumeric characters as well as <code>! @ # $ % & ( ) [ ] , . _ -</code>. If left empty, the database will generate its own 48-character random key.</small>
         </div>
     </div>
     <h2 id="db_title">Database Options</h2>
-    <p id="db_explanation">Select the type of database you wish to store the data in. If the option is greyed out, the requirements to connect to that type of database have not been installed. Please refere to <code>README.md</code> for more information.</p>
+    <p id="db_explanation">Select the type of database you wish to store the data in. If the option is greyed out, the requirements to connect to that type of database have not been installed. You can any standard alphanumeric characters as well as <code>! @ # $ % & ( ) [ ] , . _ -</code>. Please refer to <code>README.md</code> for more information.</p>
     <input type="hidden" name="db_type" id="db_type" value="sqlite">
     <div class="row mb-3 pb-2 border-bottom">
         <div class="col-3 text-center">

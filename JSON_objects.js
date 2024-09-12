@@ -73,9 +73,18 @@ residence =
 ]
 
 /* Actors object */
+actors =
 [
     {
         id: 0,
         name: ""
     }
 ]
+
+/* Settings Object */
+settings = 
+{
+	"APP_LANGUAGE" : "",
+	"SECRET_KEY" : "",
+	"SQLALCHEMY_DATABASE_URI": ""
+}

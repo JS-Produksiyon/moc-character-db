@@ -1,0 +1,30 @@
+{% extends 'base.html.jinja' %}
+
+{% block title %}{{ _('Men of Courage') }} {{ _('Character Database') }} {{ _('Setup') }}{% endblock %}
+
+{%- block nav -%}
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <span class="navbar-brand">
+                    <img src="./assets/ed-logo.svg" alt="{{ _('Men of Courage') }} {{ _('Official Logo') }}"> 
+                    <span id="page_title">{{ _('Men of Courage') }} {{ _('Character Database') }}</span>
+                </span>
+            </div>
+        </nav>
+{% endblock %}
+
+{%- block content -%}
+{%- if success -%}
+    <p class="h2 text-center">{{ _('Settings saved successfully.') }}</p>
+    <p class="text-center">{{ _('The character database is now ready for use. Click the Start button to begin creating your first character.') }}</p>
+    <p class="text-center"><a href="/#/character/add"><button type="button" class="btn btn-success">{{ _('Start') }}</button></a></p>
+{%- else -%}
+    <p class="h2 text-center text-danger">{{ _('Unable to save settings.') }}</p>
+    {%- if error == 'write' -%}
+        <p class="text-center">{{ _('Something went wrong when writing the <code>settings.json</code> file to disk. Please check the write permissions of the <code>/instance</code> directory.') }}</p>
+    {%- else -%}
+        <p class="text-center">{{ _('Something went wrong with the data passed. Please check your entries and try again.') }}</p>
+    {% endif %}
+    <p class="text-center"><a href="javascript:history.back();"><button type="button" class="btn btn-secondary">{{ _('Back to Setup') }}</button></a></p>
+{% endif %}
+{% endblock %}

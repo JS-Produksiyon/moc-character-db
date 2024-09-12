@@ -44,16 +44,16 @@ $(document).ready(function() {
             "tr": "Gizli anahatar yeterince kadar uzun değil. En az 12 karakter uzunluğunda olmalıdır."
         },
         "secret_key_explanation": {
-            "en": "<strong>This field is optional.</strong> Enter a complex secret code of at least 12 characters up to 128 characters to make communications with the database secure. If left empty, the database will generate its own 48-character random key.",
-            "tr": "<strong>Bu alan isteğe bağlı doldurulabilir.</strong> Veri tabanını güvende tutmak için en az 12 ve en fazla 128 karakterden oluşan bir dizi giriniz. Boş bırakılırsa, veri tabanı otomatik olarak 48-karakterlik gelişigüzel bir dizi oluşturacaktır."
+            "en": "<strong>This field is optional.</strong> Enter a complex secret code of at least 12 characters up to 128 characters to make communications with the database secure. You can any standard alphanumeric characters as well as <code>! @ # $ % & ( ) [ ] , . _ -</code>. If left empty, the database will generate its own 48-character random key.",
+            "tr": "<strong>Bu alan isteğe bağlı doldurulabilir.</strong> Veri tabanını güvende tutmak için en az 12 ve en fazla 128 karakterden oluşan bir dizi giriniz. Standart alfasayısal karakterler ile <code>! @ # $ % & ( ) [ ] , . _ -</code> karakterler girilebilir. Boş bırakılırsa, veri tabanı otomatik olarak 48-karakterlik gelişigüzel bir dizi oluşturacaktır."
         },
         "db_title": {
             "en": "Database Options",
             "tr": "Veri Tabanı Seçenekleri"
         },
         "db_explanation": {
-            "en": "Select the type of database you wish to store the data in. If the option is greyed out, the requirements to connect to that type of database have not been installed. Please refer to <code>README.md</code> for more information.",
-            "tr": "Kullanmak istediğiniz veri tabanı türünü seçiniz. Bir seçenek seçilemez halde ise, veri tabanına bağlantıyı sağlayan gereksinimleri yüklenmiş değiller. Daha bilgi için <code>README.md</code> dosyasına göz atın."
+            "en": "Select the type of database you wish to store the data in. If the option is greyed out, the requirements to connect to that type of database have not been installed. You can any standard alphanumeric characters as well as <code>! @ # $ % & ( ) [ ] , . _ -</code>. Please refer to <code>README.md</code> for more information.",
+            "tr": "Kullanmak istediğiniz veri tabanı türünü seçiniz. Bir seçenek seçilemez halde ise, veri tabanına bağlantıyı sağlayan gereksinimleri yüklenmiş değiller. Alanlara standart alfasayısal karakterler ile <code>! @ # $ % & ( ) [ ] , . _ -</code> karakterler girilebilir. <strong>Kesinlikle Türkçe karakter kullanmayınız!</strong> Daha bilgi için <code>README.md</code> dosyasına göz atın."
         },
         "db_sqlite_file_label": {
             "en": "SQLite Database File Name:",
@@ -156,36 +156,38 @@ $(document).ready(function() {
     /* click save_settings button */
     if ($("#save_settings").length > 0) {
         $("#save_settings").click(function () {
+            var regex = /^[\w\-\.\$\&()\[\]\{\}!@#,]+$/
+
             $(".form-control").removeClass("is-invalid")
             var go = true;
 
             /* validate secret key length */
-            if ($("#secret_key").val().length > 0 && $("#secret_key").length < 12) {
+            if ($("#secret_key").val().length > 0 && $("#secret_key").val().length < 12 && !$("#secret_key").val().match(regex)) {
                 go = false;
                 $("#secret_key").addClass("is-invalid");
             }
 
             /* validate database entries */
             if ($("#db_type").val() == 'sqlite') {
-                if ($("#sqlite_db_file").val().length < 1) {
+                if ($("#sqlite_db_file").val().length < 1 || !$("#sqlite_db_file").val().match(regex)) {
                     go = false;
                     $("#sqlite_db_file").addClass("is-invalid");
                 }
             } else {
-                if ($("#db_host").val().length < 1) {
+                if ($("#db_host").val().length < 1 || !$("#db_host").val().match(regex)) {
                     go = false;
                     $("#db_host").addClass("is-invalid");
                 }
-                var port = parseInt($("#db_name").val());
+                var port = parseInt($("#db_port").val());
                 if (port == NaN || port < 999) {
                     go = false;
                     $("#db_port").addClass("is-invalid");
                 }
-                if ($("#db_name").val().length < 1) {
+                if ($("#db_name").val().length < 1 || !$("#db_name").val().match(regex)) {
                     go = false;
                     $("#db_name").addClass("is-invalid");
                 }
-                if ($("#db_user").val().length < 1) {
+                if ($("#db_user").val().length < 1 || !$("#db_name").val().match(regex)) {
                     go = false;
                     $("#db_user").addClass("is-invalid");
                 }

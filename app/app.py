@@ -64,9 +64,7 @@ def create_app(test_config=None):
 
     # enable babel
     babel = Babel(app)
-
     babel.init_app(app, locale_selector=get_locale)
-    
     env = Environment(extensions=['jinja2.ext.i18n'])
     env.install_gettext_callables(_, ngettext)
 
@@ -86,6 +84,7 @@ def create_app_settings(app, babel):
     :param app: the main application to work upon
     :type  app: Flask object
     """
+    import re
     from flask import render_template, request
     from lib.util_randomstr import randomString
 
@@ -126,16 +125,77 @@ def create_app_settings(app, babel):
         
 
     @app.route("/setup", methods=['GET','POST'])
-    def save_setup():
-        language = request.form['language']
+    def save_settings():
+        """
+        Save and apply passed settings.
+        """
+        dbTypes = ['sqlite', 'postgres', 'mariadb', 'mysql']
+        fnValidChars = "^[\w\-\.\$\&()\[\]\{\}!@#,]+$"
+        success = False     # defines whether we
+        error='general'     # defines
+        
+        # validate form content
+        if (len(request.form) == 11) and (type(request.form['language']) == str and len(request.form['language'])  == 2) and (request.form['db_type'] in dbTypes) and (len(request.form['secret_key']) < 1 or len(request.form['secret_key']) > 12):
 
-        setupObj = {
-	                 "APP_LANGUAGE" : "",
-	                 "SECRET_KEY" : "",
-	                 "SQLALCHEMY_DATABASE_URI": ""
-                   }
+            # validate specifically for sqlite
+            if (request.form['db_type'] == 'sqlite') and (len(request.form['sqlite_db_file']) > 0) and (re.match(fnValidChars, request.form['sqlite_db_file'])):
+                success = True
 
-        return render_template('setup-result.html.jinja', form=request.form)
+            # validate for all other DB's
+            else:
+                try:
+                    port = int(request.form['db_port'])
+                except ValueError:
+                    port = 0
+                
+                if (port > 1000) and (len(request.form['db_host']) > 0) and (re.match(fnValidChars, request.form['db_host'])) and (len(request.form['db_user']) > 0) and (re.match(fnValidChars, request.form['db_user']) )and (len(request.form['db_pwd']) > 4):
+                    success = True
+        
+        if success:
+            # generate secret key
+            if len(request.form['secret_key']) == 0:
+                # we iterate the secret key three times for higher entropy
+                for i in range(3): 
+                    secretKey = randomString('alphanumeric', strLength=48)
+            else:
+                secretKey = request.form['secret_key']
+
+            # generate database URI
+            SQLiteUri = 'sqlite:///{filename}'
+            dbUriTpl = '{engine}://{user}:{pwd}@{host}:{port}/{name}'
+            engines = { 'postgres':'postgresql+psycopg2', 
+                        'mariadb': 'mariadb+mariadbconnector',
+                        'mysql': 'mysql'}
+
+            if (request.form['db_type'] == 'sqlite'):
+                dbUri = SQLiteUri.format(filename=request.form['sqlite_db_file'])
+
+            else:
+                dbUri = dbUriTpl.format(engines=engines[request.form['db_type']], user=request.form['db_user'], pwd=request.form['db_pwd'], host=request.form['db_host'], port=request.form['db_port'], name=request.form['db_name'])
+
+            setupObj = {
+                        "APP_LANGUAGE" : request.form['language'],
+                        "SECRET_KEY" : secretKey,
+                        "SQLALCHEMY_DATABASE_URI": dbUri,
+                        "SQLALCHEMY_TRACK_MODIFICATIONS": True
+                    }
+            
+            app.config.update(setupObj)
+
+            # write the settings to system
+            try:
+                with open(os.path.join(app.instance_path, 'settings.json'), 'w', encoding='utf-8') as sf:
+                    json.dump(setupObj, sf)
+
+                success = True
+
+            except Exception as e:
+                print(f'Settings file write exception occurred: {e}')
+                error='write'
+        
+            start_app(app)
+
+        return render_template('setup-result.html.jinja', success=success, error=error)
 
 
 def get_locale():

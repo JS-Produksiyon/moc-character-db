@@ -232,6 +232,7 @@ $locale = 'en'
                             <p id="char_no_eps" class="ms-3"><?php print(_('None')) ?></p>
                             <div id="char_eps_table_container" class="rounded-3 overflow-hidden mb-3 border">
                                 <table class="table table-striped m-0">
+                                    <tbody>
                                     <tr>
                                         <td>201 - Şiddet</td>
                                         <td class="text-end pe-3">
@@ -240,6 +241,7 @@ $locale = 'en'
                                             </button>
                                         </td>
                                     </tr>
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

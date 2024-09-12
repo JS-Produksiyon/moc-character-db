@@ -8,7 +8,7 @@
  * 
  */
 
-templates = {
+html_templates = {
     charlist_row : `<tr>
     <td class="ps-3"><a href="#/character/%id%">%full_name%</a></td>
     <td>%episodes%</td>
@@ -40,5 +40,22 @@ templates = {
             <i class="bi-trash3-fill"></i>
     </button>
     </td>
-</tr>\n`
+</tr>\n`,
+    episode_data : `<div class="accordion-item">
+    <h2 class="accordion-header" id="episode_%id%">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_%id%">
+                    %id% &ndash; %title%
+                </button>
+    </h2>
+    <div id="collapse_%id%" class="accordion-collapse collapse">
+        <div class="accordion-body">
+            <p><strong>%ep_rec_date%:</strong> %rec_date%</p>
+            <p class="mb-0"><strong>%ep_characters%:</strong></p>
+            <ul>
+                %charlist%
+            </ul>
+        </div>
+    </div>            
+</div>\n`,
+    episode_charlist : '<li><a href="#/character/%id%">%full_name%</a></li>'
 }

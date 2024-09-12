@@ -1,142 +1,142 @@
 {# html for character form #}
-        <!-- Form with the character details -->
-            <div id="char_detail" class="">
-                <h1 id="character_details">{{ _('Character Details') }}</h1>
-                <h2 id="character_add">{{ _('Add Character') }}</h2>
-                <h2 id="character_edit">{{ _('Edit Character') }}</h2>
-                <form id="character_details_form" onsubmit="return false;" class="rounded-3 border p-2">
-                    <input type="hidden" value="" id="char_id" name="id">
-                    <div id="character_image" class="float-end border rounded-2 me-1 mt-1">
+    <!-- Form with the character details -->
+    <div id="char_detail" class="md-none">
+        <h1 id="character_details">{{ _('Character Details') }}</h1>
+        <h2 id="character_add">{{ _('Add Character') }}</h2>
+        <h2 id="character_edit">{{ _('Edit Character') }}</h2>
+        <form id="character_details_form" onsubmit="return false;" class="rounded-3 border p-2">
+            <input type="hidden" value="" id="char_id" name="id">
+            <div id="character_image" class="float-end border rounded-2 me-1 mt-1">
+                <div class="edit-icon">
+                    <img src="./assets/empty-char-picture-edit.svg" title="{{ _('Edit') }}">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 p-3">
+                    <input type="text" class="form-control border-0 fs-2" placeholder="{{ _('First Name') }}" name="first_name" id="char_first_name">
+                </div>
+                <div class="col-4 h2 p-3">
+                    <input type="text" class="form-control border-0 fs-2" placeholder="{{ _('Last Name') }}" name="last_name" id="char_last_name">
+                </div>
+                <div class="col-4">
+                    <!-- {{ _('Character image') }} -->
+                </div>
+            </div>
+            <div class="row ps-3 mb-4">
+                <label class="col-1 col-form-label text-end" for="char_age">{{ _('Age') }}:</label>
+                <div class="col-2">
+                    <input type="text" class="form-control" placeholder="35" name="age" id="char_age">
+                    <small class="text-secondary">{{ _('This can be a number or a range (e.g. in his 30’s)') }}</small>
+                </div>
+                <label class="col-1 col-form-label text-end" for="char_sex">{{ _('Sex') }}:</label>
+                <div class="col-2">
+                    <select class="form-select" name="sex" id="char_sex">
+                        <option value="0">{{ _('Select') }}...</option>
+                        <option value="e">{{ _('Male') }}</option>
+                        <option value="k">{{ _('Female') }}</option>
+                    </select>
+                </div>
+                <label class="col-2 col-form-label text-end" for="char_home">{{ _('Residence') }}:</label>
+                <div class="col-3">
+                    <select class="form-select" name="home" id="char_home">
+                        <option value="select">{{ _('Select') }}...</option>
+                        <option value="--">----------</option>
+                        <option value="add">{{ _('Add Location') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col ps-3 pe-3">
+                    
+                    <div id="character_image_body" class="border rounded-2 float-end mt-4">
                         <div class="edit-icon">
                             <img src="./assets/empty-char-picture-edit.svg" title="{{ _('Edit') }}">
-                        </div>
+                        </div>                
                     </div>
+                    <label class="h3" for="char_physical_description" class="form-label">{{ _('Physical Description') }}:</label>
                     <div class="row">
-                        <div class="col-4 p-3">
-                            <input type="text" class="form-control border-0 fs-2" placeholder="{{ _('First Name') }}" name="first_name" id="char_first_name">
-                        </div>
-                        <div class="col-4 h2 p-3">
-                            <input type="text" class="form-control border-0 fs-2" placeholder="{{ _('Last Name') }}" name="last_name" id="char_last_name">
-                        </div>
-                        <div class="col-4">
-                            <!-- {{ _('Character image') }} -->
+                        <div class="col">
+                            <textarea class="form-control" name="physical_description" id="char_physical_description" rows="7"></textarea>
                         </div>
                     </div>
-                    <div class="row ps-3 mb-4">
-                        <label class="col-1 col-form-label text-end" for="char_age">{{ _('Age') }}:</label>
-                        <div class="col-2">
-                            <input type="text" class="form-control" placeholder="35" name="age" id="char_age">
-                            <small class="text-secondary">{{ _('This can be a number or a range (e.g. in his 30’s)') }}</small>
-                        </div>
-                        <label class="col-1 col-form-label text-end" for="char_sex">{{ _('Sex') }}:</label>
-                        <div class="col-2">
-                            <select class="form-select" name="sex" id="char_sex">
-                                <option value="0">{{ _('Select') }}...</option>
-                                <option value="e">{{ _('Male') }}</option>
-                                <option value="k">{{ _('Female') }}</option>
-                            </select>
-                        </div>
-                        <label class="col-2 col-form-label text-end" for="char_home">{{ _('Residence') }}:</label>
-                        <div class="col-3">
-                            <select class="form-select" name="home" id="char_home">
-                                <option value="select">{{ _('Select') }}...</option>
-                                <option value="--">----------</option>
-                                <option value="add">{{ _('Add Location') }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-2">
-                        <div class="col ps-3 pe-3">
-                            
-                            <div id="character_image_body" class="border rounded-2 float-end mt-4">
-                                <div class="edit-icon">
-                                    <img src="./assets/empty-char-picture-edit.svg" title="{{ _('Edit') }}">
-                                </div>                
-                            </div>
-                            <label class="h3" for="char_physical_description" class="form-label">{{ _('Physical Description') }}:</label>
-                            <div class="row">
-                                <div class="col">
-                                    <textarea class="form-control" name="physical_description" id="char_physical_description" rows="7"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <label class="col-3 col-form-label text-end" for="char_dev_state">{{ _('Animation Model Status') }}:</label>
-                        <div class="col-3">
-                            <select class="form-select" name="dev_state" id="char_dev_state">
-                                <option value="unnecessary">{{ _('Unnecessary') }}</option>
-                                <option value="notdefined">{{ _('Not Defined') }}</option>
-                                <option value="defined">{{ _('Defined') }}</option>
-                                <option value="designing">{{ _('Being Designed') }}</option>
-                                <option value="available">{{ _('Available') }}</option>
-                                <option value="inuse">{{ _('In use') }}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col ps-3 pe-3">
-                            <label class="h3" for="char_character_description" class="form-label">{{ _('Personality Description') }}:</label>
-                            <div class="ps-2 pe-2">
-                                <textarea class="form-control" name="character_description" id="char_character_description" rows="5"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col ps-3 pe-3">
-                            <div class="float-end">
-                                <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Relationship') }}" type="button" data-bs-toggle="modal" data-bs-target="#relationship_modal"><i class="bi-plus"></i></button>
-                            </div>
-                            <h3>{{ _('Relationships to Other Characters') }}:</h3>
-                            <p id="char_no_relationships" class="ms-3">{{ _('None') }}</p>
-                            <div id="char_relationships_table_container" class="rounded-3 overflow-hidden mb-3 border md-none">
-                                <table class="table table-striped m-0">
-                                    <thead class="bg-dark text-light">
-                                        <tr>
-                                            <th class="col-4 ps-3">{{ _('Full Name') }}</th>
-                                            <th class="col-3">{{ _('Relationship') }}</th>
-                                            <th class="col-1"><!-- {{ _('Sex') }} --></th>
-                                            <th class="col-4"><!-- {{ _('Buttons') }} --></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                    </tbody>
-                                </table>        
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-4">
-                        <div class="col ps-3 pe-3">
-                            <div class="float-end">
-                                <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Episode') }}" type="button"><i class="bi-plus"></i></button>
-                            </div>
-                            <h3>Appears in Episodes</h3>
-                            <p id="char_no_eps" class="ms-3">{{ _('None') }}</p>
-                            <div id="char_eps_table_container" class="rounded-3 overflow-hidden mb-3 border md-none">
-                                <table class="table table-striped m-0">
-                                    <tbody></tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-4 ps-3">
-                            <a href="#/"><button class="btn btn-secondary back-to-list" type="button">
-                                <i class="bi-chevron-left"></i> {{ _('Back to List') }}
-                            </button></a>
-                        </div>
-                        <div class="col-4 text-center">
-                            <button class="btn btn-outline-danger" type="button" id="del_char_btn">
-                                <i class="bi-trash3-fill"></i> {{ _('Delete Character') }}
-                            </button>
-                        </div>
-                        <div class="col-4 pe-3 text-end">
-                            <button class="btn btn-success" type="button" id="save_char_btn">
-                                <i class="bi-floppy-fill"></i> {{ _('Save Character') }}
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <p>&nbsp;</p>
+                </div>
             </div>
-        </div>
+            <div class="row mb-4">
+                <label class="col-3 col-form-label text-end" for="char_dev_state">{{ _('Animation Model Status') }}:</label>
+                <div class="col-3">
+                    <select class="form-select" name="dev_state" id="char_dev_state">
+                        <option value="unnecessary">{{ _('Unnecessary') }}</option>
+                        <option value="notdefined">{{ _('Not Defined') }}</option>
+                        <option value="defined">{{ _('Defined') }}</option>
+                        <option value="designing">{{ _('Being Designed') }}</option>
+                        <option value="available">{{ _('Available') }}</option>
+                        <option value="inuse">{{ _('In use') }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col ps-3 pe-3">
+                    <label class="h3" for="char_character_description" class="form-label">{{ _('Personality Description') }}:</label>
+                    <div class="ps-2 pe-2">
+                        <textarea class="form-control" name="character_description" id="char_character_description" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col ps-3 pe-3">
+                    <div class="float-end">
+                        <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Relationship') }}" type="button" data-bs-toggle="modal" data-bs-target="#relationship_modal"><i class="bi-plus"></i></button>
+                    </div>
+                    <h3>{{ _('Relationships to Other Characters') }}:</h3>
+                    <p id="char_no_relationships" class="ms-3">{{ _('None') }}</p>
+                    <div id="char_relationships_table_container" class="rounded-3 overflow-hidden mb-3 border md-none">
+                        <table class="table table-striped m-0">
+                            <thead class="bg-dark text-light">
+                                <tr>
+                                    <th class="col-4 ps-3">{{ _('Full Name') }}</th>
+                                    <th class="col-3">{{ _('Relationship') }}</th>
+                                    <th class="col-1"><!-- {{ _('Sex') }} --></th>
+                                    <th class="col-4"><!-- {{ _('Buttons') }} --></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>        
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <div class="col ps-3 pe-3">
+                    <div class="float-end">
+                        <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Episode') }}" type="button"><i class="bi-plus"></i></button>
+                    </div>
+                    <h3>Appears in Episodes</h3>
+                    <p id="char_no_eps" class="ms-3">{{ _('None') }}</p>
+                    <div id="char_eps_table_container" class="rounded-3 overflow-hidden mb-3 border md-none">
+                        <table class="table table-striped m-0">
+                            <tbody></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4 ps-3">
+                    <a href="#/"><button class="btn btn-secondary back-to-list" type="button">
+                        <i class="bi-chevron-left"></i> {{ _('Back to List') }}
+                    </button></a>
+                </div>
+                <div class="col-4 text-center">
+                    <button class="btn btn-outline-danger" type="button" id="del_char_btn">
+                        <i class="bi-trash3-fill"></i> {{ _('Delete Character') }}
+                    </button>
+                </div>
+                <div class="col-4 pe-3 text-end">
+                    <button class="btn btn-success" type="button" id="save_char_btn">
+                        <i class="bi-floppy-fill"></i> {{ _('Save Character') }}
+                    </button>
+                </div>
+            </div>
+        </form>
+        <p>&nbsp;</p>
+    </div>
+{# </div> #}

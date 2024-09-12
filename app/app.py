@@ -71,6 +71,7 @@ def create_app(test_config=None):
     try:
         app.config.from_file('settings.json', load=json.load)
         app.config['MOCDB_SETUP'] = True
+        start_app(app)
     except:
         create_app_settings(app, babel)    
 
@@ -211,7 +212,13 @@ def start_app(app):
     These are placed here so that they can be called from different 
     functions, depending on necessity
     
-    :param app: refence to current Flask application
+    :param app: reference to current Flask application
     :type  app: Flask Object
     """
-    pass
+    db = SQLAlchemy()
+    db.init_app(app)
+
+    with app.app_context():
+        db.create_all()
+
+

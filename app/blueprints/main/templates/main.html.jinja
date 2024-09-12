@@ -1,23 +1,35 @@
 {# template for application main page #}
 {% extends 'base.html.jinja' %}
-{% block title %}{{ _('Men of Courage') }} {{ _('Character') }} {{ _('Database') }}{% endblock %}
+{% block title %}{{ _('Men of Courage') }} {{ _('Character Database') }}{% endblock %}
 
 {%- block nav -%}
-        <nav class="navbar navbar-dark bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
                 <span class="navbar-brand">
                     <img src="./assets/ed-logo.svg" alt="{{ _('Men of Courage') }} {{ _('Official Logo') }}"> 
-                    <span id="page_title">{{ _('Men of Courage') }} {{ _('Character') }} {{ _('Database') }}</span>
+                    <span id="page_title">{{ _('Men of Courage') }} {{ _('Character Database') }}</span>
                 </span>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a href="#" class="nav-link back-to-list"><i class="bi-chevron-right"></i>{{ _('Character') }} {{ _('List')) }}</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link back-to-list"><i class="bi-chevron-right"></i>{{ _('Episode') }} {{ _('List')) }}</a></li>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a href="#/" id="nav_characters" class="nav-link active"><i class="bi-chevron-right"></i>Characters</a></li>
+                    <li class="nav-item"><a href="#/episodes" id="nav_episodes" class="nav-link"><i class="bi-chevron-right"></i>Episodes</a></li>
                 </ul>
+                
             </div>
         </nav>
 {% endblock %}
 
 {%- block content -%}
+            <!-- Add character button -->
+            <div class="float-end" id="add_char_btn"><a href="#/character/add">
+                <button class="btn btn-secondary" type="button"><i class="bi-plus"></i> {{ _('Add Character') }}</button></a>
+            </div>
+            <!-- Add episode button -->
+            <div class="float-end" id="add_ep_btn">
+                <button class="btn btn-secondary" type="button"><i class="bi-plus"></i> {{ _('Add Episode') }}</button>
+            </div>
+    {% include 'charlist.html.jinja' %}
+    {% include 'charform.html.jinja' %}
+    {% include 'eplist.html.jinja' %}
 {% endblock %}
 
 {%- block modals -%}

@@ -1,0 +1,21 @@
+{# html for character list #}
+            <!-- Table listing the characters -->
+            <div id="char_list" class="md-none">
+                <h1>{{ _('Character List') }}</h1>
+                <p id="charlist_no_chars" class="md-none">{{ _('No characters found in database. Please add one using the button above.') }}</p>
+                <div id="char_list_table_container" class="rounded-3 overflow-hidden mb-3 border">
+                    <table class="table table-striped mb-0">
+                        <thead class="bg-dark text-light">
+                            <tr>
+                                <th class="col-4 ps-3">{{ _('Full Name') }}</th>
+                                <th class="col-3">{{ _('Episodes') }}</th>
+                                <th class="col-1"><!-- {{ _('Sex') }} --></th>
+                                <th class="col-3">{{ _('Animation') }}</th>
+                                <th class="col-1"><!-- {{ _('Buttons') }} --></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>

@@ -1,11 +1,11 @@
 /**
  * Men of Courage Character Database
  * 
- * Strings used to localize  the setup page on the fly
+ * JavaScript functions for the setup page
  * 
  *   File name: setup_strings.js
  *   Date Created: 2024-09-10
- *   Date Modified: 2024-09-10
+ *   Date Modified: 2024-09-12
  */
 $(document).ready(function() {
     /* define the strings for this page in various languages */

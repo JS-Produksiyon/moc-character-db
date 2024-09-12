@@ -1,18 +1,12 @@
 {
     "sqltools.connections": [
         {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
             "previewLimit": 50,
-            "server": "database",
-            "port": 37005,
-            "driver": "MariaDB",
-            "name": "moc-chars",
-            "database": "lamp",
-            "username": "lamp",
-            "askForPassword": true
+            "driver": "SQLite",
+            "name": "moccdb SQLite",
+            "group": "moc-char-db",
+            "database": "${workspaceFolder:moc-character-db}/instance/moccharacters.db"
         }
-    ]
+    ],
+    "sqltools.useNodeRuntime": true
 }

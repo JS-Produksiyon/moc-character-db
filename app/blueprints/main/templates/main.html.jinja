@@ -1,0 +1,28 @@
+{# template for application main page #}
+{% extends 'base.html.jinja' %}
+{% block title %}{{ _('Men of Courage') }} {{ _('Character') }} {{ _('Database') }}{% endblock %}
+
+{%- block nav -%}
+        <nav class="navbar navbar-dark bg-dark fixed-top">
+            <div class="container-fluid">
+                <span class="navbar-brand">
+                    <img src="./assets/ed-logo.svg" alt="{{ _('Men of Courage') }} {{ _('Official Logo') }}"> 
+                    <span id="page_title">{{ _('Men of Courage') }} {{ _('Character') }} {{ _('Database') }}</span>
+                </span>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a href="#" class="nav-link back-to-list"><i class="bi-chevron-right"></i>{{ _('Character') }} {{ _('List')) }}</a></li>
+                    <li class="nav-item"><a href="#" class="nav-link back-to-list"><i class="bi-chevron-right"></i>{{ _('Episode') }} {{ _('List')) }}</a></li>
+                </ul>
+            </div>
+        </nav>
+{% endblock %}
+
+{%- block content -%}
+{% endblock %}
+
+{%- block modals -%}
+{% endblock %}
+
+{%- block custom_js -%}
+        <script src="{{ url_for('static', filename='ui.js') }}"></script>
+{% endblock %}

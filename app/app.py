@@ -3,15 +3,15 @@
 """
     Men of Courage Character Database
 
-    File name: ncm.py
+    File name: app.py
     Date Created: 2024-09-03
-    Date Modified: 2024-09-10
+    Date Modified: 2024-09-12
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
 __copyright__ = "Copyright © 2024 JS Prodüksiyon"
 __credits__ = ["Josh Wibberley"]
-__license__ = "Proprietary"
+__license__ = "GNU GPL 3.0"
 __version__ = "1.0.0"
 __maintainer__ = ["Josh Wibberley"]
 __email__ = "jmw@hawke-ai.com"
@@ -30,7 +30,8 @@ import os, json
 from flask import Flask, current_app
 
 # Import blueprints
-
+from app.blueprints.api import api
+from app.blueprints.main import page
 
 # Import extensions
 from flask_babel import Babel, gettext as _, ngettext
@@ -38,6 +39,9 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_wtf import CSRFProtect
 from jinja2 import Environment
+
+# initialize global db
+db = SQLAlchemy()
 
 # Initialize app
 def create_app(test_config=None):
@@ -215,7 +219,10 @@ def start_app(app):
     :param app: reference to current Flask application
     :type  app: Flask Object
     """
-    db = SQLAlchemy()
+    
+    app.register_blueprint(api)
+    app.register_blueprint(page)
+    
     db.init_app(app)
 
     with app.app_context():

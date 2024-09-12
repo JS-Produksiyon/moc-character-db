@@ -59,6 +59,9 @@ def create_app(test_config=None):
         APP_LANGUAGE = 'en'
     )
 
+    # enable CSRF Protection 
+    csrf = CSRFProtect(app)
+
     # enable babel
     babel = Babel(app)
 
@@ -103,7 +106,7 @@ def create_app_settings(app, babel):
         import pkg_resources
 
         # instantiate variables
-        postgres = 'disabled'
+        postgresql = 'disabled'
         mariadb = 'disabled'
         mysql = 'disabled'
         random_secret = randomString('alphanumeric', strLength=48)
@@ -111,7 +114,7 @@ def create_app_settings(app, babel):
         # iterate through installed packages to check for database connectors
         for pkg in pkg_resources.working_set:
             if 'psycopg2-binary' in pkg.key:
-                postgres = ''
+                postgresql = ''
 
             if 'mariadb' in pkg.key:
                 mariadb = ''
@@ -119,12 +122,20 @@ def create_app_settings(app, babel):
             if 'flask-mysqldb' in pkg.key:
                 mysql = ''
 
-        return render_template('setup.html.jinja', has_postgres=postgres, has_mariadb=mariadb, has_mysql=mysql, secret=random_secret)
+        return render_template('setup.html.jinja', has_postgresql=postgresql, has_mariadb=mariadb, has_mysql=mysql, secret=random_secret)
         
 
-    @app.route("/setup", methods=['POST'])
+    @app.route("/setup", methods=['GET','POST'])
     def save_setup():
-        return request
+        language = request.form['language']
+
+        setupObj = {
+	                 "APP_LANGUAGE" : "",
+	                 "SECRET_KEY" : "",
+	                 "SQLALCHEMY_DATABASE_URI": ""
+                   }
+
+        return render_template('setup-result.html.jinja', form=request.form)
 
 
 def get_locale():

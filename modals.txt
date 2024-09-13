@@ -1,7 +1,6 @@
-deleteItem()                - deletion confirmation
-addEpisode()                - add an episode to the episode list
+deleteItem()                - deletion confirmation - done
+addEditEpisode()            - add or edit an episode to the episode list - 
 assignEpisode()             - assign an episode to a character
-editEpisode()               - edit an episode from the episode list
 addResidence()              - add a residence
 addActor()                  - add an actor
 uploadImage()               - upload an image

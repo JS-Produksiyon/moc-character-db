@@ -5,8 +5,8 @@
     Strings needed by JavaScript for localization
 
     File name: languages/jsstrings.py
-    Date Created: 2024-09-03
-    Date Modified: 2024-09-12
+    Date Created: 2024-09-12
+    Date Modified: 2024-09-13
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"

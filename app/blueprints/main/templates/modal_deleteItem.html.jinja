@@ -7,6 +7,7 @@
                 {{ _('Delete') }} <span id="deleteItemModal_title_item"></span>
             </div>
             <div class="modal-body" id="deleteItemModal_body">
+                <input type="hidden" id="item_to_delete"> {# takes [item]/[id] (e.g. character/2)#}
                 <p id="deleteItemModal_msg" class="text-center"></p>
                 <p id="deleteItemModal_no_undo" class="text-center"><strong>{{ _('This action cannot be undone!') }}</strong></p>
                 <p id="deleteItemModal_sure" class="text-center">{{ _('Are you sure you want to continue?') }}</p>

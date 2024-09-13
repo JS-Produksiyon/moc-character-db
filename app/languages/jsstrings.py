@@ -24,5 +24,9 @@ JS_STRINGS = {
     'sex_word': {'male': _('Male'), 'female': _('Female')},
     'display': _('Display'),
     'del_rel': _('Remove Relationship'),
-    'del_ep': _('Remove Episode')
+    'del_ep': _('Remove Episode'),
+    'rec_date': _('Date Recorded'),
+    'ep_characters': _('Characters'),
+    'edit': _('Edit'),
+    'del_modal_text': _('You are about to delete %item%.'),
 }

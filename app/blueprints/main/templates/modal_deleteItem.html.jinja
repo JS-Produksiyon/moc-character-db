@@ -1,0 +1,20 @@
+{# Delete item modal template #}
+<!-- Delete item modal -->
+<div class="modal fade" id="deleteItemModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                {{ _('Delete') }} <span id="deleteItemModal_title_item"></span>
+            </div>
+            <div class="modal-body" id="deleteItemModal_body">
+                <p id="deleteItemModal_msg" class="text-center"></p>
+                <p id="deleteItemModal_no_undo" class="text-center"><strong>{{ _('This action cannot be undone!') }}</strong></p>
+                <p id="deleteItemModal_sure" class="text-center">{{ _('Are you sure you want to continue?') }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="deleteItemModal_yes">{{ _('Yes') }}</button>
+                <button type="button" class="btn btn-outline-dark" id="deleteItemModal_no" data-bs-dismiss="modal">{{ _('No') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

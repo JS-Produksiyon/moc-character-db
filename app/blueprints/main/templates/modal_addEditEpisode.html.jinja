@@ -1,0 +1,36 @@
+{# Add or edit Episode modal, called from Episode List #}
+<div class="modal fade" id="addEditEpisodeModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header h4">
+                <span id="addEditEpisodeModal_title_add" class="md-none">{{ _('Add Episode') }}</span>
+                <span id="addEditEpisodeModal_title_edit">{{ _('Edit Episode')}}</span>
+            </div>
+            <div class="modal-body" id="addEditEpisodeModal_body">
+                <p>{{ _('Fill in the fields marked in bold below to <span id="addEditEpisodeModal_txt_add">add</span><span id="addEditEpisodeModal_txt_add">edit</span> the episode.') }}</p>
+                <div class="row mb-3">
+                    <label class="col-3 text-end pt-2"><strong>{{ _('Episode #') }}:</strong></label>
+                    <div class="col-9">
+                        <input type="number" class="form-control" id="addEditEpisodeModal_ep_num" name="ep_num" placeholder="101">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-3 text-end pt-2"><strong>{{ _('Episode Title') }}:</strong></label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" id="addEditEpisodeModal_ep_title" name="ep_title" placeholder="">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label class="col-3 text-end pt-2">{{ _('Episode Recorded') }}:</label>
+                    <div class="col-9">
+                        <input type="date" class="form-control" id="addEditEpisodeModal_ep_date" name="ep_date" placeholder="">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>
+                <button type="button" class="btn btn-success"><i class="bi-check"></i> {{ _('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

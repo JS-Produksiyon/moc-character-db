@@ -1,0 +1,23 @@
+{# modal to add a new residence to DB #}
+<div class="modal fade" id="addResidenceModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header h4">
+                {{ _('Add Place of Residence') }}
+            </div>
+            <div class="modal-body" id="addResidenceModal_body">
+                <p>{{ _('Enter the name of the place where the character lives. This is preferably a city, though it can be a country, a region or a designation of your choosing.') }}</p>
+                <div class="row">
+                    <label class="form-label col-3 text-end pt-2" for="add_residence_name">{{ _('Residence Name') }}:</label>
+                    <div class="col-9">
+                        <input type="text" class="form-control" name="add_residence_name" id="add_residence_name"">
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>
+                <button type="button" class="btn btn-success"><i class="bi-check"></i> {{ _('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -30,56 +30,56 @@ character =
 
 /* character list object */
 char_list = 
-[
-	{
+{
+	0: {
 		id: 0,
 		name: "", /* full name */
 		sex: "",
 		episodes: 0, /* episode count */
 		animation_status: 0
 	}
-]
+}
 
 
 /* Episode list */
 episodes =
-[
-	{
-		id: 0,
-		name: "",
-		recorded: ""
-	}
-]
+{
+	0 : {
+			id: 0,
+			name: "",
+			recorded: ""
+		}
+}
 
 /* Relationship Types object */
 rel_types = 
-[
-    {
-        id: 0,
+{
+    0: {
+    	 id: 0,
         slug: "",
         name: "",
 		reciprocal_male : "",
 		reciprocal_female: ""
     }
-]
+}
 
 /* Residence object */
 residence = 
-[
-    {
+{
+    0: {
         id: 0,
         name: ""
     }
-]
+}
 
 /* Actors object */
 actors =
-[
-    {
+{
+    0: {
         id: 0,
         name: ""
     }
-]
+}
 
 /* Settings Object */
 settings = 

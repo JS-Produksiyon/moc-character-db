@@ -62,3 +62,13 @@ html_templates = {
 </div>\n`,
     episode_charlist : '<li><a href="#/character/%id%">%full_name%</a></li>'
 }
+
+
+/* document load */
+$(document).ready(function () {
+
+    /* enable dselect searchable dropdown boxes 
+     * See https://github.com/jarstone/dselect for usage
+     */
+    dselect(document.querySelector('.dselect-search'), { search: true });
+})

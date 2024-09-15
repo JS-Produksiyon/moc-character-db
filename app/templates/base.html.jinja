@@ -8,8 +8,7 @@
 
     <link href="{{ url_for('static', filename='bootstrap-5.2.3-dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='bootstrap-icons-1.11.3/font/bootstrap-icons.css') }}" rel="stylesheet">
-    {# <link href="{{ url_for('static', filename='choice-js/styles/base.min.css') }}" rel="stylesheet"> #}
-    <link href="{{ url_for('static', filename='choice-js/styles/choices.min.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='dselect/dselect.min.css') }}" rel="stylesheet">
     <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
 
     <title>{% block title %}{% endblock %}</title>
@@ -46,8 +45,7 @@
     <!-- JavaScript -->
     <script src="{{ url_for('static', filename='jquery-3.7.1.min.js') }}"></script>
     <script src="{{ url_for('static', filename='bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='choice-js/scripts/choices.min.js') }}"></script>
-    <script> new Choices(document.querySelector(".choices-single")); </script>
+    <script src="{{ url_for('static', filename='dselect/dselect.min.js') }}"></script>
     {% block custom_js %}{% endblock %}
 </body>
 </html>

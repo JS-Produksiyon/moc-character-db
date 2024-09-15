@@ -95,6 +95,11 @@ main {
     opacity: 1;
 }
 
+/* disable Press to Select text on Choices */
+.choices__list--dropdown .choices__item--selectable[data-select-text]::after,.choices__list[aria-expanded] .choices__item--selectable[data-select-text]::after {
+    content: ""
+}
+
 /* hide a given layer so it can be shown later with show() */
 .md-none {
     display: none;

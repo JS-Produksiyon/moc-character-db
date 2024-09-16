@@ -7,4 +7,5 @@
 | addActor()               | add an actor                                | DONE             |
 | majorError()             | major error notification                    | In Process       |
 | uploadImage()            | upload an image                             |                  |
+| navAway()                | confirm navigating away from a dirty form   |                  |
 | endProgramConfirmation() | confirm the ending of the program           | Won't do for now |

@@ -1,0 +1,23 @@
+{# modal to append episode to character #}
+<div class="modal fade" id="majorErrorModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header h4">
+                {{ _('Error!') }}
+            </div>
+            <div class="modal-body" id="majorErrorModal_body">
+                <div class="row">
+                    <div class="col-2 fs-1 text-danger text-center fw-bold">
+                        <i class="bi bi-exclamation-diamond"></i>
+                    </div>
+                    <div class="col-10 fw-semibold" id="majorErrorModal text">
+                        This is where the error text will go.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">{{ _('Close') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

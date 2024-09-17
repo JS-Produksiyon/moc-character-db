@@ -164,3 +164,4 @@ cython_debug/
 # MOCDB specific
 settings.json
 settings.py
+dev-img/

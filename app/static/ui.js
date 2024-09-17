@@ -66,7 +66,6 @@ html_templates = {
 
 /* document load */
 $(document).ready(function () {
-
     /* enable dselect searchable dropdown boxes 
      * See https://github.com/jarstone/dselect for usage
      */

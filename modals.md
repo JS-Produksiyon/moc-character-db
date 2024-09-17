@@ -5,7 +5,7 @@
 | assignEpisode()          | assign an episode to a character            | DONE             |
 | addResidence()           | add a residence                             | DONE             |
 | addActor()               | add an actor                                | DONE             |
-| majorError()             | major error notification                    | In Process       |
-| uploadImage()            | upload an image                             |                  |
+| majorError()             | major error notification                    | DONE             |
+| imageBox()               | upload an image                             | In Process       |
 | navAway()                | confirm navigating away from a dirty form   |                  |
 | endProgramConfirmation() | confirm the ending of the program           | Won't do for now |

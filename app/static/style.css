@@ -20,6 +20,28 @@ main {
     left: 50%;
 }
 
+.md-load.lion {
+    margin-left: -64px;
+    margin-top: -64px;
+}
+
+/* position loading lion head */
+.md-load img {
+    height: 128px;
+    width: 128px;
+    animation: fadeEffect 3s infinite;
+    animation-timing-function: steps(2, end);
+}
+@keyframes fadeEffect {
+    0%, 100% {
+        filter: grayscale(0%);
+    }
+    50% {
+        filter: grayscale(80%);
+    }
+}
+
+
 /* message flash box */
 #flash {
     z-index: 1040;

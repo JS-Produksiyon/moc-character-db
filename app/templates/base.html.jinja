@@ -25,8 +25,12 @@
     </header>
 
     <main>
-        <!-- loading spinner -->
+        <!-- loading animations -->
         <div class="md-load spinner-border text-secondary md-none" role="status"><div class="visually-hidden">{{ _('Loading') }}...</div></div>
+        <div class="md-load lion">
+            <img src="{{ url_for('static', filename='ed-logo.svg') }}" alt="{{ _('Loading...') }}">
+        </div>
+
         <!-- main content -->
         <div class="container mt-3 mb-3 h-100">
             {% block content %}{% endblock %}

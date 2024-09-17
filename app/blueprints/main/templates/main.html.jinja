@@ -20,18 +20,13 @@
 
 {%- block content -%}
             <!-- Add character button -->
-            <div class="float-end" id="add_char_btn"><a href="#/character/add">
+            <div class="float-end md-none" id="add_char_btn"><a href="#/character/add">
                 <button class="btn btn-outline-dark" type="button"><i class="bi-plus"></i> {{ _('Add Character') }}</button></a>
             </div>
             <!-- Add episode button -->
-            <div class="float-end" id="add_ep_btn">
+            <div class="float-end md-none" id="add_ep_btn">
                 <button class="btn btn-outline-dark" type="button"><i class="bi-plus"></i> {{ _('Add Episode') }}</button>
             </div>
-    {# modal testing #}
-    <div class="text-center">
-        <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#navFromUnsavedModal">Open Modal for Dev</button>
-    </div>
-
     {% include 'charlist.html.jinja' %}
     {% include 'charform.html.jinja' %}
     {% include 'eplist.html.jinja' %}

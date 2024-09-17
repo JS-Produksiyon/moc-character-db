@@ -2,35 +2,36 @@
 <div class="modal fade" id="imageBoxModal" data-bs-backdrop="static" tabindex="-1">
     <div class="modal-dialog modal-fullscreen">
         <div class="modal-content">
-        <div class="modal-header">
-            <span class="h4">{{ _('Manage Image') }}</span>
-             <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-        </div>
-        <div class="modal-body" id="imageBoxModal_body">
-            <h5 id="imageBoxModal_body_headshot">{{ _('Head Shot') }}</h5>
-            <h5 id="imageBoxModal_body_bodyshot">{{ _('Full Body Shot') }}</h5>
-            <div class="d-flex justify-content-center">
-                <div id="largeImage" class="border border-3 bg-light"></div>
+            <div class="modal-header">
+                <span class="h4">{{ _('Manage Image') }}</span>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
-            <div class="text-center mb-3" id="imageBoxModal_delete_img">
-                <button class="btn btn-outline-danger"><i class="bi bi-file-x"></i> {{ _('Delete Image') }}</button>
-            </div>
-            <div class="mb-3" id="imgBoxModal_upload_img">
-                <form id="imageBoxModal_form">
-                    <div class="row justify-content-md-center">
-                        <div class="col-2 text-end pt-2 form-label">{{ _('Upload Image:') }}</div>
-                        <div class="col-4 text-center mb-3 me-3">
-                            <input type="file" class="form-control">
+            <div class="modal-body" id="imageBoxModal_body">
+                <h5 id="imageBoxModal_body_headshot">{{ _('Head Shot') }}</h5>
+                <h5 id="imageBoxModal_body_bodyshot">{{ _('Full Body Shot') }}</h5>
+                <div class="d-flex justify-content-center">
+                    <div id="largeImage" class="border border-3 bg-light"></div>
+                </div>
+                <div class="text-center mb-3" id="imageBoxModal_delete_img">
+                    <button class="btn btn-outline-danger"><i class="bi bi-file-x"></i> {{ _('Delete Image') }}</button>
+                </div>
+                <div class="mb-3" id="imgBoxModal_upload_img">
+                    <form id="imageBoxModal_form">
+                        <div class="row justify-content-md-center">
+                            <div class="col-2 text-end pt-2 form-label">{{ _('Upload Image:') }}</div>
+                            <div class="col-4 text-center mb-3 me-3">
+                                <input type="file" class="form-control">
+                            </div>
+                            <div class="col-2">
+                                <button type="button" class="btn btn-dark"><i class="bi bi-file-arrow-up"></i> {{ _('Upload') }}</button>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <button type="button" class="btn btn-dark"><i class="bi bi-file-arrow-up"></i> {{ _('Upload') }}</button>
-                        </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
-        </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">{{ _('Close') }}</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">{{ _('Close') }}</button>
+            </div>
         </div>
     </div>
 </div>

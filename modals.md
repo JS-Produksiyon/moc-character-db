@@ -6,6 +6,6 @@
 | addResidence()           | add a residence                             | DONE             |
 | addActor()               | add an actor                                | DONE             |
 | majorError()             | major error notification                    | DONE             |
-| imageBox()               | upload an image                             | In Process       |
-| navAway()                | confirm navigating away from a dirty form   |                  |
+| imageBox()               | upload an image                             | DONE             |
+| navFromUnsaved()         | confirm navigating away from a dirty form   | In progress      |
 | endProgramConfirmation() | confirm the ending of the program           | Won't do for now |

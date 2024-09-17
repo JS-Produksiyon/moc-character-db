@@ -1,0 +1,18 @@
+{# Navigate away from unsaved item confirmation modal template #}
+<div class="modal fade" id="navFromUnsavedModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content ">
+            <div class="modal-header h4">
+                {{ _('Unsaved Changes!') }}
+            </div>
+            <div class="modal-body" id="navFromUnsavedModal_body">
+                <p id="navFromUnsavedModal_msg" class="text-center">{{ _('There are unsaved changes on your page. If you leave now, they will be lost.') }}</p>
+                <p id="navFromUnsavedModal_sure" class="text-center">{{ _('Are you sure you want to continue?') }}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" id="navFromUnsavedModal_yes">{{ _('Yes') }}</button>
+                <button type="button" class="btn btn-outline-dark" id="navFromUnsavedModal_no" data-bs-dismiss="modal">{{ _('No') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

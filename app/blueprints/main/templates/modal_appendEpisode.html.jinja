@@ -16,7 +16,8 @@
                 </ul>
                 <div class="tab-content p-3" id="addEpisodeModal_tab_content">
                     <div class="tab-pane active" id="appendEpisodeModal_select" role="tabpanel">
-                        <select class="form-select dselect-search" id="append_selected_episode" name="append_selected_episode">
+                        <select class="form-select dselect-search" id="append_selected_episode" name="append_selected_episode" placeholder="">
+                            <option value="000">{{ _('Select episode here...') }}</option>
                         </select>
                     </div>
                     <div class="tab-pane" id="appendEpisodeModal_add" role="tabpanel">

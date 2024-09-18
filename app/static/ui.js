@@ -4,7 +4,7 @@
  * 
  *   File name: ui.js
  *   Date Created: 2024-09-12
- *   Date Modified: 2024-09-12
+ *   Date Modified: 2024-09-17
  * 
  */
 
@@ -63,10 +63,10 @@ html_templates = {
     episode_charlist : '<li><a href="#/character/%id%">%full_name%</a></li>'
 }
 
-
 /* document load */
 $(document).ready(function () {
-    /* enable dselect searchable dropdown boxes 
+    /* 
+     * enable dselect searchable dropdown boxes 
      * See https://github.com/jarstone/dselect for usage
      */
     dselect(document.querySelector('.dselect-search'), { search: true });

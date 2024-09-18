@@ -44,5 +44,6 @@
 {% endblock %}
 
 {%- block custom_js -%}
+        <script src="{{ url_for('static', filename='ui.navigation.js') }}"></script>
         <script src="{{ url_for('static', filename='ui.js') }}"></script>
 {% endblock %}

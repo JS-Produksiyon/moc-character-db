@@ -12,6 +12,7 @@
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item"><a href="#/" id="nav_characters" class="nav-link active"><i class="bi-chevron-right"></i>Characters</a></li>
                     <li class="nav-item"><a href="#/episodes" id="nav_episodes" class="nav-link"><i class="bi-chevron-right"></i>Episodes</a></li>
+                    <li class="nav-item"><a href="#/relationships" id="nav_relations" class="nav-link"><i class="bi-chevron-right"></i>Relationships</a></li>
                 </ul>
                 
             </div>
@@ -20,16 +21,25 @@
 
 {%- block content -%}
             <!-- Add character button -->
-            <div class="float-end md-none" id="add_char_btn"><a href="#/character/add">
-                <button class="btn btn-outline-dark" type="button"><i class="bi-plus"></i> {{ _('Add Character') }}</button></a>
+            <div class="md-add-button float-end md-none" id="add_char_btn"><a href="#/character/add">
+                <a class="btn btn-outline-dark" href="#/character/add"><i class="bi-plus"></i> {{ _('Add Character') }}</a>
             </div>
             <!-- Add episode button -->
-            <div class="float-end md-none" id="add_ep_btn">
+            <div class="md-add-button float-end md-none" id="add_ep_btn">
                 <button class="btn btn-outline-dark" type="button"><i class="bi-plus"></i> {{ _('Add Episode') }}</button>
             </div>
+            <!-- Add relationship button -->
+            <div class="md-add-button float-end md-none" id="add_rel_btn">
+                <button class="btn btn-outline-dark" type="button"><i class="bi-plus"></i> {{ _('Add Relationship') }}</button>
+            </div>
+
+            <!-- develop modal button -->
+            <button class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#appendRelationshipModal">Open Dev Modal</button>
+
     {% include 'charlist.html.jinja' %}
     {% include 'charform.html.jinja' %}
     {% include 'eplist.html.jinja' %}
+    {% include 'relationlist.html.jinja' %}
 {% endblock %}
 
 {%- block modals -%}
@@ -41,6 +51,7 @@
     {% include 'modal_majorError.html.jinja' %}
     {% include 'modal_imageBox.html.jinja' %}
     {% include 'modal_navFromUnsaved.html.jinja' %}
+    {% include 'modal_appendRelationship.html.jinja' %}
 {% endblock %}
 
 {%- block custom_js -%}

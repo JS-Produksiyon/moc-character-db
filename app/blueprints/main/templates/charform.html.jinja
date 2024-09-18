@@ -13,7 +13,8 @@
             </div>
             <div class="row">
                 <div class="col-4 p-3">
-                    <input type="text" class="form-control border-0 fs-2" placeholder="{{ _('First Name') }}" name="first_name" id="char_first_name">
+                    <input type="text" class="form-control border-0 fs-2 form-validate" placeholder="{{ _('First Name') }}" name="first_name" id="char_first_name">
+                    <div class="invalid-feedback">{{ _('Please enter a valid first name. It should be at least one character long.') }}</div>
                 </div>
                 <div class="col-4 h2 p-3">
                     <input type="text" class="form-control border-0 fs-2" placeholder="{{ _('Last Name') }}" name="last_name" id="char_last_name">
@@ -30,11 +31,12 @@
                 </div>
                 <label class="col-1 col-form-label text-end" for="char_sex">{{ _('Sex') }}:</label>
                 <div class="col-2">
-                    <select class="form-select" name="sex" id="char_sex">
+                    <select class="form-select form-validate" name="sex" id="char_sex">
                         <option value="0">{{ _('Select') }}...</option>
                         <option value="e">{{ _('Male') }}</option>
                         <option value="k">{{ _('Female') }}</option>
                     </select>
+                    <div class="invalid-feedback">{{ _('Please select the sex of the character.') }}</div>
                 </div>
                 <label class="col-2 col-form-label text-end" for="char_home">{{ _('Residence') }}:</label>
                 <div class="col-3">
@@ -132,7 +134,7 @@
                 </div>
                 <div class="col-4 pe-3 text-end">
                     <button class="btn btn-success" type="button" id="save_char_btn">
-                        <i class="bi-floppy-fill"></i> {{ _('Save Character') }}
+                        <i class="bi-check"></i> {{ _('Save Character') }}
                     </button>
                 </div>
             </div>

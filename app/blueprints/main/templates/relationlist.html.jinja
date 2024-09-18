@@ -1,0 +1,23 @@
+{# template for episode list #}
+<!-- Episode list -->
+<div id="episode_list" class="md-layer md-none">
+    <h1>{{ _('Relationship List') }}</h1>
+    <p>{{ _('The relationships listed here connect the various characters to one another. Most will automatically create a reciprocal relationship between one another when a relationship is assigned between two characters. This page allows you to add and edit the various relationships.') }}</p>
+    <p id="rellist_no_chars" class="md-none">{{ _('No relationships found in database. Please add one using the button above.') }}</p>
+    <div id="rel_list_table_container" class="rounded-3 overflow-hidden mb-3 border">
+        <table class="table table-striped mb-0">
+            <thead class="bg-dark text-light">
+                <tr>
+                    <th class="col-4 ps-3">{{ _('Relationship Name') }}</th>
+                    <th class="col-4">{{ _('Male Reciprocal Relationship') }}</th>
+                    <th class="col-4">{{ _('Female Reciprocal Relationship') }}</th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+

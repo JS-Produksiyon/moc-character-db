@@ -1,0 +1,37 @@
+{# modal to append episode to character #}
+<div class="modal fade" id="appendRelationshipModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header h4">
+                {{ _('Add Relationship Between Characters') }}
+            </div>
+            <div class="modal-body" id="appendRelationshipModal_body">
+                <p>{{ _('Add a new relationship between <span id="this_char">this character</span> and another by using the fields below. All fields are required.') }}</p>
+                <div class="row">
+                    <label for="appendRelationshipModal_character" class="form-label col-4 pt-2 text-end">{{ _('Other Character') }}:</label>
+                    <div class="col-7">
+                        <select id="appendRelationshipModal_character" class="form-select dselect-search form-validate">
+                            <option value="0">{{ _('Select character...') }}</option>
+                        </select>
+                        <div class="invalid-feedback">{{ _('Please select a character to continue.') }}</div>
+                        <small>{{ _("If the character you are looking for is not in this dropdown list, please check the character list to see if they have been added. You can always add the relationship later, if necessary.") }}</small>
+                    </div>
+                </div>
+                <div class="row">
+                    <label for="appendRelationshipModal_relation" class="form-label col-4 pt-2 text-end">{{ _('Relationship to Character') }}:</label>
+                    <div class="col-7">
+                        <select id="appendRelationshipModal_relation" class="form-select dselect-search form-validate">
+                            <option value="0">{{ _('Select relationship...') }}</option>
+                        </select>
+                        <div class="invalid-feedback">{{ _('Please select a relationship to continue.') }}</div>
+                        <small>{{ _('If you set the relationship for one character, the reciprocal relationship will automatically be set for the other character, as well. If the relationship between the characters does not exist in the dropdown list, use the Relationships page to add the relationship.') }}</small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>
+                <button type="button" class="btn btn-success"><i class="bi-check"></i> {{ _('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

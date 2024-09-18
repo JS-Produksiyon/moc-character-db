@@ -12,12 +12,14 @@
                     <label class="form-label col-3 text-end pt-2"><strong>{{ _('Episode #') }}:</strong></label>
                     <div class="col-9">
                         <input type="number" class="form-control" id="addEditEpisodeModal_ep_num" name="ep_num" placeholder="101">
+                        <div class="invalid-feedback">{{ _('Please enter a valid episode number.') }}</div>
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label class="form-label col-3 text-end pt-2"><strong>{{ _('Episode Title') }}:</strong></label>
                     <div class="col-9">
                         <input type="text" class="form-control" id="addEditEpisodeModal_ep_title" name="ep_title" placeholder="">
+                        <div class="invalid-feedback">{{ _('Please enter a valid episode title. It should be at least one character long.') }}</div>
                     </div>
                 </div>
                 <div class="row mb-3">

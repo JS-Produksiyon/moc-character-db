@@ -8,4 +8,5 @@
 | majorError()             | major error notification                    | DONE             |
 | imageBox()               | upload an image                             | DONE             |
 | navFromUnsaved()         | confirm navigating away from a dirty form   | DONE             |
+| addRelationType()        | adds a relationship type to the DB          |                  |
 | endProgramConfirmation() | confirm the ending of the program           | Won't do for now |

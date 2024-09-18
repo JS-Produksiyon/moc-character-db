@@ -91,7 +91,7 @@ def create_app_settings(app, babel):
     """
     import re
     from flask import render_template, request
-    from lib.util_randomstr import randomString
+    from utils.util_randomstr import randomString
 
     app.config['MOCDB_SETUP'] = False
 

@@ -69,5 +69,7 @@ $(document).ready(function () {
      * enable dselect searchable dropdown boxes 
      * See https://github.com/jarstone/dselect for usage
      */
-    dselect(document.querySelector('.dselect-search'), { search: true });
+    $.each(["#appendRelationshipModal_character", "#appendRelationshipModal_relation", "#append_selected_episode"], 
+            function (k, i) { dselect(document.querySelector(i), { search: true }); });
+    
 })

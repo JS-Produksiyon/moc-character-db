@@ -38,7 +38,7 @@ var hashMgr = function () {
             $("#add_ep_btn").fadeIn();
             $("#nav_episodes").addClass("active");
         } else if (h[1] == 'relationships') {
-            $("#relations_list").fadeIn();
+            $("#relation_list").fadeIn();
             $("#add_rel_btn").fadeIn();
             $("#nav_relations").addClass("active");
         } else {

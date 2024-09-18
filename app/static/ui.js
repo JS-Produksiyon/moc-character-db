@@ -41,6 +41,11 @@ html_templates = {
     </button>
     </td>
 </tr>\n`,
+    relationship_row: `<tr>    
+    <td class="col-4 ps-3">%main_relation%</td>
+    <td class="col-4">%male_reciprocal_relation%</td>
+    <td class="col-4">%female_reciprocal_relation%</td>
+</tr>\n`,
     episode_data : `<div class="accordion-item">
     <h2 class="accordion-header" id="episode_%id%">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_%id%">
@@ -69,7 +74,10 @@ $(document).ready(function () {
      * enable dselect searchable dropdown boxes 
      * See https://github.com/jarstone/dselect for usage
      */
-    $.each(["#appendRelationshipModal_character", "#appendRelationshipModal_relation", "#append_selected_episode"], 
-            function (k, i) { dselect(document.querySelector(i), { search: true }); });
+    $.each(["#appendRelationshipModal_character", "#appendRelationshipModal_relation", "#append_selected_episode",
+            "#addEditRelationshipModal_rel_rec_male", "#addEditRelationshipModal_rel_rec_female"], 
+            function (k, i) { 
+                if ($(i).length > 0) { dselect(document.querySelector(i), { search: true }); }
+            });
     
 })

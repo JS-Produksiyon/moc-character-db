@@ -1,0 +1,41 @@
+{# modal to add relationship to database #}
+<div class="modal fade" id="addEditRelationshipModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="h4" id="addEditRelationshipModal_title_add">{{ _('Add New Relationship to Database') }}</span>
+                <span class="h4 md-none" id="addEditRelationshipModal_title_edit">{{ _('Edit Relationship') }}</span>
+            </div>
+            <div class="modal-body" id="addEditRelationshipModal_body">
+                <div class="row mb-3">
+                    <label class="col-4 text-end pt-2" for="addEditRelationshipModal_rel_name">{{ _('Relationship Name') }}:</label>
+                    <div class="col-7">
+                        <input type="text" class="form-control form-validate" id="addEditRelationshipModal_rel_name" name="addEditRelationshipModal_rel_name">
+                        <div class="invalid-feedback">{{ _('Please enter a valid relationship designation. It should be at least one character long.') }}</div>
+                    </div>
+                </div>
+                <p>{{ _('The reciprocal relationships defined below will apply to characters for whom this character is designated as above. These fields can be left empty. The will be automatically populated when another relationship has this one designated as reciprocal to itself.') }}</p>
+                <div class="row mb-3">
+                    <label class="col-4 text-end pt-2" for="addEditRelationshipModal_rel_rec_male">{{ _('Male Reciprocal Relationship') }}:</label>
+                    <div class="col-7">
+                        <select id="addEditRelationshipModal_rel_rec_male" class="form-select dselect-search">
+                            <option value="0">{{ _('Select relationship...') }}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="col-4 text-end pt-2" for="addEditRelationshipModal_rel_rec_female">{{ _('Female Reciprocal Relationship') }}:</label>
+                    <div class="col-7">
+                        <select id="addEditRelationshipModal_rel_rec_female" class="form-select dselect-search">
+                            <option value="0">{{ _('Select relationship...') }}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>
+                <button type="button" class="btn btn-success"><i class="bi-check"></i> {{ _('Save') }}</button>
+            </div>
+        </div>
+    </div>
+</div>

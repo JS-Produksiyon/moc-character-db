@@ -18,10 +18,11 @@ __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
 __debugState__ = True
 # ================================================================================
-import os, re, json, datetime
+import os, re, datetime
 from flask import(
-    Blueprint, config, redirect, request, url_for, current_app
+    Blueprint, jsonify, config, redirect, request, url_for, current_app
 )
+from flask_babel import lazy_gettext as _
 from app.blueprints.api.models import (Character, Episode, Relationship, RelationTypes, Residence, Actor)
 from app.languages.jsstrings import JS_STRINGS
 
@@ -32,5 +33,5 @@ def localized_js_strings():
     """
     Returns the localized JavaScript strings
     """
-    return json.dumps(JS_STRINGS)
+    return jsonify(JS_STRINGS)
 

@@ -18,7 +18,7 @@ __maintainer__ = ["Josh Wibberley"]
 __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
 # ================================================================================
-from flask_babel import gettext as _
+from flask_babel import lazy_gettext as _
 
 JS_STRINGS = {
     'sex_word': {'male': _('Male'), 'female': _('Female')},

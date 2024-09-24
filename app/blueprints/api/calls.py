@@ -23,6 +23,14 @@ from flask import(
     Blueprint, config, redirect, request, url_for, current_app
 )
 from app.blueprints.api.models import (Character, Episode, Relationship, RelationTypes, Residence, Actor)
+from app.languages.jsstrings import JS_STRINGS
 
 api = Blueprint('api', __name__, url_prefix='/api')
+
+@api.route('/jsstrings')
+def localized_js_strings():
+    """
+    Returns the localized JavaScript strings
+    """
+    return json.dumps(JS_STRINGS)
 

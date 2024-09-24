@@ -1,5 +1,6 @@
-import datetime
-import pytz
+# -*- coding: utf-8 -*-
+# Timezone aware date utilities
+import datetime, pytz
 
 
 def tzware_datetime():

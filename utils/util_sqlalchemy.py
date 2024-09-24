@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+# SQLAlchemy object utilities
 import datetime
 
 from flask import current_app
@@ -166,40 +168,3 @@ class ResourceMixin(object):
 
         values = ', '.join("%s=%r" % (n, getattr(self, n)) for n in columns)
         return '<%s %s(%s)>' % (obj_id, self.__class__.__name__, values)
-
-# raw category that includes a search function
-class MultiLingualTitleTable(ResourceMixin):
-    """
-    Base object for creating a table with multilingual titles
-    Generally used for categories, tags, and genres
-    """
-    default_title = db.Column('default', db.String(255), nullable=False, comment="Default titles; populated according to default language set on initial setup")
-    
-    @classmethod 
-    def find_by_lang(cls, lang, data):
-        """
-        Find a category by a given language name
-
-        :param lang: interface language code
-        :type  lang: string
-        :param cat : category title in selected language
-        :type  cat : string
-        :returns   : query object or None
-        """
-        return cls.query.filter(cls.__dict__[lang].like(f'%{data}%')).first()
-
-    @classmethod
-    def update(cls, id, fields):
-        """
-        Update a multilingual table dynamically created language fields
-
-        :param id    : id number of row
-        :type  id    : integer
-        :param fields: dict containing key : value pairs of fields
-        :type  fields: dictionary
-        :returns     : boolean
-        """
-        query_obj = cls.query.filter(cls.id == id).update(fields)
-        db.session.commit()
-        return query_obj
-

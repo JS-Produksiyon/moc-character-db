@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-09-24 09:56+0300\n"
+"POT-Creation-Date: 2024-09-24 11:00+0300\n"
 "PO-Revision-Date: 2024-09-24 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -185,22 +185,26 @@ msgstr "Karakter listesi"
 #: app/blueprints/main/templates/charlist.html.jinja:5
 msgid "No characters found in database. Please add one using the button above."
 msgstr ""
+"Veri tabanında karakter bulunamadı. Yukarıdaki düğmeyi kullanarak bir "
+"karakter ekleyebilirsiniz."
 
 #: app/blueprints/main/templates/charlist.html.jinja:11
 msgid "Episodes"
-msgstr ""
+msgstr "Bölümler"
 
 #: app/blueprints/main/templates/charlist.html.jinja:13
 msgid "Animation"
-msgstr ""
+msgstr "Animasyon"
 
 #: app/blueprints/main/templates/eplist.html.jinja:4
 msgid "Episode List"
-msgstr ""
+msgstr "Bölüm Listesi"
 
 #: app/blueprints/main/templates/eplist.html.jinja:5
 msgid "No episodes found in database. Please add one using the button above."
 msgstr ""
+"Veri tabanında bölüm bulunmadı. Yukarıdaki düğmeyi kullanarak bir bölüm "
+"ekleyebilirsiniz."
 
 #: app/blueprints/main/templates/main.html.jinja:3
 #: app/blueprints/main/templates/main.html.jinja:9
@@ -209,33 +213,35 @@ msgstr ""
 #: app/templates/setup-result.html.jinja:9
 #: app/templates/setup-result.html.jinja:10
 msgid "Men of Courage"
-msgstr ""
+msgstr "Erkeğe Dair"
 
 #: app/blueprints/main/templates/main.html.jinja:3
 #: app/blueprints/main/templates/main.html.jinja:10
 #: app/templates/setup-result.html.jinja:3
 #: app/templates/setup-result.html.jinja:10
 msgid "Character Database"
-msgstr ""
+msgstr "Karakter Veri Tabanı"
 
 #: app/blueprints/main/templates/main.html.jinja:9
 #: app/templates/setup-result.html.jinja:9
 msgid "Official Logo"
-msgstr ""
+msgstr "Resmi Logo"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
 msgid "Add Actor"
-msgstr ""
+msgstr "Oyuncu veya Seslendiren Ekle"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:9
 msgid ""
 "Enter the full name of a voice or character actor for the Men of Courage "
 "character."
 msgstr ""
+"Erkeğe Dair karakterini canlandıran oyuncunun veya seslendirenin tam "
+"adını girin."
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:11
 msgid "Actor Name"
-msgstr ""
+msgstr "Adı-Soyadı"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:18
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:33
@@ -245,7 +251,7 @@ msgstr ""
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:32
 #: app/blueprints/main/templates/modal_template.html.jinja:12
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:19
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:34
@@ -255,11 +261,11 @@ msgstr ""
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:33
 #: app/blueprints/main/templates/modal_template.html.jinja:13
 msgid "Save"
-msgstr ""
+msgstr "Kaydet"
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:7
 msgid "Edit Episode"
-msgstr ""
+msgstr "Bölümü düzenle"
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:10
 msgid ""
@@ -267,50 +273,54 @@ msgid ""
 "id=\"addEditEpisodeModal_txt_add\">add</span><span "
 "id=\"addEditEpisodeModal_txt_add\">edit</span> the episode."
 msgstr ""
+"Bölümü <span id=\"addEditEpisodeModal_txt_add\">eklemek</span><span "
+"id=\"addEditEpisodeModal_txt_add\">düzenlemek</span> için kalın metin ile"
+" işaretlenmiş tüm alanları girin"
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:12
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:27
 msgid "Episode #"
-msgstr ""
+msgstr "Bölüm No."
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:15
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:29
 msgid "Please enter a valid episode number."
-msgstr ""
+msgstr "Bölüm numarası için lütfen geçerli bir rakam giriniz."
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:19
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:34
 msgid "Episode Title"
-msgstr ""
+msgstr "Bölüm Başlığı"
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:22
 msgid ""
 "Please enter a valid episode title. It should be at least one character "
 "long."
-msgstr ""
+msgstr "En az bir karakter uzunluğunda olan geçerli bir bölüm başlığını giriniz."
 
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:26
 msgid "Episode Recorded"
-msgstr ""
+msgstr "Bölüm Kayıt Tarihi"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:6
 msgid "Add New Relationship to Database"
-msgstr ""
+msgstr "Veri tabanına yeni ilişki ekle"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:7
 msgid "Edit Relationship"
-msgstr ""
+msgstr "İlişkiyi düzenle"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:11
-#: app/blueprints/main/templates/relationlist.html.jinja:11
+#: app/blueprints/main/templates/relationlist.html.jinja:22
+#: app/blueprints/main/templates/relationlist.html.jinja:41
 msgid "Relationship Name"
-msgstr ""
+msgstr "İlişki tanımı"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:14
 msgid ""
 "Please enter a valid relationship designation. It should be at least one "
 "character long."
-msgstr ""
+msgstr "En az bir karakter uzunluğunda bir ilişki tanımını giriniz."
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:17
 msgid ""
@@ -319,26 +329,33 @@ msgid ""
 "empty. The will be automatically populated when another relationship has "
 "this one designated as reciprocal to itself."
 msgstr ""
+"Aşağıda tanımlanan karşılıklı ilişkiler bu karakter ile ilişkilendirilen "
+"diğer karakterlere uygulanacaktır. Bu alanlar boş bırakılabilir. Bu "
+"ilişki için karşılıklı bir ilişki başka bir ilişkiden tanımlanınca bu "
+"ilişki otomatik olarak o ilişkinin karşılığı olarak tanımlanacaktır."
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:19
-#: app/blueprints/main/templates/relationlist.html.jinja:12
+#: app/blueprints/main/templates/relationlist.html.jinja:23
+#: app/blueprints/main/templates/relationlist.html.jinja:42
 msgid "Male Reciprocal Relationship"
-msgstr ""
+msgstr "Eril karşılıklı ilişki"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:22
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:30
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:24
+#, fuzzy
 msgid "Select relationship..."
-msgstr ""
+msgstr "İlişkiyi düzenle"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
-#: app/blueprints/main/templates/relationlist.html.jinja:13
+#: app/blueprints/main/templates/relationlist.html.jinja:24
+#: app/blueprints/main/templates/relationlist.html.jinja:43
 msgid "Female Reciprocal Relationship"
-msgstr ""
+msgstr "Dişil karşılıklı ilişki"
 
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:6
 msgid "Add Place of Residence"
-msgstr ""
+msgstr "İkamet yerini ekle"
 
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:9
 msgid ""
@@ -346,30 +363,33 @@ msgid ""
 " a city, though it can be a country, a region or a designation of your "
 "choosing."
 msgstr ""
+"Karakterin ikamet ettiği yerini giriniz. Bu tercihen bir şehir veya "
+"kasabadır. Ancak ayrıca bir bölge veya isteğinize bağlı olan bir mekân "
+"olabilir."
 
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:11
 msgid "Residence Name"
-msgstr ""
+msgstr "İkamet yerin adı"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:6
 msgid "Assign Episode to Character"
-msgstr ""
+msgstr "Karakteri Bölümle Bağla"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:11
 msgid "Select Episode"
-msgstr ""
+msgstr "Bölümü seç"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:20
 msgid "Select episode here..."
-msgstr ""
+msgstr "Bölümü buradan seçiniz"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:36
 msgid "Please enter a valid episode title of at least one character."
-msgstr ""
+msgstr "En az bir karakter uzunluğunda bir bölüm adını giriniz."
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:6
 msgid "Add Relationship Between Characters"
-msgstr ""
+msgstr "Karakterler Arası İlişkiyi Tanımla"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:9
 msgid ""
@@ -377,18 +397,22 @@ msgid ""
 "character</span> and another by using the fields below. All fields are "
 "required."
 msgstr ""
+"Aşağıdaki alanları kullanarak <span id=\"this_char\">bu karakter </span> "
+"ve başka bir karakter arasındaki ilişkiyi tanımlayın. Tüm alanların "
+"doldurulması zorunludur."
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:11
 msgid "Other Character"
-msgstr ""
+msgstr "Diğer karakter"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:14
+#, fuzzy
 msgid "Select character..."
-msgstr ""
+msgstr "Karakteri sil"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:16
 msgid "Please select a character to continue."
-msgstr ""
+msgstr "Devam etmek için bir karakter seçiniz."
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:17
 msgid ""
@@ -396,14 +420,17 @@ msgid ""
 " check the character list to see if they have been added. You can always "
 "add the relationship later, if necessary."
 msgstr ""
+"Eklemeye çalıştığınız karakter bu açılır listede bulunmuyorsa, karakterin"
+" ana listede tanımlanmış olduğunu kontrol edin. Karakterler arasındaki "
+"ilişkiler sonradan da kolayca eklenebilir."
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:21
 msgid "Relationship to Character"
-msgstr ""
+msgstr "Karakter ile olan ilişkisi"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:26
 msgid "Please select a relationship to continue."
-msgstr ""
+msgstr "Devam etmek için lütfen bir ilişki seçin"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:27
 msgid ""
@@ -412,76 +439,82 @@ msgid ""
 "If the relationship between the characters does not exist in the dropdown"
 " list, use the Relationships page to add the relationship."
 msgstr ""
+"Bir karakter için ilişki ayarlanınca, karşılıklı ilişkide olan karakter "
+"için ilişkiler otomatikman ayarlanacaktır. Eklemek istediğiniz ilişki "
+"açılır kutuda mevcut değilse, bunu İlişkiler sayfasından  "
+"ekleyebilirsiniz."
 
 #: app/blueprints/main/templates/modal_deleteItem.html.jinja:6
 msgid "Delete"
-msgstr ""
+msgstr "Sil"
 
 #: app/blueprints/main/templates/modal_deleteItem.html.jinja:11
 msgid "This action cannot be undone!"
-msgstr ""
+msgstr "Bu eylem geri alınamaz!"
 
 #: app/blueprints/main/templates/modal_deleteItem.html.jinja:12
 #: app/blueprints/main/templates/modal_navFromUnsaved.html.jinja:10
 msgid "Are you sure you want to continue?"
-msgstr ""
+msgstr "Devam etmek istediğinizden emin misiniz?"
 
 #: app/blueprints/main/templates/modal_deleteItem.html.jinja:15
 #: app/blueprints/main/templates/modal_navFromUnsaved.html.jinja:13
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: app/blueprints/main/templates/modal_deleteItem.html.jinja:16
 #: app/blueprints/main/templates/modal_navFromUnsaved.html.jinja:14
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:6
 msgid "Manage Image"
-msgstr ""
+msgstr "Görsel Yönetimi"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:10
 msgid "Head Shot"
-msgstr ""
+msgstr "Kafa çekimi"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:11
 msgid "Full Body Shot"
-msgstr ""
+msgstr "Boydan çekim"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:16
 msgid "Delete Image"
-msgstr ""
+msgstr "Görseli sil"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:21
 msgid "Upload Image:"
-msgstr ""
+msgstr "Görseli yükle:"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:26
 msgid "Upload"
-msgstr ""
+msgstr "Yükle"
 
 #: app/blueprints/main/templates/modal_imageBox.html.jinja:33
 #: app/blueprints/main/templates/modal_majorError.html.jinja:18
 msgid "Close"
-msgstr ""
+msgstr "Kapat"
 
 #: app/blueprints/main/templates/modal_majorError.html.jinja:6
 msgid "Error!"
-msgstr ""
+msgstr "Hata!"
 
 #: app/blueprints/main/templates/modal_navFromUnsaved.html.jinja:6
 msgid "Unsaved Changes!"
-msgstr ""
+msgstr "Kaydedilmemiş Değişiklikler Mevcut!"
 
 #: app/blueprints/main/templates/modal_navFromUnsaved.html.jinja:9
 msgid ""
 "There are unsaved changes on your page. If you leave now, they will be "
 "lost."
 msgstr ""
+"Sayfada kaydedilmemiş içerikler bulunmaktadır. Sayfadan ayrılırsanız "
+"bunlar kaybolacak."
 
 #: app/blueprints/main/templates/relationlist.html.jinja:4
 msgid "Relationship List"
-msgstr ""
+msgstr "İlişki Listesi"
 
 #: app/blueprints/main/templates/relationlist.html.jinja:5
 msgid ""
@@ -490,88 +523,124 @@ msgid ""
 " one another when a relationship is assigned between two characters. This"
 " page allows you to add and edit the various relationships."
 msgstr ""
+"Burada geçen ilişkiler karakterleri birbiriyle ilişkilendirmek üzere "
+"kullanılır. Çoğu iki karakter arasında karşılıklı ilişkileri otomatikman "
+"atar. Bu sayfadan ilişkileri ekleyip düzenleyebilirsiniz."
 
-#: app/blueprints/main/templates/relationlist.html.jinja:6
-msgid "No relationships found in database. Please add one using the button above."
+#: app/blueprints/main/templates/relationlist.html.jinja:7
+msgid "No relationships found in database."
+msgstr "Veri tabanında ilişki bulunamadı"
+
+#: app/blueprints/main/templates/relationlist.html.jinja:8
+msgid ""
+"You can define the relationships using the <i>Add Relationship</i> button"
+" above."
 msgstr ""
+"Yeni ilişkiler yukarıdaki <i>İlişki ekle</i> tuşunu kullanarak "
+"eklenebilir."
+
+#: app/blueprints/main/templates/relationlist.html.jinja:9
+msgid ""
+"You can also automatically load the most common relationships for your "
+"language group into the database using the <i>Load Default "
+"Relationships</i> button below."
+msgstr ""
+"İsterseniz, dil grubunuzdaki en yaygın ilişkileri ayrıca <i>Varsayılan "
+"İlişkileri Yükle</i> tuşuna tıklayarak veri tabanına yükletebilirsiniz."
+""
+
+#: app/blueprints/main/templates/relationlist.html.jinja:14
+msgid "Default relationships that will be loaded"
+msgstr "Yüklenecek varsayılan ilişkiler"
+
+#: app/blueprints/main/templates/relationlist.html.jinja:34
+#, fuzzy
+msgid "Load Default Relationships"
+msgstr "Varsayılan İlişkileri Yükle"
 
 #: app/languages/jsstrings.py:25
 msgid "Display"
-msgstr ""
+msgstr "Görüntüle"
 
 #: app/languages/jsstrings.py:26
 msgid "Remove Relationship"
-msgstr ""
+msgstr "İlişkiyi Sil"
 
 #: app/languages/jsstrings.py:27
 msgid "Remove Episode"
-msgstr ""
+msgstr "Bölümü Sil"
 
 #: app/languages/jsstrings.py:28
 msgid "Date Recorded"
-msgstr ""
+msgstr "Kayıt Tarihi"
 
 #: app/languages/jsstrings.py:29
 msgid "Characters"
-msgstr ""
+msgstr "Karakterler"
 
 #: app/languages/jsstrings.py:31
 #, python-format
 msgid "You are about to delete %item%."
-msgstr ""
+msgstr "%item% öğesini silmek üzeresiniz."
 
 #: app/templates/base.html.jinja:29
 msgid "Loading"
-msgstr ""
+msgstr "Yükleniyor"
 
 #: app/templates/base.html.jinja:31
 msgid "Loading..."
-msgstr ""
+msgstr "Yükleniyor..."
 
 #: app/templates/base.html.jinja:42
 msgid "Copyright"
-msgstr ""
+msgstr "Telif Hakları"
 
 #: app/templates/base.html.jinja:42
 msgid "Released under GNU GPL 3.0"
-msgstr ""
+msgstr "GNU GPL 3.0 lisansı ile sunulmaktadır."
 
 #: app/templates/setup-result.html.jinja:3
 msgid "Setup"
-msgstr ""
+msgstr "Kurulum"
 
 #: app/templates/setup-result.html.jinja:18
 msgid "Settings saved successfully."
-msgstr ""
+msgstr "Ayarlar başarıyla kaydedildi"
 
 #: app/templates/setup-result.html.jinja:19
 msgid ""
 "The character database is now ready for use. Click the Start button to "
 "begin creating your first character."
 msgstr ""
+"Karakter veri tabanı kullanıma hazırdır. Veri tabanını kullanmak için "
+"Başla düğmesini tıklayın."
 
 #: app/templates/setup-result.html.jinja:20
 msgid "Start"
-msgstr ""
+msgstr "Başla"
 
 #: app/templates/setup-result.html.jinja:22
 msgid "Unable to save settings."
-msgstr ""
+msgstr "Ayarlar kaydedilemedi."
 
 #: app/templates/setup-result.html.jinja:24
 msgid ""
 "Something went wrong when writing the <code>settings.json</code> file to "
 "disk. Please check the write permissions of the <code>/instance</code> "
 "directory."
-msgstr ""
+msgstr "<code>settings.json</code> dosyasını sabit diske kaydederken bir "
+"hata oluştu. Lütfen <code>/instance</code> altdizinine yazma izninizin "
+"olduğunu kontrol edin."
 
 #: app/templates/setup-result.html.jinja:26
 msgid ""
 "Something went wrong with the data passed. Please check your entries and "
 "try again."
 msgstr ""
+"Gönderilen verilerde hata bulundu. Girdiğiniz verileri kontrol edip "
+"tekrar deneyin."
 
 #: app/templates/setup-result.html.jinja:28
 msgid "Back to Setup"
-msgstr ""
+msgstr "Kuruluma dön"
 

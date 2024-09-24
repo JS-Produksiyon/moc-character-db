@@ -1,17 +1,17 @@
-# Translations template for Men of Courage Character Database.
-# Copyright (C) 2024 JS Prodüksiyon Ltd. Şti
-# This file is distributed under the same license as the Men of Courage Character Database project.
-# Josh Wibberley <joshw@jsproduksiyon.com>, 2024.
+# Translations template for PROJECT.
+# Copyright (C) 2024 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2024.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: 1.0.0\n"
-"Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-09-24 09:56+0300\n"
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2024-09-24 11:00+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
-"Language-Team: Turkish <yazilim@jsproduksiyon.com>\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -300,7 +300,8 @@ msgid "Edit Relationship"
 msgstr ""
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:11
-#: app/blueprints/main/templates/relationlist.html.jinja:11
+#: app/blueprints/main/templates/relationlist.html.jinja:22
+#: app/blueprints/main/templates/relationlist.html.jinja:41
 msgid "Relationship Name"
 msgstr ""
 
@@ -319,7 +320,8 @@ msgid ""
 msgstr ""
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:19
-#: app/blueprints/main/templates/relationlist.html.jinja:12
+#: app/blueprints/main/templates/relationlist.html.jinja:23
+#: app/blueprints/main/templates/relationlist.html.jinja:42
 msgid "Male Reciprocal Relationship"
 msgstr ""
 
@@ -330,7 +332,8 @@ msgid "Select relationship..."
 msgstr ""
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
-#: app/blueprints/main/templates/relationlist.html.jinja:13
+#: app/blueprints/main/templates/relationlist.html.jinja:24
+#: app/blueprints/main/templates/relationlist.html.jinja:43
 msgid "Female Reciprocal Relationship"
 msgstr ""
 
@@ -489,8 +492,29 @@ msgid ""
 " page allows you to add and edit the various relationships."
 msgstr ""
 
-#: app/blueprints/main/templates/relationlist.html.jinja:6
-msgid "No relationships found in database. Please add one using the button above."
+#: app/blueprints/main/templates/relationlist.html.jinja:7
+msgid "No relationships found in database."
+msgstr ""
+
+#: app/blueprints/main/templates/relationlist.html.jinja:8
+msgid ""
+"You can define the relationships using the <i>Add Relationship</i> button"
+" above."
+msgstr ""
+
+#: app/blueprints/main/templates/relationlist.html.jinja:9
+msgid ""
+"You can also automatically load the most common relationships for your "
+"language group into the database using the <i>Load Default "
+"Relationships</i> button below."
+msgstr ""
+
+#: app/blueprints/main/templates/relationlist.html.jinja:14
+msgid "Default relationships that will be loaded"
+msgstr ""
+
+#: app/blueprints/main/templates/relationlist.html.jinja:34
+msgid "Load Default Relationships"
 msgstr ""
 
 #: app/languages/jsstrings.py:25

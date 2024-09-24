@@ -1958,7 +1958,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="iXbPAdVymW7NrSQkOiH5-22" value="iterate through skeleton to validate keys" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="XAFxKzoOgU5Ww59e63xk-6" vertex="1">
+        <mxCell id="iXbPAdVymW7NrSQkOiH5-22" value="iterate through skeleton to validate types" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="XAFxKzoOgU5Ww59e63xk-6" vertex="1">
           <mxGeometry x="30" y="340" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="iXbPAdVymW7NrSQkOiH5-33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="XAFxKzoOgU5Ww59e63xk-6" source="iXbPAdVymW7NrSQkOiH5-23" target="iXbPAdVymW7NrSQkOiH5-28" edge="1">

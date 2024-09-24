@@ -108,7 +108,9 @@ $(document).ready(function (){
             $("#char_no_eps").show();
             $("#char_eps_table_container").hide();
             $("#char_eps_table_container table tbody").html("");
-            $("#char_first_name").focus();
+            $("#add_char_btn").fadeIn();
+            $("#nav_characters").addClass("active");
+            $("#char_detail").fadeIn().promise().done(function() { $("#char_first_name").focus(); });
         }
 
         /**
@@ -146,15 +148,12 @@ $(document).ready(function (){
                 if (id != "add") { id = "add"; }
             }
             
-            $("#char_detail").fadeIn();
-            $("#add_char_btn").fadeIn();
-
             if (id == "add") {
-                this.add();
+                this.add();    
             } else {
-
+                $.postJson
             }
-            $("#nav_characters").addClass("active");
+
         }
 
         /**

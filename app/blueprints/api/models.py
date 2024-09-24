@@ -55,8 +55,8 @@ class Character(ResourceMixin, db.Model):
 
     # one to many relationships
     rel_episodes = db.relationship('Episode', secondary=char_to_ep, backref=db.backref('characters', lazy=True))
-    rel_main_character = db.relationship('Relationship', foreign_keys='relationships.main_character', backref='main_character', lazy=True)
-    rel_other_character = db.relationship('Relationship', foreign_keys='relationships.other_character', backref='other_character', lazy=True)
+    rel_main_character = db.relationship('Relationship', foreign_keys='Relationship.main_character', back_populates='obj_main_character', lazy=True)
+    rel_other_character = db.relationship('Relationship', foreign_keys='Relationship.other_character', back_populates='obj_other_character', lazy=True)
 
     def __repr__(self):
         return "<Character {}>".format(self)
@@ -84,8 +84,8 @@ class Relationship(ResourceMixin, db.Model):
     relationship = db.Column(db.String(50),db.ForeignKey('relation_types.slug'), nullable=False)
 
     # reciprocal relationships
-    obj_main_character = db.relationship('Character', foreign_keys=[main_character], backref='main_character_of')
-    obj_other_character = db.relationship('Character', foreign_keys=[other_character], backref='other_character_of')
+    obj_main_character = db.relationship('Character', foreign_keys=[main_character], back_populates='rel_main_character')
+    obj_other_character = db.relationship('Character', foreign_keys=[other_character], back_populates='rel_other_character')
 
     def __repr__(self):
         return "<Relationship {}>".format(self)

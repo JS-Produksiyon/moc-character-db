@@ -29,10 +29,6 @@ if sys.version_info < MIN_PYTHON:
 import os, json
 from flask import Flask, current_app
 
-# Import blueprints
-from app.blueprints.api import api
-from app.blueprints.main import page
-
 # Import extensions
 from flask_babel import Babel, gettext as _, ngettext
 from flask_sqlalchemy import SQLAlchemy
@@ -40,8 +36,12 @@ from flask_debugtoolbar import DebugToolbarExtension
 from flask_wtf import CSRFProtect
 from jinja2 import Environment
 
+# Import Blueprints
+from app.blueprints.api import api
+from app.blueprints.main import page
+
 # initialize global db
-db = SQLAlchemy()
+from app.db import db
 
 # Initialize app
 def create_app(test_config=None):
@@ -76,6 +76,15 @@ def create_app(test_config=None):
         app.config.from_file('settings.json', load=json.load)
         app.config['MOCDB_SETUP'] = True
         start_app(app)
+        # app.register_blueprint(api)
+        # app.register_blueprint(page)
+
+        # db.init_app(app)
+
+        # with app.current_context():
+        #     db.create_all()
+
+
     except:
         create_app_settings(app, babel)    
 
@@ -174,15 +183,16 @@ def create_app_settings(app, babel):
 
             if (request.form['db_type'] == 'sqlite'):
                 dbUri = SQLiteUri.format(filename=request.form['sqlite_db_file'])
-
+                trackMods = False
             else:
                 dbUri = dbUriTpl.format(engines=engines[request.form['db_type']], user=request.form['db_user'], pwd=request.form['db_pwd'], host=request.form['db_host'], port=request.form['db_port'], name=request.form['db_name'])
+                trackMods = True
 
             setupObj = {
                         "APP_LANGUAGE" : request.form['language'],
                         "SECRET_KEY" : secretKey,
                         "SQLALCHEMY_DATABASE_URI": dbUri,
-                        "SQLALCHEMY_TRACK_MODIFICATIONS": True
+                        "SQLALCHEMY_TRACK_MODIFICATIONS": trackMods
                     }
             
             app.config.update(setupObj)
@@ -219,10 +229,9 @@ def start_app(app):
     :param app: reference to current Flask application
     :type  app: Flask Object
     """
-    
     app.register_blueprint(api)
     app.register_blueprint(page)
-    
+
     db.init_app(app)
 
     with app.app_context():

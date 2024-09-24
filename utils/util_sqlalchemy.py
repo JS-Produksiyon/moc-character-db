@@ -1,10 +1,12 @@
 import datetime
 
+from flask import current_app
+from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import DateTime, select
 from sqlalchemy.types import TypeDecorator
 
 from utils.util_datetime import tzware_datetime
-from app.app import db
+from app.db import db
 
 class AwareDateTime(TypeDecorator):
     """

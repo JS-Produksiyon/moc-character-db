@@ -5,7 +5,7 @@
 
     File name: blueprints/api/models.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-18
+    Date Modified: 2024-09-24
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -18,21 +18,20 @@ __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
 __debugState__ = True
 # ================================================================================
-from flask import current_app
-from app.app import db
 from utils.util_sqlalchemy import ResourceMixin
+from app.db import db
 
 
 # Character-Episode connector table
-char_to_ep = db.Table('char_to_ep', 
-                      db.Column('character_id', db.Integer, db.ForeignKey('characters.id', primary_key=True)),
-                      db.Column('episodes_id', db.Integer, db.ForeignKey('episodes.id', primary_key=True)),
+char_to_ep = db.Table('char_to_ep',
+                      db.Column('character_id', db.Integer, db.ForeignKey('characters.id'), primary_key=True),
+                      db.Column('episodes_id', db.Integer, db.ForeignKey('episodes.id'), primary_key=True),
                       )
 
 
 # Character table
 class Character(ResourceMixin, db.Model):
-    __table_name__ = 'characters'
+    __tablename__ = 'characters'
     id = db.Column(db.Integer, primary_key=True)
 
     # main data
@@ -49,29 +48,40 @@ class Character(ResourceMixin, db.Model):
     sex = db.Column(db.String(), index=False, nullable=False)
 
     # one to one relationships
-    residence = db.Column(db.Integer, db.ForeignKey('actors.id', nullable=True))
-    rel_residence = db.relationship('Residence', backref='residence_data')
-    acted_by = db.Column(db.Integer, db.ForeignKey('actors.id'), nullable=True)
-    rel_actor = db.relationship('Actor', backref='actor_data')
+    residence = db.Column(db.Integer,db.ForeignKey('residences.id'))
+    rel_residence = db.relationship('Residence', back_populates='character')
+    acted_by = db.Column(db.Integer,db.ForeignKey('actors.id'), nullable=True)
+    rel_actor = db.relationship('Actor', back_populates='character')
 
     # one to many relationships
     rel_episodes = db.relationship('Episode', secondary=char_to_ep, backref=db.backref('characters', lazy=True))
-    rel_main_character = db.relationship('Relationship', foreign_keys='Relationship.main_character', backref='main_character', lazy=True)
-    rel_other_character = db.relationship('Relationship', foreign_keys='Relationship.other_character', backref='other_character', lazy=True)
+    rel_main_character = db.relationship('Relationship', foreign_keys='relationships.main_character', backref='main_character', lazy=True)
+    rel_other_character = db.relationship('Relationship', foreign_keys='relationships.other_character', backref='other_character', lazy=True)
 
     def __repr__(self):
         return "<Character {}>".format(self)
 
 
-# Relationships table
+# Episodes table
+class Episode(ResourceMixin, db.Model):
+    __tablename__ = 'episodes'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), index=True, nullable=False, comment="Full name of actor")
+    recorded = db.Column(db.Date)
+
+    def __repr__(self):
+        return "<EpisodeBase {}>".format(self)
+
+
+# Relationship table
 class Relationship(ResourceMixin, db.Model):
-    __table_name__ = 'relationships'
+    __tablename__ = 'relationships'
     id = db.Column(db.Integer, primary_key=True)
 
     # main fields
-    main_character = db.Column(db.Integer, db.ForeignKey('characters.id'), nullable=False)
-    other_character = db.Column(db.Integer, db.ForeignKey('characters.id'), nullable=False)
-    relationship = db.Column(db.String(50), db.ForeignKey('relation_types.slug'), nullable=False)
+    main_character = db.Column(db.Integer,db.ForeignKey('characters.id'), nullable=False)
+    other_character = db.Column(db.Integer,db.ForeignKey('characters.id'), nullable=False)
+    relationship = db.Column(db.String(50),db.ForeignKey('relation_types.slug'), nullable=False)
 
     # reciprocal relationships
     obj_main_character = db.relationship('Character', foreign_keys=[main_character], backref='main_character_of')
@@ -83,7 +93,7 @@ class Relationship(ResourceMixin, db.Model):
 
 # Relationship types table
 class RelationTypes(ResourceMixin, db.Model):
-    __table_name__ = 'relation_types'
+    __tablename__ = 'relation_types'
     id = db.Column(db.Integer, primary_key=True)
 
     # main fields
@@ -99,22 +109,12 @@ class RelationTypes(ResourceMixin, db.Model):
         return "<RelationshipType {}>".format(self)
 
 
-# Episodes table
-class Episode(ResourceMixin, db.Model):
-    __table_name__ = 'episodes'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), index=True, nullable=False, comment="Full name of actor")
-    recorded = db.Column(db.Date)
-
-    def __repr__(self):
-        return "<Episode {}>".format(self)
-
-
 # Residences table
 class Residence(ResourceMixin, db.Model):
-    __table_name__ = 'residences'
+    __tablename__ = 'residences'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), index=True, nullable=False)
+    character = db.relationship('Character', uselist=False, back_populates='rel_residence')
 
     def __repr__(self):
         return "<Residence {}>".format(self)
@@ -122,10 +122,10 @@ class Residence(ResourceMixin, db.Model):
 
 # Actors table
 class Actor(ResourceMixin, db.Model):
-    __table_name__ = 'actors'
+    __tablename__ = 'actors'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), index=True, nullable=False, comment="Full name of actor")
+    character = db.relationship('Character', uselist=False, back_populates='rel_actor')
     
     def __repr__(self):
         return "<Actor {}>".format(self)
-

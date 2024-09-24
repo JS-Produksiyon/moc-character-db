@@ -22,6 +22,7 @@ import os, re, json, datetime
 from flask import(
     Blueprint, config, redirect, request, url_for, current_app
 )
+from app.blueprints.api.models import (Character, Episode, Relationship, RelationTypes, Residence, Actor)
 
 api = Blueprint('api', __name__, url_prefix='/api')
 

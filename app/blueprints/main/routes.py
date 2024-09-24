@@ -26,5 +26,10 @@ page = Blueprint('page', __name__, template_folder='templates')
 
 @page.route('/')
 def main_page():
-    return render_template('main.html.jinja')
+    jsFiles = []
+    for f in (os.listdir(os.path.join(current_app.root_path, 'static'))):
+        if f.startswith('ui.') and f != 'ui.js':
+            jsFiles.append(f)
+    jsFiles.append('ui.js')
+    return render_template('main.html.jinja', js_files=jsFiles)
 

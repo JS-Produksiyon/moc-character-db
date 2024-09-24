@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-09-24 11:00+0300\n"
+"POT-Creation-Date: 2024-09-24 11:10+0300\n"
 "PO-Revision-Date: 2024-09-24 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -26,7 +26,7 @@ msgstr "Karakter Detayları"
 #: app/blueprints/main/templates/charform.html.jinja:5
 #: app/blueprints/main/templates/main.html.jinja:25
 msgid "Add Character"
-msgstr "Yeni Karakter Ekle"
+msgstr "Karakter Ekle"
 
 #: app/blueprints/main/templates/charform.html.jinja:6
 msgid "Edit Character"
@@ -189,6 +189,7 @@ msgstr ""
 "karakter ekleyebilirsiniz."
 
 #: app/blueprints/main/templates/charlist.html.jinja:11
+#: app/blueprints/main/templates/main.html.jinja:14
 msgid "Episodes"
 msgstr "Bölümler"
 
@@ -226,6 +227,15 @@ msgstr "Karakter Veri Tabanı"
 #: app/templates/setup-result.html.jinja:9
 msgid "Official Logo"
 msgstr "Resmi Logo"
+
+#: app/blueprints/main/templates/main.html.jinja:13
+#: app/languages/jsstrings.py:29
+msgid "Characters"
+msgstr "Karakterler"
+
+#: app/blueprints/main/templates/main.html.jinja:15
+msgid "Relationships"
+msgstr "İlişkiler"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
 msgid "Add Actor"
@@ -512,6 +522,10 @@ msgstr ""
 "Sayfada kaydedilmemiş içerikler bulunmaktadır. Sayfadan ayrılırsanız "
 "bunlar kaybolacak."
 
+#: app/blueprints/main/templates/modal_template.html.jinja:6
+msgid "Title"
+msgstr "Başlık"
+
 #: app/blueprints/main/templates/relationlist.html.jinja:4
 msgid "Relationship List"
 msgstr "İlişki Listesi"
@@ -547,7 +561,6 @@ msgid ""
 msgstr ""
 "İsterseniz, dil grubunuzdaki en yaygın ilişkileri ayrıca <i>Varsayılan "
 "İlişkileri Yükle</i> tuşuna tıklayarak veri tabanına yükletebilirsiniz."
-""
 
 #: app/blueprints/main/templates/relationlist.html.jinja:14
 msgid "Default relationships that will be loaded"
@@ -573,10 +586,6 @@ msgstr "Bölümü Sil"
 #: app/languages/jsstrings.py:28
 msgid "Date Recorded"
 msgstr "Kayıt Tarihi"
-
-#: app/languages/jsstrings.py:29
-msgid "Characters"
-msgstr "Karakterler"
 
 #: app/languages/jsstrings.py:31
 #, python-format
@@ -628,8 +637,9 @@ msgid ""
 "Something went wrong when writing the <code>settings.json</code> file to "
 "disk. Please check the write permissions of the <code>/instance</code> "
 "directory."
-msgstr "<code>settings.json</code> dosyasını sabit diske kaydederken bir "
-"hata oluştu. Lütfen <code>/instance</code> altdizinine yazma izninizin "
+msgstr ""
+"<code>settings.json</code> dosyasını sabit diske kaydederken bir hata "
+"oluştu. Lütfen <code>/instance</code> altdizinine yazma izninizin "
 "olduğunu kontrol edin."
 
 #: app/templates/setup-result.html.jinja:26

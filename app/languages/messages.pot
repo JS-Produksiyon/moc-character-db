@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-24 11:00+0300\n"
+"POT-Creation-Date: 2024-09-24 11:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -185,6 +185,7 @@ msgid "No characters found in database. Please add one using the button above."
 msgstr ""
 
 #: app/blueprints/main/templates/charlist.html.jinja:11
+#: app/blueprints/main/templates/main.html.jinja:14
 msgid "Episodes"
 msgstr ""
 
@@ -219,6 +220,15 @@ msgstr ""
 #: app/blueprints/main/templates/main.html.jinja:9
 #: app/templates/setup-result.html.jinja:9
 msgid "Official Logo"
+msgstr ""
+
+#: app/blueprints/main/templates/main.html.jinja:13
+#: app/languages/jsstrings.py:29
+msgid "Characters"
+msgstr ""
+
+#: app/blueprints/main/templates/main.html.jinja:15
+msgid "Relationships"
 msgstr ""
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
@@ -480,6 +490,10 @@ msgid ""
 "lost."
 msgstr ""
 
+#: app/blueprints/main/templates/modal_template.html.jinja:6
+msgid "Title"
+msgstr ""
+
 #: app/blueprints/main/templates/relationlist.html.jinja:4
 msgid "Relationship List"
 msgstr ""
@@ -531,10 +545,6 @@ msgstr ""
 
 #: app/languages/jsstrings.py:28
 msgid "Date Recorded"
-msgstr ""
-
-#: app/languages/jsstrings.py:29
-msgid "Characters"
 msgstr ""
 
 #: app/languages/jsstrings.py:31

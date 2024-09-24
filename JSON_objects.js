@@ -1,4 +1,4 @@
-/* JSON base models */
+/* JSON base models reference document */
 
 /* Character object */
 character = 

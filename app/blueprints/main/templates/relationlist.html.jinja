@@ -3,8 +3,38 @@
 <div id="relation_list" class="md-layer md-none">
     <h1>{{ _('Relationship List') }}</h1>
     <p>{{ _('The relationships listed here connect the various characters to one another. Most will automatically create a reciprocal relationship between one another when a relationship is assigned between two characters. This page allows you to add and edit the various relationships.') }}</p>
-    <p id="rellist_no_chars" class="md-none">{{ _('No relationships found in database. Please add one using the button above.') }}</p>
-    <div id="rel_list_table_container" class="rounded-3 overflow-hidden mb-3 border">
+    <div id="rellist_no_chars" class="md-none">
+        <p class="h4 text-center mt-5 mb-5">{{ _('No relationships found in database.') }}</p>
+        <p>{{ _('You can define the relationships using the <i>Add Relationship</i> button above.') }}</p>
+        <p>{{ _('You can also automatically load the most common relationships for your language group into the database using the <i>Load Default Relationships</i> button below.</p>') }}
+        <div class="accordion mb-3" id="default_relationship_list">
+            <div class="accordion-item">
+                <h5 class="accordion-header" id="default_relationship_one">
+                <button class="accordion-button collapsed" type="button" role="button" data-bs-toggle="collapse" data-bs-target="#default_relationship_one_text">
+                    {{ _('Default relationships that will be loaded') }}
+                    </button>
+                </h5>
+                <div id="default_relationship_one_text" class="accordion-collapse collapse p-3">
+                    <div id="rel_list_table_container" class="rounded-3 overflow-hidden mb-3 border">
+                        <table class="table table-striped mb-0" id="rel_list_table">
+                            <thead class="bg-dark text-light">
+                                <tr>
+                                    <th class="col-4 ps-3">{{ _('Relationship Name') }}</th>
+                                    <th class="col-4">{{ _('Male Reciprocal Relationship') }}</th>
+                                    <th class="col-4">{{ _('Female Reciprocal Relationship') }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="text-center"><button role="button" class="btn btn-dark" id="load_default_relationships_btn"><i class="bi bi-people"></i> {{ _('Load Default Relationships') }}</button></p>
+
+    </div>
+    <div id="rel_list_table_container" class="rounded-3 overflow-hidden mb-3 border md-none">
         <table class="table table-striped mb-0" id="rel_list_table">
             <thead class="bg-dark text-light">
                 <tr>

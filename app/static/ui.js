@@ -70,20 +70,38 @@ window.HTML_TEMPLATES = {
 
 /* major error modal control */
 window.ErrorModal = function() {
+    /* properties */
+    /* private */
+    var domObjMain = "#majorErrorModal";
+    var domObjMsg = "#majorErrorModal_text";
 
+    /* self-reference */
+    var _me = this;
+
+    /* methods */
+    /**
+     * Displays the major error modal
+     * 
+     * @param {string} msg : message to display in HTML
+     */
+    this.show = function(msg) {
+        $(domObjMsg).html(msg);
+        $(domObjMain).modal("show");
+    }
 }
+
 /* flash item object */
 window.Flash = function () {
     /* properties */
     /* private */
-    domObjButton = "#flash_dismiss";
-    domObjMain = "#flash";
-    domObjMsg = "#flash_msg"
-    flashClasses = ["danger", "info", "success", "warning"];
-    hideTime = 3000; // 3 seconds
+    var domObjButton = "#flash_dismiss";
+    var domObjMain = "#flash";
+    var domObjMsg = "#flash_msg"
+    var flashClasses = ["danger", "info", "success", "warning"];
+    var hideTime = 3000; // 3 seconds
     
     /* self-reference */
-    _me = this;
+    var _me = this;
 
     /* methods */
     /* private */
@@ -129,10 +147,10 @@ window.LoadingIcon = function() {
     this.active = false;
     
     /* private */
-    domObj = ".md-load";
+    var domObj = ".md-load";
 
     /* self-reference */
-    _me = this;
+    var _me = this;
 
     /* methods */
     /**

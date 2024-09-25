@@ -149,9 +149,24 @@ $(document).ready(function (){
             }
             
             if (id == "add") {
-                this.add();    
+                _me.add();    
             } else {
-                $.postJson
+                $.post("/fetch", { "what": "character", "id": id}, 
+                    function (r) {
+                        if (r.error) {
+                            /* flash error message here */
+                            _me.add();
+                        } else {
+                            _me.character_data = validateData(r);
+                            if (_me.character_data === false) {
+                                /* flash error message here */
+                                _me.add();
+                            } else {
+                                writeFormData();
+                            }
+                        }
+                        $(".md-load").fadeOut();
+                    });
             }
 
         }

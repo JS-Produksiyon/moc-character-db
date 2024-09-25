@@ -68,6 +68,49 @@ window.HTML_TEMPLATES = {
     episode_charlist : '<li><a href="#/character/%id%">%full_name%</a></li>'
 }
 
+/* major error modal control */
+window.ErrorModal = function() {
+
+}
+/* flash item object */
+window.Flash = function () {
+
+}
+
+/* spinner item object */
+window.LoadingIcon = function() {
+    /* properties */
+    /* public */
+    this.active = false;
+    
+    /* private */
+    domObj = ".md-load";
+
+    /* self-reference */
+    _me = this;
+
+    /* methods */
+    /**
+     * show the loading icon
+     */
+    this.start = function() {
+        if (!_me.active) {
+            $(domObj).fadeIn();
+            _me.active = true;
+        }
+    }
+
+    /**
+     * hide the loading icon
+     */
+    this.stop = function() {
+        if (_me.active) {
+            $(domObj).fadeOut();
+            _me.active = false;
+        }
+    }
+}
+
 /* document load */
 $(document).ready(function () {
     /* 
@@ -84,4 +127,9 @@ $(document).ready(function () {
     $.getJSON('/api/jsstrings', function(j) {
         window.JS_STRINGS = j;
     })
+
+    /* activate messaging interface */
+    window.errDialog = new ErrorModal();
+    window.flash = new Flash();
+    window.loading = new LoadingIcon();
 })

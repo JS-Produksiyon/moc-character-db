@@ -74,7 +74,52 @@ window.ErrorModal = function() {
 }
 /* flash item object */
 window.Flash = function () {
+    /* properties */
+    /* private */
+    domObjButton = "#flash_dismiss";
+    domObjMain = "#flash";
+    domObjMsg = "#flash_msg"
+    flashClasses = ["danger", "info", "success", "warning"];
+    hideTime = 3000; // 3 seconds
+    
+    /* self-reference */
+    _me = this;
 
+    /* methods */
+    /* private */
+    connectButton = function() {
+        $("#flash_dismiss").click(_me.hide);
+    }
+
+    /* public */
+    /**
+     * hide the flash message
+     */
+    this.hide = function() {
+        clearTimeout(_me.timeoutObj);
+        $(domObjMain).fadeOut().promise()
+            .done(function () { 
+                $(domObjMain).removeClass(flashClasses); 
+                $(domObjMsg).html("");
+            });
+    }
+
+    /**
+     * display the flash message
+     * 
+     * @param {string} msg : message to display
+     * @param {string} cls : class for background
+     */
+    this.display = function(msg, cls) {
+        if (flashClasses.indexOf(cls) > -1) {
+            $(domObjMain).addClass(cls);
+        }
+        $(domObjMsg).html(msg);
+        $(domObjMain).fadeIn();
+        setTimeout(this.hide, hideTime); // this function refuses to accept the _me referent for an odd reason.
+    }
+
+    connectButton();
 }
 
 /* spinner item object */

@@ -46,13 +46,13 @@ main {
 #flash {
     z-index: 1040;
     background-color: var(--bs-secondary);
-    width: 300px;
+    width: 400px;
     margin: 0.5rem;
     position: absolute;
     right: 0;
     top: 0;
     height: 56px;
-    padding: 0.3rem;
+    padding: 0.5rem 0.7rem;
     border-radius: 0.5rem;
     color: var(--bs-white);
     overflow: hidden;
@@ -60,12 +60,17 @@ main {
 }
 #flash button {
     color: var(--bs-white);
-}
-#flash.success {
-    background-color: var(--bs-success);
+    margin-top: -0.4rem;
+    margin-right: -0.5rem;
 }
 #flash.danger {
     background-color: var(--bs-danger);
+}
+#flash.info {
+    background-color: var(--bs-info);
+}
+#flash.success {
+    background-color: var(--bs-success);
 }
 #flash.warning {
     background-color: var(--bs-warning);
@@ -74,10 +79,6 @@ main {
 #flash.warning button {
     color: var(--bs-black) !important;
 }
-#flash.info {
-    background-color: var(--bs-info);
-}
-
 
 /* character image placeholder */
 #character_image {

@@ -8,5 +8,11 @@
             "database": "${workspaceFolder:moc-character-db}/instance/moccharacters.db"
         }
     ],
-    "sqltools.useNodeRuntime": true
+    "sqltools.useNodeRuntime": true,
+    "cSpell.words": [
+        "dselect",
+        "jsstrings",
+        "ndash",
+        "notdefined"
+    ]
 }

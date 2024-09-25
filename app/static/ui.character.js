@@ -4,7 +4,7 @@
  * 
  *   File name: ui.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-09-24
+ *   Date Modified: 2024-09-25
  * 
  */
 /* initialize the object */
@@ -12,25 +12,36 @@ $(document).ready(function (){
     Character = function() {
 
         /* parameters */
+        /* public */
         this.character_data = { id: 0, first_name: "", last_name: "", sex: "", age: 0,
             physical: "", personality: "", employment: "", image_head: "",
             image_body: "", animation_status: "", residence: 0, marital_status: 0,
             acted_by: 0, relationships: [], episodes: []};
       
-        _me = this;
+        /* private */
+
+        /* self-reference */
+        var _me = this;
 
 
+        /* methods */
         /* private methods */
+        /**
+         * connect events to buttons and select boxes
+         */
+        var connectEvents = function() {
+
+        }
+
         /**
          * verifies data pulled from the form
          * 
          * @param {object} data          : JSON object to be checked through
          * @param {string} skeleton_type : what skeleton to use: 'base', 'relationships', 'relations'
          */
-        verifyData = function(data, skeleton_type) {
+        var verifyData = function(data, skeleton_type) {
             if (typeof(skeleton_type) != 'string') { skeleton_type = 'base'}
 
-            var result = false;
             var item = 0;
             var key = '';
             var skeleton = { id: typeof(0), first_name: typeof(""), last_name: typeof(""), 
@@ -42,6 +53,7 @@ $(document).ready(function (){
             
             var relationships_skeleton = {	id: typeof(0), name: typeof(("")), relation: typeof({})}
             var relationships_relation_skeleton = {id: typeof(0), slug: typeof("")}
+            var result = false;
             var test = skeleton;
 
             /* select alternative skeleton */
@@ -80,7 +92,7 @@ $(document).ready(function (){
          * @param {string} target : DOM name of table to write to
          * @param {array}  data   : JSON array containing the episode data
          */
-        writeTable = function(target, data) {}
+        var writeTable = function(target, data) {}
 
         /* public methods */
         /**
@@ -112,11 +124,6 @@ $(document).ready(function (){
             $("#nav_characters").addClass("active");
             $("#char_detail").fadeIn().promise().done(function() { $("#char_first_name").focus(); });
         }
-
-        /**
-         * add new actor via modal
-         */
-        this.actorAdd = function() {}
 
         /**
          * Delete a given character
@@ -165,7 +172,7 @@ $(document).ready(function (){
                                 writeFormData();
                             }
                         }
-                        $(".md-load").fadeOut();
+                        window.loading.stop();
                     });
             }
 
@@ -175,12 +182,7 @@ $(document).ready(function (){
          * add relationship to character via modal
          */
         this.relationAdd = function() {}
-
-        /**
-         * add new residence via modal
-         */
-        this.residenceAdd = function() {}
-    
+   
         /**
          * delete relationship from character via modal
          */
@@ -201,7 +203,8 @@ $(document).ready(function (){
          */
         this.imageModal = function() {}
 
+        connectEvents();
     }
-
+    
     window.characterObj = new Character()
 });

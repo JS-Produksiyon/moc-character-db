@@ -21,12 +21,19 @@ __status__ = "Development"
 from flask_babel import lazy_gettext as _
 
 JS_STRINGS = {
-    'sex_word': {'male': _('Male'), 'female': _('Female')},
-    'display': _('Display'),
-    'del_rel': _('Remove Relationship'),
+    'actor_write_failure': _('Unable to write new actor to database.'),
+    'actor_write_success': _('New actor written to database successfully.'),
     'del_ep': _('Remove Episode'),
-    'rec_date': _('Date Recorded'),
-    'ep_characters': _('Characters'),
-    'edit': _('Edit'),
     'del_modal_text': _('You are about to delete %item%.'),
+    'del_rel': _('Remove Relationship'),
+    'display': _('Display'),
+    'edit': _('Edit'),
+    'ep_characters': _('Characters'),
+    'general_failure': _('An error occurred while interacting with the database. Data was not written.'),
+    'rec_date': _('Date Recorded'),
+    'select_add_actor': _('Add Actor'),
+    'select_add_residence': _('Add Location'),
+    'select_select': _('Select ...'),
+    'select_spacer': '---------------',
+    'sex_word': {'male': _('Male'), 'female': _('Female')},
 }

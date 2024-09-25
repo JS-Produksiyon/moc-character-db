@@ -65,7 +65,7 @@ window.HTML_TEMPLATES = {
         </div>
     </div>            
 </div>\n`,
-    episode_charlist : '<li><a href="#/character/%id%">%full_name%</a></li>'
+    episode_charlist : '<li><a href="#/character/%id%">%full_name%</a></li>\n'
 }
 
 /* major error modal control */

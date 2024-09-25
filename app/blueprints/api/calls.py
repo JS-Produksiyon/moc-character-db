@@ -104,4 +104,5 @@ def write_to_db():
     """
     Writes sent data to the database
     """
-    pass
+    if request.args.get('what') == 'actors':
+        return jsonify({'success': True});

@@ -11,12 +11,13 @@
                     <label class="form-label col-3 text-end pt-2" for="add_residence_name">{{ _('Residence Name') }}:</label>
                     <div class="col-9">
                         <input type="text" class="form-control" name="add_residence_name" id="add_residence_name"">
+                        <div class="invalid-feedback">{{ _('Please enter a valid residence location to continue. It must be at least one character long.') }}</div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>
-                <button type="button" class="btn btn-success"><i class="bi-check"></i> {{ _('Save') }}</button>
+                <button type="button" class="btn btn-success" id="addResidenceModal_save"><i class="bi-check"></i> {{ _('Save') }}</button>
             </div>
         </div>
     </div>

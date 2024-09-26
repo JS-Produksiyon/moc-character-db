@@ -84,10 +84,10 @@ def create_app(test_config=None):
     @app.context_processor
     def mocdb_context_utility():
         def get_language_code() -> str:
-            return app.config['APP_LANGUAGE']
+            return app.config.get('APP_LANGUAGE')
 
         def get_text_direction() -> str:
-            lang = Locale(app.config['APP_LANGUAGE'])
+            lang = Locale(app.config.get('APP_LANGUAGE'))
             return lang.text_direction
 
         return dict(language_code=get_language_code, text_direction=get_text_direction)

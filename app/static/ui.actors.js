@@ -17,7 +17,8 @@ $(document).ready(function () {
         this.baseValues = {"select": ["0", "Select"], "spacer": ["---", "---------------"], "add_actor": ["add", "Add Actor"] }
 
         /* private */
-        var domObjButton = "#addActorModal_save"
+        var domObjButtonAdd = "#char_btn_add_actor";
+        var domObjButtonSave = "#addActorModal_save";
         var domObjInput = "#add_actor_name";
         var domObjModal = "#addActorModal";
         var domObjSelect = "#char_actor";
@@ -36,8 +37,8 @@ $(document).ready(function () {
         /* methods */
         /* private methods */
         var connectEvents = function() {
-            $(domObjSelect).on("change", _me.show);
-            $(domObjButton).click(_me.add);
+            $(domObjButtonAdd).click(_me.show);
+            $(domObjButtonSave).click(_me.add)
         }
 
         /* public methods */
@@ -96,8 +97,6 @@ $(document).ready(function () {
                 }
             }
 
-            options = optionTpl.replace("%option%", _me.baseValues.spacer[0]).replace("%item%", _me.baseValues.spacer[1]);
-            options = optionTpl.replace("%option%", _me.baseValues.add_actor[0]).replace("%item%", _me.baseValues.add_actor[1]);
             selected = (options.indexOf('value="' + selected + '"') < 0) ? 0 : selected; /* make sure the option is even available */
             $(domObjSelect).html(options);
             dselect(document.querySelector(domObjSelect), { search: true });

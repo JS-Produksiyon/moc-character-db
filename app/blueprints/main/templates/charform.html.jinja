@@ -42,9 +42,10 @@
                 <div class="col-3">
                     <select class="form-select" name="home" id="char_home">
                         <option value="0">{{ _('Select') }}...</option>
-                        <option value="--">---------------</option>
-                        <option value="add">{{ _('Add Location') }}</option>
                     </select>
+                </div>
+                <div class="col-1 pt-1">
+                    <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Location') }}" type="button" id="char_btn_add_home"><i class="bi-plus"></i></button>
                 </div>
             </div>
             <div class="row mb-2">
@@ -81,9 +82,10 @@
                 <div class="col-5">
                     <select id="char_actor" name="actor" class="form-select dselect-search">
                         <option value="0">{{ _('Select') }}...</option>
-                        <option value="---">---------------</option>
-                        <option value="add">{{ _('Add Actor') }}</option>
                     </select>
+                </div>
+                <div class="col-1 pt-1">
+                    <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Actor') }}" type="button" id="char_btn_add_actor"><i class="bi-plus"></i></button>
                 </div>
             </div>
             <div class="row mb-4">
@@ -97,7 +99,7 @@
             <div class="row mb-4">
                 <div class="col ps-3 pe-3">
                     <div class="float-end">
-                        <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Relationship') }}" type="button" data-bs-toggle="modal" data-bs-target="#relationship_modal"><i class="bi-plus"></i></button>
+                        <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Relationship') }}" type="button" id="char_btn_add_relationship"><i class="bi-plus"></i></button>
                     </div>
                     <h3>{{ _('Relationships to Other Characters') }}:</h3>
                     <p id="" class="ms-3">{{ _('None') }}</p>
@@ -120,7 +122,7 @@
             <div class="row mb-4">
                 <div class="col ps-3 pe-3">
                     <div class="float-end">
-                        <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Episode') }}" type="button"><i class="bi-plus"></i></button>
+                        <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Episode') }}" type="button" id="char_btn_add_episode"><i class="bi-plus"></i></button>
                     </div>
                     <h3>Appears in Episodes</h3>
                     <p id="char_no_eps" class="ms-3">{{ _('None') }}</p>

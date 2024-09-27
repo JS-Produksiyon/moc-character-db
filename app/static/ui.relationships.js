@@ -19,6 +19,16 @@ $(document).ready(function () {
         /* self-reference */
         var self = this;
 
+        /* methods */
+        /* private */
+        var connectEvents = function () {}
+
+        /* public */
+        
+
+
+        /* initialize object */
+        connectEvents();
     }
 
     window.relationshipObj = new Relationships();

@@ -71,9 +71,14 @@ def fetch_from_db():
             pass
 
     elif what == 'relation_types':
-        query = RelationTypes.query.order_by(RelationTypes.name)
-        if query.count() > 0:
-            pass
+        query = RelationTypes.query.all()
+        count = len(query)
+        
+        if count > 0:
+            for row in query:
+                out[row.id] = {'id': row.id, 'name': row.name, 'slug': row.slug, 
+                                  'reciprocal_male': row.reciprocal_male,
+                                  'reciprocal_female': row.reciprocal_female }
 
     elif what == 'residences':
         query = Residence.query.all()
@@ -137,8 +142,7 @@ def write_to_db():
                 else:
                     return jsonify({'error': _('Invalid data passed')})
             else:
-                return jsonify({'error': _('No data passed')})
-        
+                return jsonify({'error': _('No data passed')})       
         
     else:
         return jsonify({'error': _('No action passed')})

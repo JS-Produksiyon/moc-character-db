@@ -5,7 +5,7 @@
 
     File name: blueprints/main/routes.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-12
+    Date Modified: 2024-09-27
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -21,7 +21,7 @@ import os, re, json, datetime, importlib
 from flask import(
     Blueprint, config, redirect, request, url_for, current_app, render_template, jsonify
 )
-from app.blueprints.api.models import Relationship
+from app.blueprints.api.models import RelationTypes
 from app.languages.jsstrings import JS_STRINGS;
 
 page = Blueprint('page', __name__, template_folder='templates')
@@ -38,7 +38,7 @@ def main_page():
     relationList = {}
     meshedRelationList = []
 
-    if Relationship.query.count() < 1:
+    if RelationTypes.query.count() < 1:
         relationListModule = f"app.languages.{current_app.config['APP_LANGUAGE']}.relation_list" if current_app.config['APP_LANGUAGE'] != 'en' else "app.languages.relation_list"
 
         try:

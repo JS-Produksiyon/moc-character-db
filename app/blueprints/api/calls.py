@@ -18,7 +18,7 @@ __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
 __debugState__ = True
 # ================================================================================
-import os, re, datetime
+import os, re, datetime, importlib
 from flask import(
     Blueprint, jsonify, config, redirect, request, url_for, current_app
 )
@@ -142,3 +142,29 @@ def write_to_db():
         
     else:
         return jsonify({'error': _('No action passed')})
+
+@api.route('/write-default-relation-types', methods=['GET'])
+def write_default_relation_types():
+    """
+    Writes the default relationship types to the database
+    This only works if no relationship types are there!
+    """
+    if RelationTypes.query.count() < 1:
+        relationListModule = f"app.languages.{current_app.config['APP_LANGUAGE']}.relation_list" if current_app.config['APP_LANGUAGE'] != 'en' else "app.languages.relation_list"
+
+        try:
+            relationList = importlib.import_module(relationListModule)
+            
+            for key in relationList.RELATIONSHIP_STRINGS:
+                query = RelationTypes(slug=key, name=relationList.RELATIONSHIP_STRINGS[key],
+                               reciprocal_male = relationList.RECIPROCAL_RELATIONSHIPS[key]['male'],
+                               reciprocal_female = relationList.RECIPROCAL_RELATIONSHIPS[key]['female'])
+                query.multiple()
+            query.save()
+            return jsonify({'success': 'all_loaded'})
+
+        except ModuleNotFoundError:
+            return jsonify({'error': 'no_relations_defined'})
+
+    else:
+        return jsonify({'success':'already_loaded'})

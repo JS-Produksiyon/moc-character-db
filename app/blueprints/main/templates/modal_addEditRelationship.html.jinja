@@ -7,6 +7,8 @@
                 <span class="h4 md-none" id="addEditRelationshipModal_title_edit">{{ _('Edit Relationship') }}</span>
             </div>
             <div class="modal-body" id="addEditRelationshipModal_body">
+                <input type="hidden" id="addEditRelationshipModal_id" name="relationship_id">
+                <input type="hidden" id="addEditRelationshipModal_slug" name="relationship_slug">
                 <div class="row mb-3">
                     <label class="col-4 text-end pt-2" for="addEditRelationshipModal_rel_name">{{ _('Relationship Name') }}:</label>
                     <div class="col-7">
@@ -34,7 +36,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>
-                <button type="button" class="btn btn-success"><i class="bi-check"></i> {{ _('Save') }}</button>
+                <button type="button" class="btn btn-success" id="addEditRelationshipModal_save"><i class="bi-check"></i> {{ _('Save') }}</button>
             </div>
         </div>
     </div>

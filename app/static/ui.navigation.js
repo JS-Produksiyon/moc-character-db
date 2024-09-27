@@ -42,9 +42,7 @@ window.HashMgr = function () {
                 $("#add_ep_btn").fadeIn();
                 $("#nav_episodes").addClass("active");
             } else if (h[1] == 'relationships') {
-                $("#relation_list").fadeIn();
-                $("#add_rel_btn").fadeIn();
-                $("#nav_relations").addClass("active");
+                relationshipObj.display();
             } else {
                 $("#char_list").fadeIn();
                 $("#add_char_btn").fadeIn();

@@ -49,6 +49,7 @@ $(document).ready(function () {
         /* self-reference */
         var self = this;
 
+        /* load localized base values */
         if (window.JS_STRINGS) {
             $.each(Object.keys(this.baseValues), function (k, i) {
                 self.baseValues[k] = window.JS_STRINGS['select_' + k];
@@ -113,7 +114,6 @@ $(document).ready(function () {
                     window.flash.display(window.JS_STRINGS["es_read_failure"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "warning");
                     console.log(r.error);
                 } else {
-                    console.log(r)
                     self.list = r[whatItem];
                     self.nextKey = parseInt(r['records']) + 1;
                     self.write();

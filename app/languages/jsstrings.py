@@ -43,4 +43,6 @@ JS_STRINGS = {
     'string_received': _('received'),
     'string_actors': _('actor'),
     'string_residences': _('residence location'),
+    'string_relation_types': _('relationship types'),
+    'err_id_does_not_exist': _('Unable to find the selected item among the %items%. Adding a new item instead.')
 }

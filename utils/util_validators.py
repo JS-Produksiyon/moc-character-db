@@ -1,5 +1,5 @@
 # -*- coding=utf-8 -*-
-# Validation function
+# Validation functions
 
 def sanitizeString(string) -> str:
     """

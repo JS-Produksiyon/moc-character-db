@@ -4,7 +4,7 @@
  * 
  *   File name: ui.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-09-26
+ *   Date Modified: 2024-09-27
  * 
  */
 /* rework this object to make it work for both Actors and Residences, because they are pretty much identical in function. Just the targets are different... */

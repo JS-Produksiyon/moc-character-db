@@ -25,6 +25,15 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {%- if relation_list|length > 0 -%}
+                                    {%- for row in relation_list -%}
+                                        <tr>
+                                            <td>{{ row.name }}</td>
+                                            <td>{{ row.reciprocal_male }}</td>
+                                            <td>{{ row.reciprocal_female }}</td>
+                                        </tr>
+                                    {% endfor %}
+                                {%- endif -%}
                             </tbody>
                         </table>
                     </div>

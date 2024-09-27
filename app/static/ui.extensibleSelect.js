@@ -14,11 +14,11 @@ $(document).ready(function () {
      * <select> object that has the ability to add items to it via a modal
      * 
      * @param {object} args : arguments required for configuring behaviors
-     *                        {btn_add, btn_save, input, modal, select, what}
+     *                        {btn_add, btn_save, input, modal, no_content_msg, select, what}
      */
     ExtensibleSelect = function(args) {
         /* validate passed arguments */
-        var argList = ["btn_add", "btn_save", "input", "modal", "select", "what"]
+        var argList = ["btn_add", "btn_save", "input", "modal", "no_content_msg", "select", "what"]
         if (typeof(args) != 'object') { console.log("ExtensibleSelect error: no arguments passed"); return false; }
         if (Object.keys(args).length != argList.length) { console.log("ExtensibleSelect error: invalid number of arguments passed"); return false; }
         for (var i=0; i<argList.length; i++) {
@@ -35,12 +35,14 @@ $(document).ready(function () {
         this.baseValues = { "select": ["0", "Select"] };
 
         /* private */
+        var csrfToken = $("#csrf_token").val();
         var domObjButtonAdd = args.btn_add;
         var domObjButtonSave = args.btn_save;
         var domObjInput = args.input;
         var domObjModal = args.modal;
         var domObjSelect = args.select;
         var optionTpl = '<option value="%option%">%item%</option>\n';
+        var noContentMessage = args.no_content_msg;
         var whatItem = args.what;
 
 
@@ -72,13 +74,6 @@ $(document).ready(function () {
             return sortArray.sort((a,b) => a[1].name.localeCompare(b[1].name));
         }
 
-        /**
-         * Validate data returned from database
-         * 
-         * @param {object} data : passed arguments object
-         */
-        var validateData = function (data) {}
-
         
         /* public methods */
         /**
@@ -88,19 +83,20 @@ $(document).ready(function () {
             $(domObjInput).removeClass("is-invalid");
 
             if ($(domObjInput).val().length > 1) {
-                var sendData = {"what": whatItem, "id": _me.nextKey, "name": $(domObjInput).val() }
+                var sendData = { "csrf_token": csrfToken, "what": whatItem, "id": _me.nextKey, "name": $(domObjInput).val() }
                 _me.list[_me.nextKey] = { "id": _me.nextKey, "name": $(domObjInput).val() }
                 _me.write(_me.nextKey.toString());
                 $(domObjModal).modal("hide");
-                // $.post("/api/write", sendData, null, "json").done(function (r) {
-                //     if (r.error) {
-                //         window.flash.display(window.JS_STRINGS["actor_write_failure"], "warning");
-                //     } else if (r.success) {
-                //         window.flash.display(window.JS_STRINGS["actor_write_success"], "success");
-                //     } else {
-                //         window.flash.display(window.JS_STRINGS["general_failure"], "danger");
-                //     }
-                // }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"], "danger"); })
+                $.post("/api/write", sendData, null, "json").done(function (r) {
+                    if (r.error) {
+                        window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "warning");
+                        console.log(r.error);
+                    } else if (r.success) {
+                        window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "success");
+                    } else {
+                        window.flash.display(window.JS_STRINGS["general_failure"], "danger");
+                    }
+                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_written"]), "danger"); })
                 _me.nextKey++;
                 $(domObjInput).val(""); /* make sure we reset the item */
             } else {
@@ -109,9 +105,23 @@ $(document).ready(function () {
         }
 
         /**
-         * load Actors from database
+         * load Item from database
          */
-        this.load = function () {}
+        this.load = function () {
+            $.getJSON('/api/fetch', {'what': whatItem}, function (r) {
+                if (r.error) {
+                    window.flash.display(window.JS_STRINGS["es_read_failure"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "warning");
+                    console.log(r.error);
+                } else {
+                    console.log(r)
+                    _me.list = r[whatItem];
+                    _me.nextKey = parseInt(r['records']) + 1;
+                    _me.write();
+                }
+            }).fail(function () {
+                window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_received"]), "danger");
+            });
+        }
 
         /**
          * loads the add item modal
@@ -128,28 +138,39 @@ $(document).ready(function () {
          */
         this.write = function(selected) {
             if (typeof(selected) != "string") { selected = 0; }
-            
+            $(domObjSelect).prop("disabled", false);
+
             var options = [optionTpl.replace("%option%", _me.baseValues.select[0]).replace("%item%", _me.baseValues.select[1] + "...")];
 
             if (Object.keys(_me.list).length > 0) {
                 $.each(sortedList(), function (i,j) { 
                     options.push(optionTpl.replace("%option%", j[1].id).replace("%item%", j[1].name));
                  });
+            } else {
+                options = [optionTpl.replace("%option%", "0").replace("%item%", noContentMessage)];
+                selected = 0;
+                $(domObjSelect).prop("disabled", true);
             }
             selected = (Object.keys(_me.list).indexOf(selected) < 0) ? 0 : selected; /* make sure the option is even available */
             $(domObjSelect).html(options.join("\n"));
             $(domObjSelect).val(selected);
-            dselect(document.querySelector(domObjSelect), { search: true });
+            if ($(domObjSelect).prop("disabled") == false){
+                dselect(document.querySelector(domObjSelect), { search: true });
+            }
         }
 
         connectEvents();
     }
 
     window.actorsObj = new ExtensibleSelect({"btn_add": "#char_btn_add_actor", "btn_save": "#addActorModal_save", 
-                                             "input": "#add_actor_name", "modal": "#addActorModal", "select": "#char_actor",
+                                             "input": "#add_actor_name", "modal": "#addActorModal", 
+                                             "no_content_msg" : window.JS_STRINGS["actors_none"], "select": "#char_actor", 
                                              "what": "actors"});
     window.residenceObj = new ExtensibleSelect({"btn_add": "#char_btn_add_residence", "btn_save": "#addResidenceModal_save", 
                                                 "input": "#add_residence_name", "modal": "#addResidenceModal", 
+                                                "no_content_msg" : window.JS_STRINGS["residences_none"], 
                                                 "select": "#char_residence", "what": "residences"});
    
+    window.actorsObj.load();
+    window.residenceObj.load();
 });

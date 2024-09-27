@@ -5,6 +5,7 @@
         <h2 id="character_add">{{ _('Add Character') }}</h2>
         <h2 id="character_edit">{{ _('Edit Character') }}</h2>
         <form id="character_details_form" onsubmit="return false;" class="rounded-3 border p-2">
+            <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" value="" id="char_id" name="id">
             <div id="character_image" class="float-end border rounded-2 me-1 mt-1">
                 <div class="edit-icon">

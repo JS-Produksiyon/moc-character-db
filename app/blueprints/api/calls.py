@@ -23,6 +23,7 @@ from flask import(
     Blueprint, jsonify, config, redirect, request, url_for, current_app
 )
 from flask_babel import lazy_gettext as _
+from utils.util_validators import sanitizeString, validateDataType
 from app.blueprints.api.models import (Character, Episode, Relationship, RelationTypes, Residence, Actor)
 from app.languages.jsstrings import JS_STRINGS
 
@@ -39,12 +40,16 @@ def fetch_from_db():
     :returns : JSON string
     """
     out = {}
-    what = request.args.get('what')
+    count = 0
+    what = request.values.get('what')
     
     if what == 'actors':
-        query = Actor.query.order_by(Actor.name)
-        if query.count() > 0:
-            pass
+        query = Actor.query.all()
+        count = len(query)
+
+        if count > 0:
+            for row in query:
+                out[row.id] = {'id': row.id, 'name': row.name}
 
     elif what == 'character':
         try:
@@ -70,15 +75,19 @@ def fetch_from_db():
         if query.count() > 0:
             pass
 
-    elif what == 'residence':
-        query = Residence.query.order_by(Residence.name)
-        if query.count() > 0:
-            pass
+    elif what == 'residences':
+        query = Residence.query.all()
+        count = len(query)
+
+        if count > 0:
+            for row in query:
+                out[row.id] = {'id': row.id, 'name': row.name}
+
     else:
         what = 'error'
-        out = 'invalid_query'
+        out = 'Invalid query: ' + request.data
 
-    return jsonify({what:out})
+    return jsonify({what: out, 'records': count})
 
 
 @api.route('/imageupload', methods=['POST'])
@@ -104,5 +113,32 @@ def write_to_db():
     """
     Writes sent data to the database
     """
-    if request.args.get('what') == 'actors':
-        return jsonify({'success': True});
+    if 'what' in request.form.keys():
+
+        # write actor or residence data to database
+        if request.form['what'] == 'actors' or request.form['what'] == 'residences':
+            if 'id' in request.form.keys() and 'name' in request.form.keys():
+                print(type(request.form['id']), type(request.form['name']))
+                if validateDataType({'id': request.form['id'], 'name': request.form['name']}, {'id': int, 'name': str}):
+                    try:
+                        if request.form['what'] == 'actors':
+                            q = Actor()
+                        elif request.form['what'] == 'residences':
+                            q = Residence()
+
+                        q.id = int(request.form['id'])
+                        q.name = sanitizeString(request.form['name'])
+                        q.save()
+                        return jsonify({'success': True})
+
+                    except Exception as e:
+                        return jsonify({'error': _('Unable to save {item}: {error}').format(item=f'{request.form["id"]}: {request.form["name"]}', error={e})});
+
+                else:
+                    return jsonify({'error': _('Invalid data passed')})
+            else:
+                return jsonify({'error': _('No data passed')})
+        
+        
+    else:
+        return jsonify({'error': _('No action passed')})

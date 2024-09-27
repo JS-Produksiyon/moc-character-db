@@ -19,17 +19,17 @@ __status__ = "Production"
 # ================================================================================
 import os, re, json, datetime
 from flask import(
-    Blueprint, config, redirect, request, url_for, current_app, render_template
+    Blueprint, config, redirect, request, url_for, current_app, render_template, jsonify
 )
+from app.languages.jsstrings import JS_STRINGS;
 
 page = Blueprint('page', __name__, template_folder='templates')
 
 @page.route('/')
 def main_page():
-    jsFiles = []
+    jsFiles = ['ui.js']
     for f in (os.listdir(os.path.join(current_app.root_path, 'static'))):
         if f.startswith('ui.') and f != 'ui.js':
             jsFiles.append(f)
-    jsFiles.append('ui.js')
-    return render_template('main.html.jinja', js_files=jsFiles)
+    return render_template('main.html.jinja', js_files=jsFiles, js_strings=JS_STRINGS)
 

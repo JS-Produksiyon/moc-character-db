@@ -56,7 +56,12 @@
 {% endblock %}
 
 {%- block custom_js -%}
-        <script>window.JS_STRINGS = { {% for key in js_strings %} "{{ key }}": "{{ js_strings[key] }}",{% endfor %} }</script>
+    <script>
+    /* load localized strings */
+    window.JS_STRINGS = { 
+        {% for key in js_strings %} "{{ key }}": "{{ js_strings[key] }}",
+    {% endfor %} }
+    </script>
     {%- for script in js_files -%}
         <script src="{{ url_for('static', filename=script) }}"></script>
     {% endfor %}

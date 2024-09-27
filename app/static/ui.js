@@ -185,11 +185,6 @@ $(document).ready(function () {
             function (k, i) { 
                 if ($(i).length > 0) { dselect(document.querySelector(i), { search: true }); }
             });
-            
-    /* load localized strings */
-    $.getJSON('/api/jsstrings', function(j) {
-        window.JS_STRINGS = j;
-    })
 
     /* activate messaging interface */
     window.errDialog = new ErrorModal();

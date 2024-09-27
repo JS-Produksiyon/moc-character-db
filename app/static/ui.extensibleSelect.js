@@ -47,11 +47,11 @@ $(document).ready(function () {
 
 
         /* self-reference */
-        var _me = this;
+        var self = this;
 
         if (window.JS_STRINGS) {
             $.each(Object.keys(this.baseValues), function (k, i) {
-                _me.baseValues[k] = window.JS_STRINGS['select_' + k];
+                self.baseValues[k] = window.JS_STRINGS['select_' + k];
             })
         } 
 
@@ -61,15 +61,15 @@ $(document).ready(function () {
          * Connect events to buttons
          */
         var connectEvents = function() {
-            $(domObjButtonAdd).click(_me.show);
-            $(domObjButtonSave).click(_me.add);
+            $(domObjButtonAdd).click(self.show);
+            $(domObjButtonSave).click(self.add);
         }
         
         /** 
          * Sort the global list object alphabetically according to name
          */
         var sortedList = function() {
-            var sortArray = Object.entries(_me.list);
+            var sortArray = Object.entries(self.list);
             var sortedObj = {}
             return sortArray.sort((a,b) => a[1].name.localeCompare(b[1].name));
         }
@@ -83,9 +83,9 @@ $(document).ready(function () {
             $(domObjInput).removeClass("is-invalid");
 
             if ($(domObjInput).val().length > 1) {
-                var sendData = { "csrf_token": csrfToken, "what": whatItem, "id": _me.nextKey, "name": $(domObjInput).val() }
-                _me.list[_me.nextKey] = { "id": _me.nextKey, "name": $(domObjInput).val() }
-                _me.write(_me.nextKey.toString());
+                var sendData = { "csrf_token": csrfToken, "what": whatItem, "id": self.nextKey, "name": $(domObjInput).val() }
+                self.list[self.nextKey] = { "id": self.nextKey, "name": $(domObjInput).val() }
+                self.write(self.nextKey.toString());
                 $(domObjModal).modal("hide");
                 $.post("/api/write", sendData, null, "json").done(function (r) {
                     if (r.error) {
@@ -97,7 +97,7 @@ $(document).ready(function () {
                         window.flash.display(window.JS_STRINGS["general_failure"], "danger");
                     }
                 }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_written"]), "danger"); })
-                _me.nextKey++;
+                self.nextKey++;
                 $(domObjInput).val(""); /* make sure we reset the item */
             } else {
                 $(domObjInput).addClass("is-invalid");
@@ -114,9 +114,9 @@ $(document).ready(function () {
                     console.log(r.error);
                 } else {
                     console.log(r)
-                    _me.list = r[whatItem];
-                    _me.nextKey = parseInt(r['records']) + 1;
-                    _me.write();
+                    self.list = r[whatItem];
+                    self.nextKey = parseInt(r['records']) + 1;
+                    self.write();
                 }
             }).fail(function () {
                 window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_received"]), "danger");
@@ -140,9 +140,9 @@ $(document).ready(function () {
             if (typeof(selected) != "string") { selected = 0; }
             $(domObjSelect).prop("disabled", false);
 
-            var options = [optionTpl.replace("%option%", _me.baseValues.select[0]).replace("%item%", _me.baseValues.select[1] + "...")];
+            var options = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1] + "...")];
 
-            if (Object.keys(_me.list).length > 0) {
+            if (Object.keys(self.list).length > 0) {
                 $.each(sortedList(), function (i,j) { 
                     options.push(optionTpl.replace("%option%", j[1].id).replace("%item%", j[1].name));
                  });
@@ -151,7 +151,7 @@ $(document).ready(function () {
                 selected = 0;
                 $(domObjSelect).prop("disabled", true);
             }
-            selected = (Object.keys(_me.list).indexOf(selected) < 0) ? 0 : selected; /* make sure the option is even available */
+            selected = (Object.keys(self.list).indexOf(selected) < 0) ? 0 : selected; /* make sure the option is even available */
             $(domObjSelect).html(options.join("\n"));
             $(domObjSelect).val(selected);
             if ($(domObjSelect).prop("disabled") == false){

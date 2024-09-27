@@ -1,10 +1,10 @@
 /* Men of Courage Character Database
  *
- * JavaScript engine for the site
+ * JavaScript engine for the site navigation
  * 
  *   File name: ui.navigation.js
  *   Date Created: 2024-09-17
- *   Date Modified: 2024-09-17
+ *   Date Modified: 2024-09-27
  * 
  */
 
@@ -17,12 +17,12 @@ window.HashMgr = function () {
     this.goNav = true;
 
     /* self-reference */
-    _me = this;
+    var self = this;
 
     /* methods */
     this.tracker = function() {
         /* only trigger if we haven't manually updated the thingy */
-        if (typeof(_me.goNav) == 'boolean' && _me.goNav === true) {
+        if (typeof(self.goNav) == 'boolean' && self.goNav === true) {
             console.log("Current location: " + window.location.hash);
             $(".md-load.lion").fadeIn(); /* replace with spinner activation code */
             $(".md-layer").fadeOut();
@@ -64,23 +64,23 @@ window.UnsavedChanges = function() {
     this.oldHash = "";
     
     /* self-reference */
-    _me = this;
+    self = this;
     
     /* methods */
     /**
      * check to see if there are unsaved changes
      */
     this.check = function() {
-        if (_me.dirty) {
+        if (self.dirty) {
             $("#navFromUnsavedModal").modal("show");
             $("#navFromUnsavedModal_yes").click(function () {
-                _me.clearUnsaved();
+                self.clearUnsaved();
                 window.dispatchEvent(new HashChangeEvent("hashchange"));
             });
             $("#navFromUnsavedModal_no").click(function () {
-                if (_me.oldHash != "" && _me.oldHash != window.location.has) {
+                if (self.oldHash != "" && self.oldHash != window.location.has) {
                     window.navObj.goNav = false;
-                    window.location.hash = _me.oldHash;
+                    window.location.hash = self.oldHash;
                 }
                 $("#navFromUnsavedModal").modal("hide");
             });

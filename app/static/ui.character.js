@@ -4,7 +4,7 @@
  * 
  *   File name: ui.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-09-25
+ *   Date Modified: 2024-09-27
  * 
  */
 /* initialize the object */
@@ -21,7 +21,7 @@ $(document).ready(function (){
         /* private */
 
         /* self-reference */
-        var _me = this;
+        var self = this;
 
 
         /* methods */
@@ -156,18 +156,18 @@ $(document).ready(function (){
             }
             
             if (id == "add") {
-                _me.add();    
+                self.add();    
             } else {
                 $.post("/fetch", { "what": "character", "id": id}, 
                     function (r) {
                         if (r.error) {
                             /* flash error message here */
-                            _me.add();
+                            self.add();
                         } else {
-                            _me.character_data = validateData(r);
-                            if (_me.character_data === false) {
+                            self.character_data = validateData(r);
+                            if (self.character_data === false) {
                                 /* flash error message here */
-                                _me.add();
+                                self.add();
                             } else {
                                 writeFormData();
                             }

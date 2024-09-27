@@ -76,7 +76,7 @@ window.ErrorModal = function() {
     var domObjMsg = "#majorErrorModal_text";
 
     /* self-reference */
-    var _me = this;
+    var self = this;
 
     /* methods */
     /**
@@ -101,12 +101,12 @@ window.Flash = function () {
     var hideTime = 3000; // 3 seconds
     
     /* self-reference */
-    var _me = this;
+    var self = this;
 
     /* methods */
     /* private */
     connectButton = function() {
-        $("#flash_dismiss").click(_me.hide);
+        $("#flash_dismiss").click(self.hide);
     }
 
     /* public */
@@ -114,7 +114,7 @@ window.Flash = function () {
      * hide the flash message
      */
     this.hide = function() {
-        clearTimeout(_me.timeoutObj);
+        clearTimeout(self.timeoutObj);
         $(domObjMain).fadeOut().promise()
             .done(function () { 
                 $(domObjMain).removeClass(flashClasses); 
@@ -134,7 +134,7 @@ window.Flash = function () {
         }
         $(domObjMsg).html(msg);
         $(domObjMain).fadeIn();
-        setTimeout(this.hide, hideTime); // this function refuses to accept the _me referent for an odd reason.
+        setTimeout(this.hide, hideTime); // this function refuses to accept the self referent for an odd reason.
     }
 
     connectButton();
@@ -150,16 +150,16 @@ window.LoadingIcon = function() {
     var domObj = ".md-load";
 
     /* self-reference */
-    var _me = this;
+    var self = this;
 
     /* methods */
     /**
      * show the loading icon
      */
     this.start = function() {
-        if (!_me.active) {
+        if (!self.active) {
             $(domObj).fadeIn();
-            _me.active = true;
+            self.active = true;
         }
     }
 
@@ -167,9 +167,9 @@ window.LoadingIcon = function() {
      * hide the loading icon
      */
     this.stop = function() {
-        if (_me.active) {
+        if (self.active) {
             $(domObj).fadeOut();
-            _me.active = false;
+            self.active = false;
         }
     }
 }

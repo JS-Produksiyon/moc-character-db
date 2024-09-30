@@ -5,7 +5,7 @@
 
     File name: blueprints/main/routes.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-27
+    Date Modified: 2024-09-30
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -44,13 +44,14 @@ def main_page():
         try:
             relationList = importlib.import_module(relationListModule)
 
-            for key in relationList.RELATIONSHIP_STRINGS.keys():
-                row = {'name': relationList.RELATIONSHIP_STRINGS[key], 'reciprocal_male': '', 'reciprocal_female': ''}
-                row['reciprocal_male'] = '' if relationList.RECIPROCAL_RELATIONSHIPS[key]['male'] == '' else relationList.RELATIONSHIP_STRINGS[relationList.RECIPROCAL_RELATIONSHIPS[key]['male']]
-                row['reciprocal_female'] = '' if relationList.RECIPROCAL_RELATIONSHIPS[key]['female'] == '' else relationList.RELATIONSHIP_STRINGS[relationList.RECIPROCAL_RELATIONSHIPS[key]['female']]
+            sortRelations = sorted(relationList.RELATIONSHIP_STRINGS.items(), key=lambda item: item[1]);
+
+            for item in sortRelations:
+                row = {'name': item[1], 'reciprocal_male': '', 'reciprocal_female': ''}
+                row['reciprocal_male'] = '' if relationList.RECIPROCAL_RELATIONSHIPS[item[0]]['male'] == '' else relationList.RELATIONSHIP_STRINGS[relationList.RECIPROCAL_RELATIONSHIPS[item[0]]['male']]
+                row['reciprocal_female'] = '' if relationList.RECIPROCAL_RELATIONSHIPS[item[0]]['female'] == '' else relationList.RELATIONSHIP_STRINGS[relationList.RECIPROCAL_RELATIONSHIPS[item[0]]['female']]
                 meshedRelationList.append(row)
 
-            print(meshedRelationList)
         except ModuleNotFoundError:
             print(f"Could not import module {relationListModule}")
             pass # do nothing...

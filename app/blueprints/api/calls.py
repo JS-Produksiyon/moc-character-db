@@ -5,7 +5,7 @@
 
     File name: blueprints/api/calls.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-27
+    Date Modified: 2024-09-30
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -77,8 +77,9 @@ def fetch_from_db():
         if count > 0:
             for row in query:
                 out[row.id] = {'id': row.id, 'name': row.name, 'slug': row.slug, 
-                                  'reciprocal_male': row.reciprocal_male,
-                                  'reciprocal_female': row.reciprocal_female }
+                               'reciprocal_male': row.reciprocal_male,
+                               'reciprocal_female': row.reciprocal_female,
+                               'sex': row.sex }
 
     elif what == 'residences':
         query = Residence.query.all()
@@ -161,8 +162,9 @@ def write_default_relation_types():
             
             for key in relationList.RELATIONSHIP_STRINGS:
                 query = RelationTypes(slug=key, name=relationList.RELATIONSHIP_STRINGS[key],
-                               reciprocal_male = relationList.RECIPROCAL_RELATIONSHIPS[key]['male'],
-                               reciprocal_female = relationList.RECIPROCAL_RELATIONSHIPS[key]['female'])
+                               reciprocal_male=relationList.RECIPROCAL_RELATIONSHIPS[key]['male'],
+                               reciprocal_female=relationList.RECIPROCAL_RELATIONSHIPS[key]['female'],
+                               sex=relationList.RECIPROCAL_RELATIONSHIPS[key]['sex'])
                 query.multiple()
             query.save()
             return jsonify({'success': 'all_loaded'})

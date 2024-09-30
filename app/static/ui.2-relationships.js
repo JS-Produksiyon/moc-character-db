@@ -4,7 +4,7 @@
  * 
  *   File name: ui.relationships.js
  *   Date Created: 2024-09-27
- *   Date Modified: 2024-09-27
+ *   Date Modified: 2024-09-30
  * 
  */
 
@@ -49,7 +49,8 @@ $(document).ready(function () {
         var connectEvents = function () {
             $(".relationship-open").click(function() { self.addEdit($(this).data("id")); });
             $("#addEditRelationshipModal_save").click(self.update);
-            $("#add_rel_btn button").click(function() { self.addEdit(0); })
+            $("#add_rel_btn button").click(function() { self.addEdit(0); });
+            $("#load_default_relationships_btn").click(self.loadDefaults);
         }
 
         /**
@@ -84,6 +85,7 @@ $(document).ready(function () {
             $("#addEditRelationshipModal_id").val(id);
             $("#addEditRelationshipModal_slug").val((id < 1) ? "" : self.list[id].slug);
             $("#addEditRelationshipModal_rel_name").val((id < 1) ? "" : self.list[id].name);
+            $("#addEditRelationshipModal_rel_sex").val((id < 1) ? "0" : self.list[id].sex);
             $("#addEditRelationshipModal_rel_rec_male").val((id < 1) ? "0" : self.list[id].reciprocal_male);
             dselect(document.querySelector("#addEditRelationshipModal_rel_rec_male"), { search: true });
             $("#addEditRelationshipModal_rel_rec_female").val((id < 1) ? "0" : self.list[id].reciprocal_female);
@@ -155,6 +157,23 @@ $(document).ready(function () {
         }
 
         /**
+         * Load default relationships into database
+         */
+        this.loadDefaults = function () {
+            window.loading.start();
+            $("#rellist_defaults").fadeOut();
+            $.getJSON("/api//write-default-relation-types", null, function (r) {
+                if (r.error) {
+                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "warning");
+                    console.log(r.error);
+                } else {
+                    self.load();
+                    window.loading.stop();
+                }
+            }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_relation_types"]), "danger"); });
+        }
+
+        /**
          * Write the new or edited relationship to the list and database
          */
         this.update = function () {}
@@ -181,11 +200,11 @@ $(document).ready(function () {
                                        ).replace("%female_reciprocal_relation%", item.reciprocal_female
                                        ).replace("%id%", item.id
                                        ).replace("%edit%", editText);
-                    if (relationsMale.indexOf(item.reciprocal_male) < 0) {
-                        if (item.reciprocal_male != "") { relationsMale.push(item.reciprocal_male); }
+                    if (item.sex == "male" || item.sex == "both") {
+                        relationsMale.push(item.slug);
                     }
-                    if (relationsFemale.indexOf(item.reciprocal_female) < 0) {
-                        if (item.reciprocal_female != "") { relationsFemale.push(item.reciprocal_female); }
+                    if (item.sex == "female" || item.sex == "both") {
+                        relationsFemale.push(item.slug);
                     }
                 }
             }

@@ -82,44 +82,46 @@ RELATIONSHIP_STRINGS = {
 
 # ================================================================================
 # The data in RECIPROCAL_RELATIONSHIPS are used when updating a character and 
-# his/her relations. The relationship takes two different sexes: male or female. 
-# If the target relationship is only either male or female, leave the relationship 
-# it is *not* blank (i.e. if it is only male, leave female blank).
+# his/her relations. The reciprocal relationship takes two different sexes: male 
+# or female. However, the relationship itself will refer either to a male, a female,
+# or both, which is defined in teh `sex` field. If the target relationship is only 
+# either male or female, leave the relationship it is *not* blank (i.e. if it is 
+# only male, leave female blank).
 # 
 # The keys need to be identical to the ones in RELATIONSHIP_STRINGS, otherwise 
 # defining the reciprocal relationship will not work.
 # 
 # Format:
-# RECIPROCAL_RELATIONSIPS = { 'key': {'male': 'value', 'female': 'value'} } 
+# RECIPROCAL_RELATIONSIPS = { 'key': {'male': 'value', 'female': 'value', 'sex': 'value'} } 
 #    Where `value` is a reference to one of the other `key`s in the array.
 
 RECIPROCAL_RELATIONSHIPS = {
-    'husband'      : {'male' : '', 'female' : 'wife'},
-    'wife'         : {'male' : 'husband', 'female' : ''},
-    'father'       : {'male' : 'son', 'female' : 'daughter'},
-    'mother'       : {'male' : 'son', 'female' : 'daughter'},
-    'son'          : {'male' : 'father', 'female' : 'mother'},
-    'daughter'     : {'male' : 'father', 'female' : 'mother'},
-    'brother'      : {'male' : 'brother', 'female' : 'sister'},
-    'sister'       : {'male' : 'brother', 'female' : 'sister'},
-    'grandfather'  : {'male' : 'grandson', 'female' : 'granddaughter'},
-    'grandmother'  : {'male' : 'grandson', 'female' : 'granddaughter'},
-    'grandson'     : {'male' : 'grandfather', 'female' : 'grandmother'},
-    'granddaughter': {'male' : 'grandfather', 'female' : 'grandmother'},
-    'bro-in-law'   : {'male' : 'bro-in-law', 'female' : 'sis-in-law'},
-    'sis-in-law'   : {'male' : 'bro-in-law', 'female' : 'sis-in-law'},
-    'dad-in-law'   : {'male' : 'son-in-law', 'female' : 'dau-in-law'},
-    'mom-in-law'   : {'male' : 'son-in-law', 'female' : 'dau-in-law'},
-    'son-in-law'   : {'male' : 'dad-in-law', 'female' : 'mom-in-law'},
-    'dau-in-law'   : {'male' : 'dad-in-law', 'female' : 'mom-in-law'},
-    'uncle'        : {'male' : 'nephew', 'female' : 'niece'},
-    'aunt'         : {'male' : 'nephew', 'female' : 'niece'},
-    'nephew'       : {'male' : 'uncle', 'female' : 'aunt'},
-    'niece'        : {'male' : 'uncle', 'female' : 'aunt'},
-    'cousin'       : {'male' : 'cousin', 'female' : 'cousin'},
-    'employer'     : {'male' : 'employee', 'female' : 'employee'},
-    'employee'     : {'male' : 'employer', 'female' : 'employer'},
-    'acquaintance' : {'male' : 'acquaintance', 'female' : 'acquaintance'},
-    'friend'       : {'male' : 'friend', 'female' : 'friend'},
-    'enemy'        : {'male' : 'enemy', 'female' : 'enemy'},
+    'husband'      : {'male' : '', 'female' : 'wife', 'sex' : 'male'},
+    'wife'         : {'male' : 'husband', 'female' : '', 'sex' : 'female'},
+    'father'       : {'male' : 'son', 'female' : 'daughter', 'sex' : 'male'},
+    'mother'       : {'male' : 'son', 'female' : 'daughter', 'sex' : 'female'},
+    'son'          : {'male' : 'father', 'female' : 'mother', 'sex' : 'male'},
+    'daughter'     : {'male' : 'father', 'female' : 'mother', 'sex' : 'female'},
+    'brother'      : {'male' : 'brother', 'female' : 'sister', 'sex' : 'male'},
+    'sister'       : {'male' : 'brother', 'female' : 'sister', 'sex' : 'female'},
+    'grandfather'  : {'male' : 'grandson', 'female' : 'granddaughter', 'sex' : 'male'},
+    'grandmother'  : {'male' : 'grandson', 'female' : 'granddaughter', 'sex' : 'female'},
+    'grandson'     : {'male' : 'grandfather', 'female' : 'grandmother', 'sex' : 'male'},
+    'granddaughter': {'male' : 'grandfather', 'female' : 'grandmother', 'sex' : 'female'},
+    'bro-in-law'   : {'male' : 'bro-in-law', 'female' : 'sis-in-law', 'sex' : 'male'},
+    'sis-in-law'   : {'male' : 'bro-in-law', 'female' : 'sis-in-law', 'sex' : 'female'},
+    'dad-in-law'   : {'male' : 'son-in-law', 'female' : 'dau-in-law', 'sex' : 'male'},
+    'mom-in-law'   : {'male' : 'son-in-law', 'female' : 'dau-in-law', 'sex' : 'female'},
+    'son-in-law'   : {'male' : 'dad-in-law', 'female' : 'mom-in-law', 'sex' : 'male'},
+    'dau-in-law'   : {'male' : 'dad-in-law', 'female' : 'mom-in-law', 'sex' : 'female'},
+    'uncle'        : {'male' : 'nephew', 'female' : 'niece', 'sex' : 'male'},
+    'aunt'         : {'male' : 'nephew', 'female' : 'niece', 'sex' : 'female'},
+    'nephew'       : {'male' : 'uncle', 'female' : 'aunt', 'sex' : 'male'},
+    'niece'        : {'male' : 'uncle', 'female' : 'aunt', 'sex' : 'female'},
+    'cousin'       : {'male' : 'cousin', 'female' : 'cousin', 'sex' : 'both'},
+    'employer'     : {'male' : 'employee', 'female' : 'employee', 'sex' : 'both'},
+    'employee'     : {'male' : 'employer', 'female' : 'employer', 'sex' : 'both'},
+    'acquaintance' : {'male' : 'acquaintance', 'female' : 'acquaintance', 'sex' : 'both'},
+    'friend'       : {'male' : 'friend', 'female' : 'friend', 'sex' : 'both'},
+    'enemy'        : {'male' : 'enemy', 'female' : 'enemy', 'sex' : 'both'},
 }

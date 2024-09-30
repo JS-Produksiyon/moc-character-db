@@ -5,7 +5,7 @@
 
     File name: blueprints/api/models.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-24
+    Date Modified: 2024-09-30
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -101,6 +101,7 @@ class RelationTypes(ResourceMixin, db.Model):
     name = db.Column(db.String(), index=True, nullable=False)
     reciprocal_male = db.Column(db.String(50), index=False, nullable=True)
     reciprocal_female = db.Column(db.String(50), index=False, nullable=True)
+    sex = db.Column(db.String(), index=False, nullable=False) # male, female, or both
 
     # relationship
     rel_slug = db.relationship('Relationship', backref='relation_type', lazy=True)

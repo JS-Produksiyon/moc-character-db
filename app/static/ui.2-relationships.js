@@ -1,6 +1,6 @@
 /* Men of Courage Character Database
  *
- * JavaScript engine for the site
+ * JavaScript object for Reciprocal relationships
  * 
  *   File name: ui.relationships.js
  *   Date Created: 2024-09-27

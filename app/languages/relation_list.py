@@ -6,7 +6,7 @@
 
     File name: languages/relation_list.py
     Date Created: 2024-09-27
-    Date Modified: 2024-09-27
+    Date Modified: 2024-09-30
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -33,9 +33,9 @@ __language_code__ = 'en'
 # grammatical gender rules and/or relational complexities. 
 # 
 # However, *the keys are recommended to be kept in English.* Multiple words should 
-# be separated by an underscore `_`. For example, if there is more than one type 
-# of uncle depending on father's side or mother's, change the keys to `uncle_m` 
-# and `uncle_f` respectively. How exactly these extended  relations are defined is 
+# be separated by a dash `-`. For example, if there is more than one type 
+# of uncle depending on father's side or mother's, change the keys to `uncle-m` 
+# and `uncle-f` respectively. How exactly these extended  relations are defined is 
 # up to the translator; but *please be consistent* across the translation! 
 # Otherwise the application will break. 
 # 

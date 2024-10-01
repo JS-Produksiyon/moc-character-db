@@ -125,26 +125,73 @@ def write_to_db():
         if request.form['what'] == 'actors' or request.form['what'] == 'residences':
             if 'id' in request.form.keys() and 'name' in request.form.keys():
                 print(type(request.form['id']), type(request.form['name']))
-                if validateDataType({'id': request.form['id'], 'name': request.form['name']}, {'id': int, 'name': str}):
+                validate = validateDataType({'id': request.form['id'], 'name': request.form['name']}, {'id': int, 'name': str})
+                if  validate == 'valid':
                     try:
                         if request.form['what'] == 'actors':
-                            q = Actor()
+                            query = Actor()
                         elif request.form['what'] == 'residences':
-                            q = Residence()
+                            query = Residence()
 
-                        q.id = int(request.form['id'])
-                        q.name = sanitizeString(request.form['name'])
-                        q.save()
+                        query.id = int(request.form['id'])
+                        query.name = sanitizeString(request.form['name'])
+                        query.save()
                         return jsonify({'success': True})
 
                     except Exception as e:
-                        return jsonify({'error': _('Unable to save {item}: {error}').format(item=f'{request.form["id"]}: {request.form["name"]}', error={e})});
+                        return jsonify({'error': _('Unable to save {item}: {error}').format(item=f'{request.form["id"]}: {request.form["name"]}', error={e})})
 
                 else:
-                    return jsonify({'error': _('Invalid data passed')})
+                    return jsonify({'error': _('Invalid data type passed: {e}').format(e=validate)})
             else:
                 return jsonify({'error': _('No data passed')})       
         
+        # Write relationship type to database
+        elif request.form['what'] == 'relation_types':
+            keys = { 'csrf_token': str, 'what': str,  'id': int, 'slug': str, 'name': str, 'reciprocal_male': str, 'reciprocal_female': str, 'sex': str }
+            
+            try:
+                if len(request.form) != len(keys):
+                    raise KeyError(_('Invalid number of keys passed: {sent} not {sought}').format(sent=len(request.form), sought=len(keys)))
+                
+                for item in keys:
+                    if item not in request.form:
+                        raise KeyError(_('Required data for {item} not passed.').format(item=item))
+                
+                validate = validateDataType(request.form, keys)
+
+                if not validate == 'valid':
+                    raise TypeError(_('Invalid data type passed: {e}').format(e=validate))
+
+                query = RelationTypes.query.get(int(request.form['id']))
+
+                if query is None: # throws if the new key is not yet in the database
+                    query = RelationTypes(id=int(request.form['id']))
+                
+                # Update columns in the RelationTypes
+                query.slug = sanitizeString(request.form['slug'])
+                query.name = sanitizeString(request.form['name'])
+                query.reciprocal_female = sanitizeString(request.form['reciprocal_female'])
+                query.reciprocal_male = sanitizeString(request.form['reciprocal_male'])
+                query.sex = sanitizeString(request.form['sex'])
+                query.save()
+
+                # update reciprocal relationships
+                if request.form['reciprocal_female'] != '':
+                    relationQuery = RelationTypes.query.filter_by(slug=request.form['reciprocal_female']).first()
+                    relationQuery.reciprocal_male = request.form['slug']
+                    relationQuery.save()
+
+                if request.form['reciprocal_male'] != '':
+                    relationQuery = RelationTypes.query.filter_by(slug=request.form['reciprocal_male']).first()
+                    relationQuery.reciprocal_female = request.form['slug']
+                    relationQuery.save()
+
+                return jsonify({'success': _('{slug} saved').format(slug=query.slug)})
+
+            except (TypeError, KeyError) as e:
+                return jsonify({'error': _('Unable to save {item}: {error}').format(item=request.form['slug'], error={str(e)})})
+
     else:
         return jsonify({'error': _('No action passed')})
 
@@ -166,6 +213,7 @@ def write_default_relation_types():
                                reciprocal_female=relationList.RECIPROCAL_RELATIONSHIPS[key]['female'],
                                sex=relationList.RECIPROCAL_RELATIONSHIPS[key]['sex'])
                 query.multiple()
+
             query.save()
             return jsonify({'success': 'all_loaded'})
 

@@ -18,6 +18,7 @@ $(document).ready(function () {
         this.nextKey = 1;
 
         /* private */
+        var csrfToken = $("#csrf_token").val();
         var editText = window.JS_STRINGS.edit;
         var optionTpl = '<option value="%option%">%item%</option>\n';
         var tableRow = `<tr>    
@@ -45,12 +46,61 @@ $(document).ready(function () {
         /* private */
         /**
          * Connects the events to the buttons
+         * 
+         * @param {boolean} rewrite : only reconnect the .relationship-open class 
          */
-        var connectEvents = function () {
+        var connectEvents = function (rewrite) {
+            if (typeof(rewrite) != "boolean") { rewrite = false; }
+
+            if (!rewrite){
+                $("#addEditRelationshipModal_save").click(self.update);
+                $("#add_rel_btn button").click(function() { self.addEdit(0); });
+                $("#load_default_relationships_btn").click(self.loadDefaults);
+            }
+
             $(".relationship-open").click(function() { self.addEdit($(this).data("id")); });
-            $("#addEditRelationshipModal_save").click(self.update);
-            $("#add_rel_btn button").click(function() { self.addEdit(0); });
-            $("#load_default_relationships_btn").click(self.loadDefaults);
+        }
+
+        /**
+         * Create a unique slug from a source string
+         * 
+         * @param {string} source : the string to create the slug from
+         */
+        var makeSlug = function (source) {
+            if (typeof(source) != "string") { source = ""; }
+
+            var slug = "";
+            var nextSlug = 1;
+            var slugFound = false;
+            var resetSlug = false;
+
+            /* generate a random 10-character alphanumeric string */
+            if (source == "") {
+                const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+                
+                for (var i=0; i<10; i++) { slug += chars.charAt(Math.floor(Math.random() * chars.length)); }
+            } else {
+                slug = source.normalize("NFD");
+                slug = slug.replace(/[\u0300-\u036f]/g, "");
+                slug = slug.replace(/[^a-zA-Z0-9 ]/g, "");
+                slug = slug.replace(/ /g, "-");
+
+                do  {
+                    if (resetSlug) { 
+                        slugFound = false;
+                        resetSlug = false;
+                    }
+                    for (var j=0; j<Object.keys(self.list).length; j++) {
+                        if (Object.keys(self.list)[j].slug == slug) { slugFound = true; }
+                    }
+                    if (slugFound) {
+                        slug.substring(0, slug.lastIndexOf("_")) = slug + "_" + nextSlug;
+                        resetSlug = true;
+                    }
+                } while (slugFound);
+            }
+
+            return slug.toLowerCase();
         }
 
         /**
@@ -176,7 +226,59 @@ $(document).ready(function () {
         /**
          * Write the new or edited relationship to the list and database
          */
-        this.update = function () {}
+        this.update = function () {
+            /* validate fields */
+            var go = true;
+            $(".form-validate").removeClass("is-invalid")
+            if ($("#addEditRelationshipModal_rel_name").val().length < 2) {
+                $("#addEditRelationshipModal_rel_name").addClass("is-invalid");
+                go = false;
+            }
+            if ($("#addEditRelationshipModal_rel_sex").val() == "0") {
+                $("#addEditRelationshipModal_rel_sex").addClass("is-invalid");
+                go = false;
+            }
+
+            /* process fields into base item */
+            var data = { "id": ($("#addEditRelationshipModal_id").val() == 0) ? self.nextKey : $("#addEditRelationshipModal_id").val(), 
+                         "slug": ($("#addEditRelationshipModal_slug").val() == "") ? makeSlug($("#addEditRelationshipModal_rel_name").val()) : $("#addEditRelationshipModal_slug").val(),
+                         "name": $("#addEditRelationshipModal_rel_name").val(),
+                         "reciprocal_female": ($("#addEditRelationshipModal_rel_rec_female").val() == "0") ? "" : $("#addEditRelationshipModal_rel_rec_female").val(),
+                         "reciprocal_male": ($("#addEditRelationshipModal_rel_rec_male").val() == "0") ? "" : $("#addEditRelationshipModal_rel_rec_male").val(),
+                         "sex": $("#addEditRelationshipModal_rel_sex").val()
+            }
+            if (data.id == self.nextKey) { self.nextKey++; }
+            self.list[data.id.toString()] = data;
+
+            /* update reciprocal relationships */
+            $.each([self.getIdFromSlug(data.reciprocal_male), self.getIdFromSlug(data.reciprocal_female)], function(key, query) {
+                if (query > 0) {
+                    if (data.sex == 'female' || data.sex == 'both') {
+                        self.list[query.toString()].reciprocal_female = data.slug;    
+                    }
+                    if (data.sex == 'male' || data.sex == 'both') {
+                        self.list[query.toString()].reciprocal_male = data.slug;
+                    } 
+                }    
+            });
+
+            $("#addEditRelationshipModal").modal("hide");
+            
+            /* post updted content to the database */
+            data["csrf_token"] = csrfToken;
+            data["what"] = "relation_types";
+
+            $.post("api/write", data, function (r) {
+                if (r.error) {
+                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "warning");
+                    console.log(r.error);
+                } else {
+                    window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "success");
+                }
+            }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_relation_types"]), "danger"); });
+
+            self.write();
+        }
 
         /**
          * Write the relationships to the HTML interface
@@ -230,7 +332,7 @@ $(document).ready(function () {
             dselect(document.querySelector("#addEditRelationshipModal_rel_rec_female"), { search: true });
 
             this.display(true);
-            connectEvents();
+            connectEvents(true);
         }
 
 

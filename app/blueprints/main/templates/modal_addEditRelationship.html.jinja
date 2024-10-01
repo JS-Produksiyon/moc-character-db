@@ -7,6 +7,7 @@
                 <span class="h4 md-none" id="addEditRelationshipModal_title_edit">{{ _('Edit Relationship') }}</span>
             </div>
             <div class="modal-body" id="addEditRelationshipModal_body">
+                <form onsubmit="return false;">
                 <input type="hidden" id="addEditRelationshipModal_id" name="relationship_id">
                 <input type="hidden" id="addEditRelationshipModal_slug" name="relationship_slug">
                 <div class="row mb-3">
@@ -17,7 +18,7 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label class="col-4 text-end pt-2" for="addEditRelationshipModal_rel_name">{{ _('Pertains to Sex') }}:</label>
+                    <label class="col-4 text-end pt-2" for="addEditRelationshipModal_rel_name">{{ _('Pertains to Which Sex') }}:</label>
                     <div class="col-7">
                         <select type="text" class="form-select form-validate" id="addEditRelationshipModal_rel_sex" name="addEditRelationshipModal_rel_sex">
                             <option value="0" selected>{{ _('Select') }}...</option>
@@ -26,7 +27,7 @@
                             <option value="both">{{ _('Both male and female') }}</option>
                         </select>
                         <small>{{ _('Define here whether the person whom the relationship pertains to is male or female, or whether the relationship pertains to both males and females.') }}</small>
-                        <div class="invalid-feedback">{{ _('Please enter a valid relationship designation. It should be at least one character long.') }}</div>
+                        <div class="invalid-feedback">{{ _('Please select a value to define what sex this relationship pertains to.') }}</div>
                     </div>
                 </div>
                 <p>{{ _('The reciprocal relationships defined below will apply to characters for whom this character is designated as above. These fields can be left empty. The will be automatically populated when another relationship has this one designated as reciprocal to itself.') }}</p>

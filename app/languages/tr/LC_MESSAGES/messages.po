@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-09-24 11:10+0300\n"
+"POT-Creation-Date: 2024-10-01 14:10+0300\n"
 "PO-Revision-Date: 2024-09-24 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -18,6 +18,34 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
+
+#: app/blueprints/api/calls.py:142 app/blueprints/api/calls.py:193
+msgid "Unable to save {item}: {error}"
+msgstr "Öğe {item} kaydedilemedi: {error}"
+
+#: app/blueprints/api/calls.py:145 app/blueprints/api/calls.py:164
+msgid "Invalid data type passed: {e}"
+msgstr "Geçersiz veri türü alındı: {e}"
+
+#: app/blueprints/api/calls.py:147
+msgid "No data passed"
+msgstr "Veri gönderilmedi"
+
+#: app/blueprints/api/calls.py:155
+msgid "Invalid number of keys passed: {sent} not {sought}"
+msgstr "Geçersiz sayıda içerik alındı: {sought} yerine {sent}"
+
+#: app/blueprints/api/calls.py:159
+msgid "Required data for {item} not passed."
+msgstr "{item} öğesi için gerekli veri alınamadı"
+
+#: app/blueprints/api/calls.py:190
+msgid "{slug} saved"
+msgstr "{slug} öğesi kaydedildi"
+
+#: app/blueprints/api/calls.py:196
+msgid "No action passed"
+msgstr "Eylem gönderilmedi"
 
 #: app/blueprints/main/templates/charform.html.jinja:4
 msgid "Character Details"
@@ -32,149 +60,167 @@ msgstr "Karakter Ekle"
 msgid "Edit Character"
 msgstr "Karakteri Düzenle"
 
-#: app/blueprints/main/templates/charform.html.jinja:11
-#: app/blueprints/main/templates/charform.html.jinja:55
-#: app/languages/jsstrings.py:30
+#: app/blueprints/main/templates/charform.html.jinja:12
+#: app/blueprints/main/templates/charform.html.jinja:57
+#: app/languages/jsstrings.py:31
 msgid "Edit"
 msgstr "Düzenle"
 
-#: app/blueprints/main/templates/charform.html.jinja:16
+#: app/blueprints/main/templates/charform.html.jinja:17
 msgid "First Name"
 msgstr "Adı"
 
-#: app/blueprints/main/templates/charform.html.jinja:17
+#: app/blueprints/main/templates/charform.html.jinja:18
 msgid "Please enter a valid first name. It should be at least one character long."
 msgstr "Karakter için en az bir karakterlik geçerli bir isim girin."
 
-#: app/blueprints/main/templates/charform.html.jinja:20
+#: app/blueprints/main/templates/charform.html.jinja:21
 msgid "Last Name"
 msgstr "Soyadı"
 
-#: app/blueprints/main/templates/charform.html.jinja:23
-msgid "Character image"
+#: app/blueprints/main/templates/charform.html.jinja:24
+#, fuzzy
+msgid "Character image will go over this"
 msgstr "Karakter resmi"
 
-#: app/blueprints/main/templates/charform.html.jinja:27
+#: app/blueprints/main/templates/charform.html.jinja:28
 msgid "Age"
 msgstr "Yaşı"
 
-#: app/blueprints/main/templates/charform.html.jinja:30
+#: app/blueprints/main/templates/charform.html.jinja:31
 msgid "This can be a number or a range (e.g. in his 30’s)"
 msgstr "Bu bir rakam veya yaş aralığı olabilir (örn. otuzlarında)."
 
-#: app/blueprints/main/templates/charform.html.jinja:32
-#: app/blueprints/main/templates/charform.html.jinja:100
+#: app/blueprints/main/templates/charform.html.jinja:33
+#: app/blueprints/main/templates/charform.html.jinja:113
 #: app/blueprints/main/templates/charlist.html.jinja:12
 msgid "Sex"
 msgstr "Cinsiyet"
 
-#: app/blueprints/main/templates/charform.html.jinja:35
-#: app/blueprints/main/templates/charform.html.jinja:44
+#: app/blueprints/main/templates/charform.html.jinja:36
+#: app/blueprints/main/templates/charform.html.jinja:45
+#: app/blueprints/main/templates/charform.html.jinja:85
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:24
 msgid "Select"
 msgstr "Seçiniz"
 
-#: app/blueprints/main/templates/charform.html.jinja:36
-#: app/languages/jsstrings.py:24
+#: app/blueprints/main/templates/charform.html.jinja:37
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:25
+#: app/languages/jsstrings.py:39
 msgid "Male"
 msgstr "Erkek"
 
-#: app/blueprints/main/templates/charform.html.jinja:37
-#: app/languages/jsstrings.py:24
+#: app/blueprints/main/templates/charform.html.jinja:38
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:26
+#: app/languages/jsstrings.py:39
 msgid "Female"
 msgstr "Kadın"
 
-#: app/blueprints/main/templates/charform.html.jinja:39
+#: app/blueprints/main/templates/charform.html.jinja:40
 msgid "Please select the sex of the character."
 msgstr "Karakterin cinsiyetini belirleyiniz."
 
-#: app/blueprints/main/templates/charform.html.jinja:41
+#: app/blueprints/main/templates/charform.html.jinja:42
 msgid "Residence"
 msgstr "İkamet"
 
-#: app/blueprints/main/templates/charform.html.jinja:46
+#: app/blueprints/main/templates/charform.html.jinja:49
+#: app/languages/jsstrings.py:36
 msgid "Add Location"
 msgstr "Mekân ekle"
 
-#: app/blueprints/main/templates/charform.html.jinja:58
+#: app/blueprints/main/templates/charform.html.jinja:60
 msgid "Physical Description"
 msgstr "Fiziksel Tanım"
 
-#: app/blueprints/main/templates/charform.html.jinja:67
+#: app/blueprints/main/templates/charform.html.jinja:69
 msgid "Animation Model Status"
 msgstr "Animasyon modelin durumu"
 
-#: app/blueprints/main/templates/charform.html.jinja:70
+#: app/blueprints/main/templates/charform.html.jinja:72
 msgid "Unnecessary"
 msgstr "Gerekmiyor"
 
-#: app/blueprints/main/templates/charform.html.jinja:71
+#: app/blueprints/main/templates/charform.html.jinja:73
 msgid "Not Defined"
 msgstr "Tanımlanmadı"
 
-#: app/blueprints/main/templates/charform.html.jinja:72
+#: app/blueprints/main/templates/charform.html.jinja:74
 msgid "Defined"
 msgstr "Tanımlandı"
 
-#: app/blueprints/main/templates/charform.html.jinja:73
+#: app/blueprints/main/templates/charform.html.jinja:75
 msgid "Being Designed"
 msgstr "Tasarımda"
 
-#: app/blueprints/main/templates/charform.html.jinja:74
+#: app/blueprints/main/templates/charform.html.jinja:76
 msgid "Available"
 msgstr "Kullanıma hazır"
 
-#: app/blueprints/main/templates/charform.html.jinja:75
+#: app/blueprints/main/templates/charform.html.jinja:77
 msgid "In use"
 msgstr "Kullanılyor"
 
-#: app/blueprints/main/templates/charform.html.jinja:81
+#: app/blueprints/main/templates/charform.html.jinja:82
+#, fuzzy
+msgid "Character Acted by"
+msgstr "Karakter resmi"
+
+#: app/blueprints/main/templates/charform.html.jinja:89
+#: app/blueprints/main/templates/modal_addActor.html.jinja:6
+#: app/languages/jsstrings.py:35
+msgid "Add Actor"
+msgstr "Oyuncu veya Seslendiren Ekle"
+
+#: app/blueprints/main/templates/charform.html.jinja:94
 msgid "Personality Description"
 msgstr "Kişilik Tanımı"
 
-#: app/blueprints/main/templates/charform.html.jinja:90
+#: app/blueprints/main/templates/charform.html.jinja:103
 #: app/blueprints/main/templates/main.html.jinja:33
 msgid "Add Relationship"
 msgstr "İlişki ekle"
 
-#: app/blueprints/main/templates/charform.html.jinja:92
+#: app/blueprints/main/templates/charform.html.jinja:105
 msgid "Relationships to Other Characters"
 msgstr "Diğer Karakterlere İlişkileri"
 
-#: app/blueprints/main/templates/charform.html.jinja:93
-#: app/blueprints/main/templates/charform.html.jinja:116
+#: app/blueprints/main/templates/charform.html.jinja:106
+#: app/blueprints/main/templates/charform.html.jinja:129
 msgid "None"
 msgstr "Yok"
 
-#: app/blueprints/main/templates/charform.html.jinja:98
+#: app/blueprints/main/templates/charform.html.jinja:111
 #: app/blueprints/main/templates/charlist.html.jinja:10
 msgid "Full Name"
 msgstr "Adı"
 
-#: app/blueprints/main/templates/charform.html.jinja:99
+#: app/blueprints/main/templates/charform.html.jinja:112
 msgid "Relationship"
 msgstr "İlişki"
 
-#: app/blueprints/main/templates/charform.html.jinja:101
+#: app/blueprints/main/templates/charform.html.jinja:114
 #: app/blueprints/main/templates/charlist.html.jinja:14
+#: app/blueprints/main/templates/relationlist.html.jinja:55
 msgid "Buttons"
 msgstr "Tuşlar"
 
-#: app/blueprints/main/templates/charform.html.jinja:113
+#: app/blueprints/main/templates/charform.html.jinja:126
 #: app/blueprints/main/templates/main.html.jinja:29
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:6
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:14
 msgid "Add Episode"
 msgstr "Bölüm ekle"
 
-#: app/blueprints/main/templates/charform.html.jinja:127
+#: app/blueprints/main/templates/charform.html.jinja:140
 msgid "Back to List"
 msgstr "Listeye dön"
 
-#: app/blueprints/main/templates/charform.html.jinja:132
+#: app/blueprints/main/templates/charform.html.jinja:145
 msgid "Delete Character"
 msgstr "Karakteri sil"
 
-#: app/blueprints/main/templates/charform.html.jinja:137
+#: app/blueprints/main/templates/charform.html.jinja:150
 msgid "Save Character"
 msgstr "Karakteri kaydet"
 
@@ -229,17 +275,13 @@ msgid "Official Logo"
 msgstr "Resmi Logo"
 
 #: app/blueprints/main/templates/main.html.jinja:13
-#: app/languages/jsstrings.py:29
+#: app/languages/jsstrings.py:32
 msgid "Characters"
 msgstr "Karakterler"
 
 #: app/blueprints/main/templates/main.html.jinja:15
 msgid "Relationships"
 msgstr "İlişkiler"
-
-#: app/blueprints/main/templates/modal_addActor.html.jinja:6
-msgid "Add Actor"
-msgstr "Oyuncu veya Seslendiren Ekle"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:9
 msgid ""
@@ -255,8 +297,8 @@ msgstr "Adı-Soyadı"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:18
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:33
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:36
-#: app/blueprints/main/templates/modal_addResidence.html.jinja:18
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:52
+#: app/blueprints/main/templates/modal_addResidence.html.jinja:19
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:44
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:32
 #: app/blueprints/main/templates/modal_template.html.jinja:12
@@ -265,8 +307,8 @@ msgstr "İptal"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:19
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:34
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:37
-#: app/blueprints/main/templates/modal_addResidence.html.jinja:19
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:53
+#: app/blueprints/main/templates/modal_addResidence.html.jinja:20
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:45
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:33
 #: app/blueprints/main/templates/modal_template.html.jinja:13
@@ -320,19 +362,38 @@ msgstr "Veri tabanına yeni ilişki ekle"
 msgid "Edit Relationship"
 msgstr "İlişkiyi düzenle"
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:11
-#: app/blueprints/main/templates/relationlist.html.jinja:22
-#: app/blueprints/main/templates/relationlist.html.jinja:41
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:14
+#: app/blueprints/main/templates/relationlist.html.jinja:24
+#: app/blueprints/main/templates/relationlist.html.jinja:52
 msgid "Relationship Name"
 msgstr "İlişki tanımı"
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:14
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:17
 msgid ""
 "Please enter a valid relationship designation. It should be at least one "
 "character long."
 msgstr "En az bir karakter uzunluğunda bir ilişki tanımını giriniz."
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:17
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:21
+msgid "Pertains to Which Sex"
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
+msgid "Both male and female"
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:29
+msgid ""
+"Define here whether the person whom the relationship pertains to is male "
+"or female, or whether the relationship pertains to both males and "
+"females."
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:30
+msgid "Please select a value to define what sex this relationship pertains to."
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:33
 msgid ""
 "The reciprocal relationships defined below will apply to characters for "
 "whom this character is designated as above. These fields can be left "
@@ -344,22 +405,22 @@ msgstr ""
 "ilişki için karşılıklı bir ilişki başka bir ilişkiden tanımlanınca bu "
 "ilişki otomatik olarak o ilişkinin karşılığı olarak tanımlanacaktır."
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:19
-#: app/blueprints/main/templates/relationlist.html.jinja:23
-#: app/blueprints/main/templates/relationlist.html.jinja:42
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:35
+#: app/blueprints/main/templates/relationlist.html.jinja:25
+#: app/blueprints/main/templates/relationlist.html.jinja:53
 msgid "Male Reciprocal Relationship"
 msgstr "Eril karşılıklı ilişki"
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:22
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:30
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:24
 #, fuzzy
 msgid "Select relationship..."
 msgstr "İlişkiyi düzenle"
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
-#: app/blueprints/main/templates/relationlist.html.jinja:24
-#: app/blueprints/main/templates/relationlist.html.jinja:43
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:43
+#: app/blueprints/main/templates/relationlist.html.jinja:26
+#: app/blueprints/main/templates/relationlist.html.jinja:54
 msgid "Female Reciprocal Relationship"
 msgstr "Dişil karşılıklı ilişki"
 
@@ -380,6 +441,13 @@ msgstr ""
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:11
 msgid "Residence Name"
 msgstr "İkamet yerin adı"
+
+#: app/blueprints/main/templates/modal_addResidence.html.jinja:14
+#, fuzzy
+msgid ""
+"Please enter a valid residence location to continue. It must be at least "
+"one character long."
+msgstr "En az bir karakter uzunluğunda bir ikamet yeri tanımını giriniz."
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:6
 msgid "Assign Episode to Character"
@@ -553,7 +621,7 @@ msgstr ""
 "Yeni ilişkiler yukarıdaki <i>İlişki ekle</i> tuşunu kullanarak "
 "eklenebilir."
 
-#: app/blueprints/main/templates/relationlist.html.jinja:9
+#: app/blueprints/main/templates/relationlist.html.jinja:10
 msgid ""
 "You can also automatically load the most common relationships for your "
 "language group into the database using the <i>Load Default "
@@ -562,43 +630,105 @@ msgstr ""
 "İsterseniz, dil grubunuzdaki en yaygın ilişkileri ayrıca <i>Varsayılan "
 "İlişkileri Yükle</i> tuşuna tıklayarak veri tabanına yükletebilirsiniz."
 
-#: app/blueprints/main/templates/relationlist.html.jinja:14
+#: app/blueprints/main/templates/relationlist.html.jinja:16
 msgid "Default relationships that will be loaded"
 msgstr "Yüklenecek varsayılan ilişkiler"
 
-#: app/blueprints/main/templates/relationlist.html.jinja:34
+#: app/blueprints/main/templates/relationlist.html.jinja:45
 #, fuzzy
 msgid "Load Default Relationships"
 msgstr "Varsayılan İlişkileri Yükle"
 
+#: app/languages/jsstrings.py:24
+#, python-format
+msgid "Unable to retrieve the %item% from the database."
+msgstr "%item% öğesi veri tabanından alınamadı."
+
 #: app/languages/jsstrings.py:25
-msgid "Display"
-msgstr "Görüntüle"
+#, python-format
+msgid "Unable to write the %item% to database."
+msgstr "%item% öğesi veri tabanına yazılamadı."
 
 #: app/languages/jsstrings.py:26
-msgid "Remove Relationship"
-msgstr "İlişkiyi Sil"
+#, python-format
+msgid "The %item% was written to database successfully."
+msgstr "%item% öğesi veri tabanına başarıyla yazıldı."
 
 #: app/languages/jsstrings.py:27
 msgid "Remove Episode"
 msgstr "Bölümü Sil"
 
 #: app/languages/jsstrings.py:28
-msgid "Date Recorded"
-msgstr "Kayıt Tarihi"
-
-#: app/languages/jsstrings.py:31
 #, python-format
 msgid "You are about to delete %item%."
 msgstr "%item% öğesini silmek üzeresiniz."
 
-#: app/templates/base.html.jinja:29
-msgid "Loading"
-msgstr "Yükleniyor"
+#: app/languages/jsstrings.py:29
+msgid "Remove Relationship"
+msgstr "İlişkiyi Sil"
+
+#: app/languages/jsstrings.py:30
+msgid "Display"
+msgstr "Görüntüle"
+
+#: app/languages/jsstrings.py:33
+msgid ""
+"An error occurred while interacting with the database. Data was not "
+"%action%."
+msgstr "Veri alışverişi yapılırken bir hata oluştu. Veri %action% yapılamadı."
+
+#: app/languages/jsstrings.py:34
+msgid "Date Recorded"
+msgstr "Kayıt Tarihi"
+
+#: app/languages/jsstrings.py:37
+#, fuzzy
+msgid "Select ..."
+msgstr "Seçiniz"
+
+#: app/languages/jsstrings.py:40
+#, fuzzy
+msgid "Add actor to select."
+msgstr "Oyuncu veya Seslendiren Ekle"
+
+#: app/languages/jsstrings.py:41
+#, fuzzy
+msgid "Add location to select."
+msgstr "Mekân ekle"
+
+#: app/languages/jsstrings.py:42
+msgid "written"
+msgstr "yazılımı"
+
+#: app/languages/jsstrings.py:43
+msgid "received"
+msgstr "alımı"
+
+#: app/languages/jsstrings.py:44
+#, fuzzy
+msgid "actor"
+msgstr "Oyuncu veya Seslendiren Ekle"
+
+#: app/languages/jsstrings.py:45
+#, fuzzy
+msgid "residence location"
+msgstr "İkamet yerin adı"
+
+#: app/languages/jsstrings.py:46
+#, fuzzy
+msgid "relationship types"
+msgstr "İlişkiler"
+
+#: app/languages/jsstrings.py:47
+#, python-format
+msgid ""
+"Unable to find the selected item among the %items%. Adding a new item "
+"instead."
+msgstr ""
 
 #: app/templates/base.html.jinja:31
-msgid "Loading..."
-msgstr "Yükleniyor..."
+msgid "Loading"
+msgstr "Yükleniyor"
 
 #: app/templates/base.html.jinja:42
 msgid "Copyright"
@@ -653,4 +783,7 @@ msgstr ""
 #: app/templates/setup-result.html.jinja:28
 msgid "Back to Setup"
 msgstr "Kuruluma dön"
+
+#~ msgid "Loading..."
+#~ msgstr "Yükleniyor..."
 

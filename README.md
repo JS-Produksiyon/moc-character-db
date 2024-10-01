@@ -75,6 +75,10 @@ Extracting strings (from repository root):
     
     pybabel extract -F babel.cfg -o ./app/languages/messages.pot ./app
 
+Updating existing translation strings:
+
+     pybabel update -i ./app/languages/messages.pot -d ./app/languages -l [language]
+
 Port: 13153 = moc
 ---
 Updated: 2024-09-03

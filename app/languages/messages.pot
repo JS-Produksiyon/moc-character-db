@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-09-24 11:10+0300\n"
+"POT-Creation-Date: 2024-10-01 14:10+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,34 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
+
+#: app/blueprints/api/calls.py:142 app/blueprints/api/calls.py:193
+msgid "Unable to save {item}: {error}"
+msgstr ""
+
+#: app/blueprints/api/calls.py:145 app/blueprints/api/calls.py:164
+msgid "Invalid data type passed: {e}"
+msgstr ""
+
+#: app/blueprints/api/calls.py:147
+msgid "No data passed"
+msgstr ""
+
+#: app/blueprints/api/calls.py:155
+msgid "Invalid number of keys passed: {sent} not {sought}"
+msgstr ""
+
+#: app/blueprints/api/calls.py:159
+msgid "Required data for {item} not passed."
+msgstr ""
+
+#: app/blueprints/api/calls.py:190
+msgid "{slug} saved"
+msgstr ""
+
+#: app/blueprints/api/calls.py:196
+msgid "No action passed"
+msgstr ""
 
 #: app/blueprints/main/templates/charform.html.jinja:4
 msgid "Character Details"
@@ -30,149 +58,165 @@ msgstr ""
 msgid "Edit Character"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:11
-#: app/blueprints/main/templates/charform.html.jinja:55
-#: app/languages/jsstrings.py:30
+#: app/blueprints/main/templates/charform.html.jinja:12
+#: app/blueprints/main/templates/charform.html.jinja:57
+#: app/languages/jsstrings.py:31
 msgid "Edit"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:16
+#: app/blueprints/main/templates/charform.html.jinja:17
 msgid "First Name"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:17
+#: app/blueprints/main/templates/charform.html.jinja:18
 msgid "Please enter a valid first name. It should be at least one character long."
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:20
+#: app/blueprints/main/templates/charform.html.jinja:21
 msgid "Last Name"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:23
-msgid "Character image"
+#: app/blueprints/main/templates/charform.html.jinja:24
+msgid "Character image will go over this"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:27
+#: app/blueprints/main/templates/charform.html.jinja:28
 msgid "Age"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:30
+#: app/blueprints/main/templates/charform.html.jinja:31
 msgid "This can be a number or a range (e.g. in his 30’s)"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:32
-#: app/blueprints/main/templates/charform.html.jinja:100
+#: app/blueprints/main/templates/charform.html.jinja:33
+#: app/blueprints/main/templates/charform.html.jinja:113
 #: app/blueprints/main/templates/charlist.html.jinja:12
 msgid "Sex"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:35
-#: app/blueprints/main/templates/charform.html.jinja:44
+#: app/blueprints/main/templates/charform.html.jinja:36
+#: app/blueprints/main/templates/charform.html.jinja:45
+#: app/blueprints/main/templates/charform.html.jinja:85
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:24
 msgid "Select"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:36
-#: app/languages/jsstrings.py:24
+#: app/blueprints/main/templates/charform.html.jinja:37
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:25
+#: app/languages/jsstrings.py:39
 msgid "Male"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:37
-#: app/languages/jsstrings.py:24
+#: app/blueprints/main/templates/charform.html.jinja:38
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:26
+#: app/languages/jsstrings.py:39
 msgid "Female"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:39
+#: app/blueprints/main/templates/charform.html.jinja:40
 msgid "Please select the sex of the character."
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:41
+#: app/blueprints/main/templates/charform.html.jinja:42
 msgid "Residence"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:46
+#: app/blueprints/main/templates/charform.html.jinja:49
+#: app/languages/jsstrings.py:36
 msgid "Add Location"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:58
+#: app/blueprints/main/templates/charform.html.jinja:60
 msgid "Physical Description"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:67
+#: app/blueprints/main/templates/charform.html.jinja:69
 msgid "Animation Model Status"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:70
+#: app/blueprints/main/templates/charform.html.jinja:72
 msgid "Unnecessary"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:71
+#: app/blueprints/main/templates/charform.html.jinja:73
 msgid "Not Defined"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:72
+#: app/blueprints/main/templates/charform.html.jinja:74
 msgid "Defined"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:73
+#: app/blueprints/main/templates/charform.html.jinja:75
 msgid "Being Designed"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:74
+#: app/blueprints/main/templates/charform.html.jinja:76
 msgid "Available"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:75
+#: app/blueprints/main/templates/charform.html.jinja:77
 msgid "In use"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:81
+#: app/blueprints/main/templates/charform.html.jinja:82
+msgid "Character Acted by"
+msgstr ""
+
+#: app/blueprints/main/templates/charform.html.jinja:89
+#: app/blueprints/main/templates/modal_addActor.html.jinja:6
+#: app/languages/jsstrings.py:35
+msgid "Add Actor"
+msgstr ""
+
+#: app/blueprints/main/templates/charform.html.jinja:94
 msgid "Personality Description"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:90
+#: app/blueprints/main/templates/charform.html.jinja:103
 #: app/blueprints/main/templates/main.html.jinja:33
 msgid "Add Relationship"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:92
+#: app/blueprints/main/templates/charform.html.jinja:105
 msgid "Relationships to Other Characters"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:93
-#: app/blueprints/main/templates/charform.html.jinja:116
+#: app/blueprints/main/templates/charform.html.jinja:106
+#: app/blueprints/main/templates/charform.html.jinja:129
 msgid "None"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:98
+#: app/blueprints/main/templates/charform.html.jinja:111
 #: app/blueprints/main/templates/charlist.html.jinja:10
 msgid "Full Name"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:99
+#: app/blueprints/main/templates/charform.html.jinja:112
 msgid "Relationship"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:101
+#: app/blueprints/main/templates/charform.html.jinja:114
 #: app/blueprints/main/templates/charlist.html.jinja:14
+#: app/blueprints/main/templates/relationlist.html.jinja:55
 msgid "Buttons"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:113
+#: app/blueprints/main/templates/charform.html.jinja:126
 #: app/blueprints/main/templates/main.html.jinja:29
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:6
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:14
 msgid "Add Episode"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:127
+#: app/blueprints/main/templates/charform.html.jinja:140
 msgid "Back to List"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:132
+#: app/blueprints/main/templates/charform.html.jinja:145
 msgid "Delete Character"
 msgstr ""
 
-#: app/blueprints/main/templates/charform.html.jinja:137
+#: app/blueprints/main/templates/charform.html.jinja:150
 msgid "Save Character"
 msgstr ""
 
@@ -223,16 +267,12 @@ msgid "Official Logo"
 msgstr ""
 
 #: app/blueprints/main/templates/main.html.jinja:13
-#: app/languages/jsstrings.py:29
+#: app/languages/jsstrings.py:32
 msgid "Characters"
 msgstr ""
 
 #: app/blueprints/main/templates/main.html.jinja:15
 msgid "Relationships"
-msgstr ""
-
-#: app/blueprints/main/templates/modal_addActor.html.jinja:6
-msgid "Add Actor"
 msgstr ""
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:9
@@ -247,8 +287,8 @@ msgstr ""
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:18
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:33
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:36
-#: app/blueprints/main/templates/modal_addResidence.html.jinja:18
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:52
+#: app/blueprints/main/templates/modal_addResidence.html.jinja:19
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:44
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:32
 #: app/blueprints/main/templates/modal_template.html.jinja:12
@@ -257,8 +297,8 @@ msgstr ""
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:19
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:34
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:37
-#: app/blueprints/main/templates/modal_addResidence.html.jinja:19
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:53
+#: app/blueprints/main/templates/modal_addResidence.html.jinja:20
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:45
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:33
 #: app/blueprints/main/templates/modal_template.html.jinja:13
@@ -309,19 +349,38 @@ msgstr ""
 msgid "Edit Relationship"
 msgstr ""
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:11
-#: app/blueprints/main/templates/relationlist.html.jinja:22
-#: app/blueprints/main/templates/relationlist.html.jinja:41
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:14
+#: app/blueprints/main/templates/relationlist.html.jinja:24
+#: app/blueprints/main/templates/relationlist.html.jinja:52
 msgid "Relationship Name"
 msgstr ""
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:14
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:17
 msgid ""
 "Please enter a valid relationship designation. It should be at least one "
 "character long."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:17
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:21
+msgid "Pertains to Which Sex"
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
+msgid "Both male and female"
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:29
+msgid ""
+"Define here whether the person whom the relationship pertains to is male "
+"or female, or whether the relationship pertains to both males and "
+"females."
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:30
+msgid "Please select a value to define what sex this relationship pertains to."
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:33
 msgid ""
 "The reciprocal relationships defined below will apply to characters for "
 "whom this character is designated as above. These fields can be left "
@@ -329,21 +388,21 @@ msgid ""
 "this one designated as reciprocal to itself."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:19
-#: app/blueprints/main/templates/relationlist.html.jinja:23
-#: app/blueprints/main/templates/relationlist.html.jinja:42
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:35
+#: app/blueprints/main/templates/relationlist.html.jinja:25
+#: app/blueprints/main/templates/relationlist.html.jinja:53
 msgid "Male Reciprocal Relationship"
 msgstr ""
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:22
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:30
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:24
 msgid "Select relationship..."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
-#: app/blueprints/main/templates/relationlist.html.jinja:24
-#: app/blueprints/main/templates/relationlist.html.jinja:43
+#: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:43
+#: app/blueprints/main/templates/relationlist.html.jinja:26
+#: app/blueprints/main/templates/relationlist.html.jinja:54
 msgid "Female Reciprocal Relationship"
 msgstr ""
 
@@ -360,6 +419,12 @@ msgstr ""
 
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:11
 msgid "Residence Name"
+msgstr ""
+
+#: app/blueprints/main/templates/modal_addResidence.html.jinja:14
+msgid ""
+"Please enter a valid residence location to continue. It must be at least "
+"one character long."
 msgstr ""
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:6
@@ -516,27 +581,34 @@ msgid ""
 " above."
 msgstr ""
 
-#: app/blueprints/main/templates/relationlist.html.jinja:9
+#: app/blueprints/main/templates/relationlist.html.jinja:10
 msgid ""
 "You can also automatically load the most common relationships for your "
 "language group into the database using the <i>Load Default "
 "Relationships</i> button below."
 msgstr ""
 
-#: app/blueprints/main/templates/relationlist.html.jinja:14
+#: app/blueprints/main/templates/relationlist.html.jinja:16
 msgid "Default relationships that will be loaded"
 msgstr ""
 
-#: app/blueprints/main/templates/relationlist.html.jinja:34
+#: app/blueprints/main/templates/relationlist.html.jinja:45
 msgid "Load Default Relationships"
 msgstr ""
 
+#: app/languages/jsstrings.py:24
+#, python-format
+msgid "Unable to retrieve the %item% from the database."
+msgstr ""
+
 #: app/languages/jsstrings.py:25
-msgid "Display"
+#, python-format
+msgid "Unable to write the %item% to database."
 msgstr ""
 
 #: app/languages/jsstrings.py:26
-msgid "Remove Relationship"
+#, python-format
+msgid "The %item% was written to database successfully."
 msgstr ""
 
 #: app/languages/jsstrings.py:27
@@ -544,20 +616,69 @@ msgid "Remove Episode"
 msgstr ""
 
 #: app/languages/jsstrings.py:28
-msgid "Date Recorded"
-msgstr ""
-
-#: app/languages/jsstrings.py:31
 #, python-format
 msgid "You are about to delete %item%."
 msgstr ""
 
-#: app/templates/base.html.jinja:29
-msgid "Loading"
+#: app/languages/jsstrings.py:29
+msgid "Remove Relationship"
+msgstr ""
+
+#: app/languages/jsstrings.py:30
+msgid "Display"
+msgstr ""
+
+#: app/languages/jsstrings.py:33
+msgid ""
+"An error occurred while interacting with the database. Data was not "
+"%action%."
+msgstr ""
+
+#: app/languages/jsstrings.py:34
+msgid "Date Recorded"
+msgstr ""
+
+#: app/languages/jsstrings.py:37
+msgid "Select ..."
+msgstr ""
+
+#: app/languages/jsstrings.py:40
+msgid "Add actor to select."
+msgstr ""
+
+#: app/languages/jsstrings.py:41
+msgid "Add location to select."
+msgstr ""
+
+#: app/languages/jsstrings.py:42
+msgid "written"
+msgstr ""
+
+#: app/languages/jsstrings.py:43
+msgid "received"
+msgstr ""
+
+#: app/languages/jsstrings.py:44
+msgid "actor"
+msgstr ""
+
+#: app/languages/jsstrings.py:45
+msgid "residence location"
+msgstr ""
+
+#: app/languages/jsstrings.py:46
+msgid "relationship types"
+msgstr ""
+
+#: app/languages/jsstrings.py:47
+#, python-format
+msgid ""
+"Unable to find the selected item among the %items%. Adding a new item "
+"instead."
 msgstr ""
 
 #: app/templates/base.html.jinja:31
-msgid "Loading..."
+msgid "Loading"
 msgstr ""
 
 #: app/templates/base.html.jinja:42

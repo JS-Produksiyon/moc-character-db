@@ -174,14 +174,30 @@ window.LoadingIcon = function() {
     }
 }
 
+/**
+ * Remove the dselect enhancement from a select box that has it
+ * 
+ * @param {*} id : DOM id of select item to which dselect was applied
+ * @returns      : false if id not passed
+ */
+function dselectRemove(id) {
+    if (typeof(id) != "string") { return false; }
+    if (id.substring(0,1) != "#") { id = "#" + id; }
+    if ($(id).length > 0) {
+        if ($(id).next("div").hasClass("dropdown")) {
+            $(id).next("div").remove();
+            $(id).show();
+        }
+    }
+}
+
 /* document load */
 $(document).ready(function () {
     /* 
      * enable dselect searchable dropdown boxes 
      * See https://github.com/jarstone/dselect for usage
-     */
-    $.each(["#appendRelationshipModal_character", "#appendRelationshipModal_relation", "#append_selected_episode",
-            "#addEditRelationshipModal_rel_rec_male", "#addEditRelationshipModal_rel_rec_female"], 
+     
+    $.each(["#appendRelationshipModal_character", "#appendRelationshipModal_relation"], 
             function (k, i) { 
                 if ($(i).length > 0) { dselect(document.querySelector(i), { search: true }); }
             });

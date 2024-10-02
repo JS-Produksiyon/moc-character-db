@@ -33,17 +33,14 @@ window.HashMgr = function () {
             var h = window.location.hash.split('/');
  
             if (h[1] == 'character' && h.length > 2) {
-                characterObj.load(h[2]);
- 
-            /* NOTE: All of this code below is temporary until the various objects that handle the display of the views is written!
-                    It is just here so that I can easily navigate between views. */
+                characterObj.load(h[2]); 
             } else if (h[1] == 'episodes') {
-                $("#episode_list").fadeIn();
-                $("#add_ep_btn").fadeIn();
-                $("#nav_episodes").addClass("active");
+                episodeObj.display();
             } else if (h[1] == 'relationships') {
                 relationshipObj.display();
             } else {
+            /* NOTE: All of this code below is temporary until the various objects that handle the display of the views is written!
+                    It is just here so that I can easily navigate between views. */
                 $("#char_list").fadeIn();
                 $("#add_char_btn").fadeIn();
                 $("#nav_characters").addClass("active");

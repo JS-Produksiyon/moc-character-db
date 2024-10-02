@@ -13,7 +13,7 @@ $(document).ready(function () {
     Relationships = function () {
         /* properties */
         /* public */
-        this.baseValues = { "select": ["0", "Select"] };
+        this.baseValues = { "select": ["0", "Select..."], "relationship": ["0", "Select relationship..."] };
         this.list = {}
         this.nextKey = 1;
 
@@ -289,8 +289,10 @@ $(document).ready(function () {
             var out = "";
             var relationsMale = [];
             var relationsFemale = [];
-            var optionsMale = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1] + "...")];
-            var optionsFemale = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1] + "...")];
+            var optionsCharacter = [optionTpl.replace("%option%", self.baseValues.relationship[0]).replace("%item%", self.baseValues.relationship[1])]
+            var optionsMale = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1])];
+            var optionsFemale = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1])];
+            
             
             /* write to the table */
             if (Object.keys(self.list).length > 0) {
@@ -308,7 +310,20 @@ $(document).ready(function () {
                     if (item.sex == "female" || item.sex == "both") {
                         relationsFemale.push(item.slug);
                     }
+                    optionsCharacter.push(optionTpl.replace("%option%", item.slug).replace("%item%", item.name))
                 }
+
+                /* enable select box on the append modal */
+                $("#appendRelationshipModal_relation").html(optionsCharacter.join("\n"));
+                $("#appendRelationshipModal_relation").val("0");
+                $("#appendRelationshipModal_relation").prop("disabled", false);
+                dselect(document.querySelector("appendRelationshipModal_relation"), { search: true });
+            } else {
+                /* disable select box on the append modal */
+                dselectRemove("appendRelationshipModal_relation");
+                $("#appendRelationshipModal_relation").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.relation_types_none));
+                $("#appendRelationshipModal_relation").val("0");
+                $("#appendRelationshipModal_relation").prop("disabled", true);
             }
             $("#rel_list_table tbody").html(out);
             

@@ -55,7 +55,8 @@ window.HTML_TEMPLATES = {
     <div id="collapse_%id%" class="accordion-collapse collapse">
         <div class="accordion-body">
             <div class="float-end mt-3 me-3">
-                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="%id%"><i class="bi bi-pencil"></i> %edit%</button></button>
+                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="%id%"><i class="bi bi-pencil"></i> %edit%</button></button>&nbsp;
+                <button type="button" class="btn btn-outline-danger delete-episode" data-episode="%id%" title="%delete%"><i class="bi-trash3-fill"></i></button></button>
             </div>
             <p><strong>%ep_rec_date%:</strong> %rec_date%</p>
             <p class="mb-0"><strong>%ep_characters%:</strong></p>

@@ -48,7 +48,14 @@ $(document).ready(function () {
          * 
          * @param {boolean} rewrite : only reconnect the .relationship-open class 
          */
-        var connectEvents = function (rewrite) {}
+        var connectEvents = function (rewrite) {
+            if (!rewrite) {
+                $("#add_ep_btn button").click(function() { self.addEdit(0); });
+                $("#addEditEpisodeModal_save").click(self.update);
+            }
+            $(".edit-episode").click(function() { self.addEdit(this.data("episode")); });
+            $(".delete-episode").click(function() { self.delete(this.data("episode"), false); });
+        }
 
         /**
          * Verifies the data passed
@@ -65,25 +72,26 @@ $(document).ready(function () {
          * 
          * @param {number} id : id of episode to edit or 0 for new episode
          */
-        this.addEdit = function(id) {}
-
-        /**
-         * append episode to character
-         */
-        this.append = function() {}
+        this.addEdit = function(id) {
+            
+        }
 
         /**
          * Deletes an episode
          * 
-         * @param {number} id : id of episode to delete
+         * @param {number} id       : id of episode to delete
+         * @param {boolean} confirm : execute the deletion
          */
-        this.delete = function(id) {}
+        this.delete = function(id, confirm) {
+            if (typeof(id) != "number") { return false; }
+            if (typeof(confirm) != "boolean") { confirm = false; } 
+        }
 
         /**
          * displays the Episodes layer
          */
         this.display = function() {
-            if (self.list.length < 1) {
+            if (Object.keys(self.list).length < 1) {
                 $("#eplist_no_chars").show();
                 $("#ep_list_accordion").hide();
             } else {
@@ -117,6 +125,7 @@ $(document).ready(function () {
 
         /**
          * add a given character to an episode (reciprocal data)
+         * This is usually called by characterObj
          * 
          * @param {number} id : episode id to add
          * @param {number} character_id : id of character to update
@@ -131,7 +140,7 @@ $(document).ready(function () {
             var accordion = "";
             var select = "";
             
-            if (self.list.length > 0) {
+            if (Object.keys(self.list).length > 0) {
                 select = optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.select_episode_here);
                 $.each(self.list, function (k, i) {
                     var accItem = accordionTpl.replace(/%id%/g, i.id).replace("%title%", i.name).replace("%edit%", window.JS_STRINGS.edit).replace("%ep_rec_date%", window.JS_STRINGS.ep_rec_date).replace("%rec_date%", i.recorded).replace("%ep_characters%", window.JS_STRINGS);
@@ -152,7 +161,7 @@ $(document).ready(function () {
             } else {
                 $("#append_selected_episode").html(select);
                 $("#append_selected_episode").prop("disabled", false);
-                dselect(document.querySelector("append_selected_episode"), { search: true });
+                dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "300px" });
             }
 
             $("#ep_list_accordion").html(accordion);

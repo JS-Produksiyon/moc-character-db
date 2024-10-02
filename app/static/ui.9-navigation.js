@@ -24,7 +24,7 @@ window.HashMgr = function () {
         /* only trigger if we haven't manually updated the thingy */
         if (typeof(self.goNav) == 'boolean' && self.goNav === true) {
             console.log("Current location: " + window.location.hash);
-            $(".md-load.lion").fadeIn(); /* replace with spinner activation code */
+            window.loading.start();
             $(".md-layer").fadeOut();
             $(".md-add-button").fadeOut();
             $(".nav-link").removeClass('active');
@@ -35,7 +35,7 @@ window.HashMgr = function () {
             if (h[1] == 'character' && h.length > 2) {
                 characterObj.load(h[2]); 
             } else if (h[1] == 'episodes') {
-                episodeObj.display();
+                episodesObj.display();
             } else if (h[1] == 'relationships') {
                 relationshipObj.display();
             } else {
@@ -46,7 +46,7 @@ window.HashMgr = function () {
                 $("#nav_characters").addClass("active");
             }
             /* replace with spinner deactivation code */
-            $(".md-load").fadeOut();
+            window.loading.stop();
         } else {
             this.goNav = true;
         }

@@ -317,10 +317,10 @@ $(document).ready(function () {
                 $("#appendRelationshipModal_relation").html(optionsCharacter.join("\n"));
                 $("#appendRelationshipModal_relation").val("0");
                 $("#appendRelationshipModal_relation").prop("disabled", false);
-                dselect(document.querySelector("appendRelationshipModal_relation"), { search: true });
+                dselect(document.querySelector("#appendRelationshipModal_relation"), { search: true, maxHeight: "300px" });
             } else {
                 /* disable select box on the append modal */
-                dselectRemove("appendRelationshipModal_relation");
+                dselectRemove("#appendRelationshipModal_relation");
                 $("#appendRelationshipModal_relation").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.relation_types_none));
                 $("#appendRelationshipModal_relation").val("0");
                 $("#appendRelationshipModal_relation").prop("disabled", true);

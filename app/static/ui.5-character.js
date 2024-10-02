@@ -2,9 +2,9 @@
  *
  * JavaScript engine for the character object
  * 
- *   File name: ui.js
+ *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-09-27
+ *   Date Modified: 2024-10-02
  * 
  */
 /* initialize the object */

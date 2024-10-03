@@ -176,10 +176,20 @@ window.LoadingIcon = function() {
 }
 
 /**
+ * Capitalize the first letter of the string
+ * 
+ * @param {string} s : string to capitalize
+ * @returns          : string with first letter capitalized
+ */
+function capitalizeFirst(s) {
+    return s.substring(0,1).toLocaleUpperCase() + s.substring(1);
+}
+
+/**
  * Remove the dselect enhancement from a select box that has it
  * 
- * @param {*} id : DOM id of select item to which dselect was applied
- * @returns      : false if id not passed
+ * @param {string} id : DOM id of select item to which dselect was applied
+ * @returns           : false if id not passed
  */
 function dselectRemove(id) {
     if (typeof(id) != "string") { return false; }

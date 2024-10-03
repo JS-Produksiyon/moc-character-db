@@ -47,7 +47,8 @@ episodes =
 	0 : {
 			id: 0,
 			name: "",
-			recorded: ""
+			recorded: "",
+			characters: [{ character_id: 0, character_name: "" }]
 		}
 }
 

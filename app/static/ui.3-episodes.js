@@ -25,6 +25,7 @@ $(document).ready(function () {
         <div class="accordion-body">
             <div class="float-end mt-3 me-3">
                 <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="%id%"><i class="bi bi-pencil"></i> %edit%</button></button>
+                <button type="button" class="btn btn-outline-danger delete-episode" data-episode="%id%" title="%delete%"><i class="bi-trash3-fill"></i></button></button>
             </div>
             <p><strong>%ep_rec_date%:</strong> %rec_date%</p>
             <p class="mb-0"><strong>%ep_characters%:</strong></p>
@@ -34,6 +35,7 @@ $(document).ready(function () {
         </div>
     </div>            
 </div>\n`;
+        var csrfToken = $("#csrf_token").val();
         var optionTpl = '<option value="%option%">%item%</option>\n';
         var listItemTpl = '<li><a href="#/character/%id%">%full_name%</a></li>\n';
 
@@ -48,22 +50,27 @@ $(document).ready(function () {
          * 
          * @param {boolean} rewrite : only reconnect the .relationship-open class 
          */
-        var connectEvents = function (rewrite) {
+        var connectEvents = function(rewrite) {
             if (!rewrite) {
                 $("#add_ep_btn button").click(function() { self.addEdit(0); });
                 $("#addEditEpisodeModal_save").click(self.update);
             }
-            $(".edit-episode").click(function() { self.addEdit(this.data("episode")); });
-            $(".delete-episode").click(function() { self.delete(this.data("episode"), false); });
+            $(".edit-episode").click(function() { self.addEdit($(this).data("episode")); });
+            $(".delete-episode").click(function() { self.delete($(this).data("episode"), false); });
         }
 
-        /**
-         * Verifies the data passed
-         * 
-         * @param {object} data : data to be verified
-         * @returns {boolean}
-         */
-        var verifyData = function(data) {}
+        /** configures whether to show the data or no data message*/ 
+        var showData = function () {
+                        
+            if (Object.keys(self.list).length < 1 && $("#eplist_no_chars").css("display") == "none") {
+                $("#eplist_no_chars").show();
+                $("#ep_list_accordion").hide();
+            } else if ($("#ep_list_accordion").css("display") == "none") {
+                $("#eplist_no_chars").hide();
+                $("#ep_list_accordion").show();
+            }
+
+        }
 
 
         /* public */
@@ -73,7 +80,17 @@ $(document).ready(function () {
          * @param {number} id : id of episode to edit or 0 for new episode
          */
         this.addEdit = function(id) {
-            
+            if (typeof(id) != "number") {
+                id = parseInt(id);
+                if (typeof(id) != "number") { return false; }
+            }
+
+            $(".form-validate").removeClass("is-invalid");
+            $("#addEditEpisodeModal_ep_num").val((id == 0) ? "" : id);
+            $("#addEditEpisodeModal_ep_title").val((id == 0) ? "" : self.list[id].name);
+            $("#addEditEpisodeModal_ep_date").val((id == 0) ? "" : self.list[id].recorded);
+            $("#addEditEpisodeModal").modal("show");
+            setTimeout(function () { $("#addEditEpisodeModal_ep_num").focus(); }, 600);
         }
 
         /**
@@ -85,29 +102,64 @@ $(document).ready(function () {
         this.delete = function(id, confirm) {
             if (typeof(id) != "number") { return false; }
             if (typeof(confirm) != "boolean") { confirm = false; } 
+
+            var delModal = $("#deleteItemModal")
+            var delYesButton = $("#deleteItemModal_yes")
+            delYesButton.off("click"); /* disable clicking the Yes button */
+
+            if (confirm === true) {
+                delModal.modal("hide");
+                delete self.list[id];
+                data = {"csrf_token": csrfToken, "what": "episodes", "id":id}
+                $.post("/api/deleteItem", data, function (r) {
+                    if (r.error) {
+                        window.flash.display(window.JS_STRINGS["del_error"].replace("%item%", window.JS_STRINGS["episode"]).replace("%id%", id), "warning")
+                    } else {
+                        window.flash.display(window.JS_STRINGS["del_success"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id), "success");
+                    }
+                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['episode']), 'danger'); });
+                self.write();
+                self.display();
+            } else {
+                $("#deleteItemModal_title_item").html(capitalizeFirst(window.JS_STRINGS["del_title"]).replace("%item%", window.JS_STRINGS["Episode"]));
+                $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id)));
+                delYesButton.click(function() { self.delete(id, true); });
+                delModal.modal("show");
+             }
         }
 
         /**
          * displays the Episodes layer
          */
         this.display = function() {
-            if (Object.keys(self.list).length < 1) {
-                $("#eplist_no_chars").show();
-                $("#ep_list_accordion").hide();
-            } else {
-                $("#eplist_no_chars").hide();
-                $("#ep_list_accordion").show();
-            }
+            showData();
             $("#episode_list").fadeIn();
             $("#add_ep_btn").fadeIn();
             $("#nav_episodes").addClass("active");
         }
 
         /**
+         * Checks to see if an episode id exists
+         * 
+         * @param {number} id : id to check against list
+         * @returns           : boolean denoting existence
+         */
+        self.epIdExists = function(id) {
+            var exists = false;
+
+            $.each(self.list, function (k,i) {
+                if (i.id == i) { exists = true; }
+            });
+
+            return exists;
+        }
+
+
+        /**
          * load episodes from database
          */
         this.load = function() {
-            $.get("/api/fetch/episodes", null, function (r) {
+            $.get("/api/fetch", {"what":"episodes"}, function (r) {
                 if (r.error) {
                     window.flash.display(window.JS_STRINGS['es_read_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger');
                     console.log(r.error);
@@ -121,7 +173,46 @@ $(document).ready(function () {
         /**
          * update contents in database 
          */
-        this.update = function() {}
+        this.update = function() {
+            /* validate entries */
+            var fields = { "id": $("#addEditEpisodeModal_ep_num"), "name": $("#addEditEpisodeModal_ep_title"), "recorded": $("#addEditEpisodeModal_ep_date")}
+            var go = true;
+
+            if (parseInt(fields["id"].val()) < 1) {
+                fields["id"].addClass("is-invalid");
+                go = false;
+            }
+            if (fields["name"].val().length < 1) {
+                fields["name"].addClass("is-invalid")
+                go = false;
+            }
+
+            /* add or edit an episode */
+            if (go) {
+                var data = { "id": fields["id"].val(), "name": fields["name"].val(), "recorded": fields["recorded"].val(), "characters": [] };
+                self.list[data["id"]] = data;
+                self.write();
+
+                /* write new episode to database */
+                data["csrf_token"] = csrfToken;
+                data["what"] = "episodes";
+                data["characters"] = JSON.stringify(data["characters"]); // we stringify this so that it can be passed without goofing up the send
+                
+                $.post('/api/write', data, function (r) {
+                    if (r.error) {
+                        window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "warning");
+                        console.log(r.error);
+                    } else {
+                        window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "success");
+                    }
+                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["episode"]), "danger"); });
+    
+                data["characters"] = JSON.parse(data["characters"]); // this is so that the characters object _remains_ an object in normal usage
+
+                /* hide modal */
+                $("#addEditEpisodeModal").modal("hide");
+            }
+        }
 
         /**
          * add a given character to an episode (reciprocal data)
@@ -139,20 +230,28 @@ $(document).ready(function () {
         this.write = function() {
             var accordion = "";
             var select = "";
-            
+
             if (Object.keys(self.list).length > 0) {
                 select = optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.select_episode_here);
                 $.each(self.list, function (k, i) {
-                    var accItem = accordionTpl.replace(/%id%/g, i.id).replace("%title%", i.name).replace("%edit%", window.JS_STRINGS.edit).replace("%ep_rec_date%", window.JS_STRINGS.ep_rec_date).replace("%rec_date%", i.recorded).replace("%ep_characters%", window.JS_STRINGS);
+                    var recDate = (i.recorded != "") ? i.recorded : window.JS_STRINGS.ep_not_recorded;
+
+                    var accItem = accordionTpl.replace(/%id%/g, i.id).replace("%title%", i.name).replace("%edit%", window.JS_STRINGS.edit).replace("%ep_rec_date%", window.JS_STRINGS.ep_rec_date).replace("%rec_date%", recDate).replace("%ep_characters%", window.JS_STRINGS.ep_characters).replace("%delete%", window.JS_STRINGS.delete);
 
                     var charItem = "";
-                    for (var i=0; i<i.characters.length; i++) {
-                        charItem += listItemTpl.replace("%id%", charItem[i].character_id).replace("%full_name%", charItem[i].character_name);
+                    if (i.characters.length > 0){
+                        for (var j=0; j<i.characters.length; j++) {
+                            charItem += listItemTpl.replace("%id%", charItem[i].character_id).replace("%full_name%", charItem[i].character_name);
+                        }
+                    } else {
+                        charItem = window.JS_STRINGS.ep_no_characters;
                     }
 
                     accordion += accItem.replace("%charlist%", charItem);
                     select += optionTpl.replace("%option%", i.id).replace("%item%", i.id + " &ndash; " + i.name);
                 });
+                if ($("#ep_list_accordion").css("display") == "none") { showData(); }
+
             } 
             if (select == "") {
                 dselectRemove("#append_selected_episode");
@@ -172,4 +271,5 @@ $(document).ready(function () {
     }
 
     episodesObj = new Episodes();
+    episodesObj.load();
 });

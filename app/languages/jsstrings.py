@@ -25,13 +25,21 @@ JS_STRINGS = {
     'es_write_failure': _('Unable to write the %item% to database.'),
     'es_write_success': _('The %item% was written to database successfully.'),
     'del_ep': _('Remove Episode'),
+    'del_err': _('Unable to delete %item% %id%.'),
     'del_modal_text': _('You are about to delete %item%.'),
     'del_rel': _('Remove Relationship'),
+    'del_success': _('Successfully deleted %item%.'),
+    'del_title': _('Delete %item%'),
     'display': _('Display'),
     'edit': _('Edit'),
     'episode_none': _('Add episode to select.'),
+    'episode': _('episode'),
+    'Episode': _('Episode'), # capitalized version in case we need it case sensitive
     'episodes': _('episodes'),
     'ep_characters': _('Characters'),
+    'ep_not_recorded': _('Not yet recorded'),
+    'ep_no_characters': _('No characters assigned'),
+    'ep_num': _('the episode number'),
     'ep_rec_date': _('Recorded on'),
     'general_failure': _('An error occurred while interacting with the database. Data was not %action%.'),
     'rec_date': _('Date Recorded'),
@@ -51,5 +59,6 @@ JS_STRINGS = {
     'string_actors': _('actor'),
     'string_residences': _('residence location'),
     'string_relation_types': _('relationship types'),
+    'the': _('the'),
     'err_id_does_not_exist': _('Unable to find the selected item among the %items%. Adding a new item instead.')
 }

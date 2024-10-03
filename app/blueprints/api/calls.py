@@ -22,7 +22,7 @@ import os, re, datetime, importlib, json
 from flask import(
     Blueprint, jsonify, config, redirect, request, url_for, current_app
 )
-from flask_babel import lazy_gettext as _
+from flask_babel import lazy_gettext as _, format_date
 from utils.util_validators import sanitizeString, validateDataType
 from app.blueprints.api.models import (Character, Episode, Relationship, RelationTypes, Residence, Actor)
 from app.languages.jsstrings import JS_STRINGS
@@ -30,6 +30,30 @@ from app.languages.jsstrings import JS_STRINGS
 api = Blueprint('api', __name__, url_prefix='/api')
 
 # define routes
+@api.route('/deleteItem', methods=['POST'])
+def del_from_db():
+    """
+    Deletes an item from the database
+    
+    :arg what : Defines what to delete: character or episode (for now; in the future relation_types, residences, and actors)
+    :arg id   : id of item to delete
+    :returns  : JSON string
+    """
+    try:
+        if request.form['what'] == 'episodes':
+            query = Episode.query.get(request.form['id'])
+
+        if query is not None:
+            query.delete()
+            return jsonify({'success': True })
+        
+        else:
+            return jsonify({'error': _('Could not delete {item}').format(item=request.form['what'])})
+
+    except Exception as e:
+        jsonify({'error': _('Unable to delete {item}: {error}').format(item=request.form['what'], error={str(e)})})
+
+
 @api.route('/fetch', methods=['GET', 'POST'])
 def fetch_from_db():
     """
@@ -66,9 +90,16 @@ def fetch_from_db():
         
 
     elif what == 'episodes':
-        query = Episode.query.order_by(Episode.id)
-        if query.count() > 0:
-            pass
+        query = Episode.query.order_by(Episode.id).all()
+        count = len(query)
+
+        if count > 0:
+            for row in query:
+                out[row.id] = {'id': row.id, 'name': row.name, 
+                               'recorded': row.recorded.strftime('%Y-%m-%d'), 
+                               'characters': [] }
+                # for now we leave the characters empty until we make the character connection when adding the episodes to the character
+
 
     elif what == 'relation_types':
         query = RelationTypes.query.all()
@@ -146,6 +177,39 @@ def write_to_db():
             else:
                 return jsonify({'error': _('No data passed')})       
         
+        # write the episode to the database
+        elif request.form['what'] == 'episodes':
+            keys = { 'csrf_token': str, 'what': str,  'id': int, 'name': str, 'recorded': str, 'characters': str}
+
+            try:
+                if len(request.form) != len(keys):
+                    raise KeyError(_('Invalid number of keys passed: {sent} not {sought}').format(sent=len(request.form), sought=len(keys)))
+                
+                for item in keys:
+                    if item not in request.form:
+                        raise KeyError(_('Required data for {item} not passed.').format(item=item))
+                
+                validate = validateDataType(request.form, keys)
+
+                if not validate == 'valid':
+                    raise TypeError(_('Invalid data type passed: {e}').format(e=validate))
+
+                query = Episode.query.get(int(request.form['id']))
+
+                if query is None:
+                    query = Episode(id=int(request.form['id']))
+
+                query.name = sanitizeString(request.form['name'])
+                if request.form['recorded'] != "" and re.match('\d\d\d\d-\d\d\-\d\d', request.form['recorded']):
+                    query.recorded = datetime.datetime.strptime(request.form['recorded'], "%Y-%m-%d")
+                # we don't add characters, because that is handled from the add character field
+                query.save()
+
+                return jsonify({'success': _('{episode} saved').format(episode=request.form['id'])})
+
+            except (KeyError, TypeError) as e:
+                return jsonify({'error': _('Unable to save {item}: {error}').format(item=request.form['id'], error={str(e)})})
+
         # Write relationship type to database
         elif request.form['what'] == 'relation_types':
             keys = { 'csrf_token': str, 'what': str,  'id': int, 'slug': str, 'name': str, 'reciprocal_male': str, 'reciprocal_female': str, 'sex': str }

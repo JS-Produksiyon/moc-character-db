@@ -28,16 +28,27 @@ $(document).ready(function (){
         /* private methods */
         /**
          * connect events to buttons and select boxes
+         * 
+         * @param {boolean} target What terget to rewrite for
          */
-        var connectEvents = function() {
+        var connectEvents = function(target) {
+            if (typeof(target) != "string") { target = ""; }
 
+            if (target == "") {
+                $("#char_btn_add_episode").click(function () { self.episodeAdd(false); });
+                $("#appendEpisodeModal_save").click(function () { self.episodeAdd(true); });
+            }
+            if (target == "episodes" || target == "") {
+                $(".char-ep-del").click(function () { self.episodeDel($(this).data("id")); } );
+            }
+            if (target == "relations" || target == "") {}
         }
 
         /**
          * verifies data pulled from the form
          * 
-         * @param {object} data          : JSON object to be checked through
-         * @param {string} skeleton_type : what skeleton to use: 'base', 'relationships', 'relations'
+         * @param {object} data          JSON object to be checked through
+         * @param {string} skeleton_type what skeleton to use: 'base', 'relationships', 'relations'
          */
         var verifyData = function(data, skeleton_type) {
             if (typeof(skeleton_type) != 'string') { skeleton_type = 'base'}
@@ -89,10 +100,76 @@ $(document).ready(function (){
         /**
          * write data to the relationship and episode tables
          * 
-         * @param {string} target : DOM name of table to write to
-         * @param {array}  data   : JSON array containing the episode data
+         * @param {string} target reference to the table to write to ("episodes" or "relations")
          */
-        var writeTable = function(target, data) {}
+        var writeTable = function(target) {
+            if (typeof(target) != "string") { return false; }
+
+            var rowTpl = "";
+            var rowData = [];
+            var targetDomId = "";
+
+            switch (target) {
+                case ("episodes"):
+                    rowTpl = `<tr>
+                                <td><a href="#/episodes/%id%">%episode%</a></td>
+                                <td class="text-end pe-3">
+                                    <button class="btn btn-sm btn-outline-danger char-ep-del" title="%del_ep%" data-id="%id%" type="button">
+                                        <i class="bi-trash3-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>\n`;
+                    if (self.character_data.episodes.length > 0) {
+                        targetDomId = "#char_eps_table_container table tbody";
+                        $.each(self.character_data.episodes, function (k,i) {
+                            rowData.push(rowTpl.replace(/%id%/g, i).replace("%episode%", i.toString() + " &ndash;" + episodesObj.list[i].name).replace("%del_ep%", window.JS_STRINGS.del_ep))
+                        });
+                        $("#char_no_eps").hide();
+                        $("#char_eps_table_container").show();
+                    } else {
+                        $("#char_no_eps").show();
+                        $("#char_eps_table_container").hide();
+                    }
+                    break;
+            
+                case ("relations"):
+                    rowTpl = `<tr>
+                                <td class="ps-3"><a href="#/character/%id%">%full_name%</a></td>
+                                <td>%relationship%</td>
+                                <td><i class="bi-gender-%sex_slug%" title="%sex_word%"></i></td>
+                                <td class="text-end pe-3">
+                                    <button class="btn btn-sm btn-outline-dark char-rel-show" title="%display%" data-id="%id%" type="button">
+                                        <i class="bi-eye"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-outline-danger char-rel-del" title="%del_rel%" data-id="%id% type="button">
+                                        <i class="bi-trash3-fill"></i>
+                                    </button>
+                                </td>
+                            </tr>\n`
+                    if (self.character_data.relationships.length > 0) {
+                        $.each(self.character_data.relationships, function (k,i) {
+                            var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%relationship%", relationshipsObj[i.relations.id]);
+                            row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS.sex_word[i.sex]);
+                            row = row.replace("%display%", window.JS_STRINGS.display).replace("%del_rel%", window.JS_STRINGS.del_rel)
+                            rowData.push(row);
+                        })
+
+                        $("#char_no_relationships").hide();
+                        $("#char_relationships_table_container").show();
+                    } else {
+                        $("#char_no_relationships").show();
+                        $("#char_relationships_table_container").hide();
+                    }
+                    break;
+
+                default:
+                    return false;
+            }
+            if (targetDomId != "") {
+                $(targetDomId).html(rowData.join("\n"));
+                connectEvents(target);
+            }
+        }
 
         /* public methods */
         /**
@@ -132,13 +209,94 @@ $(document).ready(function (){
 
         /**
          * add episode to character via modal
+         * 
+         * @param {boolean} confirm : execute adding the episode to the character
          */
-        this.episodeAdd = function() {}
+        this.episodeAdd = function(confirm) {
+            if (typeof(confirm) != "boolean") { confirm = false; }
+
+            /* clear errors */
+            $(".form-validate").removeClass("is-invalid");
+            $("#appendEpisodeModal_episode_exists_msg").hide();
+
+            if (confirm === true) {
+                var epExists = false;
+                var epNum = 0;
+                var epTitle = "";
+                var go = true;
+
+                /* validate content */
+                if ($("#appendEpisodeModal_add").hasClass("active")) {
+                    epNum = parseInt($("#append_new_episode_num").val());
+                    epExists = episodesObj.epIdExists(epNum);
+                    epTitle = $("#append_new_episode_title").val();
+
+                    if (epNum == NaN || epExists) {
+                        $("#append_new_episode_num").addClass("is-invalid");
+                        if (epExists) {
+                            $("#appendEpisodeModal_episode_exists_msg").show();
+                        }
+                        $("#append_new_episode_num").focus();
+                        go = false;
+                    }
+                    if (epTitle.length < 1) {
+                        $("#append_new_episode_title").addClass("is-invalid");
+                        go = false;
+                    }            
+
+                    if (go) {
+                        episodesObj.update({"id": epNum, "name": epTitle});
+                    }
+
+                } else {
+                    epNum = parseInt($("#append_selected_episode").val());
+                    epTitle = episodesObj.list[epNum.toString()].name;
+                }
+
+                /* process episode content */
+                if (go) {
+                    self.character_data.episodes.push(epNum);
+                    $("#appendEpisodeModal").modal("hide");
+                    writeTable("episodes");
+                }
+                
+            } else {
+                $("#appendEpisodeModal").modal("show");
+                $("#appendEpisodeModal_select_tab").trigger("click"); // for some reason I need to do this or the tabs don't work; *slaps forehead*    
+                if ($("#append_selected_episode").prop("disabled")) {
+                    $("#appendEpisodeModal_add_tab").trigger("click"); 
+                    setTimeout(function() { $("#append_new_episode_num").focus(); }, 600);
+                }
+            }
+
+        }
 
         /**
          * delete episode from character via modal
+         * 
+         * @param {number}  id       ID of episode to delete
+         * @param {boolean} confirm  Confirms deletion of item from modal
          */
-        this.episodeDel = function() {}
+        this.episodeDel = function(id, confirm) {
+            if (typeof(id) != "number") { return false; }
+            if (typeof(confirm) != "boolean") { confirm = false; } 
+
+            var delModal = $("#deleteItemModal")
+            var delYesButton = $("#deleteItemModal_yes")
+            delYesButton.off("click"); /* disable clicking the Yes button */
+
+            if (confirm) {
+                var arrLoc = self.character_data.episodes.indexOf(id);
+                self.character_data.episodes.splice(arrLoc,1);
+                writeTable("episodes");
+                $(delModal).modal("hide");
+            } else {
+                $("#deleteItemModal_title_item").html(capitalizeFirst(window.JS_STRINGS["del_ep"]));
+                $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id)));                
+                $(delYesButton).click(function() { self.episodeDel(id, true); });
+                $(delModal).modal("show")
+            }
+        }
 
         /**
          * Fetch data from character form
@@ -194,14 +352,19 @@ $(document).ready(function (){
         this.writeFormData = function() {}
 
         /**
-         * add image to data to character
+         * add image to or remove image from character
+         * 
+         * @param {string}  action  : whether to "add" or "remove"
+         * @param {boolean} confirm : confirm removal; only works with "remove"
          */
-        this.imageAdd = function() {}
+        this.imageAddRemove = function(action, confirm) {}
 
         /**
          * Display image modal
+         * 
+         * @param {string} imgType : which image to handle: "body" or "head"
          */
-        this.imageModal = function() {}
+        this.imageHandler = function(imgType) {}
 
         connectEvents();
     }

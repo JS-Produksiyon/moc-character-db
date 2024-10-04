@@ -32,7 +32,7 @@ JS_STRINGS = {
     'del_title': _('Delete %item%'),
     'display': _('Display'),
     'edit': _('Edit'),
-    'episode_none': _('Add episode to select.'),
+    'episode_none': _('No episodes found. Please add one to select it.'),
     'episode': _('episode'),
     'Episode': _('Episode'), # capitalized version in case we need it case sensitive
     'episodes': _('episodes'),

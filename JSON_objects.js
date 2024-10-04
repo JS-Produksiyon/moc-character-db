@@ -21,6 +21,7 @@ character =
 		{
 			id: 0,
 			name: "", /* full name */
+			sex: "",
 			relation: { id:0, slug: "" }
 		}
 	],

@@ -95,8 +95,9 @@ def fetch_from_db():
 
         if count > 0:
             for row in query:
+                recDate = '' if row.recorded is None else row.recorded.strftime('%Y-%m-%d')
                 out[row.id] = {'id': row.id, 'name': row.name, 
-                               'recorded': row.recorded.strftime('%Y-%m-%d'), 
+                               'recorded': recDate, 
                                'characters': [] }
                 # for now we leave the characters empty until we make the character connection when adding the episodes to the character
 

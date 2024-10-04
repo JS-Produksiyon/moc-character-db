@@ -23,7 +23,7 @@ $(document).ready(function () {
     </h2>
     <div id="collapse_%id%" class="accordion-collapse collapse">
         <div class="accordion-body">
-            <div class="float-end mt-3 me-3">
+            <div class="float-end">
                 <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="%id%"><i class="bi bi-pencil"></i> %edit%</button></button>
                 <button type="button" class="btn btn-outline-danger delete-episode" data-episode="%id%" title="%delete%"><i class="bi-trash3-fill"></i></button></button>
             </div>
@@ -59,7 +59,9 @@ $(document).ready(function () {
             $(".delete-episode").click(function() { self.delete($(this).data("episode"), false); });
         }
 
-        /** configures whether to show the data or no data message*/ 
+        /** 
+         * Configures whether to show the data or no data message
+         */ 
         var showData = function () {
                         
             if (Object.keys(self.list).length < 1 && $("#eplist_no_chars").css("display") == "none") {
@@ -70,6 +72,29 @@ $(document).ready(function () {
                 $("#ep_list_accordion").show();
             }
 
+        }
+
+        /**
+         * Validate passed data
+         * 
+         * @param {object} data : the data to validate
+         * @returns {boolean}   : denoting validity
+         */
+        var validateData = function (data) {
+            var skeleton = (Object.keys(data).length > 2) ? { "id": "number", "name": "string", "recorded": "string" } :  { "id": "number", "name": "string" }
+            var valid = true;
+
+            if (Object.keys(data).length == Object.keys(skeleton).length) {
+                $.each(data, function (k,i) {
+                    if ((Object.keys(skeleton).indexOf(k) < 0) || (typeof(i) != skeleton[k])) { 
+                        valid = false;
+                    } 
+                });
+            } else {
+                valid = false;
+            }
+
+            return valid;
         }
 
 
@@ -144,11 +169,11 @@ $(document).ready(function () {
          * @param {number} id : id to check against list
          * @returns           : boolean denoting existence
          */
-        self.epIdExists = function(id) {
+        this.epIdExists = function(id) {
             var exists = false;
 
             $.each(self.list, function (k,i) {
-                if (i.id == i) { exists = true; }
+                if (i.id == id) { exists = true; }
             });
 
             return exists;
@@ -172,24 +197,39 @@ $(document).ready(function () {
         
         /**
          * update contents in database 
+         * 
+         * @param {object} args : a list of objects to add
          */
-        this.update = function() {
-            /* validate entries */
-            var fields = { "id": $("#addEditEpisodeModal_ep_num"), "name": $("#addEditEpisodeModal_ep_title"), "recorded": $("#addEditEpisodeModal_ep_date")}
+        this.update = function(args) {
+            var data = {"id": 0, "name": "", "recorded": "", "characters": [] };
+            var fields = {};
             var go = true;
 
-            if (parseInt(fields["id"].val()) < 1) {
-                fields["id"].addClass("is-invalid");
-                go = false;
+            /* validate object */
+            if (typeof(args) == "object" && !args.originalEvent) {
+                if(validateData(args)) {
+                    $.each(args, function (k,i) {
+                        data[k] = i;
+                    })
+                } else {
+                    go = false;
+                }
+            } else {
+                /* validate entries */
+                fields = { "id": $("#addEditEpisodeModal_ep_num"), "name": $("#addEditEpisodeModal_ep_title"), "recorded": $("#addEditEpisodeModal_ep_date")}
+                
+                if (parseInt(fields["id"].val()) < 1) {
+                    fields["id"].addClass("is-invalid");
+                    go = false;
+                }
+                if (fields["name"].val().length < 1) {
+                    fields["name"].addClass("is-invalid")
+                    go = false;
+                }
+                data = { "id": fields["id"].val(), "name": fields["name"].val(), "recorded": fields["recorded"].val(), "characters": [] };
             }
-            if (fields["name"].val().length < 1) {
-                fields["name"].addClass("is-invalid")
-                go = false;
-            }
-
             /* add or edit an episode */
             if (go) {
-                var data = { "id": fields["id"].val(), "name": fields["name"].val(), "recorded": fields["recorded"].val(), "characters": [] };
                 self.list[data["id"]] = data;
                 self.write();
 

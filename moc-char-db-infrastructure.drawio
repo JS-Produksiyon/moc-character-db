@@ -2060,37 +2060,95 @@
         <mxCell id="iXbPAdVymW7NrSQkOiH5-18" value="link event listeners to buttons" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="B0hTzcXyFTBnTUj3ns1S-1" vertex="1">
           <mxGeometry x="40" y="430" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="OOtVUFfrK-4jOwB-Aa0w-8" value="imageAdd" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
-          <mxGeometry x="1730" y="10" width="800" height="320" as="geometry" />
+        <mxCell id="OOtVUFfrK-4jOwB-Aa0w-8" value="imageAddRemove" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
+          <mxGeometry x="1740" y="10" width="790" height="330" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="OOtVUFfrK-4jOwB-Aa0w-9" target="m0HWkmLwCYZo2U75DOiY-3">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="OOtVUFfrK-4jOwB-Aa0w-9" value="use FileReader API to acces file&amp;nbsp;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="OOtVUFfrK-4jOwB-Aa0w-8" vertex="1">
-          <mxGeometry x="30" y="100" width="120" height="60" as="geometry" />
+          <mxGeometry x="160" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" target="m0HWkmLwCYZo2U75DOiY-1">
           <mxGeometry relative="1" as="geometry">
             <mxPoint x="290" y="170" as="sourcePoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="dPyB78ezm4RkRHGM0ggm-27" value="triggered by Upload button on image upload modal" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OOtVUFfrK-4jOwB-Aa0w-8" vertex="1">
-          <mxGeometry x="10" y="50" width="170" height="30" as="geometry" />
+        <mxCell id="dPyB78ezm4RkRHGM0ggm-27" value="add triggered by Upload button on image management modal&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;remove triggered by delete button on image management modal&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;confirm triggered by confirmation dialog&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="OOtVUFfrK-4jOwB-Aa0w-8" vertex="1">
+          <mxGeometry x="10" y="180" width="130" height="120" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="m0HWkmLwCYZo2U75DOiY-3" target="m0HWkmLwCYZo2U75DOiY-5">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-3" value="base64 encode the image" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
-          <mxGeometry x="230" y="100" width="120" height="60" as="geometry" />
+          <mxGeometry x="320" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-8" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="m0HWkmLwCYZo2U75DOiY-5" target="m0HWkmLwCYZo2U75DOiY-7">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-5" value="write base64 encoding to character JSON object" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
-          <mxGeometry x="430" y="100" width="120" height="60" as="geometry" />
+          <mxGeometry x="480" y="40" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="m0HWkmLwCYZo2U75DOiY-7" value="display image in interface" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
-          <mxGeometry x="635" y="100" width="120" height="60" as="geometry" />
+          <mxGeometry x="635" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-13" value="action" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="10" y="30" width="80" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-14" value="add" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="aTiUKEkbGZ1hZ0PRjwib-13">
+          <mxGeometry y="30" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-15" value="remove" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="aTiUKEkbGZ1hZ0PRjwib-13">
+          <mxGeometry y="60" width="80" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-14" target="OOtVUFfrK-4jOwB-Aa0w-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-32" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-20" target="aTiUKEkbGZ1hZ0PRjwib-31">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-20" value="set variables in delItem dialog" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="310" y="135" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-28" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-26" target="aTiUKEkbGZ1hZ0PRjwib-20">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-35" value="false" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aTiUKEkbGZ1hZ0PRjwib-28">
+          <mxGeometry x="-0.3" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-39" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-26" target="aTiUKEkbGZ1hZ0PRjwib-38">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-42" value="true" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="aTiUKEkbGZ1hZ0PRjwib-39">
+          <mxGeometry x="-0.2" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-26" value="confirm?" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="160" y="125" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-15" target="aTiUKEkbGZ1hZ0PRjwib-26">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-34" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-31" target="aTiUKEkbGZ1hZ0PRjwib-33">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-31" value="set Yes button trigger confirmation on imageAddRemove" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="470" y="135" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-33" value="display delItem dialog" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;rounded=0;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="635" y="135" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-41" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="OOtVUFfrK-4jOwB-Aa0w-8" source="aTiUKEkbGZ1hZ0PRjwib-38" target="aTiUKEkbGZ1hZ0PRjwib-40">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-38" value="clear image info in character JSON object" style="whiteSpace=wrap;html=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="170" y="250" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-40" value="remove image in interface" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="OOtVUFfrK-4jOwB-Aa0w-8">
+          <mxGeometry x="350" y="250" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="_oFtfLj3TdMBLKvAluDA-31" value="episodeAdd" style="swimlane;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;" parent="1" vertex="1">
           <mxGeometry x="1730" y="353" width="800" height="130" as="geometry" />
@@ -2410,6 +2468,9 @@
         </mxCell>
         <mxCell id="5yFeKGhBedsExVCRj469-2" value="&lt;pre style=&quot;margin-top: 0px;&quot;&gt;$(&quot;#character_episode_add&quot;).click(character.episodeAdd);&lt;/pre&gt;&lt;pre style=&quot;margin-top: 0px;&quot;&gt;$(&quot;#character_relation_add&quot;).click(character.relationAdd);&lt;/pre&gt;&lt;pre style=&quot;margin-top: 0px;&quot;&gt;$(&quot;#character_save&quot;).click(character.writeFormData);&lt;/pre&gt;&lt;pre style=&quot;margin-top: 0px;&quot;&gt;$(&quot;#upload_image&quot;).click(character.uploadImage);&lt;/pre&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="5yFeKGhBedsExVCRj469-1" vertex="1">
           <mxGeometry x="10" y="30" width="780" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="aTiUKEkbGZ1hZ0PRjwib-12" value="imageHandler" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="3410" y="10" width="830" height="200" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

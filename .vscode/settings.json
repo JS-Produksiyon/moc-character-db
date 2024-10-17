@@ -10,9 +10,11 @@
     ],
     "sqltools.useNodeRuntime": true,
     "cSpell.words": [
+        "csrf",
         "dselect",
         "jsstrings",
         "ndash",
+        "nodata",
         "notdefined"
     ]
 }

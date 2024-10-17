@@ -22,8 +22,13 @@ from flask_babel import lazy_gettext as _
 
 JS_STRINGS = {
     'es_read_failure': _('Unable to retrieve the %item% from the database.'),
+    'es_read_nodata': _('Requested %item% was not found in database.'),
+    'es_read_success': _('%item% successfully retrieved from database'),
     'es_write_failure': _('Unable to write the %item% to database.'),
     'es_write_success': _('The %item% was written to database successfully.'),
+    'character': _('character'),
+    'char_invalid_data': _('Character data could not be updated. There are invalid data in one of the fields. Please check all the fields and correct them.'),
+    'char_not_saved': _('Something went severely wrong the character could not be saved at all. Please let the developers know!'),
     'del_ep': _('Remove Episode'),
     'del_err': _('Unable to delete %item% %id%.'),
     'del_modal_text': _('You are about to delete %item%.'),

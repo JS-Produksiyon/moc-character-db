@@ -15,7 +15,7 @@ character =
 	image_body: "",
 	animation_status: 0,
 	residence: 0,
-	marital_status: 0,
+	marital_status: "",
 	acted_by: 0,
 	relationships: [
 		{
@@ -37,7 +37,7 @@ char_list =
 		name: "", /* full name */
 		sex: "",
 		episodes: 0, /* episode count */
-		animation_status: 0
+		animation_status: ""
 	}
 }
 

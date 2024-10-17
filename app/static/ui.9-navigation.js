@@ -4,7 +4,7 @@
  * 
  *   File name: ui.navigation.js
  *   Date Created: 2024-09-17
- *   Date Modified: 2024-09-27
+ *   Date Modified: 2024-10-11
  * 
  */
 
@@ -21,6 +21,11 @@ window.HashMgr = function () {
 
     /* methods */
     this.tracker = function() {
+        /* check for unsaved state */
+        if (window.saveState) {
+            window.saveState.check();
+        }
+
         /* only trigger if we haven't manually updated the thingy */
         if (typeof(self.goNav) == 'boolean' && self.goNav === true) {
             console.log("Current location: " + window.location.hash);
@@ -66,34 +71,46 @@ window.UnsavedChanges = function() {
      * check to see if there are unsaved changes
      */
     this.check = function() {
+        var localNavObj  = { goNav: false }; // here we make sure that the check function works, even if the nav object isn't there!
+
+        if (window.navObj) {
+            localNavObj = window.navObj;
+        } 
+
+        localNavObj.goNav = false;
+
         if (self.dirty) {
             $("#navFromUnsavedModal").modal("show");
+            $("#navFromUnsavedModal_yes").off("click"); // just to make sure we don't get multiple clicks...
             $("#navFromUnsavedModal_yes").click(function () {
                 self.clearUnsaved();
+                localNavObj.goNav = true;
                 window.dispatchEvent(new HashChangeEvent("hashchange"));
+                $("#navFromUnsavedModal").modal("hide");
             });
             $("#navFromUnsavedModal_no").click(function () {
                 if (self.oldHash != "" && self.oldHash != window.location.has) {
-                    window.navObj.goNav = false;
                     window.location.hash = self.oldHash;
                 }
                 $("#navFromUnsavedModal").modal("hide");
             });
-        } 
+        } else {
+            localNavObj.goNav = true; // make sure we navigate if everything is clean
+        }
     }
 
     /**
      * clear the unsaved flag
      */
     this.clearUnsaved = function() {
-        this.dirty = false;
+        self.dirty = false;
     }
 
     /**
      * set the unsaved flag
      */
     this.setUnsaved = function() {
-        this.dirty = true;
+        self.dirty = true;
     }
 }
 

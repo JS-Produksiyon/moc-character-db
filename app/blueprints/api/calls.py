@@ -5,7 +5,7 @@
 
     File name: blueprints/api/calls.py
     Date Created: 2024-09-12
-    Date Modified: 2024-10-01
+    Date Modified: 2024-10-15
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -65,8 +65,9 @@ def fetch_from_db():
     """
     out = {}
     count = 0
+    nextId = 1
     what = request.values.get('what')
-    
+        
     if what == 'actors':
         query = Actor.query.all()
         count = len(query)
@@ -77,17 +78,23 @@ def fetch_from_db():
 
     elif what == 'character':
         try:
-            id = int(request.args.get('id'))
+            id = int(request.values['id'])
         except (TypeError, ValueError):
-            return jsonify({'error':'character_invalid_id'})
+            return jsonify({'error': _('Invalid character id passed.')})
         
-        out = {'character':id}
+        query = Character.query.get(int(request.values['id']))
+        nextId = Character.query.all()[-1] + 1 if len(Character.query.all()) > 0 else 1 # this is here because pulling an individual character from the DB is different
+        
 
     elif what == 'character_list':
-        query = Character.query.order_by(Character.first_name, Character.last_name)
-        if query.count() > 0:
-            pass
-        
+        query = Character.query.order_by(Character.first_name, Character.last_name).all()
+        count = len(query)
+
+        if count > 0:
+            for row in query:
+                out[row.id] = { 'id': row.id, 'name': f"{row.first_name} {row.last_name}", 
+                                'sex': row.sex, 'episodes': row.rel_episodes.count(), 
+                                'animation_status': row.animation_status }
 
     elif what == 'episodes':
         query = Episode.query.order_by(Episode.id).all()
@@ -125,7 +132,11 @@ def fetch_from_db():
         what = 'error'
         out = 'Invalid query: ' + request.data
 
-    return jsonify({what: out, 'records': count})
+    # get the last id of the query
+    if count > 0:
+        nextId = query[-1].id + 1
+
+    return jsonify({what: out, 'records': count, 'next': nextId})
 
 
 @api.route('/imageupload', methods=['POST'])
@@ -178,6 +189,107 @@ def write_to_db():
             else:
                 return jsonify({'error': _('No data passed')})       
         
+        # write the character to the database
+        elif request.form['what'] == 'character':
+            keys = {'csrf_token': str, 'what': str, 'data': str }
+            charData = { 'id': int, 'first_name': str, 'last_name': str,
+	                 'sex': str, 'age': str, 'physical': str, 'personality': str, 'employment': str,
+	                 'image_head': str, 'image_body': str, 'animation_status': str, 'residence': int,
+                     'marital_status': str, 'acted_by': int, 'relationships': [ { 'id': int,
+			         'name': str,  'sex': str, 'relation': { 'id': int, 'slug': str, 'sex': str } }], 
+                     'episodes': [int] }
+            
+            try:
+                if len(request.form) != len(keys):
+                    raise KeyError(_('Invalid number of keys passed: {sent} not {sought}').format(sent=len(request.form), sought=len(keys)))
+            
+                data = json.loads(request.form['data'])
+
+                if len(data) != len(charData):
+                    raise KeyError(_('Invalid number of character data keys passed: {sent} not {sought}').format(sent=len(data), sought=len(charData)))
+                
+                for item in charData:
+                    if item not in data.keys():
+                        raise KeyError(_('Required data for {item} not passed.').format(item=item))
+                
+                validate = validateDataType(data, charData)
+
+                if not validate == 'valid':
+                    raise TypeError(_('Invalid data type passed: {e}').format(e=validate))
+                
+                query = Character.query.get(data['id'])
+
+                if query is None:
+                    query = Character(id=data['id'])
+
+                query.age = sanitizeString(data['age'])
+                query.animation_status = sanitizeString(data['animation_status'])
+                query.employment = sanitizeString(data['employment'])
+                query.first_name = sanitizeString(data['first_name'])
+                query.image_body = data['image_body'] # need to write a little function here to make sure that these actually contain image data only!
+                query.image_head = data['image_head']
+                query.last_name = sanitizeString(data['last_name'])
+                query.marital_status = sanitizeString(data['marital_status'])
+                query.personality = sanitizeString(data['personality'])
+                query.physical = sanitizeString(data['physical'])
+                query.sex = sanitizeString(data['sex'])
+
+                # add actors and residence
+                query.acted_by = Actor.query.get(id=data['acted_by']) if int(data['acted_by']) > 0 else ''
+                query.residence = Residence.query.get(id=data['residence']) if int(data['residence']) > 0 else ''
+
+                # add episodes
+                if len(data['episodes'] > 0):
+                    for item in data['episodes']:
+                        query.rel_episodes.append(Episode.query.get(item))
+                
+                query.save()
+
+                # add relationships
+                if len(data['relationships']) > 0:
+                    for item in data['relationships']:
+                        # get relationship slug object
+                        relTypeQuery = RelationTypes.query.filter_by(slug=item['relations']['relation']['slug'])
+
+                        if relTypeQuery is None:
+                            raise TypeError(_('No relationship of type {slug} exists.').format(item['relations']['relation']['slug']))
+
+                        # relationship from main to other
+                        subQuery = Relationship.query.filter_by(main_character=query.id, 
+                                                                other_character= item['id']).first()
+
+                        if subQuery is None:
+                            subQuery = Relationship()
+
+                        subQuery.main_character = query.id
+                        subQuery.other_character = item['id']
+                        subQuery.relationship = item['relation']['slug']
+                        subQuery.save()
+
+                        # relationship from other to main
+                        subQuery = Relationship.query.filter_by(main_character=item['id'], 
+                                                                other_character= query.id).first()
+
+                        if subQuery is None:
+                            subQuery = Relationship()
+
+                        if (item['relation']['sex'] == 'male'):
+                            reverse = relTypeQuery.reciprocal_male
+                        elif (item['relation']['sex'] == 'female'):
+                            reverse = relTypeQuery.reciprocal_female
+                        else:
+                            raise TypeError(_('No valid reciprocal relationship type for {slug} defined.').format(slug=relTypeQuery.slug))
+
+                        subQuery.main_character = item['id']
+                        subQuery.other_character = query.id
+                        subQuery.slug = reverse
+                        subQuery.save()
+
+                        return jsonify({'success': _('Character {name} saved').format(f'{query.first_name} {query.last_name}')})
+
+            except (KeyError, TypeError) as e:
+                return jsonify({'error': _('Unable to save {item}: {error}').format(item=_('character'), error={str(e)})})
+
         # write the episode to the database
         elif request.form['what'] == 'episodes':
             keys = { 'csrf_token': str, 'what': str,  'id': int, 'name': str, 'recorded': str, 'characters': str}
@@ -287,3 +399,4 @@ def write_default_relation_types():
 
     else:
         return jsonify({'success':'already_loaded'})
+    

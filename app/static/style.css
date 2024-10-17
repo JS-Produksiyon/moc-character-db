@@ -51,7 +51,7 @@ main {
     position: absolute;
     right: 0;
     top: 0;
-    height: 56px;
+    height: 80px;
     padding: 0.5rem 0.7rem;
     border-radius: 0.5rem;
     color: var(--bs-white);

@@ -164,7 +164,7 @@ $(document).ready(function () {
 
     window.actorsObj = new ExtensibleSelect({"btn_add": "#char_btn_add_actor", "btn_save": "#addActorModal_save", 
                                              "input": "#add_actor_name", "modal": "#addActorModal", 
-                                             "no_content_msg" : window.JS_STRINGS["actors_none"], "select": "#char_actor", 
+                                             "no_content_msg" : window.JS_STRINGS["actors_none"], "select": "#char_acted_by", 
                                              "what": "actors"});
     window.residenceObj = new ExtensibleSelect({"btn_add": "#char_btn_add_residence", "btn_save": "#addResidenceModal_save", 
                                                 "input": "#add_residence_name", "modal": "#addResidenceModal", 

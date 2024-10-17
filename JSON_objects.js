@@ -90,3 +90,7 @@ settings =
 	"SECRET_KEY" : "",
 	"SQLALCHEMY_DATABASE_URI": ""
 }
+
+/* characters for working on relationship connections */
+/* will need to be imported with JSON.parse */
+rel_char = JSON.parse('{"1":{"id":1,"name":"Harun Akalin","sex":"male","episodes":2,"animation_status":"inuse"},"2":{"id":2,"name":"Erkan Akalin","sex":"male","episodes":1,"animation_status":"inuse"},"3":{"id":3,"name":"Miray Akalin","sex":"female","episodes":0,"animation_status":"notdefined"}}');

@@ -468,7 +468,15 @@ $(document).ready(function (){
                 if (self.character_data.id == 0) { 
                     self.character_data.id = id; 
                     $("input[name=id]").val(id);
+                    
+                    /* switch interface to editing mode */
+                    $("#character_add").hide();
+                    $("#character_edit").show();
+                    $("#add_char_btn").show();
                 }
+                if (window.saveState) { window.saveState.clearUnsaved(); } /* make sure that we are now saved */
+                $(window).scrollTo(0);                                     /* back to top */
+                window.flash.display(window.JS_STRINGS["char_saved"], "success");
             } else {
                 $("#majorErrorModal_text").html(window.JS_STRINGS["char_not_saved"]);
                 $("#majorErrorModal").modal("show");

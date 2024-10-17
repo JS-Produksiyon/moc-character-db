@@ -29,6 +29,7 @@ JS_STRINGS = {
     'character': _('character'),
     'char_invalid_data': _('Character data could not be updated. There are invalid data in one of the fields. Please check all the fields and correct them.'),
     'char_not_saved': _('Something went severely wrong the character could not be saved at all. Please let the developers know!'),
+    'char_saved': _('The character was saved successfully.'),
     'del_ep': _('Remove Episode'),
     'del_err': _('Unable to delete %item% %id%.'),
     'del_modal_text': _('You are about to delete %item%.'),

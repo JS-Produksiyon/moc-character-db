@@ -4,6 +4,7 @@
         <h1 id="character_details">{{ _('Character Details') }}</h1>
         <h2 id="character_add">{{ _('Add Character') }}</h2>
         <h2 id="character_edit">{{ _('Edit Character') }}</h2>
+        <p class="mb-3">{{ _('Items marked with an asterisk {star} are required to be filled out.').format(star='<span class="text-danger">*</span>') }}</p>
         <form id="character_details_form" onsubmit="return false;" class="rounded-3 border p-2">
             <input type="hidden" name="csrf_token" id="csrf_token" value="{{ csrf_token() }}">
             <input type="hidden" value="" id="char_id" name="id">
@@ -14,7 +15,7 @@
             </div>
             <div class="row">
                 <div class="col-4 p-3">
-                    <input type="text" class="form-control border-0 fs-2 form-validate" placeholder="{{ _('First Name') }}" name="first_name" id="char_first_name">
+                    <input type="text" class="form-control border-0 fs-2 form-validate" placeholder="*{{ _('First Name') }}" name="first_name" id="char_first_name">
                     <div class="invalid-feedback">{{ _('Please enter a valid first name. It should be at least one character long.') }}</div>
                 </div>
                 <div class="col-4 h2 p-3">
@@ -30,23 +31,25 @@
                     <input type="text" class="form-control" placeholder="35" name="age" id="char_age">
                     <small class="text-secondary">{{ _('This can be a number or a range (e.g. in his 30’s)') }}</small>
                 </div>
-                <label class="col-1 col-form-label text-end" for="char_sex">{{ _('Sex') }}:</label>
+                <label class="col-1 col-form-label text-end" for="char_sex"><span class="text-danger">*</span>{{ _('Sex') }}:</label>
                 <div class="col-2">
                     <select class="form-select form-validate" name="sex" id="char_sex">
                         <option value="0">{{ _('Select') }}...</option>
-                        <option value="e">{{ _('Male') }}</option>
-                        <option value="k">{{ _('Female') }}</option>
+                        <option value="male">{{ _('Male') }}</option>
+                        <option value="female">{{ _('Female') }}</option>
                     </select>
                     <div class="invalid-feedback">{{ _('Please select the sex of the character.') }}</div>
                 </div>
-                <label class="col-2 col-form-label text-end" for="char_residence">{{ _('Residence') }}:</label>
+                <label class="col-2 col-form-label text-end" for="char_marital_status"><span class="text-danger">*</span>{{ _('Marital Status') }}:</label>
                 <div class="col-3">
-                    <select class="form-select" name="residence" id="char_residence">
+                    <select class="form-select" name="marital_status" id="char_marital_status">
                         <option value="0">{{ _('Select') }}...</option>
+                        <option value="single">{{ _('Single') }}</option>
+                        <option value="married">{{ _('Married') }}</option>
+                        <option value="divorced">{{ _('Divorced') }}</option>
+                        <option value="widowed">{{ _('Widowed') }}</option>
                     </select>
-                </div>
-                <div class="col-1 pt-1">
-                    <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Location') }}" type="button" id="char_btn_add_residence"><i class="bi-plus"></i></button>
+                    <div class="invalid-feedback">{{ _('Please select the marital status of the character.') }}</div>
                 </div>
             </div>
             <div class="row mb-2">
@@ -60,7 +63,7 @@
                     <label class="h3" for="char_physical_description" class="form-label">{{ _('Physical Description') }}:</label>
                     <div class="row">
                         <div class="col">
-                            <textarea class="form-control" name="physical_description" id="char_physical_description" rows="7"></textarea>
+                            <textarea class="form-control" name="physical" id="char_physical_description" rows="7"></textarea>
                         </div>
                     </div>
                 </div>
@@ -78,6 +81,25 @@
                     </select>
                 </div>
             </div>
+            <div class="row mb-4">
+                <div class="col ps-3 pe-3">
+                    <label class="h3" for="char_personality_description" class="form-label">{{ _('Personality Description') }}:</label>
+                    <div class="ps-2 pe-2">
+                        <textarea class="form-control" name="personality" id="char_personality_description" rows="5"></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-4">
+                <label class="col-3 col-form-label text-end" for="char_residence">{{ _('Residence') }}:</label>
+                <div class="col-5">
+                    <select class="form-select" name="residence" id="char_residence">
+                        <option value="0">{{ _('Select') }}...</option>
+                    </select>
+                </div>
+                <div class="col-1 pt-1">
+                    <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Location') }}" type="button" id="char_btn_add_residence"><i class="bi-plus"></i></button>
+                </div>
+            </div>
             <div class="row mb-3">
                 <label class="col-3 text-end pt-2" for="char_actor">{{ _('Character Acted by') }}:</label>
                 <div class="col-5">
@@ -87,14 +109,6 @@
                 </div>
                 <div class="col-1 pt-1">
                     <button class="btn btn-sm btn-outline-secondary" title="{{ _('Add Actor') }}" type="button" id="char_btn_add_actor"><i class="bi-plus"></i></button>
-                </div>
-            </div>
-            <div class="row mb-4">
-                <div class="col ps-3 pe-3">
-                    <label class="h3" for="char_character_description" class="form-label">{{ _('Personality Description') }}:</label>
-                    <div class="ps-2 pe-2">
-                        <textarea class="form-control" name="character_description" id="char_character_description" rows="5"></textarea>
-                    </div>
                 </div>
             </div>
             <div class="row mb-4">

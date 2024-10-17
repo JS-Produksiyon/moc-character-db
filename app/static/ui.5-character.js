@@ -38,6 +38,8 @@ $(document).ready(function (){
             if (target == "") {
                 $("#char_btn_add_episode").click(function () { self.episodeAdd(false); });
                 $("#appendEpisodeModal_save").click(function () { self.episodeAdd(true); });
+                $("#char_btn_add_relationship").click(function () { self.relationAdd(false); });
+                $("#appendRelationshipModal_save").click(function () { self.relationAdd(true); });
                 $("#save_char_btn").click(self.writeDbData)
             }
             if (target == "episodes" || target == "") {
@@ -422,8 +424,62 @@ $(document).ready(function (){
 
         /**
          * add relationship to character via modal
+         * 
+         * @param {boolean} confirm : confirms the adding of the relationship to the character
          */
-        this.relationAdd = function() {}
+        this.relationAdd = function(confirm) {
+            /* load the relationship items */
+            if (typeof(confirm) != "boolean") { confirm = false; } /* so we don't trigger the save */
+
+            /* check for missing window.charListObj here, because it is needed multiple times below! */
+            if (!window.charListObj) {
+                $("#majorErrorModal_text").html(window.JS_STRINGS["char_no_charListObj"]);
+                $("#majorErrorModal").modal("show");
+                return false;
+            }
+
+            if (confirm) {
+                var charId = $("#appendRelationshipModal_character").val();
+                var relSlug = $("#appendRelationshipModal_relation").val();
+                
+                self.character_data.relationships.push({ 
+                        "id": charId, 
+                        "name": window.charListObj.list[charId].name, 
+                        "sex": window.charListObj.list[charId].sex, 
+                        "relation": { "id": (window.relationshipObj) ? window.relationshipObj.getIdFromSlug[relSlug] : 0, /* this is so this will always have a valid entry */
+                                    "slug": relSlug } 
+                    });
+
+                writeTable("relationships");
+
+                $("#appendRelationshipModal").modal("hide");
+            } else {
+                /* first build the list and omit the current character, if in the list */
+                    $("#appendRelationshipModal_noCharacters").hide();
+                    $("#appendRelationshipModal_form").hide();
+                    $("#appendRelationshipModal_save").prop("disabled", false);
+                    
+                    if (Object.keys(window.charListObj.list).length > 0) {
+                        var thisCharacter = self.character_data.id;
+                        var optionTags = [`<option value="0">${window.JS_STRINGS.select_character}</option>`];
+                        $.each(window.charListObj.list, function (k,i) {
+                            if (k != thisCharacter) {
+                                optionTags.push(`<option value="${k}">${i.name}</option>`);
+                            }
+                        });
+                        dselectRemove("#appendRelationshipModal_character");
+                        $("#appendRelationshipModal_character").html(optionTags.join("\n"));
+                        $("#appendRelationshipModal_character").val("0");
+                        dselect("#appendRelationshipModal_character", { search: true });
+                    } else {
+                        $("#appendRelationshipModal_noCharacters").show();                        
+                        $("#appendRelationshipModal_save").prop("disabled", true);
+                    }
+                    
+                    $("#appendRelationshipModal").modal("show");
+            } 
+
+        }
    
         /**
          * delete relationship from character via modal

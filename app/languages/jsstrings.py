@@ -28,6 +28,7 @@ JS_STRINGS = {
     'es_write_success': _('The %item% was written to database successfully.'),
     'character': _('character'),
     'char_invalid_data': _('Character data could not be updated. There are invalid data in one of the fields. Please check all the fields and correct them.'),
+    'char_no_charListObj': _('The character list JavaScript Object could not be found. This is an unrecoverable system error. Please reload this page. If it does not solve the problem, restart the database program.'),
     'char_not_saved': _('Something went severely wrong the character could not be saved at all. Please let the developers know!'),
     'char_saved': _('The character was saved successfully.'),
     'del_ep': _('Remove Episode'),

@@ -7,23 +7,23 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body" id="imageBoxModal_body">
-                <h5 id="imageBoxModal_body_headshot">{{ _('Head Shot') }}</h5>
-                <h5 id="imageBoxModal_body_bodyshot">{{ _('Full Body Shot') }}</h5>
+                <h5 id="imageBoxModal_body_headshot" class="ibm-hide">{{ _('Head Shot') }}</h5>
+                <h5 id="imageBoxModal_body_bodyshot" class="ibm-hide">{{ _('Full Body Shot') }}</h5>
                 <div class="d-flex justify-content-center">
                     <div id="largeImage" class="border border-3 bg-light"></div>
                 </div>
-                <div class="text-center mb-3" id="imageBoxModal_delete_img">
+                <div class="text-center mb-3 ibm-hide" id="imageBoxModal_delete_img">
                     <button class="btn btn-outline-danger"><i class="bi bi-file-x"></i> {{ _('Delete Image') }}</button>
                 </div>
-                <div class="mb-3" id="imgBoxModal_upload_img">
+                <div class="mb-3 ibm-hide" id="imgBoxModal_upload_img">
                     <form id="imageBoxModal_form">
                         <div class="row justify-content-md-center">
-                            <div class="col-2 text-end pt-2 form-label">{{ _('Upload Image:') }}</div>
+                            <div class="col-2 text-end pt-2 form-label">{{ _('Select Image:') }}</div>
                             <div class="col-4 text-center mb-3 me-3">
-                                <input type="file" class="form-control">
+                                <input type="file" class="form-control" id="imgBoxModal_img" accept=".svg, .png, .jpeg, .jpg">
                             </div>
                             <div class="col-2">
-                                <button type="button" class="btn btn-dark"><i class="bi bi-file-arrow-up"></i> {{ _('Upload') }}</button>
+                                <button type="button" class="btn btn-dark"><i class="bi bi-file-arrow-up"></i> {{ _('Load') }}</button>
                             </div>
                         </div>
                     </form>

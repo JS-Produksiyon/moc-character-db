@@ -48,6 +48,8 @@ JS_STRINGS = {
     'ep_no_characters': _('No characters assigned'),
     'ep_num': _('the episode number'),
     'ep_rec_date': _('Recorded on'),
+    'image_body_shot': _('Character body shot'),
+    'image_head_shot': _('Character head shot'),
     'general_failure': _('An error occurred while interacting with the database. Data was not %action%.'),
     'rec_date': _('Date Recorded'),
     'select_add_actor': _('Add Actor'),

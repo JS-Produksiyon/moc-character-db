@@ -40,7 +40,9 @@ $(document).ready(function (){
                 $("#appendEpisodeModal_save").click(function () { self.episodeAdd(true); });
                 $("#char_btn_add_relationship").click(function () { self.relationAdd(false); });
                 $("#appendRelationshipModal_save").click(function () { self.relationAdd(true); });
-                $("#save_char_btn").click(self.writeDbData)
+                $("#save_char_btn").click(self.writeDbData);
+                $("#character_image_body").click(function () { self.imageHandler("body"); });
+                $("#character_image").click(function () { self.imageHandler("head"); });
             }
             if (target == "episodes" || target == "") {
                 $(".char-ep-del").click(function () { self.episodeDel($(this).data("id")); } );
@@ -63,7 +65,6 @@ $(document).ready(function (){
          */
         var display = function (action) {
             if (typeof(action) != "string") { action = "add"; }
-
 
             switch(action) {
                 case "edit":
@@ -586,7 +587,39 @@ $(document).ready(function (){
          * 
          * @param {string} imgType : which image to handle: "body" or "head"
          */
-        this.imageHandler = function(imgType) {}
+        this.imageHandler = function(imgType) {
+            if (typeof(imgType) != "string") {  return false;  }
+            if (imgType != "body" && imgType != "head") { return false; }
+
+            var titleDomId = "";
+            var imageContent = "";
+            var imageTitle = "";
+
+            $("#largeImage").html("");
+            $(".ibm-hide").hide(); /* hide all layers that are context sensitive */
+            $("#imgBoxModal_img").val("");
+
+            if (imgType == "body") {
+                titleDomId = "#imageBoxModal_body_bodyshot";
+                imageContent = self.character_data.image_body;
+                imageTitle = window.JS_STRINGS.image_body_shot;
+            } else if (imgType == "head") {
+                titleDomId = "#imageBoxModal_body_headshot";
+                imageContent = self.character_data.image_head;
+                imageTitle = window.JS_STRINGS.image_head_shot;
+            }
+
+            $(titleDomId).show();
+
+            if (imageContent != "") {
+                $("#largeImage").html(`<img alt="${imageTitle}" src="${imageContent}">`);
+                $("#imageBoxModal_delete_img").show();
+            } else {
+                $("#imgBoxModal_upload_img").show();
+            }
+
+            $("#imageBoxModal").modal("show");
+        }
 
         connectEvents();
     }

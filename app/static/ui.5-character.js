@@ -43,6 +43,8 @@ $(document).ready(function (){
                 $("#save_char_btn").click(self.writeDbData);
                 $("#character_image_body").click(function () { self.imageHandler("body"); });
                 $("#character_image").click(function () { self.imageHandler("head"); });
+                $("#imgBoxModal_del").click(function () { self.imageAddRemove("remove", false)});
+                $("#imgBoxModal_load").click(function () { self.imageAddRemove("add", false)});
             }
             if (target == "episodes" || target == "") {
                 $(".char-ep-del").click(function () { self.episodeDel($(this).data("id")); } );
@@ -565,6 +567,18 @@ $(document).ready(function (){
             $.each(self.character_data, function (k,i) {
                 if (k == "episodes" || k == "relationships") {
                     writeTable(k);
+                } else if (k == "image_head") {
+                    if (i == "") {
+                        $("#character_image").css("background-image", "url(/assets/empty-char-picture.svg)");
+                    } else {
+                        $("#character_image").css("background-image", `url(${i})`);
+                    }
+                } else if (k == "image_body") {
+                    if (i == "") {
+                        $("#character_image_body").css("background-image", "url(/assets/empty-char-t-pose.svg)");
+                    } else {
+                        $("#character_image_body").css("background-image", `url(${i})`);
+                    }
                 } else {
                     $(`input[name=${k}]`).val(i);
                 }
@@ -580,7 +594,68 @@ $(document).ready(function (){
          * @param {string}  action  : whether to "add" or "remove"
          * @param {boolean} confirm : confirm removal; only works with "remove"
          */
-        this.imageAddRemove = function(action, confirm) {}
+        this.imageAddRemove = function(action, confirm) {
+            if (typeof(action) != "string") { return false; }
+            if (typeof(confirm) != "boolean") { confirm = false; }
+
+            if ($("#imageBoxModal_body_headshot").css("display") != "none") {
+                var target = "head";
+            } else if ($("#imageBoxModal_body_bodyshot").css("display") != "none") { 
+                var target = "body"
+                var imageTitle = window.JS_STRINGS.image_body_shot;
+            }
+
+            if (action == "add") {
+
+                let file =$("#imgBoxModal_img")[0].files[0];
+                if (file) {
+                    let reader = new FileReader();
+                    /* for speed's sake loads the new image both into the character_data object AND the image in the modal */
+                    reader.onload = function (content) {
+                        let b64str = content.target.result;
+                        let imageTitle = "";
+                        if (target == "body") {
+                            self.character_data.image_body = b64str;
+                            imageTitle = window.JS_STRINGS.image_body_shot;
+                        } else if (target == "head") {
+                            self.character_data.image_head = b64str;
+                            imageTitle = window.JS_STRINGS.image_body_shot;
+                        }
+                        $("#largeImage").html(`<img alt="${imageTitle}" src="${b64str}">`);        
+                        $("#imageBoxModal_body_save_success").slideDown();
+                        $("#imageBoxModal_upload_img").fadeOut(400, function() { $("#imageBoxModal_delete_img").fadeIn(); });
+                        setTimeout(function () { $("#imageBoxModal_body_save_success").slideUp(); }, 5000);
+                        self.writeFormData();
+                    }
+                    reader.readAsDataURL(file);
+                }
+
+            } else if (action == "remove") {
+                if (confirm) {
+                    $("#deleteItemModal_yes").off("click");
+                    $("#deleteItemModal").modal("hide");
+                    if (target == "head") {
+                        self.character_data.image_head = "";
+                    } else if (target == "body") {
+                        self.character_data.image_body = "";
+                    }
+                    self.writeFormData();
+                    $("#largeImage").html("");
+                    $("#imageBoxModal_body_del_success").slideDown();
+                    $("#imageBoxModal_delete_img").fadeOut(400, function() { $("#imageBoxModal_upload_img").fadeIn(); })
+                    setTimeout(function () { $("#imageBoxModal_body_del_success").slideUp(); }, 5000);
+                } else {
+                    if (target == "head") {
+                        $("#deleteItemModal_msg").html(window.JS_STRINGS.del_image_head);
+                    } else if (target == "body") {
+                        $("#deleteItemModal_msg").html(window.JS_STRINGS.del_image_head);
+                    }
+                    $("#deleteItemModal_yes").click(function () { self.imageAddRemove("remove", true); });
+                    $("#deleteItemModal").modal("show");
+                }
+            }
+            /* if no action is passed we do nothing */
+        }
 
         /**
          * Display image modal
@@ -615,7 +690,7 @@ $(document).ready(function (){
                 $("#largeImage").html(`<img alt="${imageTitle}" src="${imageContent}">`);
                 $("#imageBoxModal_delete_img").show();
             } else {
-                $("#imgBoxModal_upload_img").show();
+                $("#imageBoxModal_upload_img").show();
             }
 
             $("#imageBoxModal").modal("show");

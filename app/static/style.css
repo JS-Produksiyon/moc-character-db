@@ -42,7 +42,7 @@ main {
 }
 
 
-/* message flash box */
+/* message flash box and imageBoxModal messages*/
 #flash {
     z-index: 1040;
     background-color: var(--bs-secondary);
@@ -63,41 +63,49 @@ main {
     margin-top: -0.4rem;
     margin-right: -0.5rem;
 }
-#flash.danger {
+.ibm-msg {
+    width: 80%;
+    margin-left: 10%;
+    background-color: var(--bs-secondary);
+    padding: 0.5rem 0.7rem;
+    border-radius: 0.5rem;
+    color: var(--bs-white);
+    overflow: hidden;    
+}
+#flash.danger, .ibm-msg.danger {
     background-color: var(--bs-danger);
 }
-#flash.info {
+#flash.info, .ibm-msg.info {
     background-color: var(--bs-info);
 }
-#flash.success {
+#flash.success, .ibm-msg.success {
     background-color: var(--bs-success);
 }
-#flash.warning {
+#flash.warning, .ibm-msg.warning {
     background-color: var(--bs-warning);
     color: var(--bs-black);
 }
-#flash.warning button {
+#flash.warning button, .ibm-msg.danger button {
     color: var(--bs-black) !important;
 }
 
 /* character image placeholder */
-#character_image {
+#character_image, #character_image_body {
     width: 200px;
     height: 200px;
     overflow: hidden;
-    background-image: url(./empty-char-picture.svg);
     background-repeat: no-repeat;
     background-position: center center;
+    background-size: cover;
+    cursor: pointer;
+}
+
+#character_image {
+    background-image: url(./empty-char-picture.svg);
 }
 
 #character_image_body {
-    width: 200px;
-    height: 200px;
-    overflow: hidden;
     background-image: url(./empty-char-t-pose.svg);
-    background-repeat: no-repeat;
-    background-position: center center;
-    cursor: pointer;
 }
 
 #character_image_body:hover, #character_image:hover {

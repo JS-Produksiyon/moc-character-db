@@ -33,6 +33,8 @@ JS_STRINGS = {
     'char_saved': _('The character was saved successfully.'),
     'del_ep': _('Remove Episode'),
     'del_err': _('Unable to delete %item% %id%.'),
+    'del_image_body': _('You are about to remove the body pose image for this character.'),
+    'del_image_head': _('You are about to remove the head shot image for this character.'),
     'del_modal_text': _('You are about to delete %item%.'),
     'del_rel': _('Remove Relationship'),
     'del_success': _('Successfully deleted %item%.'),

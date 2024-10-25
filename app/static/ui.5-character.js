@@ -605,6 +605,8 @@ $(document).ready(function (){
                 var imageTitle = window.JS_STRINGS.image_body_shot;
             }
 
+            window.saveState.setUnsaved(); /* we now are dirty so we'll need to save things */
+
             if (action == "add") {
 
                 let file =$("#imgBoxModal_img")[0].files[0];

@@ -4,7 +4,7 @@
  * 
  *   File name: ui.3-episodes.js
  *   Date Created: 2024-10-01
- *   Date Modified: 2024-10-01
+ *   Date Modified: 2024-11-04
  * 
  */
 $(document).ready(function () {
@@ -110,6 +110,13 @@ $(document).ready(function () {
                 if (typeof(id) != "number") { return false; }
             }
 
+            $("#addEditEpisodeModal_txt_add").hide();
+            $("#addEditEpisodeModal_txt_edit").hide();
+            if (id == 0) {
+                $("#addEditEpisodeModal_txt_add").show();
+            } else {
+                $("#addEditEpisodeModal_txt_edit").show();
+            }
             $(".form-validate").removeClass("is-invalid");
             $("#addEditEpisodeModal_ep_num").val((id == 0) ? "" : id);
             $("#addEditEpisodeModal_ep_title").val((id == 0) ? "" : self.list[id].name);

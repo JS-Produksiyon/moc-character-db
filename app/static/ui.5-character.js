@@ -17,6 +17,7 @@ $(document).ready(function (){
             physical: "", personality: "", employment: "", image_head: "",
             image_body: "", animation_status: "", residence: 0, marital_status: 0,
             acted_by: 0, relationships: [], episodes: []};
+        this.nextId = 1;
       
         /* private */
         var csrfToken = $("#csrf_token").val();
@@ -393,8 +394,10 @@ $(document).ready(function (){
          * @param {integer} id : id of the site to load
          */
         this.load = function(id) {
-            if (typeof(id) != "number"){
-                if (id != "add") { id = "add"; }
+            if (typeof(id) != "number") {
+                if (parseInt(id) == NaN) { // because if we don't have an integer, it won't be in the database
+                    if (id != "add") { id = "add"; }
+                }
             }
             
             if (id == "add") {
@@ -402,19 +405,20 @@ $(document).ready(function (){
                 display("add");
                 setTimeout(function () { $("input[name=first_name]").focus() }, 600);
             } else {
-                $.post("/fetch", { "what": "character", "id": id}, 
+                $.post("/api/fetch", { "what": "character", "id": id, "csrf_token": csrfToken}, 
                     function (r) {
                         if (r.error) {
                             window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_failure"].replace("%item%", window.JS_STRINGS["character"])), "warning");
                             self.add();
                         } else {
-                            self.character_data = validateData(r);
+                            self.nextId = r.next;
+                            self.character_data = verifyData(r.character);
                             if (self.character_data === false) {
                                 window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_nodata"].replace("%item%", window.JS_STRINGS["character"])), "warning");
                                 self.add();
                                 display("add");
                             } else {
-                                window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_success"].replace("%item%", window.JS_STRINGS["character"])), "warning");
+                                window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_success"].replace("%item%", window.JS_STRINGS["character"])), "success");
                                 self.writeFormData();
                                 display("edit");
                             }
@@ -576,6 +580,20 @@ $(document).ready(function (){
                         $("#character_image_body").css("background-image", "url(/assets/empty-char-t-pose.svg)");
                     } else {
                         $("#character_image_body").css("background-image", `url(${i})`);
+                    }
+                } else if (k =="physical" || k == "personality") {
+                    $(`textarea[name=${k}]`).val(i);
+                } else if (k == "sex" || k == "marital_status" || k == "animation_status" || k == "residence" || k == "acted_by") {
+                    if (k == "residence" || k == "acted_by") {
+                        if (!$(`#char_${k}`).prop("disabled")) {
+                            dselectRemove(`#char_${k}`);
+                        }
+                    }
+                    $(`select[name=${k}]`).val(i);
+                    if (k == "residence" || k == "acted_by") {
+                        if (!$(`#char_${k}`).prop("disabled")) {
+                            dselect(document.querySelector(`#char_${k}`), { search: true });
+                        }
                     }
                 } else {
                     $(`input[name=${k}]`).val(i);

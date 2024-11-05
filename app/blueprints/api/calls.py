@@ -83,7 +83,25 @@ def fetch_from_db():
             return jsonify({'error': _('Invalid character id passed.')})
         
         query = Character.query.get(int(request.values['id']))
-        nextId = Character.query.all()[-1] + 1 if len(Character.query.all()) > 0 else 1 # this is here because pulling an individual character from the DB is different
+        out = {"id": query.id, "first_name": query.first_name, "last_name": query.last_name, 
+               "sex": query.sex, "age": query.age, "physical": query.physical, 
+               "personality": query.personality, "employment": query.employment, 
+               "image_head": query.image_head, "image_body": query.image_body,
+               "animation_status": query.animation_status, "residence": query.residence, 
+               "marital_status": query.marital_status, "acted_by": query.acted_by, 
+               "relationships": [], "episodes": []
+        }
+        # clean up None types
+        for key in out:
+            print(key, "=", out[key])
+            if out[key] is None:
+                if key == "acted_by":
+                    out[key] = 0
+                else:
+                    out[key] == ""
+
+
+        nextId = Character.query.order_by(Character.id).all()[-1].id + 1 if len(Character.query.all()) > 0 else 1 # this is here because pulling an individual character from the DB is different
         
 
     elif what == 'character_list':

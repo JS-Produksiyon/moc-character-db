@@ -38,8 +38,9 @@ def validateDataType(data, skeleton) -> str:
                     result = key
                 if not validateDataType((data[key]), skeleton[key]):
                     loopState = False
-            
-            return loopState
+                    result = False
+
+            return result
 
         elif type(skeleton) == list or type(skeleton) == tuple:
             for key, itemType in enumerate(data):
@@ -47,7 +48,7 @@ def validateDataType(data, skeleton) -> str:
                     loopState = False
                     result = itemType
 
-            return loopState
+            return result
 
         else:
             result = 'valid'

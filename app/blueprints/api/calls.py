@@ -186,6 +186,7 @@ def write_to_db():
 
                 else:
                     return jsonify({'error': _('Invalid data type passed: {e}').format(e=validate)})
+                
             else:
                 return jsonify({'error': _('No data passed')})       
         
@@ -235,14 +236,28 @@ def write_to_db():
                 query.sex = sanitizeString(data['sex'])
 
                 # add actors and residence
-                query.acted_by = Actor.query.get(id=data['acted_by']) if int(data['acted_by']) > 0 else ''
-                query.residence = Residence.query.get(id=data['residence']) if int(data['residence']) > 0 else ''
+                query.acted_by = data['acted_by'] if data['acted_by'] > 0 else None
+                query.residence = data['residence'] if data['residence'] > 0 else None
 
                 # add episodes
-                if len(data['episodes'] > 0):
-                    for item in data['episodes']:
-                        query.rel_episodes.append(Episode.query.get(item))
-                
+                if len(data['episodes']) > 0:
+                    # first we aggregate the existing episodes so we can compare the content
+                    dbEps = []
+                    if len(query.rel_episodes) > 0:
+                        for ep in query.rel_episodes:
+                            dbEps.append(ep.id)
+
+                        # remove deleted episodes 
+                        for ep in dbEps:
+                            if ep not in data['episodes']:
+                                epToDel = Episode.query.get(ep)
+                                query.rel_episodes.remove(epToDel)
+
+                    # add the new episodes
+                    for ep in data['episodes']:
+                        if ep not in dbEps:
+                            query.rel_episodes.append(Episode.query.get(ep))
+
                 query.save()
 
                 # add relationships
@@ -285,7 +300,7 @@ def write_to_db():
                         subQuery.slug = reverse
                         subQuery.save()
 
-                        return jsonify({'success': _('Character {name} saved').format(f'{query.first_name} {query.last_name}')})
+                return jsonify({'success': _('Character {name} saved').format(name=f'{query.first_name} {query.last_name}')})               
 
             except (KeyError, TypeError) as e:
                 return jsonify({'error': _('Unable to save {item}: {error}').format(item=_('character'), error={str(e)})})

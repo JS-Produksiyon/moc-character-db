@@ -544,16 +544,14 @@ $(document).ready(function (){
             /* convert data */
             var send = {"csrf_token": csrfToken, "what": "character", "data": JSON.stringify(data)}
 
-            console.log(send);
-
-            // $.post("/api/write", send, function (r) {
-            //     if (r.error) {
-            //         window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "warning");
-            //         console.log(r.error);
-            //     } else {
-            //         window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", "<i>${data.first_name} ${data.last_name}</i>"), "success");
-            //     }
-            // }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['character']), 'danger'); });;
+            $.post("/api/write", send, function (r) {
+                if (r.error) {
+                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "warning");
+                    console.log(r.error);
+                } else {
+                    window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "success");
+                }
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['string_written']), 'danger'); });;
         }
 
         /**

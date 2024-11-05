@@ -51,7 +51,16 @@ $(document).ready(function () {
          * load list data from database
          */
         this.load = function () {
-            self.writeList();
+            $.get("/api/fetch", {"what":"character_list"}, function (r) {
+                if (r.error) {
+                    window.flash.display(window.JS_STRINGS['es_read_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger');
+                    console.log(r.error);
+                } else {
+                    self.list = r.character_list;
+                    self.nextItem = r.next;
+                    self.writeList();
+                }
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger'); });
         }
 
         /**

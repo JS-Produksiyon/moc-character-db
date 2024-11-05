@@ -93,7 +93,7 @@ def fetch_from_db():
         if count > 0:
             for row in query:
                 out[row.id] = { 'id': row.id, 'name': f"{row.first_name} {row.last_name}", 
-                                'sex': row.sex, 'episodes': row.rel_episodes.count(), 
+                                'sex': row.sex, 'episodes': len(row.rel_episodes), 
                                 'animation_status': row.animation_status }
 
     elif what == 'episodes':

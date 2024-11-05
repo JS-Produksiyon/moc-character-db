@@ -98,6 +98,10 @@ def fetch_from_db():
                     out[key] = 0
                 else:
                     out[key] == ""
+        # add episodes
+        if len(query.rel_episodes) > 0:
+            for ep in query.rel_episodes:
+                out['episodes'].append(ep.id)
 
 
         nextId = Character.query.order_by(Character.id).all()[-1].id + 1 if len(Character.query.all()) > 0 else 1 # this is here because pulling an individual character from the DB is different

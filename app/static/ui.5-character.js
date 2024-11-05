@@ -554,6 +554,7 @@ $(document).ready(function (){
                     console.log(r.error);
                 } else {
                     window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "success");
+                    window.episodesObj.load();
                 }
             }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['string_written']), 'danger'); });;
         }

@@ -288,7 +288,7 @@ $(document).ready(function () {
                     var charItem = "";
                     if (i.characters.length > 0){
                         for (var j=0; j<i.characters.length; j++) {
-                            charItem += listItemTpl.replace("%id%", charItem[i].character_id).replace("%full_name%", charItem[i].character_name);
+                            charItem += listItemTpl.replace("%id%", i.characters[j].character_id).replace("%full_name%", i.characters[j].character_name);
                         }
                     } else {
                         charItem = window.JS_STRINGS.ep_no_characters;

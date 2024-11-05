@@ -93,7 +93,6 @@ def fetch_from_db():
         }
         # clean up None types
         for key in out:
-            print(key, "=", out[key])
             if out[key] is None:
                 if key == "acted_by":
                     out[key] = 0
@@ -124,7 +123,10 @@ def fetch_from_db():
                 out[row.id] = {'id': row.id, 'name': row.name, 
                                'recorded': recDate, 
                                'characters': [] }
-                # for now we leave the characters empty until we make the character connection when adding the episodes to the character
+
+                if len(row.characters) > 0:
+                    for char in row.characters:
+                        out[row.id]['characters'].append({ "character_id": char.id, "character_name": "{first} {last}".format(first=char.first_name, last=char.last_name)})
 
 
     elif what == 'relation_types':

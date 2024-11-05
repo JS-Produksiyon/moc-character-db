@@ -21,6 +21,7 @@ $(document).ready(function (){
       
         /* private */
         var csrfToken = $("#csrf_token").val();
+        var optionTpl = '<option value="%option%">%item%</option>\n';
 
         /* self-reference */
         var self = this;
@@ -570,6 +571,26 @@ $(document).ready(function (){
             $.each(self.character_data, function (k,i) {
                 if (k == "episodes" || k == "relationships") {
                     writeTable(k);
+                    if (k == "episodes") { /* fill in select */
+                        var select = "";
+                        if (i.length > 0) { /* j=key; e=episode */
+                            $.each(window.episodesObj.list, function (j,e){
+                                if (i.indexOf(e.id) < 0) {
+                                    select = optionTpl.replace("%option%", e.id).replace("%item%", `${e.id} &ndash; ${e.name}`);
+                                }
+                            });
+                        }
+                        if (select == "") {
+                            dselectRemove("#append_selected_episode");
+                            $("#append_selected_episode").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.episode_none));
+                            $("#append_selected_episode").prop("disabled", true);
+                        } else {
+                            select = optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.select_episode_here) + select;
+                            $("#append_selected_episode").html(select);
+                            $("#append_selected_episode").prop("disabled", false);
+                            dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "300px" });
+                        }            
+                    }
                 } else if (k == "image_head") {
                     if (i == "") {
                         $("#character_image").css("background-image", "url(/assets/empty-char-picture.svg)");

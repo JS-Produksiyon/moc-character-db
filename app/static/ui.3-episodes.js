@@ -148,6 +148,7 @@ $(document).ready(function () {
                         window.flash.display(window.JS_STRINGS["del_error"].replace("%item%", window.JS_STRINGS["episode"]).replace("%id%", id), "warning")
                     } else {
                         window.flash.display(window.JS_STRINGS["del_success"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id), "success");
+                        window.charListObj.load(); /* to clear changes of deleted episodes */
                     }
                 }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['episode']), 'danger'); });
                 self.write();
@@ -300,6 +301,7 @@ $(document).ready(function () {
                 if ($("#ep_list_accordion").css("display") == "none") { showData(); }
 
             } 
+             /* this is moved to ui.5-character.js 
             if (select == "") {
                 dselectRemove("#append_selected_episode");
                 $("#append_selected_episode").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.episode_none));
@@ -309,6 +311,7 @@ $(document).ready(function () {
                 $("#append_selected_episode").prop("disabled", false);
                 dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "300px" });
             }
+            */
 
             $("#ep_list_accordion").html(accordion);
             connectEvents(true);

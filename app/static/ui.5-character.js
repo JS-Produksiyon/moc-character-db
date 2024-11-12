@@ -4,7 +4,7 @@
  * 
  *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-10-25
+ *   Date Modified: 2024-11-10
  * 
  */
 /* initialize the object */
@@ -91,7 +91,7 @@ $(document).ready(function (){
          * verifies data pulled from the form
          * 
          * @param {object} data          : JSON object to be checked through
-         * @param {string} skeleton_type : what skeleton to use: 'base', 'relationships', 'relations'
+         * @param {string} skeleton_type : what skeleton to use: 'base', 'relationships'
          */
         var verifyData = function(data, skeleton_type) {
             if (typeof(skeleton_type) != 'string') { skeleton_type = 'base'}
@@ -105,8 +105,7 @@ $(document).ready(function (){
                     marital_status: typeof(""), acted_by: typeof(0), relationships: typeof([]), 
                     episodes: typeof([])};
             
-            var relationships_skeleton = {	id: typeof(0), name: typeof(("")), relation: typeof({})}
-            var relationships_relation_skeleton = {id: typeof(0), slug: typeof("")}
+            var relationships_skeleton = {id: typeof(0), name: typeof(""), sex: typeof(""), reciprocal: typeof(true), relation: typeof("")}
             var result = false;
             var test = skeleton;
 
@@ -115,9 +114,6 @@ $(document).ready(function (){
                 case 'relationships':
                     test = relationships_skeleton;
                     break;
-                case 'relations':
-                    test = relationships_relation_skeleton;
-                    break;            
             }
             
             if (typeof(data) == typeof(test)) {
@@ -129,8 +125,10 @@ $(document).ready(function (){
                                 data[key] = parseInt(data[key]);
                             }
                             if (typeof(data[key]) == test[key]) {
-                                if (key.includes("relation") && Object.keys(data[key]).length > 0) {
-                                    item = (verifyData(data[key], key)) ? item : -2;
+                                if (key == "relationships" && Object.keys(data[key]).length > 0) {
+                                    $.each(data[key], function (k,i) {
+                                        item = (verifyData(i, "relationships")) ? item : -2;
+                                    });
                                 } else if (key == "episodes") {
                                     if (Array.isArray(data[key])) {
                                         if (data[key].length > 0) { // this got moved into an inner loop so that we don't get a false negative if the array is empty
@@ -210,7 +208,7 @@ $(document).ready(function (){
                     if (self.character_data.relationships.length > 0) {
                         targetDomId = "#char_relationships_table_container table tbody";
                         $.each(self.character_data.relationships, function (k,i) {
-                            var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%relationship%", relationshipsObj[i.relations.id]);
+                            var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%relationship%", window.relationshipObj.getNameFromSlug(i.relation.slug));
                             row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS.sex_word[i.sex]);
                             row = row.replace("%display%", window.JS_STRINGS.display).replace("%del_rel%", window.JS_STRINGS.del_rel)
                             rowData.push(row);
@@ -454,8 +452,8 @@ $(document).ready(function (){
                         "id": charId, 
                         "name": window.charListObj.list[charId].name, 
                         "sex": window.charListObj.list[charId].sex, 
-                        "relation": { "id": (window.relationshipObj) ? window.relationshipObj.getIdFromSlug[relSlug] : 0, /* this is so this will always have a valid entry */
-                                    "slug": relSlug } 
+                        "reciprocal": true,
+                        "relation": relSlug 
                     });
 
                 writeTable("relationships");
@@ -478,7 +476,8 @@ $(document).ready(function (){
                         dselectRemove("#appendRelationshipModal_character");
                         $("#appendRelationshipModal_character").html(optionTags.join("\n"));
                         $("#appendRelationshipModal_character").val("0");
-                        dselect("#appendRelationshipModal_character", { search: true });
+                        dselect(document.querySelector("#appendRelationshipModal_character"), { search: true });
+                        $("#appendRelationshipModal_form").show();
                     } else {
                         $("#appendRelationshipModal_noCharacters").show();                        
                         $("#appendRelationshipModal_save").prop("disabled", true);

@@ -4,7 +4,7 @@
  * 
  *   File name: ui.relationships.js
  *   Date Created: 2024-09-27
- *   Date Modified: 2024-10-01
+ *   Date Modified: 2024-11-10
  * 
  */
 
@@ -181,10 +181,25 @@ $(document).ready(function () {
             var id = 0;
             
             $.each(self.list, function (k, i) {
-                if (i.slug == slug) { id = i.id }
+                if (i.slug == slug) { id = i.id; }
             });
             
             return id;
+        }
+
+        /**
+         * Returns the descriptive name of a relationship using the slug
+         * 
+         * @param {string} slug : string to look for
+         */
+        this.getNameFromSlug = function (slug) {
+            var name = "";
+
+            $.each(self.list, function (k,i) {
+                if (i.slug == slug) { name = i.name; }
+            });
+
+            return name;
         }
 
         /**

@@ -105,7 +105,7 @@ $(document).ready(function () {
                 var tbody = [];
                 $.each(self.list, function (k,i) {
                     var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%episodes%", i.episodes);
-                    row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS.sex_word[i.sex]);
+                    row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS[`sex_word_${i.sex}`]);
                     row = row.replace("%ani_status%", $(`select[name=animation_status] option[value=${i.animation_status}]`).text());
                     row = row.replace("%display%", window.JS_STRINGS.display);
                     tbody.push(row);

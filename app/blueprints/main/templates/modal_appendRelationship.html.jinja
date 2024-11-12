@@ -7,9 +7,10 @@
             </div>
             <div class="modal-body" id="appendRelationshipModal_body">
                 <p id="appendRelationshipModal_noCharacters">{{ _('No other characters have been defined in the database. At least one other character must be present in the database to define a relationship. Please complete adding this character and begin adding another one to use this feature.') }}</p>
+                <input type="hidden" value="add" id="appendRelationshipModal_action">
                 <div id="appendRelationshipModal_form">
                     <p>{{ _('Add a new relationship between <span id="this_char">this character</span> and another by using the fields below. All fields are required.') }}</p>
-                    <div class="row">
+                    <div class="row mb-3">
                         <label for="appendRelationshipModal_character" class="form-label col-4 pt-2 text-end">{{ _('Other Character') }}:</label>
                         <div class="col-7">
                             <select id="appendRelationshipModal_character" class="form-select dselect-search form-validate">
@@ -19,15 +20,23 @@
                             <small>{{ _("If the character you are looking for is not in this dropdown list, please check the character list to see if they have been added. You can always add the relationship later, if necessary.") }}</small>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mb-3">
                         <label for="appendRelationshipModal_relation" class="form-label col-4 pt-2 text-end">{{ _('Relationship to Character') }}:</label>
                         <div class="col-7">
                             <select id="appendRelationshipModal_relation" class="form-select dselect-search form-validate">
                                 <option value="0">{{ _('Select relationship...') }}</option>
                             </select>
                             <div class="invalid-feedback">{{ _('Please select a relationship to continue.') }}</div>
-                            <small>{{ _('If you set the relationship for one character, the reciprocal relationship will automatically be set for the other character, as well. If the relationship between the characters does not exist in the dropdown list, use the Relationships page to add the relationship.') }}</small>
                         </div>
+                    </div>
+                    <div class="row">
+                            <div class="col-4 text-end">
+                                <input class="form-check-input" type="checkbox" value="true" id="appendRelationshipModal_reciprocal" checked>
+                            </div>
+                            <div class="col-7">
+                                <label class="form-check-label" for="appendRelationshipModal_reciprocal">{{ _('{action} reciprocal relationship').format(action='<span id="appendRelationshipModal_reciprocal_action">Create</span>') }}</label><br>
+                                <small>{{ _('If this box is checked, the reciprocal relationship will automatically be set for the other character, as well. If the relationship between the characters does not exist in the dropdown list, use the Relationships page to add the relationship.') }}</small>
+                            </div>
                     </div>
                 </div>
             </div>

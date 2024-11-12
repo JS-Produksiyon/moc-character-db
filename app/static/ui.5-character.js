@@ -40,8 +40,8 @@ $(document).ready(function (){
             if (target == "") {
                 $("#char_btn_add_episode").click(function () { self.episodeAdd(false); });
                 $("#appendEpisodeModal_save").click(function () { self.episodeAdd(true); });
-                $("#char_btn_add_relationship").click(function () { self.relationAdd(false); });
-                $("#appendRelationshipModal_save").click(function () { self.relationAdd(true); });
+                $("#char_btn_add_relationship").click(function () { self.relationAdd("add"); });
+                $("#appendRelationshipModal_save").click(function () { self.relationAdd("confirm"); });
                 $("#save_char_btn").click(self.writeDbData);
                 $("#character_image_body").click(function () { self.imageHandler("body"); });
                 $("#character_image").click(function () { self.imageHandler("head"); });
@@ -51,7 +51,10 @@ $(document).ready(function (){
             if (target == "episodes" || target == "") {
                 $(".char-ep-del").click(function () { self.episodeDel($(this).data("id")); } );
             }
-            if (target == "relations" || target == "") {}
+            if (target == "relationships" || target == "") {
+                $(".char-rel-show").click(function () { self.relationAdd("edit", $(this).data("rowid")); });
+                $(".char-rel-del").click(function () { self.relationDel($(this).data("rowid"), false); });
+            }
             if (target == "charFormConnect") {
                 $(".form-control").blur(self.fetchFormData);
                 $(".form-select").change(self.fetchFormData);
@@ -197,10 +200,10 @@ $(document).ready(function (){
                                 <td>%relationship%</td>
                                 <td><i class="bi-gender-%sex_slug%" title="%sex_word%"></i></td>
                                 <td class="text-end pe-3">
-                                    <button class="btn btn-sm btn-outline-dark char-rel-show" title="%display%" data-id="%id%" type="button">
+                                    <button class="btn btn-sm btn-outline-dark char-rel-show" title="%display%" data-rowid="%rowId%" type="button">
                                         <i class="bi-eye"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-outline-danger char-rel-del" title="%del_rel%" data-id="%id% type="button">
+                                    <button class="btn btn-sm btn-outline-danger char-rel-del" title="%del_rel%" data-rowid="%rowId%" type="button">
                                         <i class="bi-trash3-fill"></i>
                                     </button>
                                 </td>
@@ -208,9 +211,10 @@ $(document).ready(function (){
                     if (self.character_data.relationships.length > 0) {
                         targetDomId = "#char_relationships_table_container table tbody";
                         $.each(self.character_data.relationships, function (k,i) {
-                            var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%relationship%", window.relationshipObj.getNameFromSlug(i.relation.slug));
-                            row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS.sex_word[i.sex]);
-                            row = row.replace("%display%", window.JS_STRINGS.display).replace("%del_rel%", window.JS_STRINGS.del_rel)
+                            var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%relationship%", window.relationshipObj.getNameFromSlug(i.relation));
+                            row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS[`sex_word_${i.sex}`]);
+                            row = row.replace("%display%", window.JS_STRINGS.display).replace("%del_rel%", window.JS_STRINGS.del_rel);
+                            row = row.replace(/%rowId%/g, k); /* this is reference so we can edit or delete */
                             rowData.push(row);
                         })
 
@@ -431,11 +435,12 @@ $(document).ready(function (){
         /**
          * add relationship to character via modal
          * 
-         * @param {boolean} confirm : confirms the adding of the relationship to the character
+         * @param {string} action : whether to add, edit, or confirm save
+         * @param {number} rowId  : id or row in relationships which contains person
          */
-        this.relationAdd = function(confirm) {
+        this.relationAdd = function(action, rowId) {
             /* load the relationship items */
-            if (typeof(confirm) != "boolean") { confirm = false; } /* so we don't trigger the save */
+            if (typeof(action) != "string") { action = "add"; } /* so we don't trigger the save */
 
             /* check for missing window.charListObj here, because it is needed multiple times below! */
             if (!window.charListObj) {
@@ -444,27 +449,69 @@ $(document).ready(function (){
                 return false;
             }
 
-            if (confirm) {
+            $("#appendRelationshipModal_character").removeClass("is-invalid");
+            $("#appendRelationshipModal_relation").removeClass("is-invalid");
+
+            if (action == "confirm") {
+                var go = true;
                 var charId = $("#appendRelationshipModal_character").val();
+                var doReciprocal = ($("#appendRelationshipModal_reciprocal").is("checked")) ? true : false;
                 var relSlug = $("#appendRelationshipModal_relation").val();
-                
-                self.character_data.relationships.push({ 
+
+                /* validate contents */
+                if (charId == "0") {
+                    $("#appendRelationshipModal_character").addClass("is-invalid");
+                    go = false;
+                }
+                if (relSlug == "0") {
+                    $("#appendRelationshipModal_relation").addClass("is-invalid");
+                    go = false;
+                }
+
+                if (go) {
+                    var relObj = { 
                         "id": charId, 
                         "name": window.charListObj.list[charId].name, 
                         "sex": window.charListObj.list[charId].sex, 
-                        "reciprocal": true,
+                        "reciprocal": doReciprocal,
                         "relation": relSlug 
-                    });
+                    };
+    
+                    if ($("#appendRelationshipModal_action").val() == "add") {
+                        self.character_data.relationships.push(relObj);
+                    } else {
+                        var rowId = parseInt($("#appendRelationshipModal_action").val());
+                        if (rowId != NaN) {
+                            self.character_data.relationships[rowId] = relObj;
+                        } else {
+                            window.flash.display(window.JS_STRINGS.relation_reciprocal_load_error, "danger");
+                        }
+                    }
 
-                writeTable("relationships");
+                    writeTable("relationships");
 
-                $("#appendRelationshipModal").modal("hide");
+                    $("#appendRelationshipModal").modal("hide");
+                }
             } else {
                 /* first build the list and omit the current character, if in the list */
                     $("#appendRelationshipModal_noCharacters").hide();
                     $("#appendRelationshipModal_form").hide();
                     $("#appendRelationshipModal_save").prop("disabled", false);
-                    
+                    $("#appendRelationshipModal_reciprocal_action").html(window.JS_STRINGS[`relation_reciprocal_action_${action}`]);
+                    $("#appendRelationshipModal_action").html("add");
+
+                    var otherCharKey = "add";
+                    var otherCharId = "0";
+                    var otherCharSlug = "0";
+
+                    if (action == "edit") {
+                        otherCharKey = rowId;
+                        otherCharId = self.character_data.relationships[rowId].id;
+                        otherCharSlug = self.character_data.relationships[rowId].relation;
+                    }
+
+                    $("#appendRelationshipModal_action").val(otherCharKey);
+
                     if (Object.keys(window.charListObj.list).length > 0) {
                         var thisCharacter = self.character_data.id;
                         var optionTags = [`<option value="0">${window.JS_STRINGS.select_character}</option>`];
@@ -475,8 +522,11 @@ $(document).ready(function (){
                         });
                         dselectRemove("#appendRelationshipModal_character");
                         $("#appendRelationshipModal_character").html(optionTags.join("\n"));
-                        $("#appendRelationshipModal_character").val("0");
+                        $("#appendRelationshipModal_character").val(otherCharId);
                         dselect(document.querySelector("#appendRelationshipModal_character"), { search: true });
+                        dselectRemove("#appendRelationshipModal_relation");
+                        $("#appendRelationshipModal_relation").val(otherCharSlug);
+                        dselect(document.querySelector("#appendRelationshipModal_relation"), { search: true });
                         $("#appendRelationshipModal_form").show();
                     } else {
                         $("#appendRelationshipModal_noCharacters").show();                        
@@ -490,8 +540,31 @@ $(document).ready(function (){
    
         /**
          * delete relationship from character via modal
+         * 
+         * @param {number}  rowId  : row in relationships array to delete
+         * @param {boolean} confirm : 
          */
-        this.relationDel = function() {}
+        this.relationDel = function(rowId, confirm) {
+            if (typeof(rowId) != "number") {
+                rowId = parseInt(rowId);
+                if (rowId == NaN) { return false; }
+            }
+
+            if (confirm) {
+                self.character_data.relationships.splice(rowId, 1);
+                writeTable("relationships");
+                $("#deleteItemModal_yes").off("click");
+                $("#deleteItemModal").modal("hide");
+            } else {
+                var msg = window.JS_STRINGS.del_rel_text.replace("%main%", `${self.character_data.first_name} ${self.character_data.last_name}`);
+                msg = msg.replace("%other%", window.charListObj.list[self.character_data.relationships[rowId].id].name);
+                msg = msg.replace("%relationship%", window.relationshipObj.getNameFromSlug(self.character_data.relationships[rowId].relation));
+                $("#deleteItemModal_title_item").html(window.JS_STRINGS.del_rel);
+                $("#deleteItemModal_msg").html(msg);
+                $("#deleteItemModal_yes").click(function () { self.relationDel(rowId, true); });
+                $("#deleteItemModal").modal("show");
+            }
+        }
 
         /**
          * write data to database

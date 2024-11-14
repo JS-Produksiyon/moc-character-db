@@ -163,12 +163,29 @@ $(document).ready(function () {
 
         /**
          * displays the Episodes layer
+         * 
+         * @param {number} epNum : episode number to display
          */
-        this.display = function() {
+        this.display = function(epNum) {
+            if (typeof(epNum) == "undefined") { epNum = ""; }
+            if (typeof(epNum) != "number") { epNum = parseInt(epNum); }
+
             showData();
+            $(".accordion-collapse").removeClass("show");
+            $.each($(".accordion-button"), function () {
+                if (!$(this).hasClass("collapsed")) { $(this).addClass("collapsed"); }
+            })
             $("#episode_list").fadeIn();
             $("#add_ep_btn").fadeIn();
             $("#nav_episodes").addClass("active");
+
+            /* scroll to episode, if we happen to have one defined */
+            if (epNum != NaN) {
+                if ($(`#episode_${epNum}`).length > 0) {
+                    $(`#episode_${epNum} button`).trigger("click");
+                    $.scrollTo(`#episode_${epNum}`); 
+                }
+            }
         }
 
         /**

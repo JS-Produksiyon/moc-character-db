@@ -4,7 +4,7 @@
  * 
  *   File name: ui.navigation.js
  *   Date Created: 2024-09-17
- *   Date Modified: 2024-10-11
+ *   Date Modified: 2024-11-14
  * 
  */
 
@@ -40,7 +40,9 @@ window.HashMgr = function () {
             if (h[1] == 'character' && h.length > 2) {
                 characterObj.load(h[2]); 
             } else if (h[1] == 'episodes') {
-                episodesObj.display();
+                ep = (h.length > 2) ? h[2] : "";
+                console.log(ep)
+                episodesObj.display(ep);
             } else if (h[1] == 'relationships') {
                 relationshipObj.display();
             } else {

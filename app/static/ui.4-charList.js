@@ -64,6 +64,16 @@ $(document).ready(function () {
         }
 
         /**
+         * Remove character from list
+         * 
+         * @param {number} id : character id to remove
+         */
+        this.removeCharacter = function (id) {
+            delete self.list[id];
+            this.writeList();
+        }
+
+        /**
          * Update list with passed data
          * 
          * @param {object} charData : Character data object for updating the list

@@ -48,6 +48,7 @@ $(document).ready(function (){
                 $("#character_image").click(function () { self.imageHandler("head"); });
                 $("#imgBoxModal_del").click(function () { self.imageAddRemove("remove", false)});
                 $("#imgBoxModal_load").click(function () { self.imageAddRemove("add", false)});
+                $("#del_char_btn").click(function () { self.delete(false); })
             }
             if (target == "episodes" || target == "") {
                 $(".char-ep-del").click(function () { self.episodeDel($(this).data("id")); } );
@@ -268,8 +269,35 @@ $(document).ready(function (){
 
         /**
          * Delete a given character
+         * 
+         * @param {boolean} confirm : confirm deletion of character
          */
-        this.delete = function() {}
+        this.delete = function(confirm) {
+            if (typeof(confirm) != "boolean") { confirm = false; }
+
+            if (confirm) {
+                window.saveState.clearUnsaved();
+                window.charListObj.removeCharacter(self.character_data.id);
+                $("#deleteItemModal_yes").off("click");
+                $("#deleteItemModal").modal("hide");
+                window.location.hash = "#/";
+                
+                let unixTimestamp = Math.floor(Date.now() / 1000);
+                $.post("api/deleteItem", {"csrf_token": csrfToken, "what": "character", "id": self.character_data.id}, function (r) {
+                    var charString = `${window.JS_STRINGS["character"]} <em>${self.character_data.first_name} ${self.character_data.last_name}</em>`
+                    if (r.error) {
+                        window.flash.display(capitalizeFirst(window.JS_STRINGS["es_del_failure"].replace("%item%", charString)), "warning");
+                    } else {
+                        window.flash.display(capitalizeFirst(window.JS_STRINGS["del_success"].replace("%item%", charString)), "success");
+                    }
+                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['del_char'].toLocaleLowerCase()), "danger"); });;
+            } else {
+                $("#deleteItemModal_title_item").html(window.JS_STRINGS['del_character']);
+                $("#deleteItemModal_msg").html(window.JS_STRINGS['del_character_msg'].replace("%name%", `${self.character_data.first_name} ${self.character_data.last_name}`));
+                $("#deleteItemModal_yes").click(function () { self.delete(true); });
+                $("#deleteItemModal").modal("show");
+            }
+        }
 
         /**
          * add episode to character via modal
@@ -646,7 +674,7 @@ $(document).ready(function (){
                     window.episodesObj.load();
                     window.saveState.clearUnsaved();
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['string_written']), 'danger'); });;
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['string_written']), "danger"); });;
         }
 
         /**

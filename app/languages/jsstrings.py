@@ -21,6 +21,7 @@ __status__ = "Development"
 from flask_babel import lazy_gettext as _
 
 JS_STRINGS = {
+    'es_del_failure': _('Unable to delete %item% from database.'),
     'es_no_db_connection': _('Unable to connect to database. Please check your internet connection, then refresh the page.'),
     'es_read_failure': _('Unable to retrieve the %item% from the database.'),
     'es_read_nodata': _('Requested %item% was not found in database.'),
@@ -33,6 +34,8 @@ JS_STRINGS = {
     'char_no_charListObj': _('The character list JavaScript Object could not be found. This is an unrecoverable system error. Please reload this page. If it does not solve the problem, restart the database program.'),
     'char_not_saved': _('Something went severely wrong the character could not be saved at all. Please let the developers know!'),
     'char_saved': _('The character was saved successfully.'),
+    'del_character': _('Delete Character'),
+    'del_character_msg': _('You are about to delete the character called <em>%name%</em>.<br>If you do so, this character and all associated relationships will be permanently deleted.'),
     'del_ep': _('Remove Episode'),
     'del_err': _('Unable to delete %item% %id%.'),
     'del_image_body': _('You are about to remove the body pose image for this character.'),

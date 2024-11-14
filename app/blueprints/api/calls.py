@@ -18,7 +18,7 @@ __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
 __debugState__ = True
 # ================================================================================
-import os, re, datetime, importlib, json
+import os, re, datetime, importlib, json, time
 from flask import(
     Blueprint, jsonify, config, redirect, request, url_for, current_app
 )
@@ -42,6 +42,9 @@ def del_from_db():
     try:
         if request.form['what'] == 'episodes':
             query = Episode.query.get(request.form['id'])
+
+        elif request.form['what'] == 'character':
+            query = Character.query.get(request.form['id'])
 
         if query is not None:
             query.delete()

@@ -429,6 +429,9 @@ $(document).ready(function (){
                             }
                         }
                         window.loading.stop();
+                    }).fail(function (r) { 
+                        window.loading.stop();
+                        window.errDialog(window.JS_STRINGS["es_no_db_connection"]);
                     });
             }
 

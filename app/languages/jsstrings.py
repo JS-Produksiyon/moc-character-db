@@ -21,6 +21,7 @@ __status__ = "Development"
 from flask_babel import lazy_gettext as _
 
 JS_STRINGS = {
+    'es_no_db_connection': _('Unable to connect to database. Please check your internet connection, then refresh the page.'),
     'es_read_failure': _('Unable to retrieve the %item% from the database.'),
     'es_read_nodata': _('Requested %item% was not found in database.'),
     'es_read_success': _('%item% successfully retrieved from database'),

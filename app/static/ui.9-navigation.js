@@ -62,8 +62,12 @@ window.HashMgr = function () {
 
 window.UnsavedChanges = function() {
     /* properties */
+    /* public */
     this.dirty = false;
     this.oldHash = "";
+
+    /* private */
+    var stateIcon = $("#unsavedIcon");    
     
     /* self-reference */
     self = this;
@@ -106,6 +110,7 @@ window.UnsavedChanges = function() {
      */
     this.clearUnsaved = function() {
         self.dirty = false;
+        stateIcon.fadeOut();
     }
 
     /**
@@ -113,6 +118,7 @@ window.UnsavedChanges = function() {
      */
     this.setUnsaved = function() {
         self.dirty = true;
+        stateIcon.fadeIn();
     }
 }
 
@@ -121,4 +127,4 @@ $("document").ready(function() {
     window.navObj = new HashMgr();
     window.onhashchange = navObj.tracker;
     navObj.tracker();
-})
+});

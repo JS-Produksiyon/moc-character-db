@@ -22,6 +22,7 @@ $(document).ready(function (){
         /* private */
         var csrfToken = $("#csrf_token").val();
         var optionTpl = '<option value="%option%">%item%</option>\n';
+        var firstLoad = true;
 
         /* self-reference */
         var self = this;
@@ -288,6 +289,8 @@ $(document).ready(function (){
                 var epTitle = "";
                 var go = true;
 
+                window.saveState.setUnsaved();
+
                 /* validate content */
                 if ($("#appendEpisodeModal_add").hasClass("active")) {
                     epNum = parseInt($("#append_new_episode_num").val());
@@ -349,6 +352,8 @@ $(document).ready(function (){
             delYesButton.off("click"); /* disable clicking the Yes button */
 
             if (confirm) {
+                window.saveState.setUnsaved();
+                
                 var arrLoc = self.character_data.episodes.indexOf(id);
                 self.character_data.episodes.splice(arrLoc,1);
                 writeTable("episodes");
@@ -384,8 +389,9 @@ $(document).ready(function (){
                     data[k] = self.character_data[k]; 
                 } else {
                     domName = (select.indexOf(k) >= 0) ? `select[name=${k}]` : (textArea.indexOf(k) >=0) ? `textarea[name=${k}]` : `input[name=${k}]`;
-                    if (data[k] != $(domName).val()){
+                    if (data[k] != $(domName).val()) {
                         data[k] = $(domName).val();
+                        if (window.saveState) { window.saveState.setUnsaved(); }
                     }
                 }
             });
@@ -458,6 +464,8 @@ $(document).ready(function (){
             $("#appendRelationshipModal_relation").removeClass("is-invalid");
 
             if (action == "confirm") {
+                window.saveState.setUnsaved();
+
                 var go = true;
                 var charId = $("#appendRelationshipModal_character").val();
                 var doReciprocal = ($("#appendRelationshipModal_reciprocal").is(":checked")) ? true : false;
@@ -557,6 +565,8 @@ $(document).ready(function (){
             }
 
             if (confirm) {
+                window.saveState.setUnsaved();
+
                 self.character_data.relationships.splice(rowId, 1);
                 writeTable("relationships");
                 $("#deleteItemModal_yes").off("click");
@@ -623,7 +633,7 @@ $(document).ready(function (){
                 $("#majorErrorModal_text").html(window.JS_STRINGS["char_not_saved"]);
                 $("#majorErrorModal").modal("show");
             }
-
+          
             /* convert data */
             var send = {"csrf_token": csrfToken, "what": "character", "data": JSON.stringify(data)}
 
@@ -634,6 +644,7 @@ $(document).ready(function (){
                 } else {
                     window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "success");
                     window.episodesObj.load();
+                    window.saveState.clearUnsaved();
                 }
             }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['string_written']), 'danger'); });;
         }

@@ -73,6 +73,8 @@ $(document).ready(function (){
         var display = function (action) {
             if (typeof(action) != "string") { action = "add"; }
 
+            $.scrollTo(0);
+
             switch(action) {
                 case "edit":
                     $("#character_add").hide();

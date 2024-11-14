@@ -13,7 +13,7 @@
 
     <title>{% block title %}{% endblock %}</title>
 </head>
-<body>
+<body class="{{ text_direction() }}">
     <!-- flash messages -->
     <div id="flash">
         <button type="button" class="btn btn-sm float-end" id="flash_dismiss"><i class="bi-x-lg"></i></button>

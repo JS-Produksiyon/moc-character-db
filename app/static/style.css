@@ -41,6 +41,9 @@ main {
     }
 }
 
+.rtl-icon {
+    display: none;
+}
 
 /* message flash box and imageBoxModal messages*/
 #flash {
@@ -149,6 +152,20 @@ main {
     height: inherit;
     width: inherit;
     object-fit: cover;
+}
+
+/* rtl body text */
+body.rtl .text-end {
+    text-align: left !important;
+}
+body.rtl .float-end {
+    float: left !important;
+}
+body.rtl .ltr-icon {
+    display: none !important;
+}
+body.rtl .rtl-icon {
+    display: inline-block !important;
 }
 
 /* disable Press to Select text on Choices */

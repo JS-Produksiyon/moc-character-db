@@ -10,7 +10,7 @@
                     "FLASK_APP": "app/app.py",
                     "FLASK_ENV": "development"
                 }, 
-            "args": ["run"] 
+            "args": ["run", "--no-debug"] 
         } 
     ]
 }

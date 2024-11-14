@@ -5,7 +5,7 @@
 
     File name: blueprints/api/calls.py
     Date Created: 2024-09-12
-    Date Modified: 2024-10-15
+    Date Modified: 2024-11-14
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -102,6 +102,17 @@ def fetch_from_db():
         if len(query.rel_episodes) > 0:
             for ep in query.rel_episodes:
                 out['episodes'].append(ep.id)
+        # add relationships
+        if len(query.rel_main_character) > 0:
+            for rel in query.rel_main_character:
+                otherChar = Character.query.get(rel.other_character)
+                out['relationships'].append({
+                        'id': rel.other_character, 
+                        'name': '{} {}'.format(otherChar.first_name, otherChar.last_name), 
+                        'sex': otherChar.sex, 
+                        'reciprocal': True,
+                        'relation': rel.relationship
+                })
 
 
         nextId = Character.query.order_by(Character.id).all()[-1].id + 1 if len(Character.query.all()) > 0 else 1 # this is here because pulling an individual character from the DB is different
@@ -220,8 +231,8 @@ def write_to_db():
             charData = { 'id': int, 'first_name': str, 'last_name': str,
 	                 'sex': str, 'age': str, 'physical': str, 'personality': str, 'employment': str,
 	                 'image_head': str, 'image_body': str, 'animation_status': str, 'residence': int,
-                     'marital_status': str, 'acted_by': int, 'relationships': [ { 'id': int,
-			         'name': str,  'sex': str, 'relation': { 'id': int, 'slug': str, 'sex': str } }], 
+                     'marital_status': str, 'acted_by': int, 'relationships': [{ 'id': int,
+			         'name': str,  'sex': str, 'reciprocal': bool, 'relation': str }], 
                      'episodes': [int] }
             
             try:
@@ -287,42 +298,38 @@ def write_to_db():
                 # add relationships
                 if len(data['relationships']) > 0:
                     for item in data['relationships']:
-                        # get relationship slug object
-                        relTypeQuery = RelationTypes.query.filter_by(slug=item['relations']['relation']['slug'])
+                        # get relationship type object for reciprocal relationships
+                        relTypeQuery = RelationTypes.query.filter_by(slug=item['relation']).first()
 
                         if relTypeQuery is None:
-                            raise TypeError(_('No relationship of type {slug} exists.').format(item['relations']['relation']['slug']))
+                            raise TypeError(_('No relationship of type {slug} exists.').format(item['relation']))
+
+                        reciprocalRelationship = relTypeQuery.reciprocal_male if query.sex == 'male' else relTypeQuery.reciprocal_female
 
                         # relationship from main to other
-                        subQuery = Relationship.query.filter_by(main_character=query.id, 
-                                                                other_character= item['id']).first()
+                        if not any(rel for rel in query.rel_main_character if rel.other_character == item['id'] and rel.relationship == item['relation']):
+                            query.rel_main_character.append(Relationship(other_character=item['id'], relationship=item['relation']))
 
-                        if subQuery is None:
-                            subQuery = Relationship()
+                            if item['reciprocal']:
+                                query.rel_other_character.append(Relationship(main_character=item['id'], relationship=reciprocalRelationship))
 
-                        subQuery.main_character = query.id
-                        subQuery.other_character = item['id']
-                        subQuery.relationship = item['relation']['slug']
-                        subQuery.save()
+                    # remove the relationships that don't exist in the passed data
+                    for item in query.rel_main_character:
+                        if not any(rel for rel in data['relationships'] if rel['id'] == item.other_character and rel['relation'] == item.relationship):
+                            # the delete own relationship
+                            rel = Relationship.query.get(item.id)
+                            rel.delete()
 
-                        # relationship from other to main
-                        subQuery = Relationship.query.filter_by(main_character=item['id'], 
-                                                                other_character= query.id).first()
+                    query.save()
 
-                        if subQuery is None:
-                            subQuery = Relationship()
+                # delete all items if we have been passed an empty relationships field
+                elif len(query.rel_main_character) > 0:
+                    for item in query.rel_main_character:
+                        rel = Relationship.query.get(item.id)
+                        rel.delete()
 
-                        if (item['relation']['sex'] == 'male'):
-                            reverse = relTypeQuery.reciprocal_male
-                        elif (item['relation']['sex'] == 'female'):
-                            reverse = relTypeQuery.reciprocal_female
-                        else:
-                            raise TypeError(_('No valid reciprocal relationship type for {slug} defined.').format(slug=relTypeQuery.slug))
 
-                        subQuery.main_character = item['id']
-                        subQuery.other_character = query.id
-                        subQuery.slug = reverse
-                        subQuery.save()
+                    query.save()
 
                 return jsonify({'success': _('Character {name} saved').format(name=f'{query.first_name} {query.last_name}')})               
 

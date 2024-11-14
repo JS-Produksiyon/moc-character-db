@@ -6,7 +6,7 @@
 
     File name: languages/jsstrings.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-13
+    Date Modified: 2024-11-14
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -38,7 +38,7 @@ JS_STRINGS = {
     'del_image_head': _('You are about to remove the head shot image for this character.'),
     'del_modal_text': _('You are about to delete %item%.'),
     'del_rel': _('Remove Relationship'),
-    'del_rel_text': _('You are about to remove the relationship titled <em>%relationship%</em> between <em>%main%</em> and <em>%other%</em>.'),
+    'del_rel_text': _('You are about to remove the relationship titled <em>%relationship%</em> between <em>%main%</em> and <em>%other%</em>.<br>This <em>will not</em> remove any reciprocal relationship, if such a reciprocal relationship exists!'),
     'del_success': _('Successfully deleted %item%.'),
     'del_title': _('Delete %item%'),
     'display': _('Display'),

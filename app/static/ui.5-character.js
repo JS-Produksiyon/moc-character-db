@@ -4,7 +4,7 @@
  * 
  *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-11-10
+ *   Date Modified: 2024-11-14
  * 
  */
 /* initialize the object */
@@ -200,9 +200,9 @@ $(document).ready(function (){
                                 <td>%relationship%</td>
                                 <td><i class="bi-gender-%sex_slug%" title="%sex_word%"></i></td>
                                 <td class="text-end pe-3">
-                                    <button class="btn btn-sm btn-outline-dark char-rel-show" title="%display%" data-rowid="%rowId%" type="button">
+                                    <!-- <button class="btn btn-sm btn-outline-dark char-rel-show" title="%display%" data-rowid="%rowId%" type="button">
                                         <i class="bi-eye"></i>
-                                    </button>
+                                    </button> -->
                                     <button class="btn btn-sm btn-outline-danger char-rel-del" title="%del_rel%" data-rowid="%rowId%" type="button">
                                         <i class="bi-trash3-fill"></i>
                                     </button>
@@ -455,7 +455,7 @@ $(document).ready(function (){
             if (action == "confirm") {
                 var go = true;
                 var charId = $("#appendRelationshipModal_character").val();
-                var doReciprocal = ($("#appendRelationshipModal_reciprocal").is("checked")) ? true : false;
+                var doReciprocal = ($("#appendRelationshipModal_reciprocal").is(":checked")) ? true : false;
                 var relSlug = $("#appendRelationshipModal_relation").val();
 
                 /* validate contents */
@@ -499,6 +499,7 @@ $(document).ready(function (){
                     $("#appendRelationshipModal_save").prop("disabled", false);
                     $("#appendRelationshipModal_reciprocal_action").html(window.JS_STRINGS[`relation_reciprocal_action_${action}`]);
                     $("#appendRelationshipModal_action").html("add");
+                    $("#appendRelationshipModal_reciprocal").prop("checked", true);
 
                     var otherCharKey = "add";
                     var otherCharId = "0";
@@ -523,10 +524,10 @@ $(document).ready(function (){
                         dselectRemove("#appendRelationshipModal_character");
                         $("#appendRelationshipModal_character").html(optionTags.join("\n"));
                         $("#appendRelationshipModal_character").val(otherCharId);
-                        dselect(document.querySelector("#appendRelationshipModal_character"), { search: true });
+                        dselect(document.querySelector("#appendRelationshipModal_character"), { search: true, maxHeight: "280px" });
                         dselectRemove("#appendRelationshipModal_relation");
                         $("#appendRelationshipModal_relation").val(otherCharSlug);
-                        dselect(document.querySelector("#appendRelationshipModal_relation"), { search: true });
+                        dselect(document.querySelector("#appendRelationshipModal_relation"), { search: true, maxHeight: "280px" });
                         $("#appendRelationshipModal_form").show();
                     } else {
                         $("#appendRelationshipModal_noCharacters").show();                        
@@ -660,7 +661,7 @@ $(document).ready(function (){
                             select = optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.select_episode_here) + select;
                             $("#append_selected_episode").html(select);
                             $("#append_selected_episode").prop("disabled", false);
-                            dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "300px" });
+                            dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "280px" });
                         }            
                     }
                 } else if (k == "image_head") {
@@ -686,7 +687,7 @@ $(document).ready(function (){
                     $(`select[name=${k}]`).val(i);
                     if (k == "residence" || k == "acted_by") {
                         if (!$(`#char_${k}`).prop("disabled")) {
-                            dselect(document.querySelector(`#char_${k}`), { search: true });
+                            dselect(document.querySelector(`#char_${k}`), { search: true, maxHeight: "280px" });
                         }
                     }
                 } else {

@@ -758,7 +758,6 @@ msgid "Default relationships that will be loaded"
 msgstr "Yüklenecek varsayılan ilişkiler"
 
 #: app/blueprints/main/templates/relationlist.html.jinja:45
-#, fuzzy
 msgid "Load Default Relationships"
 msgstr "Varsayılan İlişkileri Yükle"
 

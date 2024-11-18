@@ -111,4 +111,5 @@
 
 {%- block custom_js -%}
 <script src="{{ url_for('static', filename='setup_strings.js')}}"></script>
+<script>document.querySelector(".lion").style.display = "none"; // hide the loading image</script>
 {% endblock%}

@@ -63,11 +63,12 @@ RELATIONSHIP_STRINGS = {
     'grandfather'          : 'Dedesi',
     'grandmother-m'        : 'Babaannesi',
     'grandmother-f'        : 'Anneannesi',
+    'grandmother-both'     : 'Ninesi',
     'grandchild'           : 'Torunu',
     'bro-in-law-blood'     : 'Kayın biraderi', #baldız (f); kayın birader (m)
     'sis-in-law-blood-m'   : 'Baldızı', # kayın birader (e)
     'sis-in-law-blood-f'   : 'Görümcesi', # yenge (f)
-    'bro-in-law-marriage-m': 'Bacanak', # bacanak (e)
+    'bro-in-law-marriage-m': 'Bacanağı', # bacanak (e)
     'bro-in-law-marriage-f': 'Eniştesi (kardeş bağı)', # baldız (f); enişte (e)
     'sis-in-law-marriage-m': 'Yengesi (kardeş bağı)', # yenge (f)
     'sis-in-law-marriage-f': 'Eltisi', # elti (f)
@@ -114,14 +115,18 @@ RECIPROCAL_RELATIONSHIPS = {
     'mother'       : {'male' : 'son', 'female' : 'daughter', 'sex' : 'female'},
     'son'          : {'male' : 'father', 'female' : 'mother', 'sex' : 'male'},
     'daughter'     : {'male' : 'father', 'female' : 'mother', 'sex' : 'female'},
+    'brother-big'  : {'male' : 'brother', 'female' : 'sister', 'sex' : 'male'},
+    'sister-big'   : {'male' : 'brother', 'female' : 'sister', 'sex': 'female'},
     'brother'      : {'male' : 'brother', 'female' : 'sister', 'sex' : 'male'},
     'sister'       : {'male' : 'brother', 'female' : 'sister', 'sex' : 'female'},
     'grandfather'  : {'male' : 'grandchild', 'female' : 'grandchild', 'sex' : 'male'},
-    'grandmother'  : {'male' : 'grandson', 'female' : 'granddaughter', 'sex' : 'female'},
-    'grandchild'     : {'male' : 'grandfather', 'female' : 'grandmother', 'sex' : 'both'},
+    'grandmother-m'  : {'male' : 'grandchild', 'female' : 'grandchild', 'sex' : 'female'},
+    'grandmother-f'  : {'male' : 'grandchild', 'female' : 'grandchild', 'sex' : 'female'},
+    'grandmother-both': {'male' : 'grandchild', 'female' : 'grandchild', 'sex' : 'female'},
+    'grandchild'     : {'male' : 'grandfather', 'female' : 'grandmother-both', 'sex' : 'both'},
     'bro-in-law-blood'   : {'male' : 'bro-in-law-blood', 'female' : 'sis-in-law-blood-m', 'sex' : 'male'},
     'sis-in-law-blood-m' : {'male': 'bro-in-law-blood', 'female': '', 'sex': 'female'},
-    'sis-in-law-blood-f': {'male': '', 'female': 'sis-in-law-marriege-m', 'sex':'female'},
+    'sis-in-law-blood-f': {'male': '', 'female': 'sis-in-law-marriage-m', 'sex':'female'},
     'bro-in-law-marriage-m': {'male': 'bro-in-law-marriage-m', 'female': '', 'sex': 'male'},
     'bro-in-law-marriage-f': {'male': 'bro-in-law-marriage-f', 'female': 'sis-in-law-blood-m', 'sex': 'male'},
     'sis-in-law-marriage-m': {'male': 'sis-in-law-marriage-m', 'female': 'sis-in-law-marriage-m', 'sex': 'female'},
@@ -131,7 +136,7 @@ RECIPROCAL_RELATIONSHIPS = {
     'son-in-law'   : {'male' : 'dad-in-law', 'female' : 'mom-in-law', 'sex' : 'male'},
     'dau-in-law'   : {'male' : 'dad-in-law', 'female' : 'mom-in-law', 'sex' : 'female'},
     'uncle-mom'    : {'male' : 'nephew-niece-mom', 'female' : 'nephew-niece-mom', 'sex' : 'male'},
-    'uncle-dad'    : {'male' : 'nephew-niece-dad', 'female' : 'nephew-niece', 'sex' : 'male-dad'},
+    'uncle-dad'    : {'male' : 'nephew-niece-dad', 'female' : 'nephew-niece-dad', 'sex' : 'male-dad'},
     'aunt-mom'     : {'male' : 'nephew-niece-mom', 'female' : 'nephew-niece-mom', 'sex' : 'female'},
     'aunt-dad'     : {'male' : 'nephew-niece-dad', 'female' : 'nephew-niece-dad', 'sex' : 'female'},
     'uncle-married': {'male' : 'nephew-niece-married', 'female': 'nephew-niece-married', 'sex' : 'male'},

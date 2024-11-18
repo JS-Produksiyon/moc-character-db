@@ -23,7 +23,7 @@ import sys
 
 MIN_PYTHON = (3,11)
 if sys.version_info < MIN_PYTHON:
-    sys.exit("Python %s.%s or later is required to run Pulsar.\n" % MIN_PYTHON)
+    sys.exit("Python %s.%s or later is required to run the Men of Courage Character Database.\n" % MIN_PYTHON)
 
 # import dependencies
 import os, json

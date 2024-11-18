@@ -12,6 +12,15 @@ This database is designed to track characters used in Men of Courage localizatio
 ## Setup
 Download the repository.
 
+### Windows Automated Setup
+Run `setupmocdb.bat` either by double-clicking in an Explorer window, or by opening a command prompt (cmd.exe), navigating to the folder and running the batch file from the command prompt by typing its name in and executing it.
+
+> Note: if you are using PowerShell, you'll need to execute the command as `.\setupmocdb.bat`.
+
+
+### Manual setup
+`setupmocdb.bat` completes the following steps:
+
 Create a virtual environment
 
     python3 -m venv venv --prompt=mocdb
@@ -26,6 +35,8 @@ Load the requirements:
 
     pip install -r requirements.txt
 
+
+### Using a Database other than SQLite
 If you're going to use a database other than SQLite, load the database-specific packages from PyPi:
 
 MariaDB: `pip install mariadb`
@@ -36,20 +47,32 @@ PostgreSQL: `pip install psycopg2-binary`
 
 
 ## Usage
+### Standalone
+#### Windows
+Run the batch file `startmoc.bat`.
+
+#### Other Operating Systems
+Make sure you are in the `moc-character-db` directory.
 
 Run the python executable:
 
-    flask app/app.py run
+    python moccdb.py
 
-Point your browser to `http://localhost:5000`.
+Point your browser to `http://localhost:13153`.
 
 On first run select your language and database of choice.
 
-
-## Putting the database on the network
+### On a Network
 The application is designed with simplicity in mind and **IS NOT MEANT TO BE EXPOSED TO THE INTERNET**! As such there is **no security** built into the application. 
 
-That being said, the application can be run on a server where port `13153` is exposed or redirected using nginx. You're also welcome to package it in a Docker image with gunicorn.
+### WSGI on Apache
+
+
+### Gunicorn and nginx
+
+
+### Docker
+There is currently no Docker image available. You are, however, welcome to package the database to run in a Docker image with gunicorn.
 
 
 ## Localization

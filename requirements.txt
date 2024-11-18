@@ -25,3 +25,6 @@ Pillow==10.3.*
 
 # Text input sanitization
 bleach=6.1.*
+
+# WSGI server
+waitress=3.0.*

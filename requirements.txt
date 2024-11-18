@@ -24,7 +24,7 @@ Flask-DebugToolbar==0.14.*
 Pillow==10.3.*
 
 # Text input sanitization
-bleach=6.1.*
+bleach==6.1.*
 
 # WSGI server
-waitress=3.0.*
+waitress==3.0.*

@@ -24,6 +24,15 @@ IF ERRORLEVEL 1 (
         echo This may take a few minutes depending on the speed of your machine.
         echo.
         python -m venv venv --prompt="moccdb"
+        IF EXIT "venv" (
+            echo Python virtual environment installed.
+            echo.
+        ) ELSE (
+            echo Unable to install virtual environment. Please check the README.md file
+            echo and try to install it manually.
+            pause
+            exit /b
+        )
         echo Installing required packages
         echo.
         call venv/Scripts/activate.bat

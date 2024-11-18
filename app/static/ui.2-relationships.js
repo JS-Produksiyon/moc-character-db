@@ -302,8 +302,10 @@ $(document).ready(function () {
             var loop = 0;
             var item = "";
             var out = "";
-            var relationsMale = [];
+            var reciprocalFemale = "";
+            var reciprocalMale = "";
             var relationsFemale = [];
+            var relationsMale = [];
             var optionsCharacter = [optionTpl.replace("$option$", self.baseValues.relationship[0]).replace("$item$", self.baseValues.relationship[1])]
             var optionsMale = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1])];
             var optionsFemale = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1])];
@@ -314,9 +316,12 @@ $(document).ready(function () {
                 var sorted = sortRelations();
                 for (loop=0; loop<sorted.length; loop++) {
                     item = sorted[loop][1];
+                    /* get names of reciprocal relations */
+                    reciprocalFemale = self.getNameFromSlug(item.reciprocal_female)
+                    reciprocalMale = self.getNameFromSlug(item.reciprocal_male)
                     out = out + tableRow.replace("$main_relation$", item.name
-                                       ).replace("$male_reciprocal_relation$", item.reciprocal_male
-                                       ).replace("$female_reciprocal_relation$", item.reciprocal_female
+                                       ).replace("$male_reciprocal_relation$", reciprocalMale
+                                       ).replace("$female_reciprocal_relation$", reciprocalFemale
                                        ).replace("$id$", item.id
                                        ).replace("$edit$", editText);
                     if (item.sex == "male" || item.sex == "both") {

@@ -37,7 +37,7 @@ $(document).ready(function () {
 </div>\n`;
         var csrfToken = $("#csrf_token").val();
         var optionTpl = '<option value="$option$">$item$</option>\n';
-        var listItemTpl = '<li><a href="#/character/$id$">$full_name$</a></li>\n';
+        var listItemTpl = '<li><a href="#/character/\$id\$">$full_name$</a></li>\n';
 
         /* self-reference */
         var self = this
@@ -301,7 +301,7 @@ $(document).ready(function () {
                 $.each(self.list, function (k, i) {
                     var recDate = (i.recorded != "") ? i.recorded : window.JS_STRINGS.ep_not_recorded;
 
-                    var accItem = accordionTpl.replace(/$id$/g, i.id).replace("$title$", i.name).replace("$edit$", window.JS_STRINGS.edit).replace("$ep_rec_date$", window.JS_STRINGS.ep_rec_date).replace("$rec_date$", recDate).replace("$ep_characters$", window.JS_STRINGS.ep_characters).replace("$delete$", window.JS_STRINGS.delete);
+                    var accItem = accordionTpl.replace(/\$id\$/g, i.id).replace("$title$", i.name).replace("$edit$", window.JS_STRINGS.edit).replace("$ep_rec_date$", window.JS_STRINGS.ep_rec_date).replace("$rec_date$", recDate).replace("$ep_characters$", window.JS_STRINGS.ep_characters).replace("$delete$", window.JS_STRINGS.delete);
 
                     var charItem = "";
                     if (i.characters.length > 0){

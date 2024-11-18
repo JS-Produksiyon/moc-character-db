@@ -178,7 +178,7 @@ $(document).ready(function (){
             switch (target) {
                 case ("episodes"):
                     rowTpl = `<tr>
-                                <td><a href="#/episodes/$id$">$episode$</a></td>
+                                <td><a href="#/episodes/\$id\$">$episode$</a></td>
                                 <td class="text-end pe-3">
                                     <button class="btn btn-sm btn-outline-danger char-ep-del" title="$del_ep$" data-id="$id$" type="button">
                                         <i class="bi-trash3-fill"></i>
@@ -188,7 +188,7 @@ $(document).ready(function (){
                     if (self.character_data.episodes.length > 0) {
                         targetDomId = "#char_eps_table_container table tbody";
                         $.each(self.character_data.episodes, function (k,i) {
-                            rowData.push(rowTpl.replace(/$id$/g, i).replace("$episode$", i.toString() + " &ndash;" + episodesObj.list[i].name).replace("$del_ep$", window.JS_STRINGS.del_ep))
+                            rowData.push(rowTpl.replace(/\$id\$/g, i).replace("$episode$", i.toString() + " &ndash;" + episodesObj.list[i].name).replace("$del_ep$", window.JS_STRINGS.del_ep))
                         });
                         $("#char_no_eps").hide();
                         $("#char_eps_table_container").show();
@@ -200,7 +200,7 @@ $(document).ready(function (){
             
                 case ("relationships"):
                     rowTpl = `<tr>
-                                <td class="ps-3"><a href="#/character/$id$">$full_name$</a></td>
+                                <td class="ps-3"><a href="#/character/\$id\$">$full_name$</a></td>
                                 <td>$relationship$</td>
                                 <td><i class="bi-gender-$sex_slug$" title="$sex_word$"></i></td>
                                 <td class="text-end pe-3">
@@ -215,7 +215,7 @@ $(document).ready(function (){
                     if (self.character_data.relationships.length > 0) {
                         targetDomId = "#char_relationships_table_container table tbody";
                         $.each(self.character_data.relationships, function (k,i) {
-                            var row = rowTpl.replace(/$id$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
+                            var row = rowTpl.replace(/\$id\$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
                             row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
                             row = row.replace("$display$", window.JS_STRINGS.display).replace("$del_rel$", window.JS_STRINGS.del_rel);
                             row = row.replace(/$rowId$/g, k); /* this is reference so we can edit or delete */

@@ -112,7 +112,7 @@ $(document).ready(function (){
                     marital_status: typeof(""), acted_by: typeof(0), relationships: typeof([]), 
                     episodes: typeof([])};
             
-            var relationships_skeleton = {id: typeof(0), name: typeof(""), sex: typeof(""), reciprocal: typeof(true), relation: typeof("")}
+            var relationships_skeleton = {rid: typeof(0), id: typeof(0), name: typeof(""), sex: typeof(""), reciprocal: typeof(true), relation: typeof("")}
             var result = false;
             var test = skeleton;
 
@@ -204,9 +204,9 @@ $(document).ready(function (){
                                 <td>$relationship$</td>
                                 <td><i class="bi-gender-$sex_slug$" title="$sex_word$"></i></td>
                                 <td class="text-end pe-3">
-                                    <!-- <button class="btn btn-sm btn-outline-dark char-rel-show" title="$display$" data-rowid="$rowId$" type="button">
-                                        <i class="bi-eye"></i>
-                                    </button> -->
+                                    <button class="btn btn-sm btn-outline-dark char-rel-show" title="$display$" data-rowid="$rowId$" type="button">
+                                        <i class="bi bi-pencil"></i>
+                                    </button>
                                     <button class="btn btn-sm btn-outline-danger char-rel-del" title="$del_rel$" data-rowid="$rowId$" type="button">
                                         <i class="bi-trash3-fill"></i>
                                     </button>
@@ -217,8 +217,8 @@ $(document).ready(function (){
                         $.each(self.character_data.relationships, function (k,i) {
                             var row = rowTpl.replace(/\$id\$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
                             row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
-                            row = row.replace("$display$", window.JS_STRINGS.display).replace("$del_rel$", window.JS_STRINGS.del_rel);
-                            row = row.replace(/$rowId$/g, k); /* this is reference so we can edit or delete */
+                            row = row.replace("$display$", window.JS_STRINGS.edit).replace("$del_rel$", window.JS_STRINGS.del_rel);
+                            row = row.replace(/\$rowId\$/g, k); /* this is reference so we can edit or delete */
                             rowData.push(row);
                         })
 
@@ -498,6 +498,7 @@ $(document).ready(function (){
                 var charId = $("#appendRelationshipModal_character").val();
                 var doReciprocal = ($("#appendRelationshipModal_reciprocal").is(":checked")) ? true : false;
                 var relSlug = $("#appendRelationshipModal_relation").val();
+                var relationshipId = (parseInt($("#appendRelationshipModal_rid").val()) != NaN) ? parseInt($("#appendRelationshipModal_rid").val()) : 0;
 
                 /* validate contents */
                 if (charId == "0") {
@@ -511,6 +512,7 @@ $(document).ready(function (){
 
                 if (go) {
                     var relObj = { 
+                        "rid": relationshipId,
                         "id": charId, 
                         "name": window.charListObj.list[charId].name, 
                         "sex": window.charListObj.list[charId].sex, 
@@ -545,14 +547,17 @@ $(document).ready(function (){
                     var otherCharKey = "add";
                     var otherCharId = "0";
                     var otherCharSlug = "0";
+                    var relationshipId = "0";
 
                     if (action == "edit") {
+                        relationshipId = self.character_data.relationships[rowId].rid;
                         otherCharKey = rowId;
                         otherCharId = self.character_data.relationships[rowId].id;
                         otherCharSlug = self.character_data.relationships[rowId].relation;
                     }
 
                     $("#appendRelationshipModal_action").val(otherCharKey);
+                    $("#appendRelationshipModal_rid").val(relationshipId);
 
                     if (Object.keys(window.charListObj.list).length > 0) {
                         var thisCharacter = self.character_data.id;

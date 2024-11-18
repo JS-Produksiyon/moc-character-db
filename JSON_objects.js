@@ -19,6 +19,7 @@ character =
 	acted_by: 0,
 	relationships: [
 		{
+			rid: 0, /* relationship record id */
 			id: 0,
 			name: "", /* full name */
 			sex: "",

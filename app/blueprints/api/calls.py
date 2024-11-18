@@ -110,13 +110,13 @@ def fetch_from_db():
             for rel in query.rel_main_character:
                 otherChar = Character.query.get(rel.other_character)
                 out['relationships'].append({
+                        'rid': rel.id,
                         'id': rel.other_character, 
                         'name': '{} {}'.format(otherChar.first_name, otherChar.last_name), 
                         'sex': otherChar.sex, 
                         'reciprocal': True,
                         'relation': rel.relationship
                 })
-
 
         nextId = Character.query.order_by(Character.id).all()[-1].id + 1 if len(Character.query.all()) > 0 else 1 # this is here because pulling an individual character from the DB is different
         
@@ -234,7 +234,7 @@ def write_to_db():
             charData = { 'id': int, 'first_name': str, 'last_name': str,
 	                 'sex': str, 'age': str, 'physical': str, 'personality': str, 'employment': str,
 	                 'image_head': str, 'image_body': str, 'animation_status': str, 'residence': int,
-                     'marital_status': str, 'acted_by': int, 'relationships': [{ 'id': int,
+                     'marital_status': str, 'acted_by': int, 'relationships': [{ 'rid': int, 'id': int,
 			         'name': str,  'sex': str, 'reciprocal': bool, 'relation': str }], 
                      'episodes': [int] }
             
@@ -308,13 +308,27 @@ def write_to_db():
                             raise TypeError(_('No relationship of type {slug} exists.').format(item['relation']))
 
                         reciprocalRelationship = relTypeQuery.reciprocal_male if query.sex == 'male' else relTypeQuery.reciprocal_female
-
+                        
                         # relationship from main to other
-                        if not any(rel for rel in query.rel_main_character if rel.other_character == item['id'] and rel.relationship == item['relation']):
+                        if item['rid'] == 0:
                             query.rel_main_character.append(Relationship(other_character=item['id'], relationship=item['relation']))
 
                             if item['reciprocal']:
                                 query.rel_other_character.append(Relationship(main_character=item['id'], relationship=reciprocalRelationship))
+
+                        else:
+                            currentRelationship = next((rel for rel in query.rel_main_character if rel.id == item['rid']), None)
+
+                            if currentRelationship:
+                                if item['reciprocal']:
+                                    otherRelationship = next((rel for rel in query.rel_other_character if (rel.main_character == currentRelationship.other_character and rel.relationship == currentRelationship.relationship)), None)
+
+                                currentRelationship.other_character = item['id']
+                                currentRelationship.relationship = item['relation']
+
+                                if otherRelationship:
+                                    otherRelationship.main_character == item['id']
+                                    otherRelationship.relationship = reciprocalRelationship
 
                     # remove the relationships that don't exist in the passed data
                     for item in query.rel_main_character:

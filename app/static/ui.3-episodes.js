@@ -16,28 +16,28 @@ $(document).ready(function () {
 
         /* private */
         var accordionTpl = `<div class="accordion-item">
-    <h2 class="accordion-header" id="episode_%id%">
-        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_%id%">
-            %id% &ndash; %title%
+    <h2 class="accordion-header" id="episode_$id$">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse_$id$">
+            $id$ &ndash; $title$
         </button>
     </h2>
-    <div id="collapse_%id%" class="accordion-collapse collapse">
+    <div id="collapse_$id$" class="accordion-collapse collapse">
         <div class="accordion-body">
             <div class="float-end">
-                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="%id%"><i class="bi bi-pencil"></i> %edit%</button></button>
-                <button type="button" class="btn btn-outline-danger delete-episode" data-episode="%id%" title="%delete%"><i class="bi-trash3-fill"></i></button></button>
+                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="$id$"><i class="bi bi-pencil"></i> $edit$</button></button>
+                <button type="button" class="btn btn-outline-danger delete-episode" data-episode="$id$" title="$delete$"><i class="bi-trash3-fill"></i></button></button>
             </div>
-            <p><strong>%ep_rec_date%:</strong> %rec_date%</p>
-            <p class="mb-0"><strong>%ep_characters%:</strong></p>
+            <p><strong>$ep_rec_date$:</strong> $rec_date$</p>
+            <p class="mb-0"><strong>$ep_characters$:</strong></p>
             <ul>
-                %charlist%
+                $charlist$
             </ul>
         </div>
     </div>            
 </div>\n`;
         var csrfToken = $("#csrf_token").val();
-        var optionTpl = '<option value="%option%">%item%</option>\n';
-        var listItemTpl = '<li><a href="#/character/%id%">%full_name%</a></li>\n';
+        var optionTpl = '<option value="$option$">$item$</option>\n';
+        var listItemTpl = '<li><a href="#/character/$id$">$full_name$</a></li>\n';
 
         /* self-reference */
         var self = this
@@ -145,17 +145,17 @@ $(document).ready(function () {
                 data = {"csrf_token": csrfToken, "what": "episodes", "id":id}
                 $.post("/api/deleteItem", data, function (r) {
                     if (r.error) {
-                        window.flash.display(window.JS_STRINGS["del_error"].replace("%item%", window.JS_STRINGS["episode"]).replace("%id%", id), "warning")
+                        window.flash.display(window.JS_STRINGS["del_error"].replace("$item$", window.JS_STRINGS["episode"]).replace("$id$", id), "warning")
                     } else {
-                        window.flash.display(window.JS_STRINGS["del_success"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id), "success");
+                        window.flash.display(window.JS_STRINGS["del_success"].replace("$item$", window.JS_STRINGS["ep_num"] + " " + id), "success");
                         window.charListObj.load(); /* to clear changes of deleted episodes */
                     }
-                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['episode']), 'danger'); });
+                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$item$", window.JS_STRINGS['episode']), 'danger'); });
                 self.write();
                 self.display();
             } else {
-                $("#deleteItemModal_title_item").html(capitalizeFirst(window.JS_STRINGS["del_title"]).replace("%item%", window.JS_STRINGS["Episode"]));
-                $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id)));
+                $("#deleteItemModal_title_item").html(capitalizeFirst(window.JS_STRINGS["del_title"]).replace("$item$", window.JS_STRINGS["Episode"]));
+                $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("$item$", window.JS_STRINGS["ep_num"] + " " + id)));
                 delYesButton.click(function() { self.delete(id, true); });
                 delModal.modal("show");
              }
@@ -211,13 +211,13 @@ $(document).ready(function () {
         this.load = function() {
             $.get("/api/fetch", {"what":"episodes"}, function (r) {
                 if (r.error) {
-                    window.flash.display(window.JS_STRINGS['es_read_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger');
+                    window.flash.display(window.JS_STRINGS['es_read_failure'].replace("$item$", window.JS_STRINGS['episodes']), 'danger');
                     console.log(r.error);
                 } else {
                     self.list = r.episodes;
                     self.write();
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger'); });
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$item$", window.JS_STRINGS['episodes']), 'danger'); });
         }
         
         /**
@@ -265,12 +265,12 @@ $(document).ready(function () {
                 
                 $.post('/api/write', data, function (r) {
                     if (r.error) {
-                        window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "warning");
+                        window.flash.display(window.JS_STRINGS["es_write_failure"].replace("$item$", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "warning");
                         console.log(r.error);
                     } else {
-                        window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "success");
+                        window.flash.display(window.JS_STRINGS["es_write_success"].replace("$item$", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "success");
                     }
-                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["episode"]), "danger"); });
+                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["episode"]), "danger"); });
     
                 data["characters"] = JSON.parse(data["characters"]); // this is so that the characters object _remains_ an object in normal usage
 
@@ -297,23 +297,23 @@ $(document).ready(function () {
             var select = "";
 
             if (Object.keys(self.list).length > 0) {
-                select = optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.select_episode_here);
+                select = optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_episode_here);
                 $.each(self.list, function (k, i) {
                     var recDate = (i.recorded != "") ? i.recorded : window.JS_STRINGS.ep_not_recorded;
 
-                    var accItem = accordionTpl.replace(/%id%/g, i.id).replace("%title%", i.name).replace("%edit%", window.JS_STRINGS.edit).replace("%ep_rec_date%", window.JS_STRINGS.ep_rec_date).replace("%rec_date%", recDate).replace("%ep_characters%", window.JS_STRINGS.ep_characters).replace("%delete%", window.JS_STRINGS.delete);
+                    var accItem = accordionTpl.replace(/$id$/g, i.id).replace("$title$", i.name).replace("$edit$", window.JS_STRINGS.edit).replace("$ep_rec_date$", window.JS_STRINGS.ep_rec_date).replace("$rec_date$", recDate).replace("$ep_characters$", window.JS_STRINGS.ep_characters).replace("$delete$", window.JS_STRINGS.delete);
 
                     var charItem = "";
                     if (i.characters.length > 0){
                         for (var j=0; j<i.characters.length; j++) {
-                            charItem += listItemTpl.replace("%id%", i.characters[j].character_id).replace("%full_name%", i.characters[j].character_name);
+                            charItem += listItemTpl.replace("$id$", i.characters[j].character_id).replace("$full_name$", i.characters[j].character_name);
                         }
                     } else {
                         charItem = window.JS_STRINGS.ep_no_characters;
                     }
 
-                    accordion += accItem.replace("%charlist%", charItem);
-                    select += optionTpl.replace("%option%", i.id).replace("%item%", i.id + " &ndash; " + i.name);
+                    accordion += accItem.replace("$charlist$", charItem);
+                    select += optionTpl.replace("$option$", i.id).replace("$item$", i.id + " &ndash; " + i.name);
                 });
                 if ($("#ep_list_accordion").css("display") == "none") { showData(); }
 
@@ -321,7 +321,7 @@ $(document).ready(function () {
              /* this is moved to ui.5-character.js 
             if (select == "") {
                 dselectRemove("#append_selected_episode");
-                $("#append_selected_episode").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.episode_none));
+                $("#append_selected_episode").html(optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.episode_none));
                 $("#append_selected_episode").prop("disabled", true);
             } else {
                 $("#append_selected_episode").html(select);

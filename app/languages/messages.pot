@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-14 16:59+0300\n"
+"POT-Creation-Date: 2024-11-18 12:04+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -708,8 +708,7 @@ msgid "Load Default Relationships"
 msgstr ""
 
 #: app/languages/jsstrings.py:24
-#, python-format
-msgid "Unable to delete %item% from database."
+msgid "Unable to delete $item$ from database."
 msgstr ""
 
 #: app/languages/jsstrings.py:25
@@ -719,28 +718,23 @@ msgid ""
 msgstr ""
 
 #: app/languages/jsstrings.py:26
-#, python-format
-msgid "Unable to retrieve the %item% from the database."
+msgid "Unable to retrieve the $item$ from the database."
 msgstr ""
 
 #: app/languages/jsstrings.py:27
-#, python-format
-msgid "Requested %item% was not found in database."
+msgid "Requested $item$ was not found in database."
 msgstr ""
 
 #: app/languages/jsstrings.py:28
-#, python-format
-msgid "%item% successfully retrieved from database"
+msgid "$item$ successfully retrieved from database"
 msgstr ""
 
 #: app/languages/jsstrings.py:29
-#, python-format
-msgid "Unable to write the %item% to database."
+msgid "Unable to write the $item$ to database."
 msgstr ""
 
 #: app/languages/jsstrings.py:30
-#, python-format
-msgid "The %item% was written to database successfully."
+msgid "The $item$ was written to database successfully."
 msgstr ""
 
 #: app/languages/jsstrings.py:32
@@ -772,7 +766,7 @@ msgstr ""
 
 #: app/languages/jsstrings.py:38
 msgid ""
-"You are about to delete the character called <em>%name%</em>.<br>If you "
+"You are about to delete the character called <em>$name$</em>.<br>If you "
 "do so, this character and all associated relationships will be "
 "permanently deleted."
 msgstr ""
@@ -782,8 +776,7 @@ msgid "Remove Episode"
 msgstr ""
 
 #: app/languages/jsstrings.py:40
-#, python-format
-msgid "Unable to delete %item% %id%."
+msgid "Unable to delete $item$ $id$."
 msgstr ""
 
 #: app/languages/jsstrings.py:41
@@ -795,8 +788,7 @@ msgid "You are about to remove the head shot image for this character."
 msgstr ""
 
 #: app/languages/jsstrings.py:43
-#, python-format
-msgid "You are about to delete %item%."
+msgid "You are about to delete $item$."
 msgstr ""
 
 #: app/languages/jsstrings.py:44
@@ -804,22 +796,19 @@ msgid "Remove Relationship"
 msgstr ""
 
 #: app/languages/jsstrings.py:45
-#, python-format
 msgid ""
-"You are about to remove the relationship titled <em>%relationship%</em> "
-"between <em>%main%</em> and <em>%other%</em>.<br>This <em>will not</em> "
+"You are about to remove the relationship titled <em>$relationship$</em> "
+"between <em>$main$</em> and <em>$other$</em>.<br>This <em>will not</em> "
 "remove any reciprocal relationship, if such a reciprocal relationship "
 "exists!"
 msgstr ""
 
 #: app/languages/jsstrings.py:46
-#, python-format
-msgid "Successfully deleted %item%."
+msgid "Successfully deleted $item$."
 msgstr ""
 
 #: app/languages/jsstrings.py:47
-#, python-format
-msgid "Delete %item%"
+msgid "Delete $item$"
 msgstr ""
 
 #: app/languages/jsstrings.py:48
@@ -869,7 +858,7 @@ msgstr ""
 #: app/languages/jsstrings.py:61
 msgid ""
 "An error occurred while interacting with the database. Data was not "
-"%action%."
+"$action$."
 msgstr ""
 
 #: app/languages/jsstrings.py:62
@@ -935,9 +924,8 @@ msgid "the"
 msgstr ""
 
 #: app/languages/jsstrings.py:85
-#, python-format
 msgid ""
-"Unable to find the selected item among the %items%. Adding a new item "
+"Unable to find the selected item among the $items$. Adding a new item "
 "instead."
 msgstr ""
 

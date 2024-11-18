@@ -21,7 +21,7 @@ $(document).ready(function (){
       
         /* private */
         var csrfToken = $("#csrf_token").val();
-        var optionTpl = '<option value="%option%">%item%</option>\n';
+        var optionTpl = '<option value="$option$">$item$</option>\n';
         var firstLoad = true;
 
         /* self-reference */
@@ -178,9 +178,9 @@ $(document).ready(function (){
             switch (target) {
                 case ("episodes"):
                     rowTpl = `<tr>
-                                <td><a href="#/episodes/%id%">%episode%</a></td>
+                                <td><a href="#/episodes/$id$">$episode$</a></td>
                                 <td class="text-end pe-3">
-                                    <button class="btn btn-sm btn-outline-danger char-ep-del" title="%del_ep%" data-id="%id%" type="button">
+                                    <button class="btn btn-sm btn-outline-danger char-ep-del" title="$del_ep$" data-id="$id$" type="button">
                                         <i class="bi-trash3-fill"></i>
                                     </button>
                                 </td>
@@ -188,7 +188,7 @@ $(document).ready(function (){
                     if (self.character_data.episodes.length > 0) {
                         targetDomId = "#char_eps_table_container table tbody";
                         $.each(self.character_data.episodes, function (k,i) {
-                            rowData.push(rowTpl.replace(/%id%/g, i).replace("%episode%", i.toString() + " &ndash;" + episodesObj.list[i].name).replace("%del_ep%", window.JS_STRINGS.del_ep))
+                            rowData.push(rowTpl.replace(/$id$/g, i).replace("$episode$", i.toString() + " &ndash;" + episodesObj.list[i].name).replace("$del_ep$", window.JS_STRINGS.del_ep))
                         });
                         $("#char_no_eps").hide();
                         $("#char_eps_table_container").show();
@@ -200,14 +200,14 @@ $(document).ready(function (){
             
                 case ("relationships"):
                     rowTpl = `<tr>
-                                <td class="ps-3"><a href="#/character/%id%">%full_name%</a></td>
-                                <td>%relationship%</td>
-                                <td><i class="bi-gender-%sex_slug%" title="%sex_word%"></i></td>
+                                <td class="ps-3"><a href="#/character/$id$">$full_name$</a></td>
+                                <td>$relationship$</td>
+                                <td><i class="bi-gender-$sex_slug$" title="$sex_word$"></i></td>
                                 <td class="text-end pe-3">
-                                    <!-- <button class="btn btn-sm btn-outline-dark char-rel-show" title="%display%" data-rowid="%rowId%" type="button">
+                                    <!-- <button class="btn btn-sm btn-outline-dark char-rel-show" title="$display$" data-rowid="$rowId$" type="button">
                                         <i class="bi-eye"></i>
                                     </button> -->
-                                    <button class="btn btn-sm btn-outline-danger char-rel-del" title="%del_rel%" data-rowid="%rowId%" type="button">
+                                    <button class="btn btn-sm btn-outline-danger char-rel-del" title="$del_rel$" data-rowid="$rowId$" type="button">
                                         <i class="bi-trash3-fill"></i>
                                     </button>
                                 </td>
@@ -215,10 +215,10 @@ $(document).ready(function (){
                     if (self.character_data.relationships.length > 0) {
                         targetDomId = "#char_relationships_table_container table tbody";
                         $.each(self.character_data.relationships, function (k,i) {
-                            var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%relationship%", window.relationshipObj.getNameFromSlug(i.relation));
-                            row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS[`sex_word_${i.sex}`]);
-                            row = row.replace("%display%", window.JS_STRINGS.display).replace("%del_rel%", window.JS_STRINGS.del_rel);
-                            row = row.replace(/%rowId%/g, k); /* this is reference so we can edit or delete */
+                            var row = rowTpl.replace(/$id$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
+                            row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
+                            row = row.replace("$display$", window.JS_STRINGS.display).replace("$del_rel$", window.JS_STRINGS.del_rel);
+                            row = row.replace(/$rowId$/g, k); /* this is reference so we can edit or delete */
                             rowData.push(row);
                         })
 
@@ -286,14 +286,14 @@ $(document).ready(function (){
                 $.post("api/deleteItem", {"csrf_token": csrfToken, "what": "character", "id": self.character_data.id}, function (r) {
                     var charString = `${window.JS_STRINGS["character"]} <em>${self.character_data.first_name} ${self.character_data.last_name}</em>`
                     if (r.error) {
-                        window.flash.display(capitalizeFirst(window.JS_STRINGS["es_del_failure"].replace("%item%", charString)), "warning");
+                        window.flash.display(capitalizeFirst(window.JS_STRINGS["es_del_failure"].replace("$item$", charString)), "warning");
                     } else {
-                        window.flash.display(capitalizeFirst(window.JS_STRINGS["del_success"].replace("%item%", charString)), "success");
+                        window.flash.display(capitalizeFirst(window.JS_STRINGS["del_success"].replace("$item$", charString)), "success");
                     }
-                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['del_char'].toLocaleLowerCase()), "danger"); });;
+                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$action$", window.JS_STRINGS['del_char'].toLocaleLowerCase()), "danger"); });;
             } else {
                 $("#deleteItemModal_title_item").html(window.JS_STRINGS['del_character']);
-                $("#deleteItemModal_msg").html(window.JS_STRINGS['del_character_msg'].replace("%name%", `${self.character_data.first_name} ${self.character_data.last_name}`));
+                $("#deleteItemModal_msg").html(window.JS_STRINGS['del_character_msg'].replace("$name$", `${self.character_data.first_name} ${self.character_data.last_name}`));
                 $("#deleteItemModal_yes").click(function () { self.delete(true); });
                 $("#deleteItemModal").modal("show");
             }
@@ -388,7 +388,7 @@ $(document).ready(function (){
                 $(delModal).modal("hide");
             } else {
                 $("#deleteItemModal_title_item").html(capitalizeFirst(window.JS_STRINGS["del_ep"]));
-                $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("%item%", window.JS_STRINGS["ep_num"] + " " + id)));                
+                $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("$item$", window.JS_STRINGS["ep_num"] + " " + id)));                
                 $(delYesButton).click(function() { self.episodeDel(id, true); });
                 $(delModal).modal("show")
             }
@@ -447,17 +447,17 @@ $(document).ready(function (){
                 $.post("/api/fetch", { "what": "character", "id": id, "csrf_token": csrfToken}, 
                     function (r) {
                         if (r.error) {
-                            window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_failure"].replace("%item%", window.JS_STRINGS["character"])), "warning");
+                            window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_failure"].replace("$item$", window.JS_STRINGS["character"])), "warning");
                             self.add();
                         } else {
                             self.nextId = r.next;
                             self.character_data = verifyData(r.character);
                             if (self.character_data === false) {
-                                window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_nodata"].replace("%item%", window.JS_STRINGS["character"])), "warning");
+                                window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_nodata"].replace("$item$", window.JS_STRINGS["character"])), "warning");
                                 self.add();
                                 display("add");
                             } else {
-                                window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_success"].replace("%item%", window.JS_STRINGS["character"])), "success");
+                                window.flash.display(capitalizeFirst(window.JS_STRINGS["es_read_success"].replace("$item$", window.JS_STRINGS["character"])), "success");
                                 self.writeFormData();
                                 display("edit");
                             }
@@ -600,9 +600,9 @@ $(document).ready(function (){
                 $("#deleteItemModal_yes").off("click");
                 $("#deleteItemModal").modal("hide");
             } else {
-                var msg = window.JS_STRINGS.del_rel_text.replace("%main%", `${self.character_data.first_name} ${self.character_data.last_name}`);
-                msg = msg.replace("%other%", window.charListObj.list[self.character_data.relationships[rowId].id].name);
-                msg = msg.replace("%relationship%", window.relationshipObj.getNameFromSlug(self.character_data.relationships[rowId].relation));
+                var msg = window.JS_STRINGS.del_rel_text.replace("$main$", `${self.character_data.first_name} ${self.character_data.last_name}`);
+                msg = msg.replace("$other$", window.charListObj.list[self.character_data.relationships[rowId].id].name);
+                msg = msg.replace("$relationship$", window.relationshipObj.getNameFromSlug(self.character_data.relationships[rowId].relation));
                 $("#deleteItemModal_title_item").html(window.JS_STRINGS.del_rel);
                 $("#deleteItemModal_msg").html(msg);
                 $("#deleteItemModal_yes").click(function () { self.relationDel(rowId, true); });
@@ -667,14 +667,14 @@ $(document).ready(function (){
 
             $.post("/api/write", send, function (r) {
                 if (r.error) {
-                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "warning");
+                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("$item$", `<i>${data.first_name} ${data.last_name}</i>`), "warning");
                     console.log(r.error);
                 } else {
-                    window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", `<i>${data.first_name} ${data.last_name}</i>`), "success");
+                    window.flash.display(window.JS_STRINGS["es_write_success"].replace("$item$", `<i>${data.first_name} ${data.last_name}</i>`), "success");
                     window.episodesObj.load();
                     window.saveState.clearUnsaved();
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%action%", window.JS_STRINGS['string_written']), "danger"); });;
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$action$", window.JS_STRINGS['string_written']), "danger"); });;
         }
 
         /**
@@ -693,16 +693,16 @@ $(document).ready(function (){
                         if (i.length > 0) { /* j=key; e=episode */
                             $.each(window.episodesObj.list, function (j,e){
                                 if (i.indexOf(e.id) < 0) {
-                                    select = optionTpl.replace("%option%", e.id).replace("%item%", `${e.id} &ndash; ${e.name}`);
+                                    select = optionTpl.replace("$option$", e.id).replace("$item$", `${e.id} &ndash; ${e.name}`);
                                 }
                             });
                         }
                         if (select == "") {
                             dselectRemove("#append_selected_episode");
-                            $("#append_selected_episode").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.episode_none));
+                            $("#append_selected_episode").html(optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.episode_none));
                             $("#append_selected_episode").prop("disabled", true);
                         } else {
-                            select = optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.select_episode_here) + select;
+                            select = optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_episode_here) + select;
                             $("#append_selected_episode").html(select);
                             $("#append_selected_episode").prop("disabled", false);
                             dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "280px" });

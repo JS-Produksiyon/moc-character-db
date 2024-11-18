@@ -23,12 +23,12 @@ $(document).ready(function () {
                 animation_status: ""
             };
         var rowTpl = `<tr>
-                        <td class="ps-3"><a href="#/character/%id%">%full_name%</a></td>
-                        <td><i class="bi-gender-%sex_slug%" title="%sex_word%"></i></td>
-                        <td>%episodes%</td>
-                        <td class="col-3">%ani_status%</td>
+                        <td class="ps-3"><a href="#/character/$id$">$full_name$</a></td>
+                        <td><i class="bi-gender-$sex_slug$" title="$sex_word$"></i></td>
+                        <td>$episodes$</td>
+                        <td class="col-3">$ani_status$</td>
                         <td class="text-end pe-3">
-                            <a href="#/character/%id%"><button class="btn btn-sm btn-outline-dark char-display" title="%display%" type="button">
+                            <a href="#/character/$id$"><button class="btn btn-sm btn-outline-dark char-display" title="$display$" type="button">
                                 <i class="bi-eye"></i>
                             </button></a>
                         </td>
@@ -53,14 +53,14 @@ $(document).ready(function () {
         this.load = function () {
             $.get("/api/fetch", {"what":"character_list"}, function (r) {
                 if (r.error) {
-                    window.flash.display(window.JS_STRINGS['es_read_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger');
+                    window.flash.display(window.JS_STRINGS['es_read_failure'].replace("$item$", window.JS_STRINGS['episodes']), 'danger');
                     console.log(r.error);
                 } else {
                     self.list = r.character_list;
                     self.nextItem = r.next;
                     self.writeList();
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("%item%", window.JS_STRINGS['episodes']), 'danger'); });
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$item$", window.JS_STRINGS['episodes']), 'danger'); });
         }
 
         /**
@@ -114,10 +114,10 @@ $(document).ready(function () {
                 /* build character list table rows */
                 var tbody = [];
                 $.each(self.list, function (k,i) {
-                    var row = rowTpl.replace(/%id%/g, i.id).replace("%full_name%", i.name).replace("%episodes%", i.episodes);
-                    row = row.replace("%sex_slug%", i.sex).replace("%sex_word%", window.JS_STRINGS[`sex_word_${i.sex}`]);
-                    row = row.replace("%ani_status%", $(`select[name=animation_status] option[value=${i.animation_status}]`).text());
-                    row = row.replace("%display%", window.JS_STRINGS.display);
+                    var row = rowTpl.replace(/$id$/g, i.id).replace("$full_name$", i.name).replace("$episodes$", i.episodes);
+                    row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
+                    row = row.replace("$ani_status$", $(`select[name=animation_status] option[value=${i.animation_status}]`).text());
+                    row = row.replace("$display$", window.JS_STRINGS.display);
                     tbody.push(row);
                 })
                 $("#char_list_table_container table tbody").html(tbody.join("\n"));

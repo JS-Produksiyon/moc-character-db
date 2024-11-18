@@ -41,7 +41,7 @@ $(document).ready(function () {
         var domObjInput = args.input;
         var domObjModal = args.modal;
         var domObjSelect = args.select;
-        var optionTpl = '<option value="%option%">%item%</option>\n';
+        var optionTpl = '<option value="$option$">$item$</option>\n';
         var noContentMessage = args.no_content_msg;
         var whatItem = args.what;
 
@@ -90,14 +90,14 @@ $(document).ready(function () {
                 $(domObjModal).modal("hide");
                 $.post("/api/write", sendData, null, "json").done(function (r) {
                     if (r.error) {
-                        window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "warning");
+                        window.flash.display(window.JS_STRINGS["es_write_failure"].replace("$item$", window.JS_STRINGS["string_" + whatItem]), "warning");
                         console.log(r.error);
                     } else if (r.success) {
-                        window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "success");
+                        window.flash.display(window.JS_STRINGS["es_write_success"].replace("$item$", window.JS_STRINGS["string_" + whatItem]), "success");
                     } else {
                         window.flash.display(window.JS_STRINGS["general_failure"], "danger");
                     }
-                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_written"]), "danger"); })
+                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["string_written"]), "danger"); })
                 self.nextKey++;
                 $(domObjInput).val(""); /* make sure we reset the item */
             } else {
@@ -111,7 +111,7 @@ $(document).ready(function () {
         this.load = function () {
             $.getJSON('/api/fetch', {'what': whatItem}, function (r) {
                 if (r.error) {
-                    window.flash.display(window.JS_STRINGS["es_read_failure"].replace("%item%", window.JS_STRINGS["string_" + whatItem]), "warning");
+                    window.flash.display(window.JS_STRINGS["es_read_failure"].replace("$item$", window.JS_STRINGS["string_" + whatItem]), "warning");
                     console.log(r.error);
                 } else {
                     self.list = r[whatItem];
@@ -119,7 +119,7 @@ $(document).ready(function () {
                     self.write();
                 }
             }).fail(function () {
-                window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_received"]), "danger");
+                window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["string_received"]), "danger");
             });
         }
 
@@ -140,14 +140,14 @@ $(document).ready(function () {
             if (typeof(selected) != "string") { selected = 0; }
             $(domObjSelect).prop("disabled", false);
 
-            var options = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1] + "...")];
+            var options = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1] + "...")];
 
             if (Object.keys(self.list).length > 0) {
                 $.each(sortedList(), function (i,j) { 
-                    options.push(optionTpl.replace("%option%", j[1].id).replace("%item%", j[1].name));
+                    options.push(optionTpl.replace("$option$", j[1].id).replace("$item$", j[1].name));
                  });
             } else {
-                options = [optionTpl.replace("%option%", "0").replace("%item%", noContentMessage)];
+                options = [optionTpl.replace("$option$", "0").replace("$item$", noContentMessage)];
                 selected = 0;
                 $(domObjSelect).prop("disabled", true);
             }

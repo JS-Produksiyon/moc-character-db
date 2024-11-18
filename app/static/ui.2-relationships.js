@@ -20,13 +20,13 @@ $(document).ready(function () {
         /* private */
         var csrfToken = $("#csrf_token").val();
         var editText = window.JS_STRINGS.edit;
-        var optionTpl = '<option value="%option%">%item%</option>\n';
+        var optionTpl = '<option value="$option$">$item$</option>\n';
         var tableRow = `<tr>    
-    <td class="col-3 ps-3">%main_relation%</td>
-    <td class="col-3">%male_reciprocal_relation%</td>
-    <td class="col-3">%female_reciprocal_relation%</td>
+    <td class="col-3 ps-3">$main_relation$</td>
+    <td class="col-3">$male_reciprocal_relation$</td>
+    <td class="col-3">$female_reciprocal_relation$</td>
     <td class="col-3 text-end">
-        <button class="btn btn-sm btn-outline-dark relationship-open" data-id="%id%" title="%edit%" type="button" role="button">
+        <button class="btn btn-sm btn-outline-dark relationship-open" data-id="$id$" title="$edit$" type="button" role="button">
             <i class="bi bi-pencil"></i>
         </button>
     </td>
@@ -128,7 +128,7 @@ $(document).ready(function () {
 
             /* make sure Id exists */
             if (id > 0 && Object.keys(self.list).indexOf(id.toString()) < 0) { 
-                window.flash.display(window.JS_STRINGS["err_id_does_not_exist"].replace("%items%", window.JS_STRINGS["string_relation_types"]), "warning")
+                window.flash.display(window.JS_STRINGS["err_id_does_not_exist"].replace("$items$", window.JS_STRINGS["string_relation_types"]), "warning")
                 id=0; 
             }
 
@@ -209,7 +209,7 @@ $(document).ready(function () {
             $.getJSON("/api/fetch", {'what':'relation_types'}, 
                 function (r) {
                     if (r.error) {
-                        window.flash.display(window.JS_STRINGS["es_read_failure"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "warning");
+                        window.flash.display(window.JS_STRINGS["es_read_failure"].replace("$item$", window.JS_STRINGS["string_relation_types"]), "warning");
                         console.log(r.error);
                     } else {
                         self.list = r["relation_types"];
@@ -217,7 +217,7 @@ $(document).ready(function () {
                         self.write();
                     } 
                 }).fail(function () {
-                    window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_relation_types"]), "danger");
+                    window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["string_relation_types"]), "danger");
                 });
         }
 
@@ -229,13 +229,13 @@ $(document).ready(function () {
             $("#rellist_defaults").fadeOut();
             $.getJSON("/api//write-default-relation-types", null, function (r) {
                 if (r.error) {
-                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "warning");
+                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("$item$", window.JS_STRINGS["string_relation_types"]), "warning");
                     console.log(r.error);
                 } else {
                     self.load();
                     window.loading.stop();
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_relation_types"]), "danger"); });
+            }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["string_relation_types"]), "danger"); });
         }
 
         /**
@@ -285,12 +285,12 @@ $(document).ready(function () {
 
             $.post("api/write", data, function (r) {
                 if (r.error) {
-                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "warning");
+                    window.flash.display(window.JS_STRINGS["es_write_failure"].replace("$item$", window.JS_STRINGS["string_relation_types"]), "warning");
                     console.log(r.error);
                 } else {
-                    window.flash.display(window.JS_STRINGS["es_write_success"].replace("%item%", window.JS_STRINGS["string_relation_types"]), "success");
+                    window.flash.display(window.JS_STRINGS["es_write_success"].replace("$item$", window.JS_STRINGS["string_relation_types"]), "success");
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("%action%", window.JS_STRINGS["string_relation_types"]), "danger"); });
+            }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["string_relation_types"]), "danger"); });
 
             self.write();
         }
@@ -304,9 +304,9 @@ $(document).ready(function () {
             var out = "";
             var relationsMale = [];
             var relationsFemale = [];
-            var optionsCharacter = [optionTpl.replace("%option%", self.baseValues.relationship[0]).replace("%item%", self.baseValues.relationship[1])]
-            var optionsMale = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1])];
-            var optionsFemale = [optionTpl.replace("%option%", self.baseValues.select[0]).replace("%item%", self.baseValues.select[1])];
+            var optionsCharacter = [optionTpl.replace("$option$", self.baseValues.relationship[0]).replace("$item$", self.baseValues.relationship[1])]
+            var optionsMale = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1])];
+            var optionsFemale = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1])];
             
             
             /* write to the table */
@@ -314,18 +314,18 @@ $(document).ready(function () {
                 var sorted = sortRelations();
                 for (loop=0; loop<sorted.length; loop++) {
                     item = sorted[loop][1];
-                    out = out + tableRow.replace("%main_relation%", item.name
-                                       ).replace("%male_reciprocal_relation%", item.reciprocal_male
-                                       ).replace("%female_reciprocal_relation%", item.reciprocal_female
-                                       ).replace("%id%", item.id
-                                       ).replace("%edit%", editText);
+                    out = out + tableRow.replace("$main_relation$", item.name
+                                       ).replace("$male_reciprocal_relation$", item.reciprocal_male
+                                       ).replace("$female_reciprocal_relation$", item.reciprocal_female
+                                       ).replace("$id$", item.id
+                                       ).replace("$edit$", editText);
                     if (item.sex == "male" || item.sex == "both") {
                         relationsMale.push(item.slug);
                     }
                     if (item.sex == "female" || item.sex == "both") {
                         relationsFemale.push(item.slug);
                     }
-                    optionsCharacter.push(optionTpl.replace("%option%", item.slug).replace("%item%", item.name))
+                    optionsCharacter.push(optionTpl.replace("$option$", item.slug).replace("$item$", item.name))
                 }
 
                 /* enable select box on the append modal */
@@ -336,7 +336,7 @@ $(document).ready(function () {
             } else {
                 /* disable select box on the append modal */
                 dselectRemove("#appendRelationshipModal_relation");
-                $("#appendRelationshipModal_relation").html(optionTpl.replace("%option%", "0").replace("%item%", window.JS_STRINGS.relation_types_none));
+                $("#appendRelationshipModal_relation").html(optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.relation_types_none));
                 $("#appendRelationshipModal_relation").val("0");
                 $("#appendRelationshipModal_relation").prop("disabled", true);
             }
@@ -346,7 +346,7 @@ $(document).ready(function () {
             if (relationsMale.length > 0) {
                 for (loop=0; loop<relationsMale.length; loop++) {
                     item = self.getIdFromSlug(relationsMale[loop]);
-                    optionsMale.push(optionTpl.replace("%option%", self.list[item].slug).replace("%item%", self.list[item].name));
+                    optionsMale.push(optionTpl.replace("$option$", self.list[item].slug).replace("$item$", self.list[item].name));
                 }
             }
             $("#addEditRelationshipModal_rel_rec_male").html(optionsMale.join("\n"));
@@ -355,7 +355,7 @@ $(document).ready(function () {
             if (relationsFemale.length > 0) {
                 for (loop=0; loop<relationsFemale.length; loop++) {
                     item = self.getIdFromSlug(relationsFemale[loop]);
-                    optionsFemale.push(optionTpl.replace("%option%", self.list[item].slug).replace("%item%", self.list[item].name));
+                    optionsFemale.push(optionTpl.replace("$option$", self.list[item].slug).replace("$item$", self.list[item].name));
                 }
             }
             $("#addEditRelationshipModal_rel_rec_female").html(optionsFemale.join("\n"));

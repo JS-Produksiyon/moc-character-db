@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-11-18 12:04+0300\n"
+"POT-Creation-Date: 2024-11-21 12:47+0300\n"
 "PO-Revision-Date: 2024-09-24 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -31,13 +31,13 @@ msgstr "Öğe {item} silenemedi: {error}"
 msgid "Invalid character id passed."
 msgstr "Geçersiz karakter kimliği alındı."
 
-#: app/blueprints/api/calls.py:223 app/blueprints/api/calls.py:340
-#: app/blueprints/api/calls.py:373 app/blueprints/api/calls.py:419
+#: app/blueprints/api/calls.py:223 app/blueprints/api/calls.py:354
+#: app/blueprints/api/calls.py:387 app/blueprints/api/calls.py:433
 msgid "Unable to save {item}: {error}"
 msgstr "Öğe {item} kaydedilemedi: {error}"
 
 #: app/blueprints/api/calls.py:226 app/blueprints/api/calls.py:257
-#: app/blueprints/api/calls.py:357 app/blueprints/api/calls.py:390
+#: app/blueprints/api/calls.py:371 app/blueprints/api/calls.py:404
 msgid "Invalid data type passed: {e}"
 msgstr "Geçersiz veri türü alındı: {e}"
 
@@ -45,8 +45,8 @@ msgstr "Geçersiz veri türü alındı: {e}"
 msgid "No data passed"
 msgstr "Veri gönderilmedi"
 
-#: app/blueprints/api/calls.py:243 app/blueprints/api/calls.py:348
-#: app/blueprints/api/calls.py:381
+#: app/blueprints/api/calls.py:243 app/blueprints/api/calls.py:362
+#: app/blueprints/api/calls.py:395
 msgid "Invalid number of keys passed: {sent} not {sought}"
 msgstr "Geçersiz sayıda içerik alındı: {sought} yerine {sent}"
 
@@ -54,8 +54,8 @@ msgstr "Geçersiz sayıda içerik alındı: {sought} yerine {sent}"
 msgid "Invalid number of character data keys passed: {sent} not {sought}"
 msgstr "Geçersiz sayıda karakter veri anahtarı alındı: {sought} yerine {sent}"
 
-#: app/blueprints/api/calls.py:252 app/blueprints/api/calls.py:352
-#: app/blueprints/api/calls.py:385
+#: app/blueprints/api/calls.py:252 app/blueprints/api/calls.py:366
+#: app/blueprints/api/calls.py:399
 msgid "Required data for {item} not passed."
 msgstr "{item} öğesi için gerekli veri alınamadı"
 
@@ -63,23 +63,23 @@ msgstr "{item} öğesi için gerekli veri alınamadı"
 msgid "No relationship of type {slug} exists."
 msgstr "İstenilen türde ilişki bulunamadı: {slug}"
 
-#: app/blueprints/api/calls.py:337
+#: app/blueprints/api/calls.py:351
 msgid "Character {name} saved"
 msgstr "{name} adlı karakter kaydedildi."
 
-#: app/blueprints/api/calls.py:340 app/languages/jsstrings.py:31
+#: app/blueprints/api/calls.py:354 app/languages/jsstrings.py:31
 msgid "character"
 msgstr "karakter"
 
-#: app/blueprints/api/calls.py:370
+#: app/blueprints/api/calls.py:384
 msgid "{episode} saved"
 msgstr "{episode} kaydedildi"
 
-#: app/blueprints/api/calls.py:416
+#: app/blueprints/api/calls.py:430
 msgid "{slug} saved"
 msgstr "{slug} öğesi kaydedildi"
 
-#: app/blueprints/api/calls.py:422
+#: app/blueprints/api/calls.py:436
 msgid "No action passed"
 msgstr "Eylem gönderilmedi"
 
@@ -279,6 +279,10 @@ msgstr "Tuşlar"
 msgid "Add Episode"
 msgstr "Bölüm ekle"
 
+#: app/blueprints/main/templates/charform.html.jinja:155
+msgid "Appears in Episodes"
+msgstr "Geçtiği Bölümler"
+
 #: app/blueprints/main/templates/charform.html.jinja:167
 msgid "Back to List"
 msgstr "Listeye dön"
@@ -368,7 +372,7 @@ msgstr "Adı-Soyadı"
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:52
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:19
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:45
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:44
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:45
 #: app/blueprints/main/templates/modal_template.html.jinja:12
 msgid "Cancel"
 msgstr "İptal"
@@ -378,7 +382,7 @@ msgstr "İptal"
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:53
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:20
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:46
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:45
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_template.html.jinja:13
 msgid "Save"
 msgstr "Kaydet"
@@ -490,7 +494,7 @@ msgstr "Eril karşılıklı ilişki"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:27
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:28
 #: app/languages/jsstrings.py:67
 msgid "Select relationship..."
 msgstr "İlişkiyi seç..."
@@ -527,7 +531,7 @@ msgstr "En az bir karakter uzunluğunda bir ikamet yeri tanımını giriniz."
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:6
 msgid "Assign Episode to Character"
-msgstr "Karakteri Bölümle Bağla"
+msgstr "Karakteri Bölüme Bağla"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:11
 msgid "Select Episode"
@@ -571,7 +575,7 @@ msgstr ""
 "lütfen mevcut karakteri kaydedip veri tabanına farkı bir karakter daha "
 "ekleyin."
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:12
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:13
 msgid ""
 "Add a new relationship between <span id=\"this_char\">this "
 "character</span> and another by using the fields below. All fields are "
@@ -581,20 +585,20 @@ msgstr ""
 "ve başka bir karakter arasındaki ilişkiyi tanımlayın. Tüm alanların "
 "doldurulması zorunludur."
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:14
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:15
 msgid "Other Character"
 msgstr "Diğer karakter"
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:17
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:18
 #: app/languages/jsstrings.py:65
 msgid "Select character..."
 msgstr "Karakteri sil"
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:19
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:20
 msgid "Please select a character to continue."
 msgstr "Devam etmek için bir karakter seçiniz."
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:20
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:21
 msgid ""
 "If the character you are looking for is not in this dropdown list, please"
 " check the character list to see if they have been added. You can always "
@@ -604,19 +608,19 @@ msgstr ""
 " ana listede tanımlanmış olduğunu kontrol edin. Karakterler arasındaki "
 "ilişkiler sonradan da kolayca eklenebilir."
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:24
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:25
 msgid "Relationship to Character"
 msgstr "Karakter ile olan ilişkisi"
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:29
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:30
 msgid "Please select a relationship to continue."
 msgstr "Devam etmek için lütfen bir ilişki seçin"
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:37
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:38
 msgid "{action} reciprocal relationship"
 msgstr "Eril karşılıklı ilişki"
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:38
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:39
 msgid ""
 "If this box is checked, the reciprocal relationship will automatically be"
 " set for the other character, as well. If the relationship between the "
@@ -841,11 +845,11 @@ msgstr "$item$ $id$ öğesi silinemedi."
 
 #: app/languages/jsstrings.py:41
 msgid "You are about to remove the body pose image for this character."
-msgstr "Karakterin gövde pozu resmini silmek üzeresiniz."
+msgstr "Karakterin boydan çekiminin resmini silmek üzeresiniz."
 
 #: app/languages/jsstrings.py:42
 msgid "You are about to remove the head shot image for this character."
-msgstr "Karakterin kafa pozu resmini silmek üzeresiniz"
+msgstr "Karakterin kafa çekiminin resmini silmek üzeresiniz"
 
 #: app/languages/jsstrings.py:43
 msgid "You are about to delete $item$."
@@ -913,11 +917,11 @@ msgstr "Kayıt Tarihi"
 
 #: app/languages/jsstrings.py:59
 msgid "Character body shot"
-msgstr "Karakter gövde görseli"
+msgstr "Karakter boydan çekimi"
 
 #: app/languages/jsstrings.py:60
 msgid "Character head shot"
-msgstr "Karakter kafa görseil"
+msgstr "Karakter kafa çekimi"
 
 #: app/languages/jsstrings.py:61
 msgid ""

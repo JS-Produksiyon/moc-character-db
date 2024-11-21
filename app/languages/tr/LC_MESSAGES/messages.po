@@ -64,7 +64,6 @@ msgid "No relationship of type {slug} exists."
 msgstr "İstenilen türde ilişki bulunamadı: {slug}"
 
 #: app/blueprints/api/calls.py:337
-#, fuzzy
 msgid "Character {name} saved"
 msgstr "{name} adlı karakter kaydedildi."
 
@@ -235,9 +234,8 @@ msgid "Personality Description"
 msgstr "Kişilik Tanımı"
 
 #: app/blueprints/main/templates/charform.html.jinja:115
-#, fuzzy
 msgid "Character Acted by"
-msgstr "Karakter resmi"
+msgstr "Karakteri oynayan veya seslendiren"
 
 #: app/blueprints/main/templates/charform.html.jinja:123
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
@@ -522,7 +520,6 @@ msgid "Residence Name"
 msgstr "İkametinin adı"
 
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:14
-#, fuzzy
 msgid ""
 "Please enter a valid residence location to continue. It must be at least "
 "one character long."
@@ -590,7 +587,6 @@ msgstr "Diğer karakter"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:17
 #: app/languages/jsstrings.py:65
-#, fuzzy
 msgid "Select character..."
 msgstr "Karakteri sil"
 
@@ -617,12 +613,10 @@ msgid "Please select a relationship to continue."
 msgstr "Devam etmek için lütfen bir ilişki seçin"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:37
-#, fuzzy
 msgid "{action} reciprocal relationship"
 msgstr "Eril karşılıklı ilişki"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:38
-#, fuzzy
 msgid ""
 "If this box is checked, the reciprocal relationship will automatically be"
 " set for the other character, as well. If the relationship between the "
@@ -794,9 +788,8 @@ msgid "The $item$ was written to database successfully."
 msgstr "$item$ öğesi veri tabanına başarıyla yazıldı."
 
 #: app/languages/jsstrings.py:32
-#, fuzzy
 msgid "characters"
-msgstr "carakterler"
+msgstr "karakterler"
 
 #: app/languages/jsstrings.py:33
 msgid ""
@@ -879,7 +872,6 @@ msgid "Successfully deleted $item$."
 msgstr "$item$ öğesi başarıyla silindi."
 
 #: app/languages/jsstrings.py:47
-#, fuzzy
 msgid "Delete $item$"
 msgstr "$item$ öğesini sil"
 
@@ -924,7 +916,6 @@ msgid "Character body shot"
 msgstr "Karakter gövde görseli"
 
 #: app/languages/jsstrings.py:60
-#, fuzzy
 msgid "Character head shot"
 msgstr "Karakter kafa görseil"
 
@@ -943,12 +934,10 @@ msgid "Select ..."
 msgstr "Seçiniz..."
 
 #: app/languages/jsstrings.py:72
-#, fuzzy
 msgid "Add actor to select."
 msgstr "Seçebilmek için bir oyuncu ekleyin."
 
 #: app/languages/jsstrings.py:73
-#, fuzzy
 msgid "Add relationship to select."
 msgstr "Seçebilmek için bir ilişki ekleyin."
 

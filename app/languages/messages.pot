@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-18 12:04+0300\n"
+"POT-Creation-Date: 2024-11-21 12:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,13 +29,13 @@ msgstr ""
 msgid "Invalid character id passed."
 msgstr ""
 
-#: app/blueprints/api/calls.py:223 app/blueprints/api/calls.py:340
-#: app/blueprints/api/calls.py:373 app/blueprints/api/calls.py:419
+#: app/blueprints/api/calls.py:223 app/blueprints/api/calls.py:354
+#: app/blueprints/api/calls.py:387 app/blueprints/api/calls.py:433
 msgid "Unable to save {item}: {error}"
 msgstr ""
 
 #: app/blueprints/api/calls.py:226 app/blueprints/api/calls.py:257
-#: app/blueprints/api/calls.py:357 app/blueprints/api/calls.py:390
+#: app/blueprints/api/calls.py:371 app/blueprints/api/calls.py:404
 msgid "Invalid data type passed: {e}"
 msgstr ""
 
@@ -43,8 +43,8 @@ msgstr ""
 msgid "No data passed"
 msgstr ""
 
-#: app/blueprints/api/calls.py:243 app/blueprints/api/calls.py:348
-#: app/blueprints/api/calls.py:381
+#: app/blueprints/api/calls.py:243 app/blueprints/api/calls.py:362
+#: app/blueprints/api/calls.py:395
 msgid "Invalid number of keys passed: {sent} not {sought}"
 msgstr ""
 
@@ -52,8 +52,8 @@ msgstr ""
 msgid "Invalid number of character data keys passed: {sent} not {sought}"
 msgstr ""
 
-#: app/blueprints/api/calls.py:252 app/blueprints/api/calls.py:352
-#: app/blueprints/api/calls.py:385
+#: app/blueprints/api/calls.py:252 app/blueprints/api/calls.py:366
+#: app/blueprints/api/calls.py:399
 msgid "Required data for {item} not passed."
 msgstr ""
 
@@ -61,23 +61,23 @@ msgstr ""
 msgid "No relationship of type {slug} exists."
 msgstr ""
 
-#: app/blueprints/api/calls.py:337
+#: app/blueprints/api/calls.py:351
 msgid "Character {name} saved"
 msgstr ""
 
-#: app/blueprints/api/calls.py:340 app/languages/jsstrings.py:31
+#: app/blueprints/api/calls.py:354 app/languages/jsstrings.py:31
 msgid "character"
 msgstr ""
 
-#: app/blueprints/api/calls.py:370
+#: app/blueprints/api/calls.py:384
 msgid "{episode} saved"
 msgstr ""
 
-#: app/blueprints/api/calls.py:416
+#: app/blueprints/api/calls.py:430
 msgid "{slug} saved"
 msgstr ""
 
-#: app/blueprints/api/calls.py:422
+#: app/blueprints/api/calls.py:436
 msgid "No action passed"
 msgstr ""
 
@@ -277,6 +277,10 @@ msgstr ""
 msgid "Add Episode"
 msgstr ""
 
+#: app/blueprints/main/templates/charform.html.jinja:155
+msgid "Appears in Episodes"
+msgstr ""
+
 #: app/blueprints/main/templates/charform.html.jinja:167
 msgid "Back to List"
 msgstr ""
@@ -360,7 +364,7 @@ msgstr ""
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:52
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:19
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:45
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:44
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:45
 #: app/blueprints/main/templates/modal_template.html.jinja:12
 msgid "Cancel"
 msgstr ""
@@ -370,7 +374,7 @@ msgstr ""
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:53
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:20
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:46
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:45
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_template.html.jinja:13
 msgid "Save"
 msgstr ""
@@ -474,7 +478,7 @@ msgstr ""
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:27
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:28
 #: app/languages/jsstrings.py:67
 msgid "Select relationship..."
 msgstr ""
@@ -545,46 +549,46 @@ msgid ""
 " this feature."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:12
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:13
 msgid ""
 "Add a new relationship between <span id=\"this_char\">this "
 "character</span> and another by using the fields below. All fields are "
 "required."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:14
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:15
 msgid "Other Character"
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:17
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:18
 #: app/languages/jsstrings.py:65
 msgid "Select character..."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:19
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:20
 msgid "Please select a character to continue."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:20
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:21
 msgid ""
 "If the character you are looking for is not in this dropdown list, please"
 " check the character list to see if they have been added. You can always "
 "add the relationship later, if necessary."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:24
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:25
 msgid "Relationship to Character"
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:29
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:30
 msgid "Please select a relationship to continue."
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:37
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:38
 msgid "{action} reciprocal relationship"
 msgstr ""
 
-#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:38
+#: app/blueprints/main/templates/modal_appendRelationship.html.jinja:39
 msgid ""
 "If this box is checked, the reciprocal relationship will automatically be"
 " set for the other character, as well. If the relationship between the "

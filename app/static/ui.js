@@ -4,7 +4,7 @@
  * 
  *   File name: ui.js
  *   Date Created: 2024-09-12
- *   Date Modified: 2024-11-14
+ *   Date Modified: 2024-11-25
  * 
  */
 
@@ -125,6 +125,24 @@ function capitalizeFirst(s) {
 }
 
 /**
+ * Localize the dselect element
+ * 
+ * @param {string} selectObjId  : id of select object dselect is attached to
+ * @param {object} localStrings : strings to translate {search: '', noresults: ''}
+ */
+function dselectLocalize(selectObjId, localStrings) {
+    if (typeof selectObjId != "string") { return false; }
+    if (selectObjId.substring(0,1) != "#") { selectObjId = `#${selectObjId}`; }
+    if (typeof localStrings != "object") { return false; }
+    if (typeof localStrings.select != "string") { localStrings.select = ""; }
+    if (typeof localStrings.noresults != "string") { localStrings.noresults = ""; }
+
+    $(`${selectObjId} ~ .dropdown input`).attr("placeholder", localStrings.search);
+    $(`${selectObjId} ~ .dropdown .dselect-no-results`).html(localStrings.noresults);
+}
+
+
+/**
  * Remove the dselect enhancement from a select box that has it
  * 
  * @param {string} id : DOM id of select item to which dselect was applied
@@ -144,7 +162,7 @@ function dselectRemove(id) {
 /* document load */
 $(document).ready(function () {
     /* 
-     * enable dselect searchable dropdown boxes 
+     * example of dselect searchable dropdown boxes code
      * See https://github.com/jarstone/dselect for usage
      
     $.each(["#appendRelationshipModal_character", "#appendRelationshipModal_relation"], 

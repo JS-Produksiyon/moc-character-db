@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-11-21 12:47+0300\n"
-"PO-Revision-Date: 2024-09-24 10:00+0300\n"
+"POT-Creation-Date: 2024-11-25 15:58+0300\n"
+"PO-Revision-Date: 2024-11-25 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
 "Language-Team: Turkish <yazilim@jsproduksiyon.com>\n"
@@ -102,7 +102,7 @@ msgstr "Yıldız {star} ile işaretlenen alanların doldurulması zorunludur."
 
 #: app/blueprints/main/templates/charform.html.jinja:13
 #: app/blueprints/main/templates/charform.html.jinja:82
-#: app/languages/jsstrings.py:49
+#: app/languages/jsstrings.py:51
 msgid "Edit"
 msgstr "Düzenle"
 
@@ -146,13 +146,13 @@ msgstr "Seçiniz"
 
 #: app/blueprints/main/templates/charform.html.jinja:37
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:25
-#: app/languages/jsstrings.py:71
+#: app/languages/jsstrings.py:73
 msgid "Male"
 msgstr "Erkek"
 
 #: app/blueprints/main/templates/charform.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:26
-#: app/languages/jsstrings.py:70
+#: app/languages/jsstrings.py:72
 msgid "Female"
 msgstr "Kadın"
 
@@ -193,7 +193,7 @@ msgid "Residence"
 msgstr "İkamet"
 
 #: app/blueprints/main/templates/charform.html.jinja:72
-#: app/languages/jsstrings.py:64
+#: app/languages/jsstrings.py:66
 msgid "Add Location"
 msgstr "Mekân ekle"
 
@@ -239,7 +239,7 @@ msgstr "Karakteri oynayan veya seslendiren"
 
 #: app/blueprints/main/templates/charform.html.jinja:123
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
-#: app/languages/jsstrings.py:63
+#: app/languages/jsstrings.py:65
 msgid "Add Actor"
 msgstr "Oyuncu veya Seslendiren Ekle"
 
@@ -347,7 +347,7 @@ msgid "Official Logo"
 msgstr "Resmi Logo"
 
 #: app/blueprints/main/templates/main.html.jinja:13
-#: app/languages/jsstrings.py:54
+#: app/languages/jsstrings.py:56
 msgid "Characters"
 msgstr "Karakterler"
 
@@ -457,11 +457,11 @@ msgstr "En az bir karakter uzunluğunda geçerli bir ilişki tanımını giriniz
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:21
 msgid "Pertains to Which Sex"
-msgstr ""
+msgstr "Alakalı cinsiyet"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:27
 msgid "Both male and female"
-msgstr ""
+msgstr "Her iki cinsiyet"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:29
 msgid ""
@@ -469,10 +469,12 @@ msgid ""
 "or female, or whether the relationship pertains to both males and "
 "females."
 msgstr ""
+"Buradan bu ilişkinin hangi cinsiyet ile alakalı olduğunu tanımlayın. "
+"Erkekler mi için, kadınlar mı için, ya da her ikisi mi içindir?"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:30
 msgid "Please select a value to define what sex this relationship pertains to."
-msgstr ""
+msgstr "Bu ilişkinin hangi cinsiyetle alakalı olduğunu lütfen tanımlayın."
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:33
 msgid ""
@@ -495,7 +497,7 @@ msgstr "Eril karşılıklı ilişki"
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:28
-#: app/languages/jsstrings.py:67
+#: app/languages/jsstrings.py:69
 msgid "Select relationship..."
 msgstr "İlişkiyi seç..."
 
@@ -538,7 +540,7 @@ msgid "Select Episode"
 msgstr "Bölümü seç"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:20
-#: app/languages/jsstrings.py:66
+#: app/languages/jsstrings.py:68
 msgid "Select episode here..."
 msgstr "Bölümü buradan seçiniz..."
 
@@ -590,7 +592,7 @@ msgid "Other Character"
 msgstr "Diğer karakter"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:18
-#: app/languages/jsstrings.py:65
+#: app/languages/jsstrings.py:67
 msgid "Select character..."
 msgstr "Karakteri sil"
 
@@ -883,77 +885,85 @@ msgstr "$item$ öğesini sil"
 msgid "Display"
 msgstr "Görüntüle"
 
+#: app/languages/jsstrings.py:49
+msgid "Search"
+msgstr "Ara"
+
 #: app/languages/jsstrings.py:50
+msgid "No results found"
+msgstr "Sonuç bulunamadı"
+
+#: app/languages/jsstrings.py:52
 msgid "No episodes found. Please add one to select it."
 msgstr "Veri tabanında bölüm bulunmadı. Şeçebilmek için bölüm ekleyiniz."
 
-#: app/languages/jsstrings.py:51
+#: app/languages/jsstrings.py:53
 msgid "episode"
 msgstr "Bölümler"
 
-#: app/languages/jsstrings.py:52
+#: app/languages/jsstrings.py:54
 msgid "Episode"
 msgstr "Bölüm"
 
-#: app/languages/jsstrings.py:53
+#: app/languages/jsstrings.py:55
 msgid "episodes"
 msgstr "bölümler"
 
-#: app/languages/jsstrings.py:55
+#: app/languages/jsstrings.py:57
 msgid "Not yet recorded"
 msgstr "Henüz kaydedilmedi"
 
-#: app/languages/jsstrings.py:56
+#: app/languages/jsstrings.py:58
 msgid "No characters assigned"
 msgstr "Karakter tanımlanmadı"
 
-#: app/languages/jsstrings.py:57
+#: app/languages/jsstrings.py:59
 msgid "the episode number"
 msgstr "bölüm numarası"
 
-#: app/languages/jsstrings.py:58
+#: app/languages/jsstrings.py:60
 msgid "Recorded on"
 msgstr "Kayıt Tarihi"
 
-#: app/languages/jsstrings.py:59
+#: app/languages/jsstrings.py:61
 msgid "Character body shot"
 msgstr "Karakter boydan çekimi"
 
-#: app/languages/jsstrings.py:60
+#: app/languages/jsstrings.py:62
 msgid "Character head shot"
 msgstr "Karakter kafa çekimi"
 
-#: app/languages/jsstrings.py:61
+#: app/languages/jsstrings.py:63
 msgid ""
 "An error occurred while interacting with the database. Data was not "
 "$action$."
 msgstr "Veri alışverişi yapılırken bir hata oluştu. Veri $action$ yapılamadı."
 
-#: app/languages/jsstrings.py:62
+#: app/languages/jsstrings.py:64
 msgid "Date Recorded"
 msgstr "Kayıt Tarihi"
 
-#: app/languages/jsstrings.py:68
+#: app/languages/jsstrings.py:70
 msgid "Select ..."
 msgstr "Seçiniz..."
 
-#: app/languages/jsstrings.py:72
+#: app/languages/jsstrings.py:74
 msgid "Add actor to select."
 msgstr "Seçebilmek için bir oyuncu ekleyin."
 
-#: app/languages/jsstrings.py:73
+#: app/languages/jsstrings.py:75
 msgid "Add relationship to select."
 msgstr "Seçebilmek için bir ilişki ekleyin."
 
-#: app/languages/jsstrings.py:74
+#: app/languages/jsstrings.py:76
 msgid "Create"
 msgstr "Oluştur"
 
-#: app/languages/jsstrings.py:75
+#: app/languages/jsstrings.py:77
 msgid "Update"
 msgstr "güncellenemedi"
 
-#: app/languages/jsstrings.py:76
+#: app/languages/jsstrings.py:78
 msgid ""
 "Passed relationship item ID is invalid. Cannot load selected relationship"
 " for editing."
@@ -961,41 +971,41 @@ msgstr ""
 "Alınan ilişki kimliği geçersizdir. Seçilen ilişkiyi düzenlemek üzere "
 "yüklenemedi."
 
-#: app/languages/jsstrings.py:77
+#: app/languages/jsstrings.py:79
 msgid "Add location to select."
 msgstr "Seçmek için mekân ekleyin."
 
-#: app/languages/jsstrings.py:78
+#: app/languages/jsstrings.py:80
 msgid "written"
 msgstr "yazılımı"
 
-#: app/languages/jsstrings.py:79
+#: app/languages/jsstrings.py:81
 msgid "received"
 msgstr "alımı"
 
-#: app/languages/jsstrings.py:80
+#: app/languages/jsstrings.py:82
 msgid "actor"
 msgstr "oyuncu veya seslendiren"
 
-#: app/languages/jsstrings.py:81
+#: app/languages/jsstrings.py:83
 msgid "residence location"
 msgstr "ikamet yerin adı"
 
-#: app/languages/jsstrings.py:82
+#: app/languages/jsstrings.py:84
 msgid "relationship"
 msgstr "ilişki"
 
-#: app/languages/jsstrings.py:83
+#: app/languages/jsstrings.py:85
 msgid "relationship types"
 msgstr "ilişki türleri"
 
 # Türkçe'de artikel yoktur. Boş bırakın.
 # There are no articles in Turkish. Leave empty.
-#: app/languages/jsstrings.py:84
+#: app/languages/jsstrings.py:86
 msgid "the"
 msgstr ""
 
-#: app/languages/jsstrings.py:85
+#: app/languages/jsstrings.py:87
 msgid ""
 "Unable to find the selected item among the $items$. Adding a new item "
 "instead."

@@ -4,7 +4,7 @@
  * 
  *   File name: ui.3-episodes.js
  *   Date Created: 2024-10-01
- *   Date Modified: 2024-11-04
+ *   Date Modified: 2024-11-25
  * 
  */
 $(document).ready(function () {
@@ -318,17 +318,6 @@ $(document).ready(function () {
                 if ($("#ep_list_accordion").css("display") == "none") { showData(); }
 
             } 
-             /* this is moved to ui.5-character.js 
-            if (select == "") {
-                dselectRemove("#append_selected_episode");
-                $("#append_selected_episode").html(optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.episode_none));
-                $("#append_selected_episode").prop("disabled", true);
-            } else {
-                $("#append_selected_episode").html(select);
-                $("#append_selected_episode").prop("disabled", false);
-                dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "300px" });
-            }
-            */
 
             $("#ep_list_accordion").html(accordion);
             connectEvents(true);

@@ -4,7 +4,7 @@
  * 
  *   File name: ui.relationships.js
  *   Date Created: 2024-09-27
- *   Date Modified: 2024-11-18
+ *   Date Modified: 2024-11-25
  * 
  */
 
@@ -138,8 +138,10 @@ $(document).ready(function () {
             $("#addEditRelationshipModal_rel_sex").val((id < 1) ? "0" : self.list[id].sex);
             $("#addEditRelationshipModal_rel_rec_male").val((id < 1) ? "0" : self.list[id].reciprocal_male);
             dselect(document.querySelector("#addEditRelationshipModal_rel_rec_male"), { search: true });
+            dselectLocalize("#addEditRelationshipModal_rel_rec_male", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
             $("#addEditRelationshipModal_rel_rec_female").val((id < 1) ? "0" : self.list[id].reciprocal_female);
             dselect(document.querySelector("#addEditRelationshipModal_rel_rec_female"), { search: true });
+            dselectLocalize("#addEditRelationshipModal_rel_rec_female", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
             $("#addEditRelationshipModal").modal("show");
             setTimeout(function () {$("#addEditRelationshipModal_rel_name").focus(); }, 600);
         }
@@ -338,6 +340,7 @@ $(document).ready(function () {
                 $("#appendRelationshipModal_relation").val("0");
                 $("#appendRelationshipModal_relation").prop("disabled", false);
                 dselect(document.querySelector("#appendRelationshipModal_relation"), { search: true, maxHeight: "300px" });
+                dselectLocalize("#appendRelationshipModal_relation", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
             } else {
                 /* disable select box on the append modal */
                 dselectRemove("#appendRelationshipModal_relation");
@@ -356,6 +359,7 @@ $(document).ready(function () {
             }
             $("#addEditRelationshipModal_rel_rec_male").html(optionsMale.join("\n"));
             dselect(document.querySelector("#addEditRelationshipModal_rel_rec_male"), { search: true });
+            dselectLocalize("#addEditRelationshipModal_rel_rec_male", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
 
             if (relationsFemale.length > 0) {
                 for (loop=0; loop<relationsFemale.length; loop++) {
@@ -365,6 +369,7 @@ $(document).ready(function () {
             }
             $("#addEditRelationshipModal_rel_rec_female").html(optionsFemale.join("\n"));
             dselect(document.querySelector("#addEditRelationshipModal_rel_rec_female"), { search: true });
+            dselectLocalize("#addEditRelationshipModal_rel_rec_female", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
 
             this.display(true);
             connectEvents(true);

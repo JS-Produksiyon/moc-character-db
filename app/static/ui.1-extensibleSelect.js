@@ -4,7 +4,7 @@
  * 
  *   File name: ui.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-09-27
+ *   Date Modified: 2024-11-25
  * 
  */
 /* rework this object to make it work for both Actors and Residences, because they are pretty much identical in function. Just the targets are different... */
@@ -32,7 +32,6 @@ $(document).ready(function () {
         /* public */
         this.list = {};
         this.nextKey = 1;
-        this.baseValues = { "select": ["0", "Select"] };
 
         /* private */
         var csrfToken = $("#csrf_token").val();
@@ -45,16 +44,8 @@ $(document).ready(function () {
         var noContentMessage = args.no_content_msg;
         var whatItem = args.what;
 
-
         /* self-reference */
         var self = this;
-
-        /* load localized base values */
-        if (window.JS_STRINGS) {
-            $.each(Object.keys(this.baseValues), function (k, i) {
-                self.baseValues[k] = window.JS_STRINGS['select_' + k];
-            })
-        } 
 
         /* methods */
         /* private methods */
@@ -140,7 +131,7 @@ $(document).ready(function () {
             if (typeof(selected) != "string") { selected = 0; }
             $(domObjSelect).prop("disabled", false);
 
-            var options = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1] + "...")];
+            var options = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_select)];
 
             if (Object.keys(self.list).length > 0) {
                 $.each(sortedList(), function (i,j) { 
@@ -156,6 +147,7 @@ $(document).ready(function () {
             $(domObjSelect).val(selected);
             if ($(domObjSelect).prop("disabled") == false){
                 dselect(document.querySelector(domObjSelect), { search: true });
+                dselectLocalize(domObjSelect, { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
             }
         }
 

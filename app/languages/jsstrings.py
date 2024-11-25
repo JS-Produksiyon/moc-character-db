@@ -6,7 +6,7 @@
 
     File name: languages/jsstrings.py
     Date Created: 2024-09-12
-    Date Modified: 2024-11-14
+    Date Modified: 2024-11-25
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -46,6 +46,8 @@ JS_STRINGS = {
     'del_success': _('Successfully deleted $item$.'),
     'del_title': _('Delete $item$'),
     'display': _('Display'),
+    'dselect_search': _('Search'),
+    'dselect_noresults': _('No results found'),
     'edit': _('Edit'),
     'episode_none': _('No episodes found. Please add one to select it.'),
     'episode': _('episode'),

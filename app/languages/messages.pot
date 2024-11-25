@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-21 12:47+0300\n"
+"POT-Creation-Date: 2024-11-25 15:58+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -100,7 +100,7 @@ msgstr ""
 
 #: app/blueprints/main/templates/charform.html.jinja:13
 #: app/blueprints/main/templates/charform.html.jinja:82
-#: app/languages/jsstrings.py:49
+#: app/languages/jsstrings.py:51
 msgid "Edit"
 msgstr ""
 
@@ -144,13 +144,13 @@ msgstr ""
 
 #: app/blueprints/main/templates/charform.html.jinja:37
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:25
-#: app/languages/jsstrings.py:71
+#: app/languages/jsstrings.py:73
 msgid "Male"
 msgstr ""
 
 #: app/blueprints/main/templates/charform.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:26
-#: app/languages/jsstrings.py:70
+#: app/languages/jsstrings.py:72
 msgid "Female"
 msgstr ""
 
@@ -191,7 +191,7 @@ msgid "Residence"
 msgstr ""
 
 #: app/blueprints/main/templates/charform.html.jinja:72
-#: app/languages/jsstrings.py:64
+#: app/languages/jsstrings.py:66
 msgid "Add Location"
 msgstr ""
 
@@ -237,7 +237,7 @@ msgstr ""
 
 #: app/blueprints/main/templates/charform.html.jinja:123
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
-#: app/languages/jsstrings.py:63
+#: app/languages/jsstrings.py:65
 msgid "Add Actor"
 msgstr ""
 
@@ -341,7 +341,7 @@ msgid "Official Logo"
 msgstr ""
 
 #: app/blueprints/main/templates/main.html.jinja:13
-#: app/languages/jsstrings.py:54
+#: app/languages/jsstrings.py:56
 msgid "Characters"
 msgstr ""
 
@@ -479,7 +479,7 @@ msgstr ""
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:28
-#: app/languages/jsstrings.py:67
+#: app/languages/jsstrings.py:69
 msgid "Select relationship..."
 msgstr ""
 
@@ -519,7 +519,7 @@ msgid "Select Episode"
 msgstr ""
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:20
-#: app/languages/jsstrings.py:66
+#: app/languages/jsstrings.py:68
 msgid "Select episode here..."
 msgstr ""
 
@@ -561,7 +561,7 @@ msgid "Other Character"
 msgstr ""
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:18
-#: app/languages/jsstrings.py:65
+#: app/languages/jsstrings.py:67
 msgid "Select character..."
 msgstr ""
 
@@ -819,115 +819,123 @@ msgstr ""
 msgid "Display"
 msgstr ""
 
-#: app/languages/jsstrings.py:50
-msgid "No episodes found. Please add one to select it."
+#: app/languages/jsstrings.py:49
+msgid "Search"
 msgstr ""
 
-#: app/languages/jsstrings.py:51
-msgid "episode"
+#: app/languages/jsstrings.py:50
+msgid "No results found"
 msgstr ""
 
 #: app/languages/jsstrings.py:52
-msgid "Episode"
+msgid "No episodes found. Please add one to select it."
 msgstr ""
 
 #: app/languages/jsstrings.py:53
-msgid "episodes"
+msgid "episode"
+msgstr ""
+
+#: app/languages/jsstrings.py:54
+msgid "Episode"
 msgstr ""
 
 #: app/languages/jsstrings.py:55
-msgid "Not yet recorded"
-msgstr ""
-
-#: app/languages/jsstrings.py:56
-msgid "No characters assigned"
+msgid "episodes"
 msgstr ""
 
 #: app/languages/jsstrings.py:57
-msgid "the episode number"
+msgid "Not yet recorded"
 msgstr ""
 
 #: app/languages/jsstrings.py:58
-msgid "Recorded on"
+msgid "No characters assigned"
 msgstr ""
 
 #: app/languages/jsstrings.py:59
-msgid "Character body shot"
+msgid "the episode number"
 msgstr ""
 
 #: app/languages/jsstrings.py:60
-msgid "Character head shot"
+msgid "Recorded on"
 msgstr ""
 
 #: app/languages/jsstrings.py:61
+msgid "Character body shot"
+msgstr ""
+
+#: app/languages/jsstrings.py:62
+msgid "Character head shot"
+msgstr ""
+
+#: app/languages/jsstrings.py:63
 msgid ""
 "An error occurred while interacting with the database. Data was not "
 "$action$."
 msgstr ""
 
-#: app/languages/jsstrings.py:62
+#: app/languages/jsstrings.py:64
 msgid "Date Recorded"
 msgstr ""
 
-#: app/languages/jsstrings.py:68
+#: app/languages/jsstrings.py:70
 msgid "Select ..."
 msgstr ""
 
-#: app/languages/jsstrings.py:72
+#: app/languages/jsstrings.py:74
 msgid "Add actor to select."
 msgstr ""
 
-#: app/languages/jsstrings.py:73
+#: app/languages/jsstrings.py:75
 msgid "Add relationship to select."
 msgstr ""
 
-#: app/languages/jsstrings.py:74
+#: app/languages/jsstrings.py:76
 msgid "Create"
 msgstr ""
 
-#: app/languages/jsstrings.py:75
+#: app/languages/jsstrings.py:77
 msgid "Update"
 msgstr ""
 
-#: app/languages/jsstrings.py:76
+#: app/languages/jsstrings.py:78
 msgid ""
 "Passed relationship item ID is invalid. Cannot load selected relationship"
 " for editing."
 msgstr ""
 
-#: app/languages/jsstrings.py:77
+#: app/languages/jsstrings.py:79
 msgid "Add location to select."
 msgstr ""
 
-#: app/languages/jsstrings.py:78
+#: app/languages/jsstrings.py:80
 msgid "written"
 msgstr ""
 
-#: app/languages/jsstrings.py:79
+#: app/languages/jsstrings.py:81
 msgid "received"
 msgstr ""
 
-#: app/languages/jsstrings.py:80
+#: app/languages/jsstrings.py:82
 msgid "actor"
 msgstr ""
 
-#: app/languages/jsstrings.py:81
+#: app/languages/jsstrings.py:83
 msgid "residence location"
 msgstr ""
 
-#: app/languages/jsstrings.py:82
+#: app/languages/jsstrings.py:84
 msgid "relationship"
 msgstr ""
 
-#: app/languages/jsstrings.py:83
+#: app/languages/jsstrings.py:85
 msgid "relationship types"
 msgstr ""
 
-#: app/languages/jsstrings.py:84
+#: app/languages/jsstrings.py:86
 msgid "the"
 msgstr ""
 
-#: app/languages/jsstrings.py:85
+#: app/languages/jsstrings.py:87
 msgid ""
 "Unable to find the selected item among the $items$. Adding a new item "
 "instead."

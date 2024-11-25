@@ -4,7 +4,7 @@
  * 
  *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-11-18
+ *   Date Modified: 2024-11-25
  * 
  */
 /* initialize the object */
@@ -571,9 +571,11 @@ $(document).ready(function (){
                         $("#appendRelationshipModal_character").html(optionTags.join("\n"));
                         $("#appendRelationshipModal_character").val(otherCharId);
                         dselect(document.querySelector("#appendRelationshipModal_character"), { search: true, maxHeight: "280px" });
+                        dselectLocalize("appendRelationshipModal_character", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
                         dselectRemove("#appendRelationshipModal_relation");
                         $("#appendRelationshipModal_relation").val(otherCharSlug);
                         dselect(document.querySelector("#appendRelationshipModal_relation"), { search: true, maxHeight: "280px" });
+                        dselectLocalize("appendRelationshipModal_relation", {"search": window.JS_STRINGS.dselect_select, "noresults": window.JS_STRINGS.dselect_noresults});
                         $("#appendRelationshipModal_form").show();
                     } else {
                         $("#appendRelationshipModal_noCharacters").show();                        
@@ -689,6 +691,14 @@ $(document).ready(function (){
             /* make sure we don't trigger saveState.dirty while writing */
             connectEvents("charFormDisconnect");
 
+            /* check for proper style of actor and residence boxes */
+            if (window.actorsObj) {
+                window.actorsObj.write();
+            }
+            if (window.residenceObj) {
+                window.residenceObj.write();
+            }
+
             /* load up the various fields */
             $.each(self.character_data, function (k,i) {
                 if (k == "episodes" || k == "relationships") {
@@ -711,6 +721,7 @@ $(document).ready(function (){
                             $("#append_selected_episode").html(select);
                             $("#append_selected_episode").prop("disabled", false);
                             dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "280px" });
+                            dselectLocalize("#append_selected_episode", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
                         }            
                     }
                 } else if (k == "image_head") {
@@ -737,6 +748,7 @@ $(document).ready(function (){
                     if (k == "residence" || k == "acted_by") {
                         if (!$(`#char_${k}`).prop("disabled")) {
                             dselect(document.querySelector(`#char_${k}`), { search: true, maxHeight: "280px" });
+                            dselectLocalize(`#char_${k}`, { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
                         }
                     }
                 } else {

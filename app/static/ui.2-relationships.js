@@ -13,7 +13,6 @@ $(document).ready(function () {
     Relationships = function () {
         /* properties */
         /* public */
-        this.baseValues = { "select": ["0", "Select..."], "relationship": ["0", "Select relationship..."] };
         this.list = {}
         this.nextKey = 1;
 
@@ -34,13 +33,6 @@ $(document).ready(function () {
 
         /* self-reference */
         var self = this;
-
-        /* load localized base values */
-        if (window.JS_STRINGS) {
-            $.each(Object.keys(this.baseValues), function (k, i) {
-                self.baseValues[k] = window.JS_STRINGS['select_' + k];
-            })
-        } 
 
         /* methods */
         /* private */
@@ -308,9 +300,9 @@ $(document).ready(function () {
             var reciprocalMale = "";
             var relationsFemale = [];
             var relationsMale = [];
-            var optionsCharacter = [optionTpl.replace("$option$", self.baseValues.relationship[0]).replace("$item$", self.baseValues.relationship[1])]
-            var optionsMale = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1])];
-            var optionsFemale = [optionTpl.replace("$option$", self.baseValues.select[0]).replace("$item$", self.baseValues.select[1])];
+            var optionsCharacter = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship)]
+            var optionsMale = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship)];
+            var optionsFemale = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship)];
             
             
             /* write to the table */

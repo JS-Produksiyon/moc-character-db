@@ -499,7 +499,7 @@ msgstr "Eril karşılıklı ilişki"
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:28
 #: app/languages/jsstrings.py:69
 msgid "Select relationship..."
-msgstr "İlişkiyi seç..."
+msgstr "İlişkiyi seçiniz..."
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:43
 #: app/blueprints/main/templates/relationlist.html.jinja:26

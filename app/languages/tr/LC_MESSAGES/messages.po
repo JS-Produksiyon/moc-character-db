@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-11-25 15:58+0300\n"
+"POT-Creation-Date: 2024-11-26 13:42+0300\n"
 "PO-Revision-Date: 2024-11-25 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -18,6 +18,48 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
+
+#: app/app.py:234
+msgid "Use the same command to restart the application as you did before."
+msgstr ""
+"Uygulamayı başlatmak için kullandığınız komutun aynısı ile uygulamayı "
+"yeniden başlatın."
+
+#: app/app.py:238 app/app.py:243
+msgid ""
+"You can restart the database application in development mode from the "
+"command line using the command {cmd}."
+msgstr ""
+"Veri tabanı uygulamasını geliştirici modunda komut isteminden {cmd} "
+"komutu ile yeniden başlatabilirsiniz."
+
+#: app/app.py:240
+msgid ""
+"You can restart the database application by double-clicking the {cmd} "
+"icon."
+msgstr ""
+"Veri tabanı uygulamasını {cmd} başlıklı ikonu çift tıklayarak yeniden "
+"başlatabilirsiniz."
+
+#: app/app.py:245
+msgid ""
+"You can restart the database application from the command line using the "
+"command {cmd}."
+msgstr ""
+"Veri tabanı uygulamasını komut isteminde {cmd} komutu ile yeniden "
+"başlatabilirsiniz."
+
+#: app/app.py:247
+msgid ""
+"The Apache-based WSGI server should restart itself presently. Please wait"
+" for a few seconds, then click the Start button below."
+msgstr ""
+"Apache tabanlı WSGI sunucusu birazdan kendi kendine yeniden başlayacaktır."
+" Birkaç saniye bekledikten sonra aşağıdaki Başlat düğmesini tıklayın."
+
+#: app/app.py:249
+msgid "Restart the gunicorn server that hosts the database application."
+msgstr "Veri tabanı uygulamasını sunan gunicorn yazılımını yeniden başlatın."
 
 #: app/blueprints/api/calls.py:54
 msgid "Could not delete {item}"
@@ -1039,21 +1081,37 @@ msgstr "Ayarlar başarıyla kaydedildi"
 
 #: app/templates/setup-result.html.jinja:19
 msgid ""
-"The character database is now ready for use. Click the Start button to "
-"begin creating your first character."
+"The character database has been set up. You must restart it to use it. "
+"Click the Shutdown button to stop the application."
 msgstr ""
 "Karakter veri tabanı kullanıma hazırdır. Veri tabanını kullanmak için "
-"Başla düğmesini tıklayın."
+"yeniden başlatılmaıdır. Uygulamayı kapatmak için Kapat düğmesini tıklayın."
 
 #: app/templates/setup-result.html.jinja:20
+msgid "Shutdown"
+msgstr "Kapat"
+
+#: app/templates/setup-result.html.jinja:21
+msgid "Shutdown is complete."
+msgstr "Veritabanı kapatıldı."
+
+#: app/templates/setup-result.html.jinja:22
 msgid "Start"
 msgstr "Başla"
 
-#: app/templates/setup-result.html.jinja:22
+#: app/templates/setup-result.html.jinja:23
+msgid ""
+"Click Start to load the main page when you have restarted the database "
+"application."
+msgstr ""
+"Veri tabanı uygulamasını yeniden başlattıktan sonra ana sayfayı yüklemek"
+"için Başla düğmesini tıklayın."
+
+#: app/templates/setup-result.html.jinja:25
 msgid "Unable to save settings."
 msgstr "Ayarlar kaydedilemedi."
 
-#: app/templates/setup-result.html.jinja:24
+#: app/templates/setup-result.html.jinja:27
 msgid ""
 "Something went wrong when writing the <code>settings.json</code> file to "
 "disk. Please check the write permissions of the <code>/instance</code> "
@@ -1063,7 +1121,7 @@ msgstr ""
 "oluştu. Lütfen <code>/instance</code> altdizinine yazma izninizin "
 "olduğunu kontrol edin."
 
-#: app/templates/setup-result.html.jinja:26
+#: app/templates/setup-result.html.jinja:29
 msgid ""
 "Something went wrong with the data passed. Please check your entries and "
 "try again."
@@ -1071,7 +1129,7 @@ msgstr ""
 "Gönderilen verilerde hata bulundu. Girdiğiniz verileri kontrol edip "
 "tekrar deneyin."
 
-#: app/templates/setup-result.html.jinja:28
+#: app/templates/setup-result.html.jinja:31
 msgid "Back to Setup"
 msgstr "Kuruluma dön"
 
@@ -1096,4 +1154,11 @@ msgstr "Kuruluma dön"
 
 #~ msgid "Upload Image:"
 #~ msgstr "Görseli yükle:"
+
+#~ msgid ""
+#~ "The Apache-based WSGI server should "
+#~ "restart itself presently. Please wait "
+#~ "for a few seconds, then try "
+#~ "{url}Loading the main page{endurl}."
+#~ msgstr ""
 

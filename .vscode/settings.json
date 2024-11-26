@@ -10,8 +10,10 @@
     ],
     "sqltools.useNodeRuntime": true,
     "cSpell.words": [
+        "charlist",
         "csrf",
         "dselect",
+        "jinja",
         "jsstrings",
         "ndash",
         "nodata",

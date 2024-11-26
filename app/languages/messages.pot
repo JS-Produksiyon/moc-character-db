@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-25 15:58+0300\n"
+"POT-Creation-Date: 2024-11-26 13:42+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,38 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
+
+#: app/app.py:234
+msgid "Use the same command to restart the application as you did before."
+msgstr ""
+
+#: app/app.py:238 app/app.py:243
+msgid ""
+"You can restart the database application in development mode from the "
+"command line using the command {cmd}."
+msgstr ""
+
+#: app/app.py:240
+msgid ""
+"You can restart the database application by double-clicking the {cmd} "
+"icon."
+msgstr ""
+
+#: app/app.py:245
+msgid ""
+"You can restart the database application from the command line using the "
+"command {cmd}."
+msgstr ""
+
+#: app/app.py:247
+msgid ""
+"The Apache-based WSGI server should restart itself presently. Please wait"
+" for a few seconds, then click the Start button below."
+msgstr ""
+
+#: app/app.py:249
+msgid "Restart the gunicorn server that hosts the database application."
+msgstr ""
 
 #: app/blueprints/api/calls.py:54
 msgid "Could not delete {item}"
@@ -967,32 +999,46 @@ msgstr ""
 
 #: app/templates/setup-result.html.jinja:19
 msgid ""
-"The character database is now ready for use. Click the Start button to "
-"begin creating your first character."
+"The character database has been set up. You must restart it to use it. "
+"Click the Shutdown button to stop the application."
 msgstr ""
 
 #: app/templates/setup-result.html.jinja:20
-msgid "Start"
+msgid "Shutdown"
+msgstr ""
+
+#: app/templates/setup-result.html.jinja:21
+msgid "Shutdown is complete."
 msgstr ""
 
 #: app/templates/setup-result.html.jinja:22
+msgid "Start"
+msgstr ""
+
+#: app/templates/setup-result.html.jinja:23
+msgid ""
+"Click Start to load the main page when you have restarted the database "
+"application."
+msgstr ""
+
+#: app/templates/setup-result.html.jinja:25
 msgid "Unable to save settings."
 msgstr ""
 
-#: app/templates/setup-result.html.jinja:24
+#: app/templates/setup-result.html.jinja:27
 msgid ""
 "Something went wrong when writing the <code>settings.json</code> file to "
 "disk. Please check the write permissions of the <code>/instance</code> "
 "directory."
 msgstr ""
 
-#: app/templates/setup-result.html.jinja:26
+#: app/templates/setup-result.html.jinja:29
 msgid ""
 "Something went wrong with the data passed. Please check your entries and "
 "try again."
 msgstr ""
 
-#: app/templates/setup-result.html.jinja:28
+#: app/templates/setup-result.html.jinja:31
 msgid "Back to Setup"
 msgstr ""
 

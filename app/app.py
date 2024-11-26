@@ -244,7 +244,7 @@ def create_app_settings(app, babel):
                 elif 'waitress':
                     restart_instructions = _('You can restart the database application from the command line using the command {cmd}.').format(cmd='<code>python3 moccdb.py</code>')
                 elif 'Apache' in wsgi_server:
-                    restart_instructions = _('The Apache-based WSGI server should restart itself presently. Please wait for a few seconds, then try {url}Loading the main page{endurl}.').format(url='<a href="/db/">', endurl='</a>')
+                    restart_instructions = _('The Apache-based WSGI server should restart itself presently. Please wait for a few seconds, then click the Start button below.')
                 elif 'gunicorn' in wsgi_server:
                     restart_instructions = _('Restart the gunicorn server that hosts the database application.')
 

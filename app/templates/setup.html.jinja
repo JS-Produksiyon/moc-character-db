@@ -17,7 +17,7 @@
 <h1 id="body_title">First Run Application Setup</h1>
 <p id="explanation">You appear to be running the Men of Courage Character Database for the first time. Please review and alter the settings for this instance of the database before continuing. Please be sure to select the correct language for your region.  Selecting a language below will automatically set the interface to that language.</p>
 <h2 id="general_options_title">General Options</h2>
-<form id="setup" action="/setup" method="post">
+<form id="setup" action="/do-setup" method="post">
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <div class="row mb-2">
         <label class="col-3 text-end pt-1" id="select_lang_title" for="lang_select">Select Database Language:</label>

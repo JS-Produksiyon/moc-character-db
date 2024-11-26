@@ -5,7 +5,7 @@
 
     File name: app.py
     Date Created: 2024-09-03
-    Date Modified: 2024-09-26
+    Date Modified: 2024-11-26
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -27,7 +27,7 @@ if sys.version_info < MIN_PYTHON:
 
 # import dependencies
 import os, json
-from flask import Flask, current_app
+from flask import Flask, current_app, redirect, request
 
 # Import extensions
 from flask_babel import Babel, gettext as _, ngettext
@@ -59,9 +59,9 @@ def create_app(test_config=None):
         DEBUG=__debugState__,
         TESTING=__debugState__,
         SECRET_KEY='JS-Produksiyon-dev-2024',
-        BABEL_DEFAULT_LOCALE = 'en',
-        BABEL_TRANSLATION_DIRECTORIES = 'languages',
-        APP_LANGUAGE = 'en'
+        BABEL_DEFAULT_LOCALE='en',
+        BABEL_TRANSLATION_DIRECTORIES='languages',
+        APP_LANGUAGE='en'
     )
 
     # enable CSRF Protection 
@@ -74,12 +74,28 @@ def create_app(test_config=None):
     env.install_gettext_callables(_, ngettext)
 
     try:
+        app.register_blueprint(page)
+        app.register_blueprint(api)
         app.config.from_file('settings.json', load=json.load)
         app.config['MOCDB_SETUP'] = True
-        start_app(app)
+        db.init_app(app)
+
+        with app.app_context():
+            db.create_all()
         
     except:
         create_app_settings(app, babel)    
+
+    # this is here so that we can reroute to setup if necessary. 
+    # I kind of hate to put a directory in front of what should run off the route, but
+    # this is probably the simplest and most fool-proof method to allow on-the fly 
+    # setup with Flask's route() function.
+    @app.route('/')
+    def main_route():
+        if app.config['MOCDB_SETUP']:
+            return redirect('/db/')            # this loads the database. Make sure there is the extra slash on the end!
+        else:
+            return redirect('/setup')          # this loads the setup page
 
     @app.context_processor
     def mocdb_context_utility():
@@ -118,7 +134,7 @@ def create_app_settings(app, babel):
             exit()
 
 
-    @app.route("/", methods=['GET'])
+    @app.route("/setup", methods=['GET'])
     def setup_page():
         import pkg_resources
 
@@ -142,7 +158,7 @@ def create_app_settings(app, babel):
         return render_template('setup.html.jinja', has_postgresql=postgresql, has_mariadb=mariadb, has_mysql=mysql, secret=random_secret)
         
 
-    @app.route("/setup", methods=['GET','POST'])
+    @app.route("/do-setup", methods=['GET','POST'])
     def save_settings():
         """
         Save and apply passed settings.
@@ -212,33 +228,34 @@ def create_app_settings(app, babel):
                 print(f'Settings file write exception occurred: {e}')
                 error='write'
         
-            start_app(app)
+            # get restart method from environment
+            wsgi_server = request.environ['SERVER_SOFTWARE']
 
-        return render_template('setup-result.html.jinja', success=success, error=error)
+            restart_instructions = _('Use the same command to restart the application as you did before.')
 
+            if sys.platform.startswith('win32'):
+                if 'Werkzeug' in wsgi_server:
+                    restart_instructions = _('You can restart the database application in development mode from the command line using the command {cmd}.').format(cmd='<code>.\startmocdb.bat dev</code>')
+                elif 'waitress' in wsgi_server:
+                    restart_instructions = _('You can restart the database application by double-clicking the {cmd} icon.').format(cmd="<b>startmocdb.bat</b>")
+            else:
+                if 'Werkzeug' in wsgi_server:
+                    restart_instructions = _('You can restart the database application in development mode from the command line using the command {cmd}.').format(cmd='<code>flask --debug run --extra-files static/style.css:static/*.js</code>')
+                elif 'waitress':
+                    restart_instructions = _('You can restart the database application from the command line using the command {cmd}.').format(cmd='<code>python3 moccdb.py</code>')
+                elif 'Apache' in wsgi_server:
+                    restart_instructions = _('The Apache-based WSGI server should restart itself presently. Please wait for a few seconds, then try {url}Loading the main page{endurl}.').format(url='<a href="/db/">', endurl='</a>')
+                elif 'gunicorn' in wsgi_server:
+                    restart_instructions = _('Restart the gunicorn server that hosts the database application.')
+
+        return render_template('setup-result.html.jinja', success=success, error=error, restart_instructions=restart_instructions)
+
+    @app.route('/shutdown')
+    def shutdown_app():
+        os._exit(1)
 
 def get_locale():
     """
     Returns the locale that was set by the application
     """
     return current_app.config.get('APP_LANGUAGE')
-
-
-def start_app(app):
-    """
-    Executes Database connectivity and Blueprint connectivity for app
-    These are placed here so that they can be called from different 
-    functions, depending on necessity
-    
-    :param app: reference to current Flask application
-    :type  app: Flask Object
-    """
-    app.register_blueprint(api)
-    app.register_blueprint(page)
-
-    db.init_app(app)
-
-    with app.app_context():
-        db.create_all()
-
-

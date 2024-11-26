@@ -16,8 +16,11 @@
 {%- block content -%}
 {%- if success -%}
     <p class="h2 text-center">{{ _('Settings saved successfully.') }}</p>
-    <p class="text-center">{{ _('The character database is now ready for use. Click the Start button to begin creating your first character.') }}</p>
-    <p class="text-center"><a href="/#/character/add"><button type="button" class="btn btn-success">{{ _('Start') }}</button></a></p>
+    <p class="text-center">{{ _('The character database has been set up. You must restart it to use it. Click the Shutdown button to stop the application.') }} {{ restart_instructions }}</p>
+    <p class="text-center"><button type="button" class="btn btn-success" id="shutdown_btn">{{ _('Shutdown') }}</button></p>
+    <p class="h4 text-center md-none shutdown-complete mt-5 mb-5">{{ _('Shutdown is complete.') }}</p>
+    <p class="text-center md-none shutdown-complete"><a href="/" class="btn btn-dark" id="shutdown_btn">{{ _('Start') }}</a></p>
+    <p class="text-center md-none shutdown-complete">{{ _('Click Start to load the main page when you have restarted the database application.') }}</p>
 {%- else -%}
     <p class="h2 text-center text-danger">{{ _('Unable to save settings.') }}</p>
     {%- if error == 'write' -%}
@@ -27,4 +30,21 @@
     {% endif %}
     <p class="text-center"><a href="javascript:history.back();"><button type="button" class="btn btn-secondary">{{ _('Back to Setup') }}</button></a></p>
 {% endif %}
+{% endblock %}
+
+{%- block custom_js -%}
+    <script>
+        $(document).ready(function () {
+            if ($("#shutdown_btn").length > 0 ) {
+                $("#shutdown_btn").click(function () {
+                    $.get("/shutdown", function () { console.log("Something didn't work right. Check back end.")}).fail(
+                        function () {
+                            $("#shutdown_btn").hide();
+                            $(".shutdown-complete").fadeIn();
+                            $(".lion").fadeOut();
+                        });
+                });
+            }
+        });
+    </script>
 {% endblock %}

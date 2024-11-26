@@ -5,7 +5,7 @@
 
     File name: blueprints/main/routes.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-30
+    Date Modified: 2024-11-26
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -26,8 +26,8 @@ from app.languages.jsstrings import JS_STRINGS;
 
 page = Blueprint('page', __name__, template_folder='templates')
 
-@page.route('/')
-def main_page():
+@page.route('/db/')
+def main_page():  
     # load JavaScript Files
     jsFiles = ['ui.js']
     for f in (os.listdir(os.path.join(current_app.root_path, 'static'))):
@@ -57,4 +57,16 @@ def main_page():
             pass # do nothing...
 
     return render_template('main.html.jinja', js_files=jsFiles, js_strings=JS_STRINGS, relation_list=meshedRelationList)
+
+@page.route('/wsgi-environment')
+def wsgi_environment():
+    # Retrieve the WSGI environment variables
+    wsgi_env = request.environ
+    # Convert the environment variables to a dictionary
+    wsgi_env_dict = {key: str(value) for key, value in wsgi_env.items()}
+    # Return the environment variables as a JSON response
+    print (request.environ['SERVER_NAME'])
+    print(request.environ['SERVER_PORT'])
+
+    return jsonify(wsgi_env_dict)
 

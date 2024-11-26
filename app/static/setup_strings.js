@@ -5,11 +5,19 @@
  * 
  *   File name: setup_strings.js
  *   Date Created: 2024-09-10
- *   Date Modified: 2024-09-12
+ *   Date Modified: 2024-11-26
+ * 
+ *   Languages added by:
+ *       - English (en)  : JMW | 2024-09-10
+ *       - Türkçe (tr)   : JMW | 2024-09-12
+ * 
+ * TRANSLATORS: add your language and name to the end of this list. See TRANSLATION.md for more information.
  */
 $(document).ready(function() {
-    /* define the strings for this page in various languages */
-    const LANGUAGES = ["en", "tr"]
+    /* Define the strings for this page in various languages */
+    /* TRANSLATORS: this area can be edited to add your language of choice. */
+    const LANGUAGES = ["en", "tr"];
+    const RTL_LANGUAGES = [];
     const SETUP_STRINGS = {
         "page_title": {
             "en": "Men of Courage Character Database",
@@ -33,7 +41,7 @@ $(document).ready(function() {
         },
         "language_names": {
             "en": { "en": "English", "tr": "Türkçe (Turkish)" },
-            "tr": { "en": "İngilizce (English)", "tr": "Türkçe" }
+            "tr": { "en": "English (İngilizce)", "tr": "Türkçe" }
         },
         "secret_key_label": {
             "en": "Secret Key:",
@@ -118,6 +126,18 @@ $(document).ready(function() {
         }
     };
     
+    /* TRANSLATORS: Do not edit beyond this point! */
+
+    /* populate language names in select box */
+    var optionTpl = '<option id="lang_$value$" value="$value$">$name$</option>';
+    var languageOptions = []
+
+    $.each(SETUP_STRINGS.language_names.en, function (k,i) {
+        languageOptions.push(optionTpl.replace(/\$value\$/g, k).replace("$name$", i));
+    });
+    $("#lang_select").html(languageOptions.join("\n"));
+    $("#lang_select").val("en");
+
     if ($("#lang_select").length > 0) {
         $("#lang_select").change(function() {
             lang = $("#lang_select").val();
@@ -133,8 +153,24 @@ $(document).ready(function() {
                     $("#" + key).html(value[lang]);
                 }
             });
+            $("html").attr("lang", lang)
+            if (RTL_LANGUAGES.indexOf(lang) > -1) {
+                $("html").attr("dir", "rtl");
+                if (!$("body").hasClass("rtl")){
+                    $("body").removeClass("ltr");
+                    $("body").addClass("rtl");
+                }
+            } else {
+                $("html").attr("dir", "ltr");
+                if (!$("body").hasClass("ltr")){
+                    $("body").removeClass("rtl");
+                    $("body").addClass("ltr");
+                }
+            }
         });
-    
+        /* the dropdown arrow on hte select box stays at the right rather than popping left. I'm going to leave that as is for now. 
+         * If RTL languages complain we'll eventually fix it, but I'm not willing to dig around in Bootstrap to find the code to modify
+         * at this time.*/
     }
 
     /* change form for database type */

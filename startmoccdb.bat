@@ -6,11 +6,6 @@ echo Starting up the Men of Courage Character Database
 echo ------------------------------------------------
 echo.
 
-
-
-REM check for python 3.11 
-python --version 2>&1 | find "3.11" >nul
-
 REM Check if Python is installed and get its version
 set VERSION=
 for /f "tokens=2 delims= " %%i in ('python --version 2^>^&1') do set VERSION=%%i

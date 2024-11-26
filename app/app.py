@@ -237,7 +237,7 @@ def create_app_settings(app, babel):
                 if 'Werkzeug' in wsgi_server:
                     restart_instructions = _('You can restart the database application in development mode from the command line using the command {cmd}.').format(cmd='<code>.\startmocdb.bat dev</code>')
                 elif 'waitress' in wsgi_server:
-                    restart_instructions = _('You can restart the database application by double-clicking the {cmd} icon.').format(cmd="<b>startmocdb.bat</b>")
+                    restart_instructions = _('You can restart the database application by double-clicking the {cmd} icon.').format(cmd="<b>startmoccdb.bat</b>")
             else:
                 if 'Werkzeug' in wsgi_server:
                     restart_instructions = _('You can restart the database application in development mode from the command line using the command {cmd}.').format(cmd='<code>flask --debug run --extra-files static/style.css:static/*.js</code>')

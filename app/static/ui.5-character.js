@@ -4,7 +4,7 @@
  * 
  *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-11-25
+ *   Date Modified: 2024-12-01
  * 
  */
 /* initialize the object */

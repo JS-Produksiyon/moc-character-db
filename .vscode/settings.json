@@ -10,13 +10,17 @@
     ],
     "sqltools.useNodeRuntime": true,
     "cSpell.words": [
+        "bodyshot",
         "charlist",
         "csrf",
         "dselect",
+        "headshot",
         "jinja",
         "jsstrings",
         "ndash",
         "nodata",
-        "notdefined"
+        "noresults",
+        "notdefined",
+        "rowid"
     ]
 }

@@ -26,7 +26,7 @@ if sys.version_info < MIN_PYTHON:
     sys.exit("Python %s.%s or later is required to run the Men of Courage Character Database.\n" % MIN_PYTHON)
 
 # import dependencies
-import os, json
+import os, json, webbrowser
 from flask import Flask, current_app, redirect, request
 
 # Import extensions

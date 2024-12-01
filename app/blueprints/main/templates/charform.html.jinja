@@ -10,7 +10,7 @@
             <input type="hidden" value="" id="char_id" name="id">
             <div id="character_image" class="float-end border rounded-2 me-1 mt-1">
                 <div class="edit-icon">
-                    <img src="./assets/empty-char-picture-edit.svg" title="{{ _('Edit') }}">
+                    <img src="{{ url_for('static', filename='empty-char-picture-edit.svg') }}" title="{{ _('Edit') }}">
                 </div>
             </div>
             <div class="row">
@@ -79,7 +79,7 @@
                     
                     <div id="character_image_body" class="border rounded-2 float-end mt-4">
                         <div class="edit-icon">
-                            <img src="./assets/empty-char-picture-edit.svg" title="{{ _('Edit') }}">
+                            <img src="{{ url_for('static', filename='empty-char-picture-edit.svg') }}" title="{{ _('Edit') }}">
                         </div>                
                     </div>
                     <label class="h3" for="char_physical_description" class="form-label">{{ _('Physical Description') }}:</label>

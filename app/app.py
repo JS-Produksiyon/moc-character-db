@@ -5,7 +5,7 @@
 
     File name: app.py
     Date Created: 2024-09-03
-    Date Modified: 2024-11-26
+    Date Modified: 2024-12-01
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -61,7 +61,8 @@ def create_app(test_config=None):
         SECRET_KEY='JS-Produksiyon-dev-2024',
         BABEL_DEFAULT_LOCALE='en',
         BABEL_TRANSLATION_DIRECTORIES='languages',
-        APP_LANGUAGE='en'
+        APP_LANGUAGE='en',
+        ACCESS='http://127.0.0.1:5000'
     )
 
     # enable CSRF Protection 

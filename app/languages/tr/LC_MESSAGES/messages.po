@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-11-26 13:42+0300\n"
+"POT-Creation-Date: 2024-12-01 15:59+0300\n"
 "PO-Revision-Date: 2024-11-25 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -19,13 +19,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: app/app.py:234
+#: app/app.py:235
 msgid "Use the same command to restart the application as you did before."
 msgstr ""
 "Uygulamayı başlatmak için kullandığınız komutun aynısı ile uygulamayı "
 "yeniden başlatın."
 
-#: app/app.py:238 app/app.py:243
+#: app/app.py:239 app/app.py:244
 msgid ""
 "You can restart the database application in development mode from the "
 "command line using the command {cmd}."
@@ -33,7 +33,7 @@ msgstr ""
 "Veri tabanı uygulamasını geliştirici modunda komut isteminden {cmd} "
 "komutu ile yeniden başlatabilirsiniz."
 
-#: app/app.py:240
+#: app/app.py:241
 msgid ""
 "You can restart the database application by double-clicking the {cmd} "
 "icon."
@@ -41,7 +41,7 @@ msgstr ""
 "Veri tabanı uygulamasını {cmd} başlıklı ikonu çift tıklayarak yeniden "
 "başlatabilirsiniz."
 
-#: app/app.py:245
+#: app/app.py:246
 msgid ""
 "You can restart the database application from the command line using the "
 "command {cmd}."
@@ -49,15 +49,16 @@ msgstr ""
 "Veri tabanı uygulamasını komut isteminde {cmd} komutu ile yeniden "
 "başlatabilirsiniz."
 
-#: app/app.py:247
+#: app/app.py:248
 msgid ""
 "The Apache-based WSGI server should restart itself presently. Please wait"
 " for a few seconds, then click the Start button below."
 msgstr ""
-"Apache tabanlı WSGI sunucusu birazdan kendi kendine yeniden başlayacaktır."
-" Birkaç saniye bekledikten sonra aşağıdaki Başlat düğmesini tıklayın."
+"Apache tabanlı WSGI sunucusu birazdan kendi kendine yeniden "
+"başlayacaktır. Birkaç saniye bekledikten sonra aşağıdaki Başlat düğmesini"
+" tıklayın."
 
-#: app/app.py:249
+#: app/app.py:250
 msgid "Restart the gunicorn server that hosts the database application."
 msgstr "Veri tabanı uygulamasını sunan gunicorn yazılımını yeniden başlatın."
 
@@ -1085,7 +1086,8 @@ msgid ""
 "Click the Shutdown button to stop the application."
 msgstr ""
 "Karakter veri tabanı kullanıma hazırdır. Veri tabanını kullanmak için "
-"yeniden başlatılmaıdır. Uygulamayı kapatmak için Kapat düğmesini tıklayın."
+"yeniden başlatılmaıdır. Uygulamayı kapatmak için Kapat düğmesini "
+"tıklayın."
 
 #: app/templates/setup-result.html.jinja:20
 msgid "Shutdown"
@@ -1104,8 +1106,8 @@ msgid ""
 "Click Start to load the main page when you have restarted the database "
 "application."
 msgstr ""
-"Veri tabanı uygulamasını yeniden başlattıktan sonra ana sayfayı yüklemek"
-"için Başla düğmesini tıklayın."
+"Veri tabanı uygulamasını yeniden başlattıktan sonra ana sayfayı "
+"yüklemekiçin Başla düğmesini tıklayın."
 
 #: app/templates/setup-result.html.jinja:25
 msgid "Unable to save settings."
@@ -1161,4 +1163,23 @@ msgstr "Kuruluma dön"
 #~ "for a few seconds, then try "
 #~ "{url}Loading the main page{endurl}."
 #~ msgstr ""
+
+#~ msgid "Men of Courage Character Database is running."
+#~ msgstr "Erkeğe Dair karakter veri tabanı çalışmaktadır."
+
+#~ msgid "To shut down the database, press [Ctrl]+[C] or close this window."
+#~ msgstr ""
+#~ "Veri tabanını kapatmak için bu pencereyi"
+#~ " kapatın veya [Ctrl]+[C] tuşlarına basın."
+
+#~ msgid "Press [Ctrl]+[C] to shut the database down."
+#~ msgstr "Veri tabanını kapatmak için [Ctrl]+[C] tuşlarına basın."
+
+#~ msgid ""
+#~ "The Men of Courage Character Database"
+#~ " can be accessed in your web "
+#~ "browser from {url}"
+#~ msgstr ""
+#~ "Erkeğe Dair veri tabanına {url} adresini"
+#~ " tarayıcınızda açarak ulaşabilirsiniz "
 

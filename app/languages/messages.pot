@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-11-26 13:42+0300\n"
+"POT-Creation-Date: 2024-12-01 15:59+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,35 +17,35 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.16.0\n"
 
-#: app/app.py:234
+#: app/app.py:235
 msgid "Use the same command to restart the application as you did before."
 msgstr ""
 
-#: app/app.py:238 app/app.py:243
+#: app/app.py:239 app/app.py:244
 msgid ""
 "You can restart the database application in development mode from the "
 "command line using the command {cmd}."
 msgstr ""
 
-#: app/app.py:240
+#: app/app.py:241
 msgid ""
 "You can restart the database application by double-clicking the {cmd} "
 "icon."
 msgstr ""
 
-#: app/app.py:245
+#: app/app.py:246
 msgid ""
 "You can restart the database application from the command line using the "
 "command {cmd}."
 msgstr ""
 
-#: app/app.py:247
+#: app/app.py:248
 msgid ""
 "The Apache-based WSGI server should restart itself presently. Please wait"
 " for a few seconds, then click the Start button below."
 msgstr ""
 
-#: app/app.py:249
+#: app/app.py:250
 msgid "Restart the gunicorn server that hosts the database application."
 msgstr ""
 

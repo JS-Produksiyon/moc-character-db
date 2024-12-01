@@ -27,7 +27,7 @@ __language_code__ = 'en'
 # complex relationships than in English. 
 # 
 # When localizing the MoC Character Database, please copy this file into the 
-# target directory under app/language/ (e.g. app/laguage/tr/relation_list.py). 
+# target directory under app/language/ (e.g. app/language/tr/relation_list.py). 
 # Once copied, please update the __language__ and __language_code__ variables 
 # above. Then define the relationships as they exist in that language, following 
 # grammatical gender rules and/or relational complexities. 

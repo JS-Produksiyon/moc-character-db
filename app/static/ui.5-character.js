@@ -13,9 +13,9 @@ $(document).ready(function (){
 
         /* parameters */
         /* public */
-        this.character_data = { id: 0, first_name: "", last_name: "", sex: "", age: "",
+        this.character_data = { id: 0, first_name: "", last_name: "", sex: "0", age: "",
             physical: "", personality: "", employment: "", image_head: "",
-            image_body: "", animation_status: "", residence: 0, marital_status: 0,
+            image_body: "", animation_status: "notdefined", residence: 0, marital_status: "0",
             acted_by: 0, relationships: [], episodes: []};
         this.nextId = 1;
       
@@ -258,9 +258,9 @@ $(document).ready(function (){
 
             if (go) {
                 /* reset character object */
-                self.character_data = { id: 0, first_name: "", last_name: "", sex: "", age: "",
+                self.character_data = { id: 0, first_name: "", last_name: "", sex: "0", age: "",
                     physical: "", personality: "", employment: "", image_head: "",
-                    image_body: "", animation_status: "", residence: 0, marital_status: 0,
+                    image_body: "", animation_status: "notdefined", residence: 0, marital_status: "0",
                     acted_by: 0, relationships: [], episodes: []};
 
                 self.writeFormData();
@@ -400,15 +400,15 @@ $(document).ready(function (){
         this.fetchFormData = function(firstLoad) {
             if (typeof(firstLoad) != "boolean") { firstLoad = false; }
 
-            var data = { id: 0, first_name: "", last_name: "", sex: "", age: "",
+            var data = { id: 0, first_name: "", last_name: "", sex: "0", age: "",
                 physical: "", personality: "", employment: "", image_head: "",
-                image_body: "", animation_status: "", residence: 0, marital_status: "",
+                image_body: "", animation_status: "notdefined", residence: 0, marital_status: "0",
                 acted_by: 0, relationships: [], episodes: []};
             
             /* insert data */
             $.each(data, function (k,i) {
                 // we pull these from self.character_data because they are updated differently
-                var except = ["image_head", "image_body", "relationships", "episodes"];
+                var except = ["id","image_head", "image_body", "relationships", "episodes"];
                 var select = ["acted_by", "animation_status", "dev_state", "marital_status", "residence", "sex"];
                 var textArea = ["physical", "personality"];
                 var domName = "";

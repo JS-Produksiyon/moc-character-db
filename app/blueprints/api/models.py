@@ -5,7 +5,7 @@
 
     File name: blueprints/api/models.py
     Date Created: 2024-09-12
-    Date Modified: 2024-09-30
+    Date Modified: 2024-12-02
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -66,7 +66,8 @@ class Character(ResourceMixin, db.Model):
 class Episode(ResourceMixin, db.Model):
     __tablename__ = 'episodes'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255), index=True, nullable=False, comment="Full name of actor")
+    name = db.Column(db.String(255), index=True, nullable=False)
+    summary = db.Column(db.Text(), index=False, nullable=True)
     recorded = db.Column(db.Date)
 
     def __repr__(self):

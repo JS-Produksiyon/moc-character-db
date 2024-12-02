@@ -81,27 +81,13 @@ The database comes with localization for the following languages:
 * English (US)
 * Turkish
 
-> Please note: the database will work in a given localized language. It will NOT allow switching back and forth between languages! Once you select a language on setup the entire database will be populated with entries for that language only. This is especially true for the relationships.
+> **Please note:** the database will work in a given localized language. *It will NOT allow switching back and forth between languages!* Once you select a language on setup the entire database will be populated with entries for that language only. This is especially true for the relationships.
 
-To localize to a new language, execute the following command from the repository root:
+To translate the database into a new language, please consult the [TRANSLATION.md](TRANSLATION.md) file.
 
-    pybabel init -i ./app/languages/messages.pot -d ./app/languages -l [language]
-
-Translate the strings in the .po file and then compile using:
-
-    pybabel compile -d ./app/languages
-
-
-Once these have been compiled, edit `app/static/setup_strings.js` to add the new language to the strings stored there.
-
-Extracting strings (from repository root):
-    
-    pybabel extract -F babel.cfg -o ./app/languages/messages.pot ./app
-
-Updating existing translation strings:
-
-     pybabel update -i ./app/languages/messages.pot -d ./app/languages -l [language]
+---
 
 Port: 13153 = moc
+
 ---
-Updated: 2024-09-03
+Updated: 2024-12-02

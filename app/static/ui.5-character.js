@@ -4,7 +4,7 @@
  * 
  *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-12-01
+ *   Date Modified: 2024-12-03
  * 
  */
 /* initialize the object */
@@ -347,14 +347,19 @@ $(document).ready(function (){
                     epTitle = episodesObj.list[epNum.toString()].name;
                 }
 
+
                 /* process episode content */
                 if (go) {
                     self.character_data.episodes.push(epNum);
                     $("#appendEpisodeModal").modal("hide");
                     writeTable("episodes");
                 }
-                
+
+                /* update select box on episodes */
+                self.updateAvailableEpisodes();
+
             } else {
+                $("#append_selected_episode").val("0");
                 $("#appendEpisodeModal").modal("show");
                 $("#appendEpisodeModal_select_tab").trigger("click"); // for some reason I need to do this or the tabs don't work; *slaps forehead*    
                 if ($("#append_selected_episode").prop("disabled")) {
@@ -386,6 +391,10 @@ $(document).ready(function (){
                 self.character_data.episodes.splice(arrLoc,1);
                 writeTable("episodes");
                 $(delModal).modal("hide");
+
+                /* update select box on episodes */
+                self.updateAvailableEpisodes();
+
             } else {
                 $("#deleteItemModal_title_item").html(capitalizeFirst(window.JS_STRINGS["del_ep"]));
                 $("#deleteItemModal_msg").html(capitalizeFirst(window.JS_STRINGS["del_modal_text"].replace("$item$", window.JS_STRINGS["ep_num"] + " " + id)));                
@@ -586,7 +595,8 @@ $(document).ready(function (){
             } 
 
         }
-   
+
+
         /**
          * delete relationship from character via modal
          * 
@@ -616,6 +626,37 @@ $(document).ready(function (){
                 $("#deleteItemModal").modal("show");
             }
         }
+
+
+
+        /**
+         * Update available episodes in append Episode modal
+         */
+        this.updateAvailableEpisodes = function () {
+            var select = "";
+
+            if (Object.keys(window.episodesObj.list).length > 0) { 
+                $.each(window.episodesObj.list, function (k,e) { /* k=key; e=episode */
+                    if (self.character_data.episodes.indexOf(e.id) < 0) {
+                        select += optionTpl.replace("$option$", e.id).replace("$item$", `${e.id} &ndash; ${e.name}`);
+                    }
+                });
+            }
+                        
+            if (select == "") {
+                dselectRemove("#append_selected_episode");
+                $("#append_selected_episode").html(optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.episode_none));
+                $("#append_selected_episode").prop("disabled", true);
+            } else {
+                select = optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_episode_here) + select;
+                $("#append_selected_episode").html(select);
+                $("#append_selected_episode").prop("disabled", false);
+                dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "280px" });
+                dselectLocalize("#append_selected_episode", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
+            }            
+
+        }
+
 
         /**
          * write data to database
@@ -704,25 +745,7 @@ $(document).ready(function (){
                 if (k == "episodes" || k == "relationships") {
                     writeTable(k);
                     if (k == "episodes") { /* fill in select */
-                        var select = "";
-                        if (i.length > 0) { /* j=key; e=episode */
-                            $.each(window.episodesObj.list, function (j,e){
-                                if (i.indexOf(e.id) < 0) {
-                                    select = optionTpl.replace("$option$", e.id).replace("$item$", `${e.id} &ndash; ${e.name}`);
-                                }
-                            });
-                        }
-                        if (select == "") {
-                            dselectRemove("#append_selected_episode");
-                            $("#append_selected_episode").html(optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.episode_none));
-                            $("#append_selected_episode").prop("disabled", true);
-                        } else {
-                            select = optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_episode_here) + select;
-                            $("#append_selected_episode").html(select);
-                            $("#append_selected_episode").prop("disabled", false);
-                            dselect(document.querySelector("#append_selected_episode"), { search: true, maxHeight: "280px" });
-                            dselectLocalize("#append_selected_episode", { "search": window.JS_STRINGS.dselect_search, "noresults": window.JS_STRINGS.dselect_noresults });
-                        }            
+                        self.updateAvailableEpisodes();
                     }
                 } else if (k == "image_head") {
                     if (i == "") {

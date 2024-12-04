@@ -97,7 +97,7 @@ def fetch_from_db():
         # clean up None types
         for key in out:
             if out[key] is None:
-                if key == "acted_by":
+                if key == "acted_by" or key == "residence":
                     out[key] = 0
                 else:
                     out[key] == ""

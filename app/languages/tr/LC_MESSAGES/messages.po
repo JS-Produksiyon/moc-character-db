@@ -637,7 +637,7 @@ msgstr "Diğer karakter"
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:18
 #: app/languages/jsstrings.py:67
 msgid "Select character..."
-msgstr "Karakteri sil"
+msgstr "Karakteri seçiniz..."
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:20
 msgid "Please select a character to continue."
@@ -663,7 +663,7 @@ msgstr "Devam etmek için lütfen bir ilişki seçin"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:38
 msgid "{action} reciprocal relationship"
-msgstr "Eril karşılıklı ilişki"
+msgstr "Karşılıklı ilişkiyi {action}"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:39
 msgid ""
@@ -1000,11 +1000,11 @@ msgstr "Seçebilmek için bir ilişki ekleyin."
 
 #: app/languages/jsstrings.py:76
 msgid "Create"
-msgstr "Oluştur"
+msgstr "oluştur"
 
 #: app/languages/jsstrings.py:77
 msgid "Update"
-msgstr "güncellenemedi"
+msgstr "güncelle"
 
 #: app/languages/jsstrings.py:78
 msgid ""

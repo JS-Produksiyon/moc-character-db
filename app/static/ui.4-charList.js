@@ -4,7 +4,7 @@
  * 
  *   File name: ui.4-charList.js
  *   Date Created: 2024-10-02
- *   Date Modified: 2024-10-24
+ *   Date Modified: 2024-12-04
  * 
  */
 $(document).ready(function () {
@@ -40,7 +40,6 @@ $(document).ready(function () {
         /* methods */
         /* private */
 
-
         /* public */
         /**
          * display the list 
@@ -71,6 +70,19 @@ $(document).ready(function () {
         this.removeCharacter = function (id) {
             delete self.list[id];
             this.writeList();
+        }
+
+        /**
+         * sort the list by the name of each Character
+         * 
+         * @returns {Array}: Array containing the keys of each item in the list
+         *                   in alphabetical order by locale
+         */
+        this.sortListByName = function () {
+            var lang = document.documentElement.lang || "en";
+            var charArray = Object.values(self.list);
+            charArray.sort((a,b) => a.name.localeCompare(b.name, lang));
+            return charArray.map(item => item.id);
         }
 
         /**
@@ -113,10 +125,10 @@ $(document).ready(function () {
             if (Object.keys(self.list).length > 0) {
                 /* build character list table rows */
                 var tbody = [];
-                $.each(self.list, function (k,i) {
-                    var row = rowTpl.replace(/\$id\$/g, i.id).replace("$full_name$", i.name).replace("$episodes$", i.episodes);
-                    row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
-                    row = row.replace("$ani_status$", $(`select[name=animation_status] option[value=${i.animation_status}]`).text());
+                $.each(self.sortListByName(), function (k,i) {
+                    var row = rowTpl.replace(/\$id\$/g, self.list[i].id).replace("$full_name$", self.list[i].name).replace("$episodes$", self.list[i].episodes);
+                    row = row.replace("$sex_slug$", self.list[i].sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${self.list[i].sex}`]);
+                    row = row.replace("$ani_status$", $(`select[name=animation_status] option[value=${self.list[i].animation_status}]`).text());
                     row = row.replace("$display$", window.JS_STRINGS.display);
                     tbody.push(row);
                 })

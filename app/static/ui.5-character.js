@@ -214,6 +214,11 @@ $(document).ready(function (){
                             </tr>\n`
                     if (self.character_data.relationships.length > 0) {
                         targetDomId = "#char_relationships_table_container table tbody";
+                        /* initially we sort the self.character_data.relationships object alphabetically by name */
+                        var lang = document.documentElement.lang || "en";
+                        self.character_data.relationships.sort((a,b) => a.name.localeCompare(b.name, lang));           
+
+                        /* now we write out the sorted list */
                         $.each(self.character_data.relationships, function (k,i) {
                             var row = rowTpl.replace(/\$id\$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
                             row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
@@ -571,9 +576,9 @@ $(document).ready(function (){
                     if (Object.keys(window.charListObj.list).length > 0) {
                         var thisCharacter = self.character_data.id;
                         var optionTags = [`<option value="0">${window.JS_STRINGS.select_character}</option>`];
-                        $.each(window.charListObj.list, function (k,i) {
-                            if (k != thisCharacter) {
-                                optionTags.push(`<option value="${k}">${i.name}</option>`);
+                        $.each(window.charListObj.sortListByName(), function (k,i) {
+                            if (window.charListObj.list[i].id != thisCharacter) {
+                                optionTags.push(`<option value="${window.charListObj.list[i].id}">${window.charListObj.list[i].name}</option>`);
                             }
                         });
                         dselectRemove("#appendRelationshipModal_character");

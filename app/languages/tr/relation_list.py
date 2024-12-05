@@ -6,7 +6,7 @@
 
     File name: languages/relation_list.py
     Date Created: 2024-11-14
-    Date Modified: 2024-11-18
+    Date Modified: 2024-12-05
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -90,7 +90,8 @@ RELATIONSHIP_STRINGS = {
     'employee'             : 'Çalışanı',
     'acquaintance'         : 'Tanıdığı',
     'friend'               : 'Dostu',
-    'enemy'                : 'Düşmanı'
+    'enemy'                : 'Düşmanı',
+    'coworker'             : 'Meslektaşı'
 }
 
 # ================================================================================
@@ -150,4 +151,5 @@ RECIPROCAL_RELATIONSHIPS = {
     'acquaintance' : {'male' : 'acquaintance', 'female' : 'acquaintance', 'sex' : 'both'},
     'friend'       : {'male' : 'friend', 'female' : 'friend', 'sex' : 'both'},
     'enemy'        : {'male' : 'enemy', 'female' : 'enemy', 'sex' : 'both'},
+    'coworker'     : {'male' : 'coworker', 'coworker' : 'enemy', 'sex' : 'both'},
 }

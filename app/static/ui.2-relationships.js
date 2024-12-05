@@ -115,7 +115,7 @@ $(document).ready(function () {
         this.addEdit = function (id) {
             if (typeof(id) != "number") {
                 id = parseInt(id);
-                if (id == NaN) { return false; }
+                if (isNaN(id)) { return false; }
             }
 
             /* make sure Id exists */

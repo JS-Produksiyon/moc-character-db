@@ -20,9 +20,9 @@
 {% endblock %}
 
 {%- block content -%}
-            <!-- Add character button -->
-            <div class="md-add-button float-end md-none" id="add_char_btn"><a href="#/character/add">
-                <a class="btn btn-outline-dark" href="#/character/add"><i class="bi-plus"></i> {{ _('Add Character') }}</a>
+            <!-- Add character button --> {# this is set to /character/new to force it to go to /character/add because my brain is too fried to rewrite the JavaScript #}
+            <div class="md-add-button float-end md-none" id="add_char_btn"> 
+                <a class="btn btn-outline-dark" href="#/character/new"><i class="bi-plus"></i> {{ _('Add Character') }}</a>
             </div>
             <!-- Add episode button -->
             <div class="md-add-button float-end md-none" id="add_ep_btn">

@@ -330,7 +330,7 @@ $(document).ready(function (){
                     epExists = episodesObj.epIdExists(epNum);
                     epTitle = $("#append_new_episode_title").val();
 
-                    if (epNum == NaN || epExists) {
+                    if (isNaN(epNum) || epExists) {
                         $("#append_new_episode_num").addClass("is-invalid");
                         if (epExists) {
                             $("#appendEpisodeModal_episode_exists_msg").show();
@@ -448,7 +448,7 @@ $(document).ready(function (){
          */
         this.load = function(id) {
             if (typeof(id) != "number") {
-                if (parseInt(id) == NaN) { // because if we don't have an integer, it won't be in the database
+                if (isNaN(parseInt(id))) { // because if we don't have an integer, it won't be in the database
                     if (id != "add") { id = "add"; }
                 }
             }
@@ -512,7 +512,7 @@ $(document).ready(function (){
                 var charId = $("#appendRelationshipModal_character").val();
                 var doReciprocal = ($("#appendRelationshipModal_reciprocal").is(":checked")) ? true : false;
                 var relSlug = $("#appendRelationshipModal_relation").val();
-                var relationshipId = (parseInt($("#appendRelationshipModal_rid").val()) != NaN) ? parseInt($("#appendRelationshipModal_rid").val()) : 0;
+                var relationshipId = (! isNaN(parseInt($("#appendRelationshipModal_rid").val()))) ? parseInt($("#appendRelationshipModal_rid").val()) : 0;
 
                 /* validate contents */
                 if (charId == "0") {
@@ -538,7 +538,7 @@ $(document).ready(function (){
                         self.character_data.relationships.push(relObj);
                     } else {
                         var rowId = parseInt($("#appendRelationshipModal_action").val());
-                        if (rowId != NaN) {
+                        if (! isNaN(rowId)) {
                             self.character_data.relationships[rowId] = relObj;
                         } else {
                             window.flash.display(window.JS_STRINGS.relation_reciprocal_load_error, "danger");
@@ -611,7 +611,7 @@ $(document).ready(function (){
         this.relationDel = function(rowId, confirm) {
             if (typeof(rowId) != "number") {
                 rowId = parseInt(rowId);
-                if (rowId == NaN) { return false; }
+                if (isNaN(rowId)) { return false; }
             }
 
             if (confirm) {

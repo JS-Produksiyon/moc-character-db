@@ -180,7 +180,7 @@ $(document).ready(function () {
             $("#nav_episodes").addClass("active");
 
             /* scroll to episode, if we happen to have one defined */
-            if (epNum != NaN) {
+            if (! isNaN(epNum)) {
                 if ($(`#episode_${epNum}`).length > 0) {
                     $(`#episode_${epNum} button`).trigger("click");
                     $.scrollTo(`#episode_${epNum}`); 

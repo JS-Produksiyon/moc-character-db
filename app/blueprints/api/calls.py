@@ -122,7 +122,7 @@ def fetch_from_db():
         
 
     elif what == 'character_list':
-        query = Character.query.order_by(Character.first_name, Character.last_name).all()
+        query = Character.query.all()
         count = len(query)
 
         if count > 0:

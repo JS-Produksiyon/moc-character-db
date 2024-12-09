@@ -6,7 +6,7 @@
 
     File name: languages/jsstrings.py
     Date Created: 2024-09-12
-    Date Modified: 2024-11-25
+    Date Modified: 2024-12-09
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -84,5 +84,6 @@ JS_STRINGS = {
     'string_relationship': _('relationship'),
     'string_relation_types': _('relationship types'),
     'the': _('the'),
+    'this_relationship': _('This same relationship'),
     'err_id_does_not_exist': _('Unable to find the selected item among the $items$. Adding a new item instead.')
 }

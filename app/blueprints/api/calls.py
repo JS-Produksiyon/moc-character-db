@@ -148,7 +148,7 @@ def fetch_from_db():
 
 
     elif what == 'relation_types':
-        query = RelationTypes.query.all()
+        query = RelationTypes.query.order_by(RelationTypes.id.asc()).all()
         count = len(query)
         
         if count > 0:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version:  1.0.0\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-12-01 15:59+0300\n"
+"POT-Creation-Date: 2024-12-09 10:25+0300\n"
 "PO-Revision-Date: 2024-11-25 10:00+0300\n"
 "Last-Translator: Josh Wibblerley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
@@ -1049,6 +1049,10 @@ msgid "the"
 msgstr ""
 
 #: app/languages/jsstrings.py:87
+msgid "This same relationship"
+msgstr "Bu ilişkinin aynısı"
+
+#: app/languages/jsstrings.py:88
 msgid ""
 "Unable to find the selected item among the $items$. Adding a new item "
 "instead."

@@ -4,7 +4,7 @@
  * 
  *   File name: ui.relationships.js
  *   Date Created: 2024-09-27
- *   Date Modified: 2024-11-25
+ *   Date Modified: 2024-12-09
  * 
  */
 
@@ -249,11 +249,12 @@ $(document).ready(function () {
             }
 
             /* process fields into base item */
+            var slug = ($("#addEditRelationshipModal_slug").val() == "") ? makeSlug($("#addEditRelationshipModal_rel_name").val()) : $("#addEditRelationshipModal_slug").val();
             var data = { "id": ($("#addEditRelationshipModal_id").val() == 0) ? self.nextKey : $("#addEditRelationshipModal_id").val(), 
-                         "slug": ($("#addEditRelationshipModal_slug").val() == "") ? makeSlug($("#addEditRelationshipModal_rel_name").val()) : $("#addEditRelationshipModal_slug").val(),
+                         "slug": slug,
                          "name": $("#addEditRelationshipModal_rel_name").val(),
-                         "reciprocal_female": ($("#addEditRelationshipModal_rel_rec_female").val() == "0") ? "" : $("#addEditRelationshipModal_rel_rec_female").val(),
-                         "reciprocal_male": ($("#addEditRelationshipModal_rel_rec_male").val() == "0") ? "" : $("#addEditRelationshipModal_rel_rec_male").val(),
+                         "reciprocal_female": ($("#addEditRelationshipModal_rel_rec_female").val() == "0") ? "" : ($("#addEditRelationshipModal_rel_rec_female").val() == "1") ? slug : $("#addEditRelationshipModal_rel_rec_female").val(),
+                         "reciprocal_male": ($("#addEditRelationshipModal_rel_rec_male").val() == "0") ? "" : ($("#addEditRelationshipModal_rel_rec_female").val() == "1") ? slug : $("#addEditRelationshipModal_rel_rec_male").val(),
                          "sex": $("#addEditRelationshipModal_rel_sex").val()
             }
             if (data.id == self.nextKey) { self.nextKey++; }
@@ -277,7 +278,7 @@ $(document).ready(function () {
             data["csrf_token"] = csrfToken;
             data["what"] = "relation_types";
 
-            $.post("api/write", data, function (r) {
+            $.post("/api/write", data, function (r) {
                 if (r.error) {
                     window.flash.display(window.JS_STRINGS["es_write_failure"].replace("$item$", window.JS_STRINGS["string_relation_types"]), "warning");
                     console.log(r.error);
@@ -301,9 +302,10 @@ $(document).ready(function () {
             var relationsFemale = [];
             var relationsMale = [];
             var optionsCharacter = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship)]
-            var optionsMale = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship)];
-            var optionsFemale = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship)];
-            
+            var optionsMale = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship),
+                               optionTpl.replace("$option$", "1").replace("$item$", window.JS_STRINGS.this_relationship)]; // allows for the current relationship to be the reciprocal relationship
+            var optionsFemale = [optionTpl.replace("$option$", "0").replace("$item$", window.JS_STRINGS.select_relationship),
+                                 optionTpl.replace("$option$", "1").replace("$item$", window.JS_STRINGS.this_relationship)];
             
             /* write to the table */
             if (Object.keys(self.list).length > 0) {

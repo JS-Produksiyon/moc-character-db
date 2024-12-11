@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2024-12-09 10:25+0300\n"
+"POT-Creation-Date: 2024-12-11 15:47+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,9 +40,7 @@ msgid ""
 msgstr ""
 
 #: app/app.py:248
-msgid ""
-"The Apache-based WSGI server should restart itself presently. Please wait"
-" for a few seconds, then click the Start button below."
+msgid "Restart your Apache server, then click the Start button below."
 msgstr ""
 
 #: app/app.py:250

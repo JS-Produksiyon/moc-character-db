@@ -151,5 +151,5 @@ RECIPROCAL_RELATIONSHIPS = {
     'acquaintance' : {'male' : 'acquaintance', 'female' : 'acquaintance', 'sex' : 'both'},
     'friend'       : {'male' : 'friend', 'female' : 'friend', 'sex' : 'both'},
     'enemy'        : {'male' : 'enemy', 'female' : 'enemy', 'sex' : 'both'},
-    'coworker'     : {'male' : 'coworker', 'coworker' : 'enemy', 'sex' : 'both'},
+    'coworker'     : {'male' : 'coworker', 'female' : 'coworker', 'sex' : 'both'},
 }

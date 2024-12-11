@@ -95,19 +95,20 @@ Run the batch file `startmoccdb.bat`.
 
 > See [Working with the Database](#working-with-the-database) below for how to access the database and use it.
 
+---
+
 ### Hosting the Men of Courage Database on a Network
 The application is designed with simplicity in mind and **IS NOT MEANT TO BE EXPOSED TO THE INTERNET**! As such there is **no security** built into the application. If you host it on the internet, it is up to you to secure the application.
 
-#### WSGI on Apache
+* [Instructions for setting up WSGI on Apache webserver](webserver-config/apache/README.md)
+* [Instructions for setting up with gunicorn and nginx](webserver-config/nginx/README.md)
 
-
-#### Gunicorn and nginx
-
+It is possible to set up your database locally and then copy the files in the local `instance` folder to the remote `instance` folder, thus carrying your data over to the networked instance of the Men of Courage Database
 
 #### Docker
 There is currently no Docker image available. You are, however, welcome to package the database to run in a Docker image with gunicorn.
 
-
+---
 ### Working with the Database:
 #### First run
 On first run select your language and database of choice. Then you will be required to restart the application to access the newly created database. 

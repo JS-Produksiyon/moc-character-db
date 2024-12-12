@@ -331,8 +331,13 @@ def write_to_db():
                                     otherRelationship.relationship = reciprocalRelationship
 
                     # remove the relationships that don't exist in the passed data
+                    # THIS SOLUTION IS SO STUPID! But it's the one way I could figure out to make this work.
+                    masterList = []
+                    for item in data['relationships']:
+                        masterList.append(item['rid'])
+
                     for item in query.rel_main_character:
-                        if not any(rel for rel in data['relationships'] if rel['id'] == item.other_character and rel['relation'] == item.relationship):
+                        if item.id not in masterList:
                             # the delete own relationship
                             rel = Relationship.query.get(item.id)
                             rel.delete()

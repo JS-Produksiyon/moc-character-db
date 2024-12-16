@@ -229,6 +229,8 @@ $(document).ready(function (){
                             }
                         })
 
+                    }
+                    if (rowData.length > 0) {
                         $("#char_no_relationships").hide();
                         $("#char_relationships_table_container").show();
                     } else {
@@ -618,8 +620,14 @@ $(document).ready(function (){
 
             if (confirm) {
                 window.saveState.setUnsaved();
-
-                self.character_data.relationships[rowId].id = -1;
+                if (self.character_data.relationships[rowId].rid < 1) {
+                    /* if the row has not been saved, i.e. does not have a row id, actually remove it to
+                       prevent weirdness later */
+                    self.character_data.relationships.splice(rowId, 1); 
+                } else {
+                    /* otherwise, set to -1 so it will be deleted on the back end */
+                    self.character_data.relationships[rowId].id = -1;
+                }
                 writeTable("relationships");
                 $("#deleteItemModal_yes").off("click");
                 $("#deleteItemModal").modal("hide");

@@ -336,10 +336,11 @@ def write_to_db():
                                         otherRelationship.relationship = reciprocalRelationship
 
                     # remove the relationships that are tagged for deletion
-                    for item in query.rel_main_character:
-                        if item.id in relationsToDel:
-                            rel = Relationship.query.get(item.id)
-                            rel.delete()
+                    if len(relationsToDel) > 0:
+                        for item in query.rel_main_character:
+                            if item.id in relationsToDel:
+                                rel = Relationship.query.get(item.id)
+                                rel.delete()
 
                     query.save()
 

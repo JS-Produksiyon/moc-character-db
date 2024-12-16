@@ -4,7 +4,7 @@
  * 
  *   File name: ui.5-character.js
  *   Date Created: 2024-09-24
- *   Date Modified: 2024-12-04
+ *   Date Modified: 2024-12-16
  * 
  */
 /* initialize the object */
@@ -220,11 +220,13 @@ $(document).ready(function (){
 
                         /* now we write out the sorted list */
                         $.each(self.character_data.relationships, function (k,i) {
-                            var row = rowTpl.replace(/\$id\$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
-                            row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
-                            row = row.replace("$display$", window.JS_STRINGS.edit).replace("$del_rel$", window.JS_STRINGS.del_rel);
-                            row = row.replace(/\$rowId\$/g, k); /* this is reference so we can edit or delete */
-                            rowData.push(row);
+                            if (i.id > -1){
+                                var row = rowTpl.replace(/\$id\$/g, i.id).replace("$full_name$", i.name).replace("$relationship$", window.relationshipObj.getNameFromSlug(i.relation));
+                                row = row.replace("$sex_slug$", i.sex).replace("$sex_word$", window.JS_STRINGS[`sex_word_${i.sex}`]);
+                                row = row.replace("$display$", window.JS_STRINGS.edit).replace("$del_rel$", window.JS_STRINGS.del_rel);
+                                row = row.replace(/\$rowId\$/g, k); /* this is reference so we can edit or delete */
+                                rowData.push(row);
+                            }
                         })
 
                         $("#char_no_relationships").hide();
@@ -617,7 +619,7 @@ $(document).ready(function (){
             if (confirm) {
                 window.saveState.setUnsaved();
 
-                self.character_data.relationships.splice(rowId, 1);
+                self.character_data.relationships[rowId].id = -1;
                 writeTable("relationships");
                 $("#deleteItemModal_yes").off("click");
                 $("#deleteItemModal").modal("hide");

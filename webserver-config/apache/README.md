@@ -37,6 +37,8 @@ Then, open `/etc/apache2/mods-available/wsgi.load`. Comment out the current line
     LoadModule wsgi_module "/var/www/moc-character-db/venv/lib/python3.11/site-packages/mod_wsgi/server/mod_wsgi-py311.cpython-311-x86_64-linux-gnu.so"
     WSGIPythonHome "/var/www/moc-character-db/venv"
 
+This file, `mod_wsgi-py311.cpython-311-x86_64-linux-gnu.so`, is to be used on x64 processors. If you are running your website on a different architecture (like ARM), check the full name of the file before pasting it and adjust the file accordingly (e.g. on a Raspberry PI, the file is called `mod_wsgi-py311.cpython-311-aarch64-linux-gnu.so`).
+
 
 Copy `webserver-config\apache\moccdb-apache.conf` to `/etc/apache2/sites-available`, edit the `ServerName` directive in the file to point to your own server's domain, then link to the `.conf` file from `/etc/apache2/sites-enabled`. 
 

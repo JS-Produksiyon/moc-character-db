@@ -5,7 +5,7 @@
 
     File name: blueprints/api/calls.py
     Date Created: 2024-09-12
-    Date Modified: 2024-11-18
+    Date Modified: 2024-12-16
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
@@ -300,45 +300,44 @@ def write_to_db():
 
                 # add relationships
                 if len(data['relationships']) > 0:
+                    relationsToDel = []
                     for item in data['relationships']:
-                        # get relationship type object for reciprocal relationships
-                        relTypeQuery = RelationTypes.query.filter_by(slug=item['relation']).first()
-
-                        if relTypeQuery is None:
-                            raise TypeError(_('No relationship of type {slug} exists.').format(item['relation']))
-
-                        reciprocalRelationship = relTypeQuery.reciprocal_male if query.sex == 'male' else relTypeQuery.reciprocal_female
-                        
-                        # relationship from main to other
-                        if item['rid'] == 0:
-                            query.rel_main_character.append(Relationship(other_character=item['id'], relationship=item['relation']))
-
-                            if item['reciprocal']:
-                                query.rel_other_character.append(Relationship(main_character=item['id'], relationship=reciprocalRelationship))
-
+                        # is the row to be deleted? Tag for deletion by row id
+                        if (item['id'] < 0):
+                            relationsToDel.append(item['rid'])
                         else:
-                            currentRelationship = next((rel for rel in query.rel_main_character if rel.id == item['rid']), None)
+                            # get relationship type object for reciprocal relationships
+                            relTypeQuery = RelationTypes.query.filter_by(slug=item['relation']).first()
 
-                            if currentRelationship:
+                            if relTypeQuery is None:
+                                raise TypeError(_('No relationship of type {slug} exists.').format(item['relation']))
+
+                            reciprocalRelationship = relTypeQuery.reciprocal_male if query.sex == 'male' else relTypeQuery.reciprocal_female
+                            
+                            # relationship from main to other
+                            if item['rid'] == 0:
+                                query.rel_main_character.append(Relationship(other_character=item['id'], relationship=item['relation']))
+
                                 if item['reciprocal']:
-                                    otherRelationship = next((rel for rel in query.rel_other_character if (rel.main_character == currentRelationship.other_character and rel.relationship == currentRelationship.relationship)), None)
+                                    query.rel_other_character.append(Relationship(main_character=item['id'], relationship=reciprocalRelationship))
 
-                                currentRelationship.other_character = item['id']
-                                currentRelationship.relationship = item['relation']
+                            else:
+                                currentRelationship = next((rel for rel in query.rel_main_character if rel.id == item['rid']), None)
 
-                                if otherRelationship:
-                                    otherRelationship.main_character == item['id']
-                                    otherRelationship.relationship = reciprocalRelationship
+                                if currentRelationship:
+                                    if item['reciprocal']:
+                                        otherRelationship = next((rel for rel in query.rel_other_character if (rel.main_character == currentRelationship.other_character and rel.relationship == currentRelationship.relationship)), None)
 
-                    # remove the relationships that don't exist in the passed data
-                    # THIS SOLUTION IS SO STUPID! But it's the one way I could figure out to make this work.
-                    masterList = []
-                    for item in data['relationships']:
-                        masterList.append(item['rid'])
+                                    currentRelationship.other_character = item['id']
+                                    currentRelationship.relationship = item['relation']
 
+                                    if otherRelationship:
+                                        otherRelationship.main_character == item['id']
+                                        otherRelationship.relationship = reciprocalRelationship
+
+                    # remove the relationships that are tagged for deletion
                     for item in query.rel_main_character:
-                        if item.id not in masterList:
-                            # the delete own relationship
+                        if item.id in relationsToDel:
                             rel = Relationship.query.get(item.id)
                             rel.delete()
 

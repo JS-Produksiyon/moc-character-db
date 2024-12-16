@@ -20,7 +20,7 @@ character =
 	relationships: [
 		{
 			rid: 0, /* relationship record id */
-			id: 0,
+			id: 0,  /* setting this to -1 will cause the row to be deleted */
 			name: "", /* full name */
 			sex: "",
 			relation: ""  /* slug */

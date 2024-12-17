@@ -5,14 +5,14 @@
 
     File name: blueprints/api/calls.py
     Date Created: 2024-09-12
-    Date Modified: 2024-12-16
+    Date Modified: 2024-12-17
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
 __copyright__ = "Copyright © 2024 JS Prodüksiyon"
 __credits__ = ["Josh Wibberley"]
 __license__ = "GNU GPL 3.0"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __maintainer__ = ["Josh Wibberley"]
 __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
@@ -140,12 +140,23 @@ def fetch_from_db():
                 recDate = '' if row.recorded is None else row.recorded.strftime('%Y-%m-%d')
                 out[row.id] = {'id': row.id, 'name': row.name, 
                                'recorded': recDate, 
+                               'summary': '',     # this is so it shows up in the key. It remains empty for speed. Actual data gets pulled by a separate call
                                'characters': [] }
 
                 if len(row.characters) > 0:
                     for char in row.characters:
                         out[row.id]['characters'].append({ "character_id": char.id, "character_name": "{first} {last}".format(first=char.first_name, last=char.last_name)})
 
+    elif what == 'episode_summary':
+        try:
+            id = int(request.values['id'])
+        except (TypeError, ValueError):
+            return jsonify({'error': _('Invalid episode id passed.')})
+
+        query = Episode.query.get(int(request.values['id']))
+
+        if Episode is not None:
+            out = {'id': query.id, 'summary': query.summary}
 
     elif what == 'relation_types':
         query = RelationTypes.query.order_by(RelationTypes.id.asc()).all()
@@ -360,7 +371,7 @@ def write_to_db():
 
         # write the episode to the database
         elif request.form['what'] == 'episodes':
-            keys = { 'csrf_token': str, 'what': str,  'id': int, 'name': str, 'recorded': str, 'characters': str}
+            keys = { 'csrf_token': str, 'what': str,  'id': int, 'name': str, 'recorded': str, 'characters': str, 'summary': str}
 
             try:
                 if len(request.form) != len(keys):
@@ -381,9 +392,14 @@ def write_to_db():
                     query = Episode(id=int(request.form['id']))
 
                 query.name = sanitizeString(request.form['name'])
-                if request.form['recorded'] != "" and re.match('\d\d\d\d-\d\d\-\d\d', request.form['recorded']):
+                if request.form['recorded'] != '' and re.match('\d\d\d\d-\d\d\-\d\d', request.form['recorded']):
                     query.recorded = datetime.datetime.strptime(request.form['recorded'], "%Y-%m-%d")
+
+                if request.form['summary'] != '':
+                    query.summary = sanitizeString(request.form['summary'])
+                
                 # we don't add characters, because that is handled from the add character field
+                
                 query.save()
 
                 return jsonify({'success': _('{episode} saved').format(episode=request.form['id'])})

@@ -5,17 +5,17 @@
 
     File name: app.py
     Date Created: 2024-09-03
-    Date Modified: 2024-12-11
+    Date Modified: 2024-12-16
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
 __copyright__ = "Copyright © 2024 JS Prodüksiyon"
 __credits__ = ["Josh Wibberley"]
 __license__ = "GNU GPL 3.0"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __maintainer__ = ["Josh Wibberley"]
 __email__ = "jmw@hawke-ai.com"
-__status__ = "Development"
+__status__ = "Production"
 __debugState__ = True
 # ================================================================================
 # Check for python version

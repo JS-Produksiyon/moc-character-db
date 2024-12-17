@@ -6,10 +6,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version:  1.0.0\n"
+"Project-Id-Version:  1.0.1\n"
 "Report-Msgid-Bugs-To: yazilim@jsproduksiyon.com\n"
-"POT-Creation-Date: 2024-12-11 15:47+0300\n"
-"PO-Revision-Date: 2024-12-11 10:00+0300\n"
+"POT-Creation-Date: 2024-12-17 15:10+0300\n"
+"PO-Revision-Date: 2024-12-17 15:12+0300\n"
 "Last-Translator: Josh Wibberley <joshw@jsproduksiyon.com>\n"
 "Language: tr\n"
 "Language-Team: Turkish <yazilim@jsproduksiyon.com>\n"
@@ -51,7 +51,9 @@ msgstr ""
 
 #: app/app.py:248
 msgid "Restart your Apache server, then click the Start button below."
-msgstr "Apache web sunucunuzu yeniden başlatın ve aşağıdaki Başla düğmesine tıklayın."
+msgstr ""
+"Apache web sunucunuzu yeniden başlatın ve aşağıdaki Başla düğmesine "
+"tıklayın."
 
 #: app/app.py:250
 msgid "Restart the gunicorn server that hosts the database application."
@@ -69,55 +71,59 @@ msgstr "Öğe {item} silenemedi: {error}"
 msgid "Invalid character id passed."
 msgstr "Geçersiz karakter kimliği alındı."
 
-#: app/blueprints/api/calls.py:223 app/blueprints/api/calls.py:354
-#: app/blueprints/api/calls.py:387 app/blueprints/api/calls.py:433
+#: app/blueprints/api/calls.py:154
+msgid "Invalid episode id passed."
+msgstr "Geçersiz bölüm numarası alındı."
+
+#: app/blueprints/api/calls.py:234 app/blueprints/api/calls.py:370
+#: app/blueprints/api/calls.py:408 app/blueprints/api/calls.py:454
 msgid "Unable to save {item}: {error}"
 msgstr "Öğe {item} kaydedilemedi: {error}"
 
-#: app/blueprints/api/calls.py:226 app/blueprints/api/calls.py:257
-#: app/blueprints/api/calls.py:371 app/blueprints/api/calls.py:404
+#: app/blueprints/api/calls.py:237 app/blueprints/api/calls.py:268
+#: app/blueprints/api/calls.py:387 app/blueprints/api/calls.py:425
 msgid "Invalid data type passed: {e}"
 msgstr "Geçersiz veri türü alındı: {e}"
 
-#: app/blueprints/api/calls.py:229
+#: app/blueprints/api/calls.py:240
 msgid "No data passed"
 msgstr "Veri gönderilmedi"
 
-#: app/blueprints/api/calls.py:243 app/blueprints/api/calls.py:362
-#: app/blueprints/api/calls.py:395
+#: app/blueprints/api/calls.py:254 app/blueprints/api/calls.py:378
+#: app/blueprints/api/calls.py:416
 msgid "Invalid number of keys passed: {sent} not {sought}"
 msgstr "Geçersiz sayıda içerik alındı: {sought} yerine {sent}"
 
-#: app/blueprints/api/calls.py:248
+#: app/blueprints/api/calls.py:259
 msgid "Invalid number of character data keys passed: {sent} not {sought}"
 msgstr "Geçersiz sayıda karakter veri anahtarı alındı: {sought} yerine {sent}"
 
-#: app/blueprints/api/calls.py:252 app/blueprints/api/calls.py:366
-#: app/blueprints/api/calls.py:399
+#: app/blueprints/api/calls.py:263 app/blueprints/api/calls.py:382
+#: app/blueprints/api/calls.py:420
 msgid "Required data for {item} not passed."
 msgstr "{item} öğesi için gerekli veri alınamadı"
 
-#: app/blueprints/api/calls.py:308
+#: app/blueprints/api/calls.py:324
 msgid "No relationship of type {slug} exists."
 msgstr "İstenilen türde ilişki bulunamadı: {slug}"
 
-#: app/blueprints/api/calls.py:351
+#: app/blueprints/api/calls.py:367
 msgid "Character {name} saved"
 msgstr "{name} adlı karakter kaydedildi."
 
-#: app/blueprints/api/calls.py:354 app/languages/jsstrings.py:31
+#: app/blueprints/api/calls.py:370 app/languages/jsstrings.py:31
 msgid "character"
 msgstr "karakter"
 
-#: app/blueprints/api/calls.py:384
+#: app/blueprints/api/calls.py:405
 msgid "{episode} saved"
 msgstr "{episode} kaydedildi"
 
-#: app/blueprints/api/calls.py:430
+#: app/blueprints/api/calls.py:451
 msgid "{slug} saved"
 msgstr "{slug} öğesi kaydedildi"
 
-#: app/blueprints/api/calls.py:436
+#: app/blueprints/api/calls.py:457
 msgid "No action passed"
 msgstr "Eylem gönderilmedi"
 
@@ -184,13 +190,13 @@ msgstr "Seçiniz"
 
 #: app/blueprints/main/templates/charform.html.jinja:37
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:25
-#: app/languages/jsstrings.py:73
+#: app/languages/jsstrings.py:78
 msgid "Male"
 msgstr "Erkek"
 
 #: app/blueprints/main/templates/charform.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:26
-#: app/languages/jsstrings.py:72
+#: app/languages/jsstrings.py:77
 msgid "Female"
 msgstr "Kadın"
 
@@ -231,7 +237,7 @@ msgid "Residence"
 msgstr "İkamet"
 
 #: app/blueprints/main/templates/charform.html.jinja:72
-#: app/languages/jsstrings.py:66
+#: app/languages/jsstrings.py:71
 msgid "Add Location"
 msgstr "Mekân ekle"
 
@@ -277,7 +283,7 @@ msgstr "Karakteri oynayan veya seslendiren"
 
 #: app/blueprints/main/templates/charform.html.jinja:123
 #: app/blueprints/main/templates/modal_addActor.html.jinja:6
-#: app/languages/jsstrings.py:65
+#: app/languages/jsstrings.py:70
 msgid "Add Actor"
 msgstr "Oyuncu veya Seslendiren Ekle"
 
@@ -406,7 +412,7 @@ msgid "Actor Name"
 msgstr "Adı-Soyadı"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:18
-#: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:37
+#: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:43
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:52
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:19
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:45
@@ -416,7 +422,7 @@ msgid "Cancel"
 msgstr "İptal"
 
 #: app/blueprints/main/templates/modal_addActor.html.jinja:19
-#: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:38
+#: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:44
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:53
 #: app/blueprints/main/templates/modal_addResidence.html.jinja:20
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:46
@@ -472,6 +478,11 @@ msgstr "En az bir karakter uzunluğunda olan geçerli bir bölüm başlığını
 #: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:30
 msgid "Episode Recorded"
 msgstr "Bölüm Kayıt Tarihi"
+
+#: app/blueprints/main/templates/modal_addEditEpisode.html.jinja:36
+#: app/languages/jsstrings.py:65
+msgid "Episode Summary"
+msgstr "Bölümün Özeti"
 
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:6
 msgid "Add New Relationship to Database"
@@ -535,7 +546,7 @@ msgstr "Eril karşılıklı ilişki"
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:38
 #: app/blueprints/main/templates/modal_addEditRelationship.html.jinja:46
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:28
-#: app/languages/jsstrings.py:69
+#: app/languages/jsstrings.py:74
 msgid "Select relationship..."
 msgstr "İlişkiyi seçiniz..."
 
@@ -578,7 +589,7 @@ msgid "Select Episode"
 msgstr "Bölümü seç"
 
 #: app/blueprints/main/templates/modal_appendEpisode.html.jinja:20
-#: app/languages/jsstrings.py:68
+#: app/languages/jsstrings.py:73
 msgid "Select episode here..."
 msgstr "Bölümü buradan seçiniz..."
 
@@ -630,7 +641,7 @@ msgid "Other Character"
 msgstr "Diğer karakter"
 
 #: app/blueprints/main/templates/modal_appendRelationship.html.jinja:18
-#: app/languages/jsstrings.py:67
+#: app/languages/jsstrings.py:72
 msgid "Select character..."
 msgstr "Karakteri seçiniz..."
 
@@ -948,60 +959,76 @@ msgid "episodes"
 msgstr "bölümler"
 
 #: app/languages/jsstrings.py:57
+msgid "Unable to fetch data pertaining to the Episode #$id$."
+msgstr "Bölüm No. $id$ için veriler veri tabanından alınamadı."
+
+#: app/languages/jsstrings.py:58
 msgid "Not yet recorded"
 msgstr "Henüz kaydedilmedi"
 
-#: app/languages/jsstrings.py:58
+#: app/languages/jsstrings.py:59
 msgid "No characters assigned"
 msgstr "Karakter tanımlanmadı"
 
-#: app/languages/jsstrings.py:59
+#: app/languages/jsstrings.py:60
 msgid "the episode number"
 msgstr "bölüm numarası"
 
-#: app/languages/jsstrings.py:60
+#: app/languages/jsstrings.py:61
 msgid "Recorded on"
 msgstr "Kayıt Tarihi"
 
-#: app/languages/jsstrings.py:61
+#: app/languages/jsstrings.py:62
+msgid "Hide Summary"
+msgstr "Özeti gizle"
+
+#: app/languages/jsstrings.py:63
+msgid "No summary found."
+msgstr "Özet bulunamadı"
+
+#: app/languages/jsstrings.py:64
+msgid "Show Summary"
+msgstr "Özeti görüntüle"
+
+#: app/languages/jsstrings.py:66
 msgid "Character body shot"
 msgstr "Karakter boydan çekimi"
 
-#: app/languages/jsstrings.py:62
+#: app/languages/jsstrings.py:67
 msgid "Character head shot"
 msgstr "Karakter kafa çekimi"
 
-#: app/languages/jsstrings.py:63
+#: app/languages/jsstrings.py:68
 msgid ""
 "An error occurred while interacting with the database. Data was not "
 "$action$."
 msgstr "Veri alışverişi yapılırken bir hata oluştu. Veri $action$ yapılamadı."
 
-#: app/languages/jsstrings.py:64
+#: app/languages/jsstrings.py:69
 msgid "Date Recorded"
 msgstr "Kayıt Tarihi"
 
-#: app/languages/jsstrings.py:70
+#: app/languages/jsstrings.py:75
 msgid "Select ..."
 msgstr "Seçiniz..."
 
-#: app/languages/jsstrings.py:74
+#: app/languages/jsstrings.py:79
 msgid "Add actor to select."
 msgstr "Seçebilmek için bir oyuncu ekleyin."
 
-#: app/languages/jsstrings.py:75
+#: app/languages/jsstrings.py:80
 msgid "Add relationship to select."
 msgstr "Seçebilmek için bir ilişki ekleyin."
 
-#: app/languages/jsstrings.py:76
+#: app/languages/jsstrings.py:81
 msgid "Create"
 msgstr "oluştur"
 
-#: app/languages/jsstrings.py:77
+#: app/languages/jsstrings.py:82
 msgid "Update"
 msgstr "güncelle"
 
-#: app/languages/jsstrings.py:78
+#: app/languages/jsstrings.py:83
 msgid ""
 "Passed relationship item ID is invalid. Cannot load selected relationship"
 " for editing."
@@ -1009,45 +1036,45 @@ msgstr ""
 "Alınan ilişki kimliği geçersizdir. Seçilen ilişkiyi düzenlemek üzere "
 "yüklenemedi."
 
-#: app/languages/jsstrings.py:79
+#: app/languages/jsstrings.py:84
 msgid "Add location to select."
 msgstr "Seçmek için mekân ekleyin."
 
-#: app/languages/jsstrings.py:80
+#: app/languages/jsstrings.py:85
 msgid "written"
 msgstr "yazılımı"
 
-#: app/languages/jsstrings.py:81
+#: app/languages/jsstrings.py:86
 msgid "received"
 msgstr "alımı"
 
-#: app/languages/jsstrings.py:82
+#: app/languages/jsstrings.py:87
 msgid "actor"
 msgstr "oyuncu veya seslendiren"
 
-#: app/languages/jsstrings.py:83
+#: app/languages/jsstrings.py:88
 msgid "residence location"
 msgstr "ikamet yerin adı"
 
-#: app/languages/jsstrings.py:84
+#: app/languages/jsstrings.py:89
 msgid "relationship"
 msgstr "ilişki"
 
-#: app/languages/jsstrings.py:85
+#: app/languages/jsstrings.py:90
 msgid "relationship types"
 msgstr "ilişki türleri"
 
 # Türkçe'de artikel yoktur. Boş bırakın.
 # There are no articles in Turkish. Leave empty.
-#: app/languages/jsstrings.py:86
+#: app/languages/jsstrings.py:91
 msgid "the"
 msgstr ""
 
-#: app/languages/jsstrings.py:87
+#: app/languages/jsstrings.py:92
 msgid "This same relationship"
 msgstr "Bu ilişkinin aynısı"
 
-#: app/languages/jsstrings.py:88
+#: app/languages/jsstrings.py:93
 msgid ""
 "Unable to find the selected item among the $items$. Adding a new item "
 "instead."
@@ -1105,8 +1132,8 @@ msgid ""
 "Click Start to load the main page when you have restarted the database "
 "application."
 msgstr ""
-"Veri tabanı uygulamasını yeniden başlattıktan sonra ana sayfayı "
-"yüklemek için Başla düğmesini tıklayın."
+"Veri tabanı uygulamasını yeniden başlattıktan sonra ana sayfayı yüklemek "
+"için Başla düğmesini tıklayın."
 
 #: app/templates/setup-result.html.jinja:25
 msgid "Unable to save settings."

@@ -4,7 +4,7 @@
  * 
  *   File name: ui.3-episodes.js
  *   Date Created: 2024-10-01
- *   Date Modified: 2024-11-25
+ *   Date Modified: 2024-12-17
  * 
  */
 $(document).ready(function () {
@@ -24,14 +24,19 @@ $(document).ready(function () {
     <div id="collapse_$id$" class="accordion-collapse collapse">
         <div class="accordion-body">
             <div class="float-end">
-                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="$id$"><i class="bi bi-pencil"></i> $edit$</button></button>
-                <button type="button" class="btn btn-outline-danger delete-episode" data-episode="$id$" title="$delete$"><i class="bi-trash3-fill"></i></button></button>
+                <button type="button" class="btn btn-outline-secondary show-summary" data-episode="$id$" title="$summary$" id="episode_$id$_summary_button"><i class="bi bi-file-text"></i></button>
+                <button type="button" class="btn btn-outline-secondary edit-episode" data-episode="$id$" title="$edit$"><i class="bi bi-pencil"></i></button>
+                <button type="button" class="btn btn-outline-danger delete-episode" data-episode="$id$" title="$delete$"><i class="bi-trash3-fill"></i></button>
             </div>
             <p><strong>$ep_rec_date$:</strong> $rec_date$</p>
             <p class="mb-0"><strong>$ep_characters$:</strong></p>
             <ul>
                 $charlist$
             </ul>
+            <div id="episode_$id$_summary" class="md-none">
+                <p class="mb-0"><strong>$summary_title$:</strong></p>
+                <div id="episode_$id$_summary_text" class="me-3 ms-3"></div>
+            </div>
         </div>
     </div>            
 </div>\n`;
@@ -57,6 +62,7 @@ $(document).ready(function () {
             }
             $(".edit-episode").click(function() { self.addEdit($(this).data("episode")); });
             $(".delete-episode").click(function() { self.delete($(this).data("episode"), false); });
+            $(".show-summary").click(function() { self.showSummary($(this).data("episode")); });
         }
 
         /** 
@@ -81,7 +87,7 @@ $(document).ready(function () {
          * @returns {boolean}   : denoting validity
          */
         var validateData = function (data) {
-            var skeleton = (Object.keys(data).length > 2) ? { "id": "number", "name": "string", "recorded": "string" } :  { "id": "number", "name": "string" }
+            var skeleton = (Object.keys(data).length > 3) ? { "id": "number", "name": "string", "summary": "string", "recorded": "string" } :  { "id": "number", "name": "string", "summary": "string" }
             var valid = true;
 
             if (Object.keys(data).length == Object.keys(skeleton).length) {
@@ -121,6 +127,21 @@ $(document).ready(function () {
             $("#addEditEpisodeModal_ep_num").val((id == 0) ? "" : id);
             $("#addEditEpisodeModal_ep_title").val((id == 0) ? "" : self.list[id].name);
             $("#addEditEpisodeModal_ep_date").val((id == 0) ? "" : self.list[id].recorded);
+            $("#addEditEpisodeModal_ep_summary").val("");
+            if (id != 0) { // make sure that we actually HAVE a summary to write out
+                if (self.list[id].summary.length < 1) {
+                    $.get('/api/fetch', {"what":"episode_summary", "id":id}, function(r) {
+                        if (r.error) {
+                            window.flash.display(window.JS_STRINGS['ep_fetch_error'].replace("$id$", id), "warning");
+                        } else {
+                            $("#addEditEpisodeModal_ep_summary").val(r.episode_summary.summary);            
+                        }
+                    }).fail(function () {
+                        window.flash.display(window.JS_STRINGS['general_failure'].replace("$action$", window.JS_STRINGS["string_received"]), "danger");
+                    });
+                }
+            }
+
             $("#addEditEpisodeModal").modal("show");
             setTimeout(function () { $("#addEditEpisodeModal_ep_num").focus(); }, 600);
         }
@@ -150,7 +171,7 @@ $(document).ready(function () {
                         window.flash.display(window.JS_STRINGS["del_success"].replace("$item$", window.JS_STRINGS["ep_num"] + " " + id), "success");
                         window.charListObj.load(); /* to clear changes of deleted episodes */
                     }
-                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$item$", window.JS_STRINGS['episode']), 'danger'); });
+                }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$action$", window.JS_STRINGS["string_written"]), 'danger'); });
                 self.write();
                 self.display();
             } else {
@@ -217,9 +238,49 @@ $(document).ready(function () {
                     self.list = r.episodes;
                     self.write();
                 }
-            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$item$", window.JS_STRINGS['episodes']), 'danger'); });
+            }).fail(function () { window.flash.display(window.JS_STRINGS['general_failure'].replace("$action$", window.JS_STRINGS["string_received"]), 'danger'); });
         }
         
+        /**
+         * show the summary of an episode
+         * 
+         * @param {number} id : episode id from which to load summary
+         */
+        this.showSummary = function (id) {
+            var summaryObj = $(`#episode_${id}_summary`);
+            if (summaryObj.length > 0) {
+                var summaryButton = $(`#episode_${id}_summary_button`);
+                var summaryText = $(`#episode_${id}_summary_text`);
+                summaryText.html(window.JS_STRINGS.ep_summary_none);
+
+                if (summaryObj.css("display") == "none") {
+                    $.get('/api/fetch', {"what":"episode_summary", "id":id}, function(r) {
+                        if (r.error) {
+                            window.flash.display(window.JS_STRINGS['ep_fetch_error'].replace("$id$", id), "warning");
+                        } else {
+                            var summary = r.episode_summary.summary;
+                            if (typeof summary == 'string' && summary.length > 0){
+                                summaryText.html(summary);
+                            }
+                            summaryObj.slideDown();
+                            summaryButton.attr("title", window.JS_STRINGS.ep_summary_hide);
+                            summaryButton.html('<i class="bi bi-file-text-fill"></i>');                
+                        }
+                    }).fail(function () {
+                        window.flash.display(window.JS_STRINGS['general_failure'].replace("$action$", window.JS_STRINGS["string_received"]), "danger");
+                    });    
+
+                } else {
+                    summaryObj.slideUp();
+                    summaryButton.attr("title", window.JS_STRINGS.ep_summary_show);
+                    summaryButton.html('<i class="bi bi-file-text"></i>');
+                }
+            } else {
+                console.log(`Object #episode_${id}_summary does not exist.`);
+            }
+        }
+
+
         /**
          * update contents in database 
          * 
@@ -241,7 +302,7 @@ $(document).ready(function () {
                 }
             } else {
                 /* validate entries */
-                fields = { "id": $("#addEditEpisodeModal_ep_num"), "name": $("#addEditEpisodeModal_ep_title"), "recorded": $("#addEditEpisodeModal_ep_date")}
+                fields = { "id": $("#addEditEpisodeModal_ep_num"), "name": $("#addEditEpisodeModal_ep_title"), "recorded": $("#addEditEpisodeModal_ep_date"), "summary": $("#addEditEpisodeModal_ep_summary")};
                 
                 if (parseInt(fields["id"].val()) < 1) {
                     fields["id"].addClass("is-invalid");
@@ -251,7 +312,9 @@ $(document).ready(function () {
                     fields["name"].addClass("is-invalid")
                     go = false;
                 }
-                data = { "id": fields["id"].val(), "name": fields["name"].val(), "recorded": fields["recorded"].val(), "characters": [] };
+                data = { "id": fields["id"].val(), "name": fields["name"].val(), 
+                         "recorded": fields["recorded"].val(), "characters": [],
+                         "summary": fields["summary"].val() };
             }
             /* add or edit an episode */
             if (go) {
@@ -270,7 +333,7 @@ $(document).ready(function () {
                     } else {
                         window.flash.display(window.JS_STRINGS["es_write_success"].replace("$item$", "<i>" + data.id + " &ndash; " + data.name + "</i>"), "success");
                     }
-                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["episode"]), "danger"); });
+                }).fail(function () { window.flash.display(window.JS_STRINGS["general_failure"].replace("$action$", window.JS_STRINGS["string_written"]), "danger"); });
     
                 data["characters"] = JSON.parse(data["characters"]); // this is so that the characters object _remains_ an object in normal usage
 
@@ -301,7 +364,10 @@ $(document).ready(function () {
                 $.each(self.list, function (k, i) {
                     var recDate = (i.recorded != "") ? i.recorded : window.JS_STRINGS.ep_not_recorded;
 
-                    var accItem = accordionTpl.replace(/\$id\$/g, i.id).replace("$title$", i.name).replace("$edit$", window.JS_STRINGS.edit).replace("$ep_rec_date$", window.JS_STRINGS.ep_rec_date).replace("$rec_date$", recDate).replace("$ep_characters$", window.JS_STRINGS.ep_characters).replace("$delete$", window.JS_STRINGS.delete);
+                    var accItem = accordionTpl.replace(/\$id\$/g, i.id).replace("$title$", i.name).replace("$edit$", window.JS_STRINGS.edit);
+                    accItem = accItem.replace("$ep_rec_date$", window.JS_STRINGS.ep_rec_date).replace("$rec_date$", recDate);
+                    accItem = accItem.replace("$ep_characters$", window.JS_STRINGS.ep_characters).replace("$delete$", window.JS_STRINGS.del_ep);
+                    accItem = accItem.replace("$summary$", window.JS_STRINGS.ep_summary_show).replace("$summary_title$", window.JS_STRINGS.ep_summary_title)
 
                     var charItem = "";
                     if (i.characters.length > 0){

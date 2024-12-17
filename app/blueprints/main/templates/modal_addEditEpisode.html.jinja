@@ -32,6 +32,12 @@
                         <input type="date" class="form-control" id="addEditEpisodeModal_ep_date" name="ep_date" placeholder="">
                     </div>
                 </div>
+                <div class="row mb-3">
+                    <label class="form-label col-3 text-end pt-2">{{ _('Episode Summary') }}:</label>
+                    <div class="col-9 ps-3 pe-3">
+                        <textarea class="form-control" id="addEditEpisodeModal_ep_summary" name="ep_summary" rows="8"></textarea>
+                    </div>
+                </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal"><i class="bi-ban"></i> {{ _('Cancel') }}</button>

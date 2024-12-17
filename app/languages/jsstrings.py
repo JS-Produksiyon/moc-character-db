@@ -6,14 +6,14 @@
 
     File name: languages/jsstrings.py
     Date Created: 2024-09-12
-    Date Modified: 2024-12-09
+    Date Modified: 2024-12-17
     Python version: 3.11+
 """
 __author__ = "Josh Wibberley (JMW)"
 __copyright__ = "Copyright © 2024 JS Prodüksiyon"
 __credits__ = ["Josh Wibberley"]
 __license__ = "GNU GPL 3.0"
-__version__ = "1.0.0"
+__version__ = "1.0.1"
 __maintainer__ = ["Josh Wibberley"]
 __email__ = "jmw@hawke-ai.com"
 __status__ = "Development"
@@ -54,10 +54,15 @@ JS_STRINGS = {
     'Episode': _('Episode'), # capitalized version in case we need it case sensitive
     'episodes': _('episodes'),
     'ep_characters': _('Characters'),
+    'ep_fetch_error': _('Unable to fetch data pertaining to the Episode #$id$.'),
     'ep_not_recorded': _('Not yet recorded'),
     'ep_no_characters': _('No characters assigned'),
     'ep_num': _('the episode number'),
     'ep_rec_date': _('Recorded on'),
+    'ep_summary_hide': _('Hide Summary'),
+    'ep_summary_none': _('No summary found.'),
+    'ep_summary_show': _('Show Summary'),
+    'ep_summary_title': _('Episode Summary'),
     'image_body_shot': _('Character body shot'),
     'image_head_shot': _('Character head shot'),
     'general_failure': _('An error occurred while interacting with the database. Data was not $action$.'),

@@ -101,7 +101,7 @@ Run the batch file `startmoccdb.bat`.
 The application is designed with simplicity in mind and **IS NOT MEANT TO BE EXPOSED TO THE INTERNET**! As such there is **no security** built into the application. If you host it on the internet, it is up to you to secure the application.
 
 * [Instructions for setting up WSGI on Apache webserver](webserver-config/apache/README.md)
-* [Instructions for setting up with gunicorn and nginx](webserver-config/nginx/README.md)
+* [Instructions for setting up with gunicorn and (optionally) nginx](webserver-config/gunicorn/README.md)
 
 It is possible to set up your database locally and then copy the files in the local `instance` folder to the remote `instance` folder, thus carrying your data over to the networked instance of the Men of Courage Database
 
@@ -160,4 +160,4 @@ or by entering the app directory in virtual environment mode and executing
     flask --debug run --extra-files static/style.css:static/*.js
 
 ---
-Updated: 2024-12-02
+Updated: 2025-01-13

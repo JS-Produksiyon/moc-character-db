@@ -10,6 +10,12 @@ The descriptions here assume a LAMP server running Apache 2.4. These commands we
 ## Setting up the MoC Character Database
 These instructions assume that the moc-character-db repository is located in `/var/www`. It is best to clone the repository here directly, [install it](../../README.md#manual-setup-all-oses) according to the instructions, and then follow the steps in [Other Operating Systems](../../README.md#other-operating-systems) to verify the installation works.
 
+Make sure that the Linux web service users that will run the database have write access to the `instance` directory and all that is in it. It is best to run the following command in the `/var/www/moc-character-db` directory.
+
+    sudo chown -R www-data:www-data instance
+
+Then the application will work properly.
+
 Copy `webserver-config/apache/moccdb.wsgi` into the repository root. (It should be in the same location as moccdb.py.)
 
 ## Installing Apache WSGI Prerequisites
@@ -51,4 +57,4 @@ Restart the apache server.
 In a web browser load the main page of the character database. 
 
 ---
-Last Updated: 2024-12-11
+Last Updated: 2025-01-13

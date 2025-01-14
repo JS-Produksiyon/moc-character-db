@@ -7,7 +7,11 @@ User=www-data
 Group=www-data
 WorkingDirectory=/var/www/moc-character-db
 Environment="PATH=/var/www/moc-character-db/venv/bin"
-ExecStart="/var/www/moc-character-db/venv/bin/gunicorn -w 4 -b 0.0.0.0:13153 'app.app:create_app()'"
+ExecStart=/var/www/moc-character-db/venv/bin/gunicorn -w 4 -b 0.0.0.0:13153 "app.app:create_app()"
+ExecReload=/bin/kill -s HUP $MAINPID
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
 
 [Install]
 WantedBy=multi-user.target

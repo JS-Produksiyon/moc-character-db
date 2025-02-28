@@ -28,6 +28,8 @@ The back end runs on Python/Flask and a SQLite database by default. It can also 
     * MacOS 11 and higher
     * Linux with a kernel of 5.10 or higher (e.g. Ubuntu 21.04 or Manjaro 21.0).
 
+    > If you choose to run this application using a different version of Python, be sure to read [Using a version of Python other than 3.11](#using-a-version-of-python-other-than-311) below before setting up or starting the application!
+
 * The knowledge of how to download a ZIP file and decompress (unzip) it.
 * On Windows: The ability to run a batch file by double-clicking it in Explorer.
 * On MacOS/Linux: Experience in using the Terminal.
@@ -151,6 +153,14 @@ To translate the database into a new language, please consult the [TRANSLATION.m
 
 Port: 13153 = moc
 
+### Using a version of Python other than 3.11
+This application has been built in Python 3.11 and tested with it. **Beginners are strongly encouraged to only use the Men of Courage Character Database with Python 3.11 so the application will work without errors.**
+
+If you choose to use a different version of python, especially a newer version (like 3.12 or 3.13), please take the time to check that all of the packages in `requirements.txt` are available and functional in whatever version of Python you are using. For example, as of this writing, Pillow 10.3 does not work in Python 3.13, so the application fails. 
+
+If you know what you're doing, you can work to resolve the package issue and will probably have to tweak the code to reflect any changes to the package since this application was written.
+
+### Developers
 Developers can run the database in developer mode in Windows using the command 
 
     startmoccdb.bat dev 
@@ -159,5 +169,6 @@ or by entering the app directory in virtual environment mode and executing
 
     flask --debug run --extra-files static/style.css:static/*.js
 
+
 ---
-Updated: 2025-01-13
+Updated: 2025-02-28

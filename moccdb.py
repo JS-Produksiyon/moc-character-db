@@ -97,8 +97,6 @@ if __name__ == '__main__':
 
     args = parser.parse_args()
 
-    app.config['ACCESS'] = f'http://{host}:{str(port)}'
-
     # Validate host is a valid IPv4 address
     try:
         ipaddress.IPv4Address(args.host)
@@ -113,6 +111,8 @@ if __name__ == '__main__':
 
     host = args.host
     port = args.port
+
+    app.config['ACCESS'] = f'http://{host}:{str(port)}'
 
     print(LANGUAGES['moccdb_running'][locale])
     print(LANGUAGES['moccdb_language'][locale])

@@ -32,6 +32,8 @@ from flask import Flask, current_app, redirect, request
 # Import extensions
 from flask_babel import Babel, gettext as _, ngettext
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import inspect
+from sqlalchemy.exc import OperationalError
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_wtf import CSRFProtect
 from jinja2 import Environment
@@ -82,12 +84,23 @@ def create_app(test_config=None):
         db.init_app(app)
 
         with app.app_context():
-            db.create_all()
-        
+            inspector = inspect(db.engine)
+            missing_tables = [name for name in db.metadata.tables if not inspector.has_table(name)]
+            if missing_tables:
+                db.create_all()
+
+    except OperationalError as e:
+        msg = str(e).lower()
+        if 'already exists' in msg or 'duplicate' in msg or 'table exists' in msg:
+            print('Table already exists, continuing startup.')
+        else:
+            print(f'Error during application setup: {e}')
+            print('The application will start in setup mode.')
+            create_app_settings(app, babel)
     except Exception as e:
         print(f'Error during application setup: {e}')
         print('The application will start in setup mode.')
-        create_app_settings(app, babel) 
+        create_app_settings(app, babel)
 
     # this is here so that we can reroute to setup if necessary. 
     # I kind of hate to put a directory in front of what should run off the route, but

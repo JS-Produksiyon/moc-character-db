@@ -89,21 +89,22 @@ def create_app(test_config=None):
 
     # Now we try to initialize the database, allowing it to fail gracefully if
     # the tables already exist.
-    try:
-        db.init_app(app)
-        with app.app_context():
-            inspector = inspect(db.engine)
-            missing_tables = [name for name in db.metadata.tables if not inspector.has_table(name)]
-            if missing_tables:
-                db.create_all()
+    if app.config['MOCDB_SETUP']:
+        try:
+            db.init_app(app)
+            with app.app_context():
+                inspector = inspect(db.engine)
+                missing_tables = [name for name in db.metadata.tables if not inspector.has_table(name)]
+                if missing_tables:
+                    db.create_all()
 
-    except OperationalError as e:
-        msg = str(e).lower()
-        if 'already exists' in msg or 'duplicate' in msg or 'table exists' in msg:
-            print('Table already exists, continuing startup.')
-        else:
-            print(f'Error during application setup: {e}')
-            exit(1)
+        except OperationalError as e:
+            msg = str(e).lower()
+            if 'already exists' in msg or 'duplicate' in msg or 'table exists' in msg:
+                print('Table already exists, continuing startup.')
+            else:
+                print(f'Error during application setup: {e}')
+                exit(1)
 
     # this is here so that we can reroute to setup if necessary. 
     # I kind of hate to put a directory in front of what should run off the root, but

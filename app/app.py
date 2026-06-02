@@ -72,7 +72,7 @@ def create_app(test_config=None):
     babel = Babel(app)
     babel.init_app(app, locale_selector=get_locale)
     env = Environment(extensions=['jinja2.ext.i18n'])
-    env.install_gettext_callables(_, ngettext)
+    env.install_gettext_callables(_, ngettext)  # type: ignore
 
     try:
         app.register_blueprint(page)
@@ -101,10 +101,10 @@ def create_app(test_config=None):
     @app.context_processor
     def mocdb_context_utility():
         def get_language_code() -> str:
-            return app.config.get('APP_LANGUAGE')
+            return app.config.get('APP_LANGUAGE') # type: ignore
 
         def get_text_direction() -> str:
-            lang = Locale(app.config.get('APP_LANGUAGE'))
+            lang = Locale(app.config.get('APP_LANGUAGE')) # type: ignore
             return lang.text_direction
 
         return dict(language_code=get_language_code, text_direction=get_text_direction)
@@ -146,7 +146,7 @@ def create_app_settings(app, babel):
         random_secret = randomString('alphanumeric', strLength=48)
 
         # iterate through installed packages to check for database connectors
-        for pkg in pkg_resources.working_set:
+        for pkg in pkg_resources.working_set: # type: ignore
             if 'psycopg2-binary' in pkg.key:
                 postgresql = ''
 
@@ -165,9 +165,11 @@ def create_app_settings(app, babel):
         Save and apply passed settings.
         """
         dbTypes = ['sqlite', 'postgres', 'mariadb', 'mysql']
-        fnValidChars = "^[\w\-\.\$\&()\[\]\{\}!@#,]+$"
+        fnValidChars = r"^[\w\-\.\$\&()\[\]\{\}!@#,]+$"
         success = False     # defines whether we
-        error='general'     # defines
+        error='general'     # defines what kind of error to show if the setup fails. Options are 'general' and 'write'
+        restart_instructions = '' # defines the instructions to show for restarting the app after setup
+        secretKey = ''      # defines the secret key to use for the app, either generated or user defined
         
         # validate form content
         if (len(request.form) == 11) and (type(request.form['language']) == str and len(request.form['language'])  == 2) and (request.form['db_type'] in dbTypes) and (len(request.form['secret_key']) < 1 or len(request.form['secret_key']) > 12):
@@ -236,7 +238,7 @@ def create_app_settings(app, babel):
 
             if sys.platform.startswith('win32'):
                 if 'Werkzeug' in wsgi_server:
-                    restart_instructions = _('You can restart the database application in development mode from the command line using the command {cmd}.').format(cmd='<code>.\startmocdb.bat dev</code>')
+                    restart_instructions = _('You can restart the database application in development mode from the command line using the command {cmd}.').format(cmd='<code>.\\startmocdb.bat dev</code>')
                 elif 'waitress' in wsgi_server:
                     restart_instructions = _('You can restart the database application by double-clicking the {cmd} icon.').format(cmd="<b>startmoccdb.bat</b>")
             else:

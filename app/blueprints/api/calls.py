@@ -22,6 +22,7 @@ import os, re, datetime, importlib, json, time
 from flask import(
     Blueprint, jsonify, config, redirect, request, url_for, current_app
 )
+from typing import Optional
 from flask_babel import lazy_gettext as _, format_date
 from utils.util_validators import sanitizeString, validateDataType
 from app.blueprints.api.models import (Character, Episode, Relationship, RelationTypes, Residence, Actor)
@@ -46,15 +47,15 @@ def del_from_db():
         elif request.form['what'] == 'character':
             query = Character.query.get(request.form['id'])
 
-        if query is not None:
-            query.delete()
+        if query is not None:   # type: ignore
+            query.delete()      # type: ignore
             return jsonify({'success': True })
         
         else:
             return jsonify({'error': _('Could not delete {item}').format(item=request.form['what'])})
 
     except Exception as e:
-        jsonify({'error': _('Unable to delete {item}: {error}').format(item=request.form['what'], error={str(e)})})
+        return jsonify({'error': _('Unable to delete {item}: {error}').format(item=request.form['what'], error={str(e)})})
 
 
 @api.route('/fetch', methods=['GET', 'POST'])
@@ -179,7 +180,7 @@ def fetch_from_db():
 
     else:
         what = 'error'
-        out = 'Invalid query: ' + request.data
+        out = 'Invalid query: ' + str(request.data)
 
     # get the last id of the query
     if count > 0:
@@ -195,7 +196,7 @@ def temp_image_upload():
 
     :returns: JSON string containing base64-encoded image
     """
-    pass
+    return {}
 
 
 @api.route('/jsstrings', methods=['GET'])
@@ -361,7 +362,6 @@ def write_to_db():
                         rel = Relationship.query.get(item.id)
                         rel.delete()
 
-
                     query.save()
 
                 return jsonify({'success': _('Character {name} saved').format(name=f'{query.first_name} {query.last_name}')})               
@@ -392,7 +392,7 @@ def write_to_db():
                     query = Episode(id=int(request.form['id']))
 
                 query.name = sanitizeString(request.form['name'])
-                if request.form['recorded'] != '' and re.match('\d\d\d\d-\d\d\-\d\d', request.form['recorded']):
+                if request.form['recorded'] != '' and re.match(r'\d\d\d\d-\d\d\-\d\d', request.form['recorded']):
                     query.recorded = datetime.datetime.strptime(request.form['recorded'], "%Y-%m-%d")
 
                 if request.form['summary'] != '':
@@ -452,6 +452,9 @@ def write_to_db():
 
             except (TypeError, KeyError) as e:
                 return jsonify({'error': _('Unable to save {item}: {error}').format(item=request.form['slug'], error={str(e)})})
+
+        else:
+            return jsonify({'error': _('Invalid item type passed: {item}').format(item=request.form['what'])})
 
     else:
         return jsonify({'error': _('No action passed')})

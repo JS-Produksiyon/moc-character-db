@@ -35,17 +35,17 @@ class Character(ResourceMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     # main data
-    first_name = db.Column(db.String(), index=True, nullable=False)
-    last_name = db.Column(db.String(), index=True, nullable=True)
-    age = (db.Column(db.String(), index=False, nullable=True))
-    animation_status = db.Column(db.String(), index=True, nullable=False)
-    employment = db.Column(db.String(), index=False, nullable=True)
+    first_name = db.Column(db.String(255), index=True, nullable=False)
+    last_name = db.Column(db.String(255), index=True, nullable=True)
+    age = (db.Column(db.String(5), index=False, nullable=True))
+    animation_status = db.Column(db.String(128), index=True, nullable=False)
+    employment = db.Column(db.String(255), index=False, nullable=True)
     image_body = db.Column(db.Text(), index=False, nullable=True)
     image_head = db.Column(db.Text(), index=False, nullable=True)
-    marital_status = db.Column(db.String(), index=False, nullable=False)
+    marital_status = db.Column(db.String(25), index=False, nullable=False)
     personality = db.Column(db.Text(), index=False, nullable=True)
     physical = db.Column(db.Text(), index=False, nullable=True)
-    sex = db.Column(db.String(), index=False, nullable=False)
+    sex = db.Column(db.String(25), index=False, nullable=False)
 
     # one to one relationships
     residence = db.Column(db.Integer,db.ForeignKey('residences.id'))
@@ -99,10 +99,10 @@ class RelationTypes(ResourceMixin, db.Model):
 
     # main fields
     slug = db.Column(db.String(50), unique=True,  index=True, nullable=False)
-    name = db.Column(db.String(), index=True, nullable=False)
+    name = db.Column(db.String(255), index=True, nullable=False)
     reciprocal_male = db.Column(db.String(50), index=False, nullable=True)
     reciprocal_female = db.Column(db.String(50), index=False, nullable=True)
-    sex = db.Column(db.String(), index=False, nullable=False) # male, female, or both
+    sex = db.Column(db.String(25), index=False, nullable=False) # male, female, or both
 
     # relationship
     rel_slug = db.relationship('Relationship', backref='relation_type', lazy=True)

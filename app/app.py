@@ -84,8 +84,10 @@ def create_app(test_config=None):
         with app.app_context():
             db.create_all()
         
-    except:
-        create_app_settings(app, babel)    
+    except Exception as e:
+        print(f'Error during application setup: {e}')
+        print('The application will start in setup mode.')
+        create_app_settings(app, babel) 
 
     # this is here so that we can reroute to setup if necessary. 
     # I kind of hate to put a directory in front of what should run off the route, but

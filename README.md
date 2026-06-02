@@ -1,8 +1,8 @@
 # Men of Courage Character Database
 
-Version: 1.0.0
+Version: 1.1.0
 
-Latest Update: 2024-12-02
+Latest Update: 2026-06-02
 
 This database is designed to track characters used in a Men of Courage localized program (radio or other visual medium). It is designed to be multilingual and to conform to the needs of the target language and culture with a minimum of effort to [translate the interface](TRANSLATE.md).
 
@@ -186,6 +186,14 @@ Developers can run the database in developer mode in Windows using the command
 or by entering the app directory in virtual environment mode and executing
 
     flask --debug run --extra-files static/style.css:static/*.js
+
+## Changelog
+
+### 2026-06-02
+
+* Application now works with MariaDB.
+* Added more graceful checks for whether the database exists, expediting startup after setup procedure.
+* Command line startup allows for database to connect from IP addresses other than localhost and a user-defined port.
 
 ---
 Updated: 2026-06-02

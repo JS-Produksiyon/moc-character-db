@@ -47,6 +47,7 @@ Check to see if the database is running by connecting to `http://<your server ip
     sudo systemctl enable moccdb
 
 ## Serving Gunicorn with Nginx
+
 While the Gunicorn-served version of the Character Database should suffice for any internal network and you can easily access the interface by simply pointing your browser to the proper port, you may want to serve the database up at port 80 or add SSL and serve it on port 443. This can be accomplished by copying the code below into a file called `moccdb` in the `/etc/nginx/sites-available` folder
 
     server {
@@ -59,7 +60,7 @@ While the Gunicorn-served version of the Character Database should suffice for a
         }
     }
 
-Link to the file to `/etc/nginx/sites-available` and restart the nginx process. The Men of Courage Database will now be accessbible
+Link to the file to `/etc/nginx/sites-available` and restart the nginx process. The Men of Courage Database will now be accessible.
 
 ---
-2025-01-13
+Updated: 2026-06-02

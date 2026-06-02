@@ -1,13 +1,15 @@
-# Setting up Men of Character Database with gunicorn and nginx
-These commands were tested on Debian 12, so they should work on any Debian derivatie of the same vintage. If you use another flavor of Linux your mileage may vary.
+# Setting up Men of Character Database with gunicorn and Nginx
 
-## Software Requirements:
+These commands were tested on Debian 12, so they should work on any Debian derivative of the same vintage. If you use another flavor of Linux your mileage may vary.
+
+## Software Requirements
 
 * Gunicorn 23.0^
-* nginx 1.22
-* Python 3.11 
+* Nginx 1.22
+* Python 3.11
 
 ## Setting up the MoC Character Database
+
 These instructions assume that the moc-character-db repository is located in `/var/www`. It is best to clone the repository here directly, [install it](../../README.md#manual-setup-all-oses) according to the instructions, and then follow the steps in [Other Operating Systems](../../README.md#other-operating-systems) to verify the installation works.
 
 Make sure that the Linux web service users that will run the database have write access to the `instance` directory and all that is in it. It is best to run the following command in the `/var/www/moc-character-db` directory.
@@ -16,8 +18,8 @@ Make sure that the Linux web service users that will run the database have write
 
 Then the application will work properly.
 
-
 ## Installing the Gunicorn prerequisites
+
 Assuming we have python 3.11 installed and are in the virtual environment, install the gunicorn module with the following command:
 
     pip install Gunicorn
@@ -26,8 +28,12 @@ At this point you can run the moc-character-db directly with the command execute
 
     gunicorn -w 4 -b 0.0.0.0:13153 'app.app:create_app()'
 
+It should be noted that Python 3.12 and onward has retired the pkg_resources module that Gunicorn relies on. To fix this issue, you will need to install setuptools 69. Be aware that this might include security risks and act accordingly.
+
+    pip install "setuptools<70"
 
 ## Setting up the Gunicorn service
+
 Edit the *moccdb.service* file in `webserver-config/gunicorn` directory to be tailored to where you cloned the MoC Character Database to. If you installed the database at `/var/www/moc-character-db`, then you do not need to edit it.
 
 Copy *moccdb.service* to `/etc/systemd/system`.

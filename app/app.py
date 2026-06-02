@@ -208,7 +208,7 @@ def create_app_settings(app, babel):
                 dbUri = SQLiteUri.format(filename=request.form['sqlite_db_file'])
                 trackMods = False
             else:
-                dbUri = dbUriTpl.format(engines=engines[request.form['db_type']], user=request.form['db_user'], pwd=request.form['db_pwd'], host=request.form['db_host'], port=request.form['db_port'], name=request.form['db_name'])
+                dbUri = dbUriTpl.format(engine=engines[request.form['db_type']], user=request.form['db_user'], pwd=request.form['db_pwd'], host=request.form['db_host'], port=request.form['db_port'], name=request.form['db_name'])
                 trackMods = True
 
             setupObj = {

@@ -4,7 +4,7 @@ Version: 1.0.0
 
 Latest Update: 2024-12-02
 
-This database is designed to track characters used in a Men of Courage localized program (radio or other visual medium). It is designed to be multilingual and to conform to the needs of the target language and culture with a minimum of effort to [translate the interface](TRANSLATE.md). 
+This database is designed to track characters used in a Men of Courage localized program (radio or other visual medium). It is designed to be multilingual and to conform to the needs of the target language and culture with a minimum of effort to [translate the interface](TRANSLATE.md).
 
 Currently the database is available in the following languages:
 
@@ -13,20 +13,19 @@ Currently the database is available in the following languages:
 
 **The Men of Courage Character Database *is not meant to be hosted on the open internet!* It is designed for use on personal machines or on your local network (intranet).**
 
-The Men of Courage Character Database runs on Python 3.11 or higher and you interact with it in your web browser. Thus, it can be run on any desktop operating system that supports Python 3.11 or higher (Windows, MacOS , and many Linux flavors). 
+The Men of Courage Character Database runs on Python 3.11 or higher and you interact with it in your web browser. Thus, it can be run on any desktop operating system that supports Python 3.11 or higher (Windows, MacOS , and many Linux flavors).
 
 > It is not recommended to use the Men of Courage Character Database on a mobile phone, as the screen is too small. It will work fine on a tablet, though.
 
-The back end runs on Python/Flask and a SQLite database by default. It can also be connected to MySQL, MariaDb or PostgreSQL. The frontend is HTML served by Python-Flask for localization with Bootstrap for design look and feel and JavaScript to handle the interactions. 
-
+The back end runs on Python/Flask and a SQLite database by default. It can also be connected to MySQL, MariaDb or PostgreSQL. The frontend is HTML served by Python-Flask for localization with Bootstrap for design look and feel and JavaScript to handle the interactions.
 
 ## Requirements to run the Men of Courage Character Database
 
 * Python 3.11, which works best on:
-    
-    * Windows 10 or 11
-    * MacOS 11 and higher
-    * Linux with a kernel of 5.10 or higher (e.g. Ubuntu 21.04 or Manjaro 21.0).
+
+  * Windows 10 or 11
+  * MacOS 11 and higher
+  * Linux with a kernel of 5.10 or higher (e.g. Ubuntu 21.04 or Manjaro 21.0).
 
     > If you choose to run this application using a different version of Python, be sure to read [Using a version of Python other than 3.11](#using-a-version-of-python-other-than-311) below before setting up or starting the application!
 
@@ -37,15 +36,17 @@ The back end runs on Python/Flask and a SQLite database by default. It can also 
 The instructions below are quite detailed, so you should be able to do this with a minimal amount of computer knowhow.
 
 ## Setup
+
 Download or clone the repository using the green Code button above. Non-technical users are recommended to download the ZIP and extract it in a location where the `moc-character-db` directory is easily accessible, but won't be deleted by accident. Then, depending on your operating system (OS), you can continue with the setup as detailed below.
 
 ### Windows Automated Setup
+
 Run `setupmoccdb.bat` either by double-clicking the file in an Explorer window, or by opening a command prompt (cmd.exe), navigating to the `moc-character-db` folder and running the batch file from the command prompt by typing its name in and executing it.
 
 > Note: if you are using PowerShell, you'll need to execute the command as `.\setupmoccdb.bat`.
 
-
 ### Manual setup (all OSes)
+
 1. Launch a terminal or command prompt (cmd.exe) window and navigate to the `moc-character-db` directory.
 
 2. Create a Python virtual environment.
@@ -62,8 +63,8 @@ Run `setupmoccdb.bat` either by double-clicking the file in an Explorer window, 
 
         pip install -r requirements.txt
 
-
 ### Using a Database other than SQLite
+
 If you're going to use a database other than SQLite, load the database-specific packages from PyPi in the virtual environment:
 
 MariaDB: `pip install mariadb`
@@ -75,11 +76,15 @@ PostgreSQL: `pip install psycopg2-binary`
 Note that these packages will require you to have the related database and/or OS-specific necessary connector software installed on your machine. Please consult the relevant documentation for the database of your choice on how to do this.
 
 ## Usage
+
 ### Starting Up the Standalone Versions
+
 #### Windows
+
 Run the batch file `startmoccdb.bat`.
 
 #### Other Operating Systems
+
 1. Make sure you are in the `moc-character-db` directory.
 
 2. Activate the virtual environment, if necessary:
@@ -88,18 +93,24 @@ Run the batch file `startmoccdb.bat`.
 
     MacOS/Linux: `source /venv/bin/activate`
 
-
 3. Run the python executable:
 
         python moccdb.py
 
 4. Point your browser to http://localhost:13153 to access the database interface
 
+The application can also have other host IP addresses and port numbers passed to it, if desired by using the `--host` and `--port` arguments. For example:
+
+    python mocddb.py --host=0.0.0.0 --port=8000
+
+The port can be 8000 or higher.
+
 > See [Working with the Database](#working-with-the-database) below for how to access the database and use it.
 
 ---
 
 ### Hosting the Men of Courage Database on a Network
+
 The application is designed with simplicity in mind and **IS NOT MEANT TO BE EXPOSED TO THE INTERNET**! As such there is **no security** built into the application. If you host it on the internet, it is up to you to secure the application.
 
 * [Instructions for setting up WSGI on Apache webserver](webserver-config/apache/README.md)
@@ -108,19 +119,24 @@ The application is designed with simplicity in mind and **IS NOT MEANT TO BE EXP
 It is possible to set up your database locally and then copy the files in the local `instance` folder to the remote `instance` folder, thus carrying your data over to the networked instance of the Men of Courage Database
 
 #### Docker
+
 There is currently no Docker image available. You are, however, welcome to package the database to run in a Docker image with gunicorn.
 
 ---
-### Working with the Database:
+
+### Working with the Database
+
 #### First run
-On first run select your language and database of choice. Then you will be required to restart the application to access the newly created database. 
+
+On first run select your language and database of choice. Then you will be required to restart the application to access the newly created database.
 
 When you have accessed the main (Characters) page, be sure to navigate to the Relationships page and pre-load the default relationships or create your own. The database is much more useful with the relationships.
 
 #### General Usage
-The interface is quite straightforward and all options are documented. Below are a few pointers to make your use of the database more 
 
-Use the **Characters** link to manage the various characters you wish to create. 
+The interface is quite straightforward and all options are documented. Below are a few pointers to make your use of the database more effective.
+
+Use the **Characters** link to manage the various characters you wish to create.
 
 * For the head and body shots of the character, it is recommended to use images in the 16:9 format (e.g. 1920x1080 or 1200x768).
 
@@ -136,8 +152,8 @@ Use the **Episodes** link to manage the Episodes of Men of Courage in which your
 
 Use the **Relationships** link to manage the relationships that exist between the various characters.
 
-
 ## Localization (Translation)
+
 The database comes with localization for the following languages:
 
 * English (US)
@@ -154,21 +170,22 @@ To translate the database into a new language, please consult the [TRANSLATION.m
 Port: 13153 = moc
 
 ### Using a version of Python other than 3.11
+
 This application has been built in Python 3.11 and tested with it. **Beginners are strongly encouraged to only use the Men of Courage Character Database with Python 3.11 so the application will work without errors.**
 
-If you choose to use a different version of python, especially a newer version (like 3.12 or 3.13), please take the time to check that all of the packages in `requirements.txt` are available and functional in whatever version of Python you are using. For example, as of this writing, Pillow 10.3 does not work in Python 3.13, so the application fails. 
+If you choose to use a different version of python, especially a newer version (like 3.12 or 3.13), please take the time to check that all of the packages in `requirements.txt` are available and functional in whatever version of Python you are using. For example, as of this writing, Pillow 10.3 does not work in Python 3.13, so the application fails.
 
 If you know what you're doing, you can work to resolve the package issue and will probably have to tweak the code to reflect any changes to the package since this application was written.
 
 ### Developers
-Developers can run the database in developer mode in Windows using the command 
+
+Developers can run the database in developer mode in Windows using the command
 
     startmoccdb.bat dev 
 
-or by entering the app directory in virtual environment mode and executing 
+or by entering the app directory in virtual environment mode and executing
 
     flask --debug run --extra-files static/style.css:static/*.js
 
-
 ---
-Updated: 2025-02-28
+Updated: 2026-06-02

@@ -76,13 +76,21 @@ def create_app(test_config=None):
     env = Environment(extensions=['jinja2.ext.i18n'])
     env.install_gettext_callables(_, ngettext)  # type: ignore
 
+    # first we check for the settings file. If it does not exist, execute the setup process.
     try:
         app.register_blueprint(page)
         app.register_blueprint(api)
         app.config.from_file('settings.json', load=json.load)
         app.config['MOCDB_SETUP'] = True
-        db.init_app(app)
 
+    except Exception as e:
+        print("No settings found. Starting Setup Process")
+        create_app_settings(app, babel)
+
+    # Now we try to initialize the database, allowing it to fail gracefully if
+    # the tables already exist.
+    try:
+        db.init_app(app)
         with app.app_context():
             inspector = inspect(db.engine)
             missing_tables = [name for name in db.metadata.tables if not inspector.has_table(name)]
@@ -95,16 +103,11 @@ def create_app(test_config=None):
             print('Table already exists, continuing startup.')
         else:
             print(f'Error during application setup: {e}')
-            print('The application will start in setup mode.')
-            create_app_settings(app, babel)
-    except Exception as e:
-        print(f'Error during application setup: {e}')
-        print('The application will start in setup mode.')
-        create_app_settings(app, babel)
+            exit(1)
 
     # this is here so that we can reroute to setup if necessary. 
-    # I kind of hate to put a directory in front of what should run off the route, but
-    # this is probably the simplest and most fool-proof method to allow on-the fly 
+    # I kind of hate to put a directory in front of what should run off the root, but
+    # this is probably the simplest and most fool-proof method to allow on-the-fly 
     # setup with Flask's route() function.
     @app.route('/')
     def main_route():

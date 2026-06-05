@@ -20,6 +20,24 @@ __debugState__ = True
 # ================================================================================
 from utils.util_sqlalchemy import ResourceMixin
 from app.db import db
+from sqlalchemy.types import TypeDecorator, Text
+from sqlalchemy.dialects.mysql import MEDIUMTEXT
+
+class UniversalText(TypeDecorator):
+    """
+    Make it possible for MySQL or MariaDB to use MEDIUMTEXT in please of Text(),
+    because MySQL defaults to TEXT, which is too small to store large data, like
+    base64 encoded images.
+    """
+    impl = Text
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == "mysql":
+            return dialect.type_descriptor(MEDIUMTEXT())
+        elif dialect.name == "postgresql":
+            return dialect.type_descriptor(Text())
+        else:
+            return dialect.type_descriptor(Text())
 
 
 # Character-Episode connector table
@@ -40,8 +58,8 @@ class Character(ResourceMixin, db.Model):
     age = (db.Column(db.String(5), index=False, nullable=True))
     animation_status = db.Column(db.String(128), index=True, nullable=False)
     employment = db.Column(db.String(255), index=False, nullable=True)
-    image_body = db.Column(db.Text(), index=False, nullable=True)
-    image_head = db.Column(db.Text(), index=False, nullable=True)
+    image_body = db.Column(UniversalText(), index=False, nullable=True)
+    image_head = db.Column(UniversalText(), index=False, nullable=True)
     marital_status = db.Column(db.String(25), index=False, nullable=False)
     personality = db.Column(db.Text(), index=False, nullable=True)
     physical = db.Column(db.Text(), index=False, nullable=True)

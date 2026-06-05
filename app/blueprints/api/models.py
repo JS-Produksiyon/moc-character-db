@@ -55,7 +55,7 @@ class Character(ResourceMixin, db.Model):
     # main data
     first_name = db.Column(db.String(255), index=True, nullable=False)
     last_name = db.Column(db.String(255), index=True, nullable=True)
-    age = (db.Column(db.String(5), index=False, nullable=True))
+    age = (db.Column(db.String(128), index=False, nullable=True))
     animation_status = db.Column(db.String(128), index=True, nullable=False)
     employment = db.Column(db.String(255), index=False, nullable=True)
     image_body = db.Column(UniversalText(), index=False, nullable=True)
